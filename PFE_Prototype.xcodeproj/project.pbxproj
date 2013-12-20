@@ -1477,6 +1477,7 @@
 				);
 				HEADER_SEARCH_PATHS = "\"PFE_Prototype/libs/kazmath/include\"";
 				INFOPLIST_FILE = PFE_Prototype/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1502,6 +1503,7 @@
 				);
 				HEADER_SEARCH_PATHS = "\"PFE_Prototype/libs/kazmath/include\"";
 				INFOPLIST_FILE = PFE_Prototype/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1533,6 +1535,7 @@
 				8AE98B1A186492F800705AAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
