@@ -25,7 +25,6 @@
 	// iPad only
 	return UIInterfaceOrientationMaskPortrait;
     
-    // lalalalalalla
 }
 
 // Supported orientations. Customize it for your own needs
