@@ -13,6 +13,9 @@
 @interface MyNavigationController : UINavigationController <CCDirectorDelegate>
 @end
 
+
+// Ce commentaire dans la AppDelegate est un test de versioning
+
 @interface AppController : NSObject <UIApplicationDelegate>
 {
 	UIWindow *window_;
