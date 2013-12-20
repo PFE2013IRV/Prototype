@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AB50C3E1864BD980012A387 /* BlocBagData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.m */; };
+		8AB50C3F1864BD980012A387 /* BlocData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.m */; };
+		8AB50C401864BD980012A387 /* BlocVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocVisitor.m */; };
+		8AB50C411864BD980012A387 /* TowerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3D1864BD980012A387 /* TowerData.m */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
 		8AE988D5186492F600705AAF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D4186492F600705AAF /* OpenAL.framework */; };
@@ -191,6 +195,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8AB50C351864BD980012A387 /* BlocBagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocBagData.h; sourceTree = "<group>"; };
+		8AB50C361864BD980012A387 /* BlocBagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocBagData.m; sourceTree = "<group>"; };
+		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
+		8AB50C381864BD980012A387 /* BlocData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocData.m; sourceTree = "<group>"; };
+		8AB50C391864BD980012A387 /* BlocVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocVisitor.h; sourceTree = "<group>"; };
+		8AB50C3A1864BD980012A387 /* BlocVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocVisitor.m; sourceTree = "<group>"; };
+		8AB50C3B1864BD980012A387 /* GlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfig.h; sourceTree = "<group>"; };
+		8AB50C3C1864BD980012A387 /* TowerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerData.h; sourceTree = "<group>"; };
+		8AB50C3D1864BD980012A387 /* TowerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TowerData.m; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AE988D2186492F600705AAF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -629,6 +642,15 @@
 		8AE988E4186492F600705AAF /* PFE_Prototype */ = {
 			isa = PBXGroup;
 			children = (
+				8AB50C351864BD980012A387 /* BlocBagData.h */,
+				8AB50C361864BD980012A387 /* BlocBagData.m */,
+				8AB50C371864BD980012A387 /* BlocData.h */,
+				8AB50C381864BD980012A387 /* BlocData.m */,
+				8AB50C391864BD980012A387 /* BlocVisitor.h */,
+				8AB50C3A1864BD980012A387 /* BlocVisitor.m */,
+				8AB50C3B1864BD980012A387 /* GlobalConfig.h */,
+				8AB50C3C1864BD980012A387 /* TowerData.h */,
+				8AB50C3D1864BD980012A387 /* TowerData.m */,
 				8AE98B08186492F800705AAF /* AppDelegate.h */,
 				8AE98B09186492F800705AAF /* AppDelegate.mm */,
 				8AE98B0B186492F800705AAF /* HelloWorldLayer.h */,
@@ -1309,6 +1331,7 @@
 				8AE98A15186492F700705AAF /* CCVertex.m in Sources */,
 				8AE98A1B186492F700705AAF /* NSThread+performBlock.m in Sources */,
 				8AE98AF7186492F800705AAF /* b2RopeJoint.cpp in Sources */,
+				8AB50C411864BD980012A387 /* TowerData.m in Sources */,
 				8AE98922186492F600705AAF /* CCActionTiledGrid.m in Sources */,
 				8AE98AB5186492F800705AAF /* b2Fixture.cpp in Sources */,
 				8AE98969186492F700705AAF /* CCMenuItem.m in Sources */,
@@ -1357,6 +1380,7 @@
 				8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */,
 				8AE98A6D186492F800705AAF /* vec3.c in Sources */,
 				8AE98A1F186492F700705AAF /* TGAlib.m in Sources */,
+				8AB50C401864BD980012A387 /* BlocVisitor.m in Sources */,
 				8AE98928186492F600705AAF /* CCAnimation.m in Sources */,
 				8AE98A53186492F800705AAF /* aabb.c in Sources */,
 				8AE989CA186492F700705AAF /* CCTMXObjectGroup.m in Sources */,
@@ -1385,6 +1409,7 @@
 				8AE98AEB186492F800705AAF /* b2MouseJoint.cpp in Sources */,
 				8AE98A96186492F800705AAF /* b2PolygonShape.cpp in Sources */,
 				8AE98A6B186492F800705AAF /* vec2.c in Sources */,
+				8AB50C3F1864BD980012A387 /* BlocData.m in Sources */,
 				8AE98AAB186492F800705AAF /* b2Timer.cpp in Sources */,
 				8AE98A5B186492F800705AAF /* matrix.c in Sources */,
 				8AE98ACC186492F800705AAF /* b2Contact.cpp in Sources */,
@@ -1400,6 +1425,7 @@
 				8AE98A9B186492F800705AAF /* b2BlockAllocator.cpp in Sources */,
 				8AE9895F186492F700705AAF /* CCLabelTTF.m in Sources */,
 				8AE98A0C186492F700705AAF /* CCFileUtils.m in Sources */,
+				8AB50C3E1864BD980012A387 /* BlocBagData.m in Sources */,
 				8AE98AAF186492F800705AAF /* b2Body.cpp in Sources */,
 				8AE989F9186492F700705AAF /* CCEventDispatcher.m in Sources */,
 				8AE989AF186492F700705AAF /* CCSpriteBatchNode.m in Sources */,
