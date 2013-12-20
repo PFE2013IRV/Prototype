@@ -16,6 +16,8 @@
 
 // Ce commentaire dans la AppDelegate est un test de versioning
 
+// Encore du code, mais cette fois un test pour GitHub
+
 @interface AppController : NSObject <UIApplicationDelegate>
 {
 	UIWindow *window_;
