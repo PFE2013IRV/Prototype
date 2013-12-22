@@ -605,6 +605,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8AB50C421866CA950012A387 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C3B1864BD980012A387 /* GlobalConfig.h */,
+				8AB50C431866CAA90012A387 /* Blocs */,
+				8AB50C441866CAB40012A387 /* Tower */,
+			);
+			name = DataModels;
+			sourceTree = "<group>";
+		};
+		8AB50C431866CAA90012A387 /* Blocs */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C351864BD980012A387 /* BlocBagData.h */,
+				8AB50C361864BD980012A387 /* BlocBagData.m */,
+				8AB50C371864BD980012A387 /* BlocData.h */,
+				8AB50C381864BD980012A387 /* BlocData.m */,
+			);
+			name = Blocs;
+			sourceTree = "<group>";
+		};
+		8AB50C441866CAB40012A387 /* Tower */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C3C1864BD980012A387 /* TowerData.h */,
+				8AB50C3D1864BD980012A387 /* TowerData.m */,
+			);
+			name = Tower;
+			sourceTree = "<group>";
+		};
+		8AB50C451866CAC20012A387 /* DataControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C461866CAD00012A387 /* Blocs */,
+			);
+			name = DataControllers;
+			sourceTree = "<group>";
+		};
+		8AB50C461866CAD00012A387 /* Blocs */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C391864BD980012A387 /* BlocVisitor.h */,
+				8AB50C3A1864BD980012A387 /* BlocVisitor.m */,
+			);
+			name = Blocs;
+			sourceTree = "<group>";
+		};
 		8AE988C4186492F600705AAF = {
 			isa = PBXGroup;
 			children = (
@@ -642,15 +689,8 @@
 		8AE988E4186492F600705AAF /* PFE_Prototype */ = {
 			isa = PBXGroup;
 			children = (
-				8AB50C351864BD980012A387 /* BlocBagData.h */,
-				8AB50C361864BD980012A387 /* BlocBagData.m */,
-				8AB50C371864BD980012A387 /* BlocData.h */,
-				8AB50C381864BD980012A387 /* BlocData.m */,
-				8AB50C391864BD980012A387 /* BlocVisitor.h */,
-				8AB50C3A1864BD980012A387 /* BlocVisitor.m */,
-				8AB50C3B1864BD980012A387 /* GlobalConfig.h */,
-				8AB50C3C1864BD980012A387 /* TowerData.h */,
-				8AB50C3D1864BD980012A387 /* TowerData.m */,
+				8AB50C421866CA950012A387 /* DataModels */,
+				8AB50C451866CAC20012A387 /* DataControllers */,
 				8AE98B08186492F800705AAF /* AppDelegate.h */,
 				8AE98B09186492F800705AAF /* AppDelegate.mm */,
 				8AE98B0B186492F800705AAF /* HelloWorldLayer.h */,
