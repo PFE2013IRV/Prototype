@@ -11,6 +11,9 @@
 @interface TowerData : NSObject
 
 
+// Basic init is re-implemented
+-(id) init;
+
 // The blocs array. This array is represents the tower from the bottom to the top bloc
 @property (nonatomic,strong) NSMutableArray* _aBlocs;
 

@@ -86,26 +86,18 @@ static BlocVisitor* pBlocVisitor = nil;
 
 +(BlocVisitor*) GetBlocVisitor
 {
-    @synchronized([BlocVisitor class])
+    if(!pBlocVisitor)
     {
-        if(!pBlocVisitor)
-        {
-            [[self alloc] init];
-               
-            return pBlocVisitor;
-        }
+        [[self alloc] init];
     }
-    return nil;
+    
+    return pBlocVisitor;
 }
 
 +(id) alloc
 {
-    @synchronized([BlocVisitor class])
-    {
-        pBlocVisitor = [super alloc];
-        return pBlocVisitor;
-    }
-    return nil;
+    pBlocVisitor = [super alloc];
+    return pBlocVisitor;
 }
 
 -(id) init

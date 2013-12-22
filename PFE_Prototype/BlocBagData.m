@@ -1,6 +1,5 @@
 //
 //  BlocBagData.m
-//  ProjectTower
 //
 //  The BlocBagData contains the data related to the bloc bag (content, max size, etc...)
 //  It's a singleton object.
@@ -42,26 +41,17 @@ static BlocBagData* pBlocBagData = nil;
 
 +(BlocBagData*) GetBlocBagData
 {
-    @synchronized([BlocBagData class])
+    if(!pBlocBagData)
     {
-        if(!pBlocBagData)
-        {
-            [[self alloc] init];
-            
-            return pBlocBagData;
-        }
+        [[self alloc] init];
     }
-    return nil;
+    return pBlocBagData;
 }
 
 +(id) alloc
 {
-    @synchronized([pBlocBagData class])
-    {
-        pBlocBagData = [super alloc];
-        return pBlocBagData;
-    }
-    return nil;
+    pBlocBagData = [super alloc];
+    return pBlocBagData;
 }
 
 -(id) init

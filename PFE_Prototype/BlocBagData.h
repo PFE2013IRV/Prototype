@@ -1,6 +1,5 @@
 //
 //  BlocBagData.h
-//  ProjectTower
 //
 //  The BlocBagData contains the data related to the bloc bag (content, max size, etc...)
 //  It's a singleton object.

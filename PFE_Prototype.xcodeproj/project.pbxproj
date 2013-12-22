@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A5B231C18674E2A00B145A4 /* TowerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.m */; };
+		8A5B232118674F4900B145A4 /* PlanetLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.m */; };
+		8A5B23241867543700B145A4 /* BalanceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.m */; };
 		8AB50C3E1864BD980012A387 /* BlocBagData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.m */; };
 		8AB50C3F1864BD980012A387 /* BlocData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.m */; };
 		8AB50C401864BD980012A387 /* BlocVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocVisitor.m */; };
 		8AB50C411864BD980012A387 /* TowerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3D1864BD980012A387 /* TowerData.m */; };
+		8AB50C491866D0760012A387 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C481866D0760012A387 /* GameData.m */; };
+		8AB50C4C1866D1B80012A387 /* GodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C4B1866D1B80012A387 /* GodData.m */; };
+		8AB50C4F1866D2F60012A387 /* WindGodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C4E1866D2F60012A387 /* WindGodData.m */; };
+		8AB50C541866D7440012A387 /* LevelVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C531866D7440012A387 /* LevelVisitor.m */; };
+		8AB50C57186728D20012A387 /* ConstructionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C56186728D20012A387 /* ConstructionScene.m */; };
+		8AB50C5C18673AE60012A387 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5B18673AE60012A387 /* GameScene.m */; };
+		8AB50C5F18673BEF0012A387 /* SkyLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5E18673BEF0012A387 /* SkyLayer.m */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
 		8AE988D5186492F600705AAF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D4186492F600705AAF /* OpenAL.framework */; };
@@ -195,6 +205,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A5B231A18674E2A00B145A4 /* TowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerLayer.h; sourceTree = "<group>"; };
+		8A5B231B18674E2A00B145A4 /* TowerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TowerLayer.m; sourceTree = "<group>"; };
+		8A5B231F18674F4900B145A4 /* PlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetLayer.h; sourceTree = "<group>"; };
+		8A5B232018674F4900B145A4 /* PlanetLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetLayer.m; sourceTree = "<group>"; };
+		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
+		8A5B23231867543700B145A4 /* BalanceScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceScene.m; sourceTree = "<group>"; };
 		8AB50C351864BD980012A387 /* BlocBagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocBagData.h; sourceTree = "<group>"; };
 		8AB50C361864BD980012A387 /* BlocBagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocBagData.m; sourceTree = "<group>"; };
 		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
@@ -204,6 +220,21 @@
 		8AB50C3B1864BD980012A387 /* GlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfig.h; sourceTree = "<group>"; };
 		8AB50C3C1864BD980012A387 /* TowerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerData.h; sourceTree = "<group>"; };
 		8AB50C3D1864BD980012A387 /* TowerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TowerData.m; sourceTree = "<group>"; };
+		8AB50C471866D0760012A387 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		8AB50C481866D0760012A387 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		8AB50C4A1866D1B80012A387 /* GodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GodData.h; path = ../GodData.h; sourceTree = "<group>"; };
+		8AB50C4B1866D1B80012A387 /* GodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GodData.m; path = ../GodData.m; sourceTree = "<group>"; };
+		8AB50C4D1866D2F60012A387 /* WindGodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindGodData.h; path = ../WindGodData.h; sourceTree = "<group>"; };
+		8AB50C4E1866D2F60012A387 /* WindGodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindGodData.m; path = ../WindGodData.m; sourceTree = "<group>"; };
+		8AB50C521866D7440012A387 /* LevelVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelVisitor.h; sourceTree = "<group>"; };
+		8AB50C531866D7440012A387 /* LevelVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelVisitor.m; sourceTree = "<group>"; };
+		8AB50C55186728D20012A387 /* ConstructionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionScene.h; sourceTree = "<group>"; };
+		8AB50C56186728D20012A387 /* ConstructionScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstructionScene.m; sourceTree = "<group>"; };
+		8AB50C5918672BDD0012A387 /* GameSceneProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSceneProtocol.h; sourceTree = "<group>"; };
+		8AB50C5A18673AE60012A387 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		8AB50C5B18673AE60012A387 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		8AB50C5D18673BEF0012A387 /* SkyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyLayer.h; sourceTree = "<group>"; };
+		8AB50C5E18673BEF0012A387 /* SkyLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkyLayer.m; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AE988D2186492F600705AAF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -605,10 +636,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A5B23191867430300B145A4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C521866D7440012A387 /* LevelVisitor.h */,
+				8AB50C531866D7440012A387 /* LevelVisitor.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		8A5B231D18674E3500B145A4 /* GameElements */ = {
+			isa = PBXGroup;
+			children = (
+				8A5B231A18674E2A00B145A4 /* TowerLayer.h */,
+				8A5B231B18674E2A00B145A4 /* TowerLayer.m */,
+				8A5B231F18674F4900B145A4 /* PlanetLayer.h */,
+				8A5B232018674F4900B145A4 /* PlanetLayer.m */,
+			);
+			name = GameElements;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8A5B231E18674E5A00B145A4 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C6018673BF50012A387 /* Graphics */,
+				8A5B231D18674E3500B145A4 /* GameElements */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
 		8AB50C421866CA950012A387 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				8AB50C3B1864BD980012A387 /* GlobalConfig.h */,
+				8AB50C511866D3E10012A387 /* Game */,
+				8AB50C501866D3CA0012A387 /* Gods */,
 				8AB50C431866CAA90012A387 /* Blocs */,
 				8AB50C441866CAB40012A387 /* Tower */,
 			);
@@ -638,6 +700,7 @@
 		8AB50C451866CAC20012A387 /* DataControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A5B23191867430300B145A4 /* Game */,
 				8AB50C461866CAD00012A387 /* Blocs */,
 			);
 			name = DataControllers;
@@ -650,6 +713,51 @@
 				8AB50C3A1864BD980012A387 /* BlocVisitor.m */,
 			);
 			name = Blocs;
+			sourceTree = "<group>";
+		};
+		8AB50C501866D3CA0012A387 /* Gods */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C4D1866D2F60012A387 /* WindGodData.h */,
+				8AB50C4E1866D2F60012A387 /* WindGodData.m */,
+				8AB50C4A1866D1B80012A387 /* GodData.h */,
+				8AB50C4B1866D1B80012A387 /* GodData.m */,
+			);
+			name = Gods;
+			sourceTree = "<group>";
+		};
+		8AB50C511866D3E10012A387 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C3B1864BD980012A387 /* GlobalConfig.h */,
+				8AB50C471866D0760012A387 /* GameData.h */,
+				8AB50C481866D0760012A387 /* GameData.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		8AB50C58186728DD0012A387 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C55186728D20012A387 /* ConstructionScene.h */,
+				8AB50C56186728D20012A387 /* ConstructionScene.m */,
+				8A5B23221867543700B145A4 /* BalanceScene.h */,
+				8A5B23231867543700B145A4 /* BalanceScene.m */,
+				8AB50C5A18673AE60012A387 /* GameScene.h */,
+				8AB50C5B18673AE60012A387 /* GameScene.m */,
+				8AB50C5918672BDD0012A387 /* GameSceneProtocol.h */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		8AB50C6018673BF50012A387 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
+				8AB50C5E18673BEF0012A387 /* SkyLayer.m */,
+			);
+			name = Graphics;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		8AE988C4186492F600705AAF = {
@@ -691,6 +799,8 @@
 			children = (
 				8AB50C421866CA950012A387 /* DataModels */,
 				8AB50C451866CAC20012A387 /* DataControllers */,
+				8AB50C58186728DD0012A387 /* Scenes */,
+				8A5B231E18674E5A00B145A4 /* Layers */,
 				8AE98B08186492F800705AAF /* AppDelegate.h */,
 				8AE98B09186492F800705AAF /* AppDelegate.mm */,
 				8AE98B0B186492F800705AAF /* HelloWorldLayer.h */,
@@ -1358,14 +1468,17 @@
 				8AE98AA8186492F800705AAF /* b2StackAllocator.cpp in Sources */,
 				8AE98AF1186492F800705AAF /* b2PulleyJoint.cpp in Sources */,
 				8AE98907186492F600705AAF /* CCActionCatmullRom.m in Sources */,
+				8AB50C5F18673BEF0012A387 /* SkyLayer.m in Sources */,
 				8AE9897E186492F700705AAF /* CCParticleSystem.m in Sources */,
 				8AE989D3186492F700705AAF /* CCTransition.m in Sources */,
 				8AE98A86186492F800705AAF /* b2DynamicTree.cpp in Sources */,
 				8AE98AB2186492F800705AAF /* b2ContactManager.cpp in Sources */,
 				8AE9897B186492F700705AAF /* CCParticleExamples.m in Sources */,
 				8AE98978186492F700705AAF /* CCParticleBatchNode.m in Sources */,
+				8AB50C57186728D20012A387 /* ConstructionScene.m in Sources */,
 				8AE98A93186492F800705AAF /* b2EdgeShape.cpp in Sources */,
 				8AE98AB8186492F800705AAF /* b2Island.cpp in Sources */,
+				8AB50C541866D7440012A387 /* LevelVisitor.m in Sources */,
 				8AE989BB186492F700705AAF /* CCTextureAtlas.m in Sources */,
 				8AE98A69186492F800705AAF /* utility.c in Sources */,
 				8AE98A15186492F700705AAF /* CCVertex.m in Sources */,
@@ -1398,6 +1511,7 @@
 				8AE9891F186492F600705AAF /* CCActionProgressTimer.m in Sources */,
 				8AE98A7A186492F800705AAF /* b2CollideCircle.cpp in Sources */,
 				8AE98901186492F600705AAF /* CCAction.m in Sources */,
+				8A5B23241867543700B145A4 /* BalanceScene.m in Sources */,
 				8AE98A39186492F700705AAF /* CocosDenshion.m in Sources */,
 				8AE989BE186492F700705AAF /* CCTextureCache.m in Sources */,
 				8AE98A61186492F800705AAF /* neon_matrix_impl.c in Sources */,
@@ -1412,6 +1526,8 @@
 				8AE9892E186492F600705AAF /* CCAtlasNode.m in Sources */,
 				8AE98B0A186492F800705AAF /* AppDelegate.mm in Sources */,
 				8AE989F2186492F700705AAF /* CCTouchHandler.m in Sources */,
+				8AB50C5C18673AE60012A387 /* GameScene.m in Sources */,
+				8AB50C491866D0760012A387 /* GameData.m in Sources */,
 				8AE9896C186492F700705AAF /* CCMotionStreak.m in Sources */,
 				8AE98A9E186492F800705AAF /* b2Draw.cpp in Sources */,
 				8AE989EB186492F700705AAF /* CCGLView.m in Sources */,
@@ -1452,10 +1568,12 @@
 				8AB50C3F1864BD980012A387 /* BlocData.m in Sources */,
 				8AE98AAB186492F800705AAF /* b2Timer.cpp in Sources */,
 				8AE98A5B186492F800705AAF /* matrix.c in Sources */,
+				8A5B231C18674E2A00B145A4 /* TowerLayer.m in Sources */,
 				8AE98ACC186492F800705AAF /* b2Contact.cpp in Sources */,
 				8AE98941186492F600705AAF /* CCDrawingPrimitives.m in Sources */,
 				8AE989A9186492F700705AAF /* ccShaders.m in Sources */,
 				8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */,
+				8AB50C4F1866D2F60012A387 /* WindGodData.m in Sources */,
 				8AE98ABF186492F800705AAF /* b2WorldCallbacks.cpp in Sources */,
 				8AE98ADF186492F800705AAF /* b2DistanceJoint.cpp in Sources */,
 				8AE989FF186492F700705AAF /* CCWindow.m in Sources */,
@@ -1475,7 +1593,9 @@
 				8AE98966186492F700705AAF /* CCMenu.m in Sources */,
 				8AE98A6F186492F800705AAF /* vec4.c in Sources */,
 				8AE98A89186492F800705AAF /* b2TimeOfImpact.cpp in Sources */,
+				8AB50C4C1866D1B80012A387 /* GodData.m in Sources */,
 				8AE98931186492F600705AAF /* CCCamera.m in Sources */,
+				8A5B232118674F4900B145A4 /* PlanetLayer.m in Sources */,
 				8AE9892B186492F600705AAF /* CCAnimationCache.m in Sources */,
 				8AE9894D186492F700705AAF /* CCGLProgram.m in Sources */,
 				8AE98A3D186492F700705AAF /* SimpleAudioEngine.m in Sources */,

@@ -16,7 +16,11 @@
 // i_aVertices : a static array with the blocs vertices. The coordinates are absolute (coordinates of the stars)
 // i_eBlocMaterial : an enum with the material
 // retun value : self
--(id) initWithData : (NSArray*)i_aVertices : (Material)i_eBlocMaterial;
+-(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial;
+
+// Basic init is re-implemented with NSException to be avoided
+// return value : nil
+-(id) init;
 
 // The vertices array
 @property (nonatomic,strong) NSMutableArray* _aVertices;

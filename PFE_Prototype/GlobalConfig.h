@@ -15,6 +15,23 @@ static const char* CGF_TMP_PNG_SAVEPATH = "";
 // The savepath for the bloc bag data
 static const char* CFG_BLOCBAG_SAVEPATH = "";
 
+// The gamescene modes
+enum GameSceneMode {
+    SCENE_MODE_NULL = 0,
+    SCENE_MODE_CONSTRUCTION = 1,
+    SCENE_MODE_BALANCE = 2
+}; typedef enum GameSceneMode GameSceneMode;
+
+
+// The different elementary god types
+enum GodType {
+    GOD_TYPE_NULL = 0,
+    GOD_TYPE_FIRE = 1,
+    GOD_TYPE_WATER = 2,
+    GOD_TYPE_EARTH = 3
+};
+typedef enum Material GodType;
+
 // Materials are defined here in this enum
 enum Material {
     MAT_NULL = 0,
