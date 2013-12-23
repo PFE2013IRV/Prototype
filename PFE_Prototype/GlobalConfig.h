@@ -30,7 +30,7 @@ enum GodType {
     GOD_TYPE_WATER = 2,
     GOD_TYPE_EARTH = 3
 };
-typedef enum Material GodType;
+typedef enum GodType GodType;
 
 // Materials are defined here in this enum
 enum Material {
