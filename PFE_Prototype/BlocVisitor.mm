@@ -64,7 +64,7 @@ static BlocVisitor* pBlocVisitor = nil;
     }
     else
     {
-        NSLog(@"Error : bloc could not load the blocs. Data was corrupted");
+        [NSException raise:NSInternalInconsistencyException format:@"Error : bloc could not load the blocs. Data was corrupted"];
     }
 }
 
@@ -80,7 +80,7 @@ static BlocVisitor* pBlocVisitor = nil;
     }
     else
     {
-        NSLog(@"Error : bloc could write PNG file. Data was corrupted");
+        [NSException raise:NSInternalInconsistencyException format:@"Error : bloc could write PNG file. Data was corrupted"];
     }
 }
 

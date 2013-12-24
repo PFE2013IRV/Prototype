@@ -18,13 +18,13 @@
 {
     if(i_aVertices.count == 0 )
     {
-        NSLog(@"Fatal error : bloc data init failed");
+       [NSException raise:NSInternalInconsistencyException format:@"Fatal error : bloc data init failed"];
         return nil;
     }
     
     else if(i_eBlocMaterial == MAT_NULL)
     {
-        NSLog(@"Fatal error : bloc data init failed");
+       [NSException raise:NSInternalInconsistencyException format:@"Fatal error : bloc data init failed"];
         return nil;
     }
     

@@ -18,7 +18,7 @@
 {
     if(!(i_eGodType == GOD_TYPE_EARTH || i_eGodType == GOD_TYPE_FIRE || i_eGodType == GOD_TYPE_WATER))
     {
-        NSLog(@"Fatal error : unknown god type");
+        [NSException raise:NSInternalInconsistencyException format:@"Fatal error : unknown god type"];
         return nil;
     }
     else if (self = [super init])
