@@ -12,6 +12,7 @@
 @synthesize _aVertices;
 @synthesize _eBlocMaterial;
 @synthesize _sFileName;
+@synthesize _originalSize;
 
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial

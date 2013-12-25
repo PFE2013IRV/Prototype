@@ -8,6 +8,7 @@
 
 #import "BlocVisitor.h"
 #import "BlocBagData.h"
+#import "cocos2d.h"
 
 @implementation BlocVisitor
 
@@ -68,15 +69,74 @@ static BlocVisitor* pBlocVisitor = nil;
     }
 }
 
+static int coords[6][2] =
+{
+    {50, 100},
+    {230, 250},
+    {50, 250},
+    {150, 100},
+    {90, 35},
+    {300, 160}
+};
+
 -(void) MakePNGFromModel: (BlocData*) i_pData
 {
-    if(i_pData)
+    if(!i_pData)
     {
         NSLog(@"Begin write PNG Bloc");
         
-        // To be implemented
+        int originalWidth = 400;//i_pData._originalSize.width;
+        int originalHeight = 400;//i_pData._originalSize.height;
+        
+        // On instancie un CCRednerTexture dans lequel nous allons créer le rendu du bloc
+        CCRenderTexture* pRenderTexture = [CCRenderTexture renderTextureWithWidth:originalWidth height:originalHeight];
+        
+        // On commence le rendu.
+        [pRenderTexture begin];
+        
+        
+        // On dessine dans la texture.
+        
+        // Calque 1 : lignes
+        
+        NSMutableArray* aVertices = [[NSMutableArray alloc] init];
+        for(int i = 0; i < 6 ; i++)
+        {
+            // On charge les coordonnées
+            CGPoint point = CGPointMake(coords[i][0], coords[i][1]);
+            
+            [aVertices addObject:[NSValue valueWithCGPoint:point]];
+        }
+
+        
+        //NSMutableArray* aVertices = i_pData._aVertices;
+        
+        glEnable(GL_LINE_LOOP);
+        ccDrawColor4B(209, 75, 75, 255);
+        
+        float lineWidth = 8.0 * CC_CONTENT_SCALE_FACTOR();
+        glLineWidth(lineWidth);
+        
+        for(int i = 1 ; i < aVertices.count-1 ; i++)
+        {
+            NSValue* pGetPointA = [aVertices objectAtIndex:i-1];
+            NSValue* pGetPointB = [aVertices objectAtIndex:i];
+            
+            CGPoint pointA = [pGetPointA CGPointValue];
+            CGPoint pointB = [pGetPointB CGPointValue];
+            
+            ccDrawLine(pointA, pointB);
+        }
+        
+        
+        // Fin du rendu
+        [pRenderTexture end];
+        
+        [pRenderTexture saveToFile:@"test.png" format:kCCImageFormatPNG];
         
         NSLog(@"End write PNG Bloc");
+        
+        
     }
     else
     {

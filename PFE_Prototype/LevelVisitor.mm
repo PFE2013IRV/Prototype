@@ -9,7 +9,6 @@
 //
 //
 
-
 #import "LevelVisitor.h"
 #import "GodData.h"
 #import "TowerData.h"
@@ -39,7 +38,6 @@ static LevelVisitor* pLevelVisitor = nil;
     
     // La tour, vide puisque c'est le début du niveau.
     TowerData* pTower = [[TowerData alloc] init];
-    
     
     pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods] autorelease];
     

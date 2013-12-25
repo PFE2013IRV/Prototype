@@ -15,6 +15,9 @@ static const char* CGF_TMP_PNG_SAVEPATH = "";
 // The savepath for the bloc bag data
 static const char* CFG_BLOCBAG_SAVEPATH = "";
 
+// Bloc's bounding box minimum width or height
+static unsigned int BLOC_SIZE = 255;
+
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,
@@ -49,6 +52,9 @@ enum BagSize {
     BAG_SIZE_GOD_LIKE = 50
 };
 typedef enum BagSize BagSize;
+
+
+
 
 
 #endif
