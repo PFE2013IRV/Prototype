@@ -55,15 +55,18 @@
 		[self addChild: background];
         
         
-        
-        
+        /////////////////////////////////////////////////////////////////////////////////
+        // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)
         NSArray* aVertices = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)], nil];
         
         BlocData* pBloc = [[BlocData alloc] initBloc:aVertices withMaterial:MAT_WOOD];
         [[BlocVisitor GetBlocVisitor] MakePNGFromModel:pBloc];
         
         [[BlocVisitor GetBlocVisitor] DeletePNGFiles];
+        /////////////////////////////////////////////////////////////////////////////////
         
+        
+ 
 	}
 	
 	return self;
