@@ -81,35 +81,24 @@ static int coords[6][2] =
 
 -(void) MakePNGFromModel: (BlocData*) i_pData
 {
-    if(!i_pData)
+    if(i_pData)
     {
         NSLog(@"Begin write PNG Bloc");
         
-        int originalWidth = 400;//i_pData._originalSize.width;
-        int originalHeight = 400;//i_pData._originalSize.height;
+        int originalWidth = i_pData._originalSize.width;
+        int originalHeight = i_pData._originalSize.height;
         
         // On instancie un CCRednerTexture dans lequel nous allons créer le rendu du bloc
         CCRenderTexture* pRenderTexture = [CCRenderTexture renderTextureWithWidth:originalWidth height:originalHeight];
         
-        // On commence le rendu.
-        [pRenderTexture begin];
-        
+        // On commence le rendu avec une texture transparente.
+        [pRenderTexture beginWithClear:0 g:0 b:0 a:0];
         
         // On dessine dans la texture.
         
         // Calque 1 : lignes
         
-        NSMutableArray* aVertices = [[NSMutableArray alloc] init];
-        for(int i = 0; i < 6 ; i++)
-        {
-            // On charge les coordonnées
-            CGPoint point = CGPointMake(coords[i][0], coords[i][1]);
-            
-            [aVertices addObject:[NSValue valueWithCGPoint:point]];
-        }
-
-        
-        //NSMutableArray* aVertices = i_pData._aVertices;
+        NSMutableArray* aVertices = i_pData._aVertices;
         
         glEnable(GL_LINE_LOOP);
         ccDrawColor4B(209, 75, 75, 255);

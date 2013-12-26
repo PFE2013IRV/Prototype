@@ -10,7 +10,6 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "HelloWorldLayer.h"
-#import "BlocVisitor.h"
 
 
 #pragma mark - IntroLayer
@@ -54,8 +53,6 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: background];
-        
-        [[BlocVisitor GetBlocVisitor] MakePNGFromModel:nil];
         
 	}
 	
