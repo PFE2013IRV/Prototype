@@ -36,5 +36,8 @@
 // Load the blocs from the save file to the bloc bag
 -(void) LoadBlocsToBlocBag;
 
+// Delete all the bloc PNG files located in the Documents directory 
+-(void) DeletePNGFiles;
+
 
 @end

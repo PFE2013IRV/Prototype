@@ -26,7 +26,7 @@
 @property (nonatomic,strong) NSMutableArray* _aVertices;
 // The enum value of the bloc material
 @property (nonatomic,assign) Material _eBlocMaterial;
-// The filename of the generated image
+// The filename of the generated image. Unique ID.
 @property (nonatomic,strong) NSString* _sFileName;
 // The original bloc size
 @property (nonatomic,assign) CGSize _originalSize;

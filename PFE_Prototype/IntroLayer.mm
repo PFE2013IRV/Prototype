@@ -10,7 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "HelloWorldLayer.h"
-
+#import "BlocVisitor.h"
 
 #pragma mark - IntroLayer
 
@@ -53,6 +53,16 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: background];
+        
+        
+        
+        
+        NSArray* aVertices = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)], nil];
+        
+        BlocData* pBloc = [[BlocData alloc] initBloc:aVertices withMaterial:MAT_WOOD];
+        [[BlocVisitor GetBlocVisitor] MakePNGFromModel:pBloc];
+        
+        [[BlocVisitor GetBlocVisitor] DeletePNGFiles];
         
 	}
 	

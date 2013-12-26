@@ -69,24 +69,14 @@ static BlocVisitor* pBlocVisitor = nil;
     }
 }
 
-static int coords[6][2] =
-{
-    {50, 100},
-    {230, 250},
-    {50, 250},
-    {150, 100},
-    {90, 35},
-    {300, 160}
-};
-
 -(void) MakePNGFromModel: (BlocData*) i_pData
 {
     if(i_pData)
     {
         NSLog(@"Begin write PNG Bloc");
         
-        int originalWidth = i_pData._originalSize.width;
-        int originalHeight = i_pData._originalSize.height;
+        int originalWidth = 400;//i_pData._originalSize.width;
+        int originalHeight = 400;//i_pData._originalSize.height;
         
         // On instancie un CCRednerTexture dans lequel nous allons créer le rendu du bloc
         CCRenderTexture* pRenderTexture = [CCRenderTexture renderTextureWithWidth:originalWidth height:originalHeight];
@@ -121,15 +111,50 @@ static int coords[6][2] =
         // Fin du rendu
         [pRenderTexture end];
         
-        [pRenderTexture saveToFile:@"test.png" format:kCCImageFormatPNG];
+        [pRenderTexture saveToFile:i_pData._sFileName format:kCCImageFormatPNG];
         
         NSLog(@"End write PNG Bloc");
-        
         
     }
     else
     {
         [NSException raise:NSInternalInconsistencyException format:@"Error : bloc could write PNG file. Data was corrupted"];
+    }
+}
+
+-(void) DeletePNGFiles
+{
+    // On récupère le path du documents directory
+    NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* sDocumentsDirectory = [aPaths objectAtIndex:0];
+    
+    // On initialise un file manager
+    NSFileManager* pFileManager = [[[NSFileManager alloc] init] autorelease];
+    NSError* pError = nil;
+    NSArray* aDirectoryContents = [pFileManager contentsOfDirectoryAtPath:sDocumentsDirectory error:&pError];
+    if (pError == nil)
+    {
+        for (NSString* sFile in aDirectoryContents)
+        {
+            // Seuls les fichiers préfixés de "Bloc_" sont concernés
+            
+            if([[sFile substringToIndex:5] isEqualToString:@"Bloc_"])
+            {
+                NSString* sPathWithFileName = [sDocumentsDirectory stringByAppendingPathComponent:sFile];
+                
+                BOOL removeSuccess = [pFileManager removeItemAtPath:sPathWithFileName error:&pError];
+                if (!removeSuccess)
+                {
+                    // Error handling
+                    [NSException raise:NSInternalInconsistencyException format:@"Error : Bloc could not be deleted"];
+                }
+            }
+        }
+    }
+    else
+    {
+        // Error handling
+        [NSException raise:NSInternalInconsistencyException format:@"Error : documents directory culd not be reached"];
     }
 }
 

@@ -15,6 +15,8 @@
 @synthesize _originalSize;
 
 
+
+
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
     if(i_aVertices.count == 0 )
@@ -33,7 +35,20 @@
     {
         _aVertices = [[NSMutableArray alloc] initWithArray:i_aVertices];
         _eBlocMaterial = i_eBlocMaterial;
-        _sFileName = [[NSString alloc] initWithString:@""];
+        
+        
+        // Création d'un filename unique associé au PNG.
+        CFUUIDRef uuid = CFUUIDCreate(NULL);
+        CFStringRef sUUIDString = CFUUIDCreateString(NULL, uuid);
+        CFRelease(uuid);
+        //NSString* sFolder = [NSString stringWithUTF8String:PNG_FLODER];
+        NSString* sPrefix = @"Bloc_";
+        NSString* sExtension = @".png";
+        
+        NSString* sUniqueFileName = [NSString stringWithFormat:@"%@%@%@",sPrefix, (NSString *)sUUIDString, sExtension];
+        CFRelease(sUUIDString);
+        
+        _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
     }
     
     return self;    

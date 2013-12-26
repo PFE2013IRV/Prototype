@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 // The savepath for the PNG export of the bloc is statically defined here
-static const char* CGF_TMP_PNG_SAVEPATH = "";
+static const char* PNG_FLODER = "tmp_PNG";
 
 // The savepath for the bloc bag data
 static const char* CFG_BLOCBAG_SAVEPATH = "";
