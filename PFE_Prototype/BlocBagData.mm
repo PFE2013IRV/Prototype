@@ -56,7 +56,6 @@ static BlocBagData* pBlocBagData = nil;
 
 -(id) init
 {
-    
     if(self = [super init])
     {
         _eBagSize = BAG_SIZE_NULL;

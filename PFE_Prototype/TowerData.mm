@@ -17,13 +17,10 @@
     if(self = [super init])
     {
         _aBlocs = [[NSMutableArray alloc] init];
-        
         NSLog(@"TowerData init succeeded. Empty tower is ready to be built !");
-        
-        return self;
     }
     
-    return nil;    
+    return self;
 }
 
 @end

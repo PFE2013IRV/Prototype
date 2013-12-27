@@ -19,13 +19,11 @@
     if(i_aVertices.count == 0 )
     {
         NSLog(@"Fatal error : bloc data init failed");
-        return nil;
     }
     
     else if(i_eBlocMaterial == MAT_NULL)
     {
         NSLog(@"Fatal error : bloc data init failed");
-        return nil;
     }
     
     else if (self = [super init])
@@ -41,8 +39,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    
-    return nil;
+    return self;
 }
 
 @end

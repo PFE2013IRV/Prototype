@@ -19,7 +19,6 @@
     if(!(i_eGodType == GOD_TYPE_EARTH || i_eGodType == GOD_TYPE_FIRE || i_eGodType == GOD_TYPE_WATER))
     {
         NSLog(@"Fatal error : unknown god type");
-        return nil;
     }
     else if (self = [super init])
     {
@@ -33,8 +32,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    
-    return nil;
+    return self;
 }
 
 
