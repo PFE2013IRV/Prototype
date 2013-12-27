@@ -13,5 +13,6 @@
 }
 
 // Maxou, à toi de voir ce que tu mets dedans
+-(id)init;
 
 @end

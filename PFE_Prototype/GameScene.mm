@@ -12,5 +12,14 @@
 @synthesize _pSkyLayer;
 @synthesize _pPlanetLayer;
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        _pSkyLayer = [SkyLayer node];
+        _pPlanetLayer = [PlanetLayer node];
+    }
+    return self;
+}
 
 @end
