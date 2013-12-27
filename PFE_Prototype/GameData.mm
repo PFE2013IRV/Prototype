@@ -23,24 +23,20 @@
     if(!(i_eGameSceneMode == SCENE_MODE_CONSTRUCTION || i_eGameSceneMode == SCENE_MODE_BALANCE))
     {
         NSLog(@"Fatal Error : game mode is unknown.");
-        return nil;
     }
-    if(!i_pTowerData)
+    else if(!i_pTowerData)
     {
         NSLog(@"Fatal Error : tower data is required");
-        return nil;
     }
-    if(!i_aGodData)
+    else if(!i_aGodData)
     {
         NSLog(@"Fatal Error : god data is required");
-        return nil;
     }
     else
     {
         if(!(i_aGodData.count > 0 && i_aGodData.count < 4))
         {
             NSLog(@"Fatal Error : please check the number of gods");
-            return nil;
         }
         else
         {
@@ -66,8 +62,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    
-    return nil;
+    return self;
 }
 
 @end
