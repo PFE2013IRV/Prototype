@@ -29,6 +29,7 @@ static BlocVisitor* pBlocVisitor = nil;
         
         NSLog(@"End Bloc Sprite creation");
     }
+    
     return pSprite;
 }
 

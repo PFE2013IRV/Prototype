@@ -15,12 +15,13 @@
     if(!i_pGameData)
     {
         NSLog(@"Fatal error : constructions scene init failed");
-        return nil;
     }
     else if (self = [super init])
     {
         self._pGameData = i_pGameData;
         
+        
+        [self addChild:self._pSkyLayer];
         // Analyze game data
         
         // init layers
@@ -33,7 +34,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    return nil;
+    return self;
 }
 
 @end

@@ -20,6 +20,9 @@
 // The sky layer is declared here because it is the same layer for all specializations of GameScene.
 @property (nonatomic, strong) SkyLayer* _pSkyLayer;
 
-@property(nonatomic,strong) PlanetLayer* _pPlanetLayer;
+@property (nonatomic,strong) PlanetLayer* _pPlanetLayer;
+
+// init
+-(id)init;
 
 @end

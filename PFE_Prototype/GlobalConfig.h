@@ -13,7 +13,7 @@
 static const char* PNG_FLODER = "tmp_PNG";
 
 // The savepath for the bloc bag data
-static const char* CFG_BLOCBAG_SAVEPATH = "";
+static const NSString* CFG_BLOCBAG_SAVEPATH = @"";
 
 // Bloc's bounding box minimum width or height
 static unsigned int BLOC_SIZE = 255;

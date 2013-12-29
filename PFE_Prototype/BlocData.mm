@@ -57,8 +57,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    
-    return nil;
+    return self;
 }
 
 @end

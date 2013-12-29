@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */; };
+		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
@@ -205,6 +207,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceTowerLayer.h; sourceTree = "<group>"; };
+		44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceTowerLayer.mm; sourceTree = "<group>"; };
+		44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerAndPlanetLayer.h; sourceTree = "<group>"; };
+		44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerAndPlanetLayer.mm; sourceTree = "<group>"; };
 		8A5B231A18674E2A00B145A4 /* TowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerLayer.h; sourceTree = "<group>"; };
 		8A5B231B18674E2A00B145A4 /* TowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerLayer.mm; sourceTree = "<group>"; };
 		8A5B231F18674F4900B145A4 /* PlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetLayer.h; sourceTree = "<group>"; };
@@ -636,6 +642,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44A48EF3186DCAAF004F694C /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */,
+				44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */,
+				44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */,
+				44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */,
+			);
+			name = Balance;
+			sourceTree = "<group>";
+		};
 		8A5B23191867430300B145A4 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,6 +677,7 @@
 		8A5B231E18674E5A00B145A4 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				44A48EF3186DCAAF004F694C /* Balance */,
 				8AB50C6018673BF50012A387 /* Graphics */,
 				8A5B231D18674E3500B145A4 /* GameElements */,
 			);
@@ -1496,6 +1514,7 @@
 				8AE98AB8186492F800705AAF /* b2Island.cpp in Sources */,
 				8AB50C541866D7440012A387 /* LevelVisitor.mm in Sources */,
 				8AE989BB186492F700705AAF /* CCTextureAtlas.m in Sources */,
+				44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */,
 				8AE98A69186492F800705AAF /* utility.c in Sources */,
 				8AE98A15186492F700705AAF /* CCVertex.m in Sources */,
 				8AE98A1B186492F700705AAF /* NSThread+performBlock.m in Sources */,
@@ -1577,6 +1596,7 @@
 				8AE98984186492F700705AAF /* CCPhysicsDebugNode.m in Sources */,
 				8AE9890A186492F600705AAF /* CCActionEase.m in Sources */,
 				8AE98947186492F600705AAF /* CCFontDefinition.m in Sources */,
+				44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */,
 				8AE98987186492F700705AAF /* CCPhysicsSprite.mm in Sources */,
 				8AE98AEB186492F800705AAF /* b2MouseJoint.cpp in Sources */,
 				8AE98A96186492F800705AAF /* b2PolygonShape.cpp in Sources */,
@@ -1668,6 +1688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1695,6 +1716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PFE_Prototype/Prefix.pch;

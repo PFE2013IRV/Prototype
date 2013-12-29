@@ -25,12 +25,12 @@
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : game mode is unknown."];
         return nil;
     }
-    if(!i_pTowerData)
+    else if(!i_pTowerData)
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : tower data is required"];
         return nil;
     }
-    if(!i_aGodData)
+    else if(!i_aGodData)
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : god data is required"];
         return nil;
@@ -66,8 +66,7 @@
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
-    
-    return nil;
+    return self;
 }
 
 @end
