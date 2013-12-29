@@ -13,6 +13,7 @@
 #import "ConstructionScene.h"
 #import "HelloWorldLayer.h"
 #import "BlocVisitor.h"
+#import "BlocBagData.h"
 
 #pragma mark - IntroLayer
 
@@ -58,17 +59,21 @@
         
         
         /////////////////////////////////////////////////////////////////////////////////
-        // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)
-        NSArray* aVertices = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)], nil];
+        // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)    ///
         
         BlocVisitor* pBlocVisitorInstance = [BlocVisitor GetBlocVisitor];
-        
-        BlocData* pBloc = [[BlocData alloc] initBloc:aVertices withMaterial:MAT_WOOD];
-        [pBlocVisitorInstance MakePNGFromModel:pBloc];
+        BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
         
         [pBlocVisitorInstance LoadBlocsToBlocBag];
-        
         [pBlocVisitorInstance DeletePNGFiles];
+        
+        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:0];
+        
+        CCSprite* pSpriteBloc = [pBlocVisitorInstance GetSpriteFromModel:pBloc];
+        pSpriteBloc.position = ccp(0.0f,0.0f);
+        pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
+        
+        [self addChild:pSpriteBloc];
         /////////////////////////////////////////////////////////////////////////////////
         
         
@@ -86,7 +91,7 @@
     //Code pour Alex et Yann : Equilibre
     GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
-    
+   
     //Code pour Max et Thibault : Construction
     
     //GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:nil withGods:nil];

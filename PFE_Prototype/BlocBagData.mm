@@ -32,7 +32,7 @@ static BlocBagData* pBlocBagData = nil;
     else
     {
         [_aBlocs removeAllObjects];
-        [_aBlocs arrayByAddingObjectsFromArray:i_aBlocs];
+        [_aBlocs addObjectsFromArray:i_aBlocs];
         
         _eBagSize = i_eBagSize;
     }

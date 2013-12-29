@@ -23,9 +23,48 @@ static BlocVisitor* pBlocVisitor = nil;
     {
         NSLog(@"Begin Bloc Sprite creation");
         
-        pSprite = [[[CCSprite alloc] init] autorelease];
+        ////////////////////////////////////////////////////
+        // VERIFICATION EXISTENCE DU PNG POUR LE BLOCDATA //
+        ////////////////////////////////////////////////////
         
-        // To be implemented : create a sprite from a Bloc Data
+        bool PNGExists = false;
+        
+        // On récupère le path du documents directory
+        NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString* sDocumentsDirectory = [aPaths objectAtIndex:0];
+        
+        // On initialise un file manager
+        NSFileManager* pFileManager = [[[NSFileManager alloc] init] autorelease];
+        NSError* pError = nil;
+        NSArray* aDirectoryContents = [pFileManager contentsOfDirectoryAtPath:sDocumentsDirectory error:&pError];
+        if (pError == nil)
+        {
+            for (NSString* sFile in aDirectoryContents)
+            {
+                if([[sFile substringFromIndex:5] isEqualToString:i_pData._sFileName])
+                {
+                    PNGExists = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            // Error handling
+            [NSException raise:NSInternalInconsistencyException format:@"Error : documents directory culd not be reached"];
+        }
+        
+        // Si le PNG associé n'existe pas encore, on le crée
+        if(!PNGExists)
+            [self MakePNGFromModel:i_pData];
+        
+        ////////////////////////
+        // CREATION DU SPRITE //
+        ////////////////////////
+        
+        NSString* sPathWithFileName = [sDocumentsDirectory stringByAppendingPathComponent:i_pData._sFileName];
+        
+        pSprite = [[[CCSprite alloc] initWithFile:sPathWithFileName] autorelease];
         
         NSLog(@"End Bloc Sprite creation");
     }
@@ -39,7 +78,7 @@ static BlocVisitor* pBlocVisitor = nil;
     if(i_pData)
     {
         NSLog(@"Begin Save Bloc");
-        // To be implemented : writing the data in the save file
+        
         
         NSLog(@"End Save Bloc");
     }
@@ -114,7 +153,6 @@ static BlocVisitor* pBlocVisitor = nil;
             
             // Add extracted info to the BlocBagData
             [pBlocBagData SetBlocBagData:blocBagSize withBlocs:aBlocsRet];
-            
         }
         else
         {
@@ -156,7 +194,7 @@ static BlocVisitor* pBlocVisitor = nil;
         float lineWidth = 8.0 * CC_CONTENT_SCALE_FACTOR();
         glLineWidth(lineWidth);
         
-        for(int i = 1 ; i < aVertices.count-1 ; i++)
+        for(int i = 1 ; i < aVertices.count ; i++)
         {
             NSValue* pGetPointA = [aVertices objectAtIndex:i-1];
             NSValue* pGetPointB = [aVertices objectAtIndex:i];
@@ -167,6 +205,13 @@ static BlocVisitor* pBlocVisitor = nil;
             ccDrawLine(pointA, pointB);
         }
         
+        // On ferme la forme
+        NSValue* pGetPointA = [aVertices firstObject];
+        NSValue* pGetPointB = [aVertices lastObject];
+        
+        CGPoint pointA = [pGetPointA CGPointValue];
+        CGPoint pointB = [pGetPointB CGPointValue];
+        ccDrawLine(pointA, pointB);
         
         // Fin du rendu
         [pRenderTexture end];
