@@ -9,6 +9,8 @@
 
 // Import the interfaces
 #import "IntroLayer.h"
+#import "BalanceScene.h"
+#import "ConstructionScene.h"
 #import "HelloWorldLayer.h"
 #import "BlocVisitor.h"
 
@@ -59,10 +61,14 @@
         // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)
         NSArray* aVertices = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)], nil];
         
-        BlocData* pBloc = [[BlocData alloc] initBloc:aVertices withMaterial:MAT_WOOD];
-        [[BlocVisitor GetBlocVisitor] MakePNGFromModel:pBloc];
+        BlocVisitor* pBlocVisitorInstance = [BlocVisitor GetBlocVisitor];
         
-        [[BlocVisitor GetBlocVisitor] DeletePNGFiles];
+        BlocData* pBloc = [[BlocData alloc] initBloc:aVertices withMaterial:MAT_WOOD];
+        [pBlocVisitorInstance MakePNGFromModel:pBloc];
+        
+        [pBlocVisitorInstance LoadBlocsToBlocBag];
+        
+        [pBlocVisitorInstance DeletePNGFiles];
         /////////////////////////////////////////////////////////////////////////////////
         
         

@@ -23,24 +23,20 @@
     if(!(i_eGameSceneMode == SCENE_MODE_CONSTRUCTION || i_eGameSceneMode == SCENE_MODE_BALANCE))
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : game mode is unknown."];
-        return nil;
     }
     else if(!i_pTowerData)
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : tower data is required"];
-        return nil;
     }
     else if(!i_aGodData)
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : god data is required"];
-        return nil;
     }
     else
     {
         if(!(i_aGodData.count > 0 && i_aGodData.count < 4))
         {
-            [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : please check the number of gods"];
-            return nil;
+            [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : please check the number of gods"];           
         }
         else
         {
@@ -58,8 +54,6 @@
     
     return self;
 }
-
-
 
 
 

@@ -60,13 +60,72 @@ static BlocVisitor* pBlocVisitor = nil;
     {
         NSLog(@"Begin load bloc data");
         
-        //  To be implemented : retrieve data from the save file and load it to the bloc bag data
+        // Path du fichier JSON
+        NSString* sResourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString * sFilePath = [sResourcePath stringByAppendingString:@"/BlocBagData.json"];
+        NSError* pError = nil;
+        NSData* pJsonData = [NSData dataWithContentsOfFile:sFilePath];
+        
+        // Le contenu du fichier JSON est accessible via cet objet
+        id jsonObjects = [NSJSONSerialization JSONObjectWithData:pJsonData options:NSJSONReadingMutableContainers error:&pError];
+        
+        if(!pError)
+        {
+            // Bloc Bag Size
+            NSString* sSize = [jsonObjects objectForKey:@"Size"];
+            BagSize blocBagSize = (BagSize) [sSize intValue];
+
+            // Blocs
+            NSDictionary* aAllBlocs = [jsonObjects objectForKey:@"Blocs"];
+            
+            // Array of BlocData for BlocBagData
+            NSMutableArray* aBlocsRet = [[NSMutableArray alloc] init];
+            
+            for(NSDictionary* aBloc in aAllBlocs)
+            {
+                
+                // Material
+                NSString* sMaterial = [aBloc objectForKey:@"Material"];
+                Material materialRet = (Material)[sMaterial intValue];
+                
+                // Points
+                NSDictionary* aPoints = [aBloc objectForKey:@"Points"];
+                NSMutableArray* aPointsRet = [[NSMutableArray alloc] init];
+                
+                for(NSDictionary* aPointValues in aPoints)
+                {
+                    NSString* sX = [aPointValues objectForKey:@"x"];
+                    NSString* sY = [aPointValues objectForKey:@"y"];
+                    
+                    int x = [sX intValue];
+                    int y = [sY intValue];
+                    
+                    CGPoint point = CGPointMake(x, y);
+                    NSValue* pPointValueRet = [NSValue valueWithCGPoint:point];
+                    
+                    [aPointsRet addObject:pPointValueRet];
+                    
+                }
+                
+                // Init BlocData and add it to the return array
+                BlocData* pBlocData = [[BlocData alloc] initBloc:aPointsRet withMaterial:materialRet];
+                [aBlocsRet addObject:pBlocData];
+            }
+            
+            // Add extracted info to the BlocBagData
+            [pBlocBagData SetBlocBagData:blocBagSize withBlocs:aBlocsRet];
+            
+        }
+        else
+        {
+            [NSException raise:NSInternalInconsistencyException format:@"Error : bloc bag save file could not be found."];
+        }
         
         NSLog(@"End load bloc data");
     }
     else
     {
-        [NSException raise:NSInternalInconsistencyException format:@"Error : bloc could not load the blocs. Data was corrupted"];
+        [NSException raise:NSInternalInconsistencyException format:@"Error : BlocBagData instance could not be reached."];
     }
 }
 

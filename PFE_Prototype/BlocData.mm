@@ -15,20 +15,16 @@
 @synthesize _originalSize;
 
 
-
-
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
     if(i_aVertices.count == 0 )
     {
        [NSException raise:NSInternalInconsistencyException format:@"Fatal error : bloc data init failed"];
-        return nil;
     }
     
     else if(i_eBlocMaterial == MAT_NULL)
     {
        [NSException raise:NSInternalInconsistencyException format:@"Fatal error : bloc data init failed"];
-        return nil;
     }
     
     else if (self = [super init])
@@ -49,6 +45,17 @@
         CFRelease(sUUIDString);
         
         _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
+        
+
+        // Calcul du original size
+        
+        // tri des corrdonnées
+        // calcul de la distance entre xmax, xmin et ymax, ymin
+        
+        ///////////////
+        // A FAIRE ////
+        ///////////////
+
     }
     
     return self;    

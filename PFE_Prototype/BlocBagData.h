@@ -18,7 +18,7 @@
 // Static accessor to the single instance of the BlocBagData.
 // i_eBagSize : the bag size. Legal values are the values of the BagSize enum.
 // i_aBlocs : an array of BlocData. Its size must be less than i_eBagSize !
--(void) SetBlocBagData : (BagSize) i_eBagSize : (NSArray*) i_aBlocs;
+-(void) SetBlocBagData : (BagSize) i_eBagSize withBlocs: (NSMutableArray*) i_aBlocs;
 
 // The bloc data array
 @property (nonatomic,strong) NSMutableArray* _aBlocs;

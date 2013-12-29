@@ -15,7 +15,7 @@
 // Instance variable for the bloc bag data
 static BlocBagData* pBlocBagData = nil;
 
--(void) SetBlocBagData : (BagSize) i_eBagSize : (NSArray*) i_aBlocs
+-(void) SetBlocBagData: (BagSize) i_eBagSize  withBlocs: (NSMutableArray*) i_aBlocs
 {
     if(!i_aBlocs) return;
     else if(i_eBagSize < i_aBlocs.count)
@@ -32,7 +32,7 @@ static BlocBagData* pBlocBagData = nil;
     else
     {
         [_aBlocs removeAllObjects];
-        [_aBlocs initWithArray:i_aBlocs];
+        [_aBlocs arrayByAddingObjectsFromArray:i_aBlocs];
         
         _eBagSize = i_eBagSize;
     }

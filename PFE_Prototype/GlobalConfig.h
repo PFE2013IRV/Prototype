@@ -9,12 +9,6 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
-// The savepath for the PNG export of the bloc is statically defined here
-static const char* PNG_FLODER = "tmp_PNG";
-
-// The savepath for the bloc bag data
-static const NSString* CFG_BLOCBAG_SAVEPATH = @"";
-
 // Bloc's bounding box minimum width or height
 static unsigned int BLOC_SIZE = 255;
 
@@ -52,9 +46,6 @@ enum BagSize {
     BAG_SIZE_GOD_LIKE = 50
 };
 typedef enum BagSize BagSize;
-
-
-
 
 
 #endif

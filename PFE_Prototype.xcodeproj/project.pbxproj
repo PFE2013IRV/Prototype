@@ -12,6 +12,7 @@
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
+		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
 		8AB50C3E1864BD980012A387 /* BlocBagData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.mm */; };
 		8AB50C3F1864BD980012A387 /* BlocData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.mm */; };
 		8AB50C401864BD980012A387 /* BlocVisitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocVisitor.mm */; };
@@ -217,6 +218,7 @@
 		8A5B232018674F4900B145A4 /* PlanetLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlanetLayer.mm; sourceTree = "<group>"; };
 		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
 		8A5B23231867543700B145A4 /* BalanceScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceScene.mm; sourceTree = "<group>"; };
+		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
 		8AB50C351864BD980012A387 /* BlocBagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocBagData.h; sourceTree = "<group>"; };
 		8AB50C361864BD980012A387 /* BlocBagData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocBagData.mm; sourceTree = "<group>"; };
 		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8A5B232918707E5B00B145A4 /* BlocBagData.json */,
 				8AE988E6186492F600705AAF /* Default.png */,
 				8AE988E8186492F600705AAF /* Default@2x.png */,
 				8AE988EA186492F600705AAF /* Default-568h@2x.png */,
@@ -1441,6 +1444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,
 				8AE988F7186492F600705AAF /* Icon.png in Resources */,
 				8AE98A55186492F800705AAF /* ChangeLog in Resources */,
 				8AE988E9186492F600705AAF /* Default@2x.png in Resources */,
