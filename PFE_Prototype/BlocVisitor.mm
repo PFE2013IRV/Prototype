@@ -173,8 +173,8 @@ static BlocVisitor* pBlocVisitor = nil;
     {
         NSLog(@"Begin write PNG Bloc");
         
-        int originalWidth = 400;//i_pData._originalSize.width;
-        int originalHeight = 400;//i_pData._originalSize.height;
+        int originalWidth = i_pData._originalSize.width;
+        int originalHeight = i_pData._originalSize.height;
         
         // On instancie un CCRednerTexture dans lequel nous allons créer le rendu du bloc
         CCRenderTexture* pRenderTexture = [CCRenderTexture renderTextureWithWidth:originalWidth height:originalHeight];

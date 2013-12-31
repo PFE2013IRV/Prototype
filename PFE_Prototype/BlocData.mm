@@ -47,14 +47,37 @@
         _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
         
 
-        // Calcul du original size
-        
-        // tri des corrdonnées
+        // Calcul du original size du bloc.
+        // Le original size est la taille de la boîte englobante de la forme au moment de sa création
+        // (c'est à dire avant rescaling optimal pour le jeu)
+    
         // calcul de la distance entre xmax, xmin et ymax, ymin
         
-        ///////////////
-        // A FAIRE ////
-        ///////////////
+        CGPoint point = [[_aVertices objectAtIndex:0] CGPointValue];
+        int xmin = point.x;
+        int xmax = point.x;
+        int ymin = point.y;
+        int ymax = point.y;
+
+        for(int i = 1 ; i < _aVertices.count ; i++)
+        {
+            point = [[_aVertices objectAtIndex:i] CGPointValue];
+            int xTmp = point.x;
+            int yTmp = point.y;
+            
+            if(xTmp < xmin)
+                xmin = xTmp;
+            if(yTmp < ymin)
+                ymin = yTmp;
+            
+            if(xTmp > xmax)
+                xmax = xTmp;
+            if(yTmp > ymax)
+                ymax = yTmp;
+        }
+        
+        _originalSize.width = xmax - xmin;
+        _originalSize.height = ymax - ymin;
 
     }
     
