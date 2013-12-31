@@ -10,14 +10,15 @@
 #define ProjectTower_GlobalConfig_h
 
 // Bloc's bounding box minimum width or height
-static unsigned int BLOC_SIZE = 255;
+static float BLOC_SIZE = 100.0f;
 
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,
     SCENE_MODE_CONSTRUCTION = 1,
     SCENE_MODE_BALANCE = 2
-}; typedef enum GameSceneMode GameSceneMode;
+};
+typedef enum GameSceneMode GameSceneMode;
 
 
 // The different elementary god types

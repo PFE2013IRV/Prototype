@@ -28,8 +28,11 @@
 @property (nonatomic,assign) Material _eBlocMaterial;
 // The filename of the generated image. Unique ID.
 @property (nonatomic,strong) NSString* _sFileName;
-// The original bloc size
+// The original bloc size, from the bloc creation
 @property (nonatomic,assign) CGSize _originalSize;
+// The rescaled size of the bloc
+@property (nonatomic,assign) CGSize _scaledSize;
+
 
 
 @end

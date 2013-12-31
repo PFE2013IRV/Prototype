@@ -13,7 +13,7 @@
 @synthesize _eBlocMaterial;
 @synthesize _sFileName;
 @synthesize _originalSize;
-
+@synthesize _scaledSize;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -46,24 +46,26 @@
         
         _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
         
-
-        // Calcul du original size du bloc.
+        ////////////////////////////////////////////////////////////////
+        ///////        Calcul du original size du bloc.            /////
+        ////////////////////////////////////////////////////////////////
+        
         // Le original size est la taille de la boîte englobante de la forme au moment de sa création
         // (c'est à dire avant rescaling optimal pour le jeu)
     
         // calcul de la distance entre xmax, xmin et ymax, ymin
         
-        CGPoint point = [[_aVertices objectAtIndex:0] CGPointValue];
-        int xmin = point.x;
-        int xmax = point.x;
-        int ymin = point.y;
-        int ymax = point.y;
+        CGPoint pointTmp = [[_aVertices objectAtIndex:0] CGPointValue];
+        int xmin = pointTmp.x;
+        int xmax = pointTmp.x;
+        int ymin = pointTmp.y;
+        int ymax = pointTmp.y;
 
         for(int i = 1 ; i < _aVertices.count ; i++)
         {
-            point = [[_aVertices objectAtIndex:i] CGPointValue];
-            int xTmp = point.x;
-            int yTmp = point.y;
+            pointTmp = [[_aVertices objectAtIndex:i] CGPointValue];
+            int xTmp = pointTmp.x;
+            int yTmp = pointTmp.y;
             
             if(xTmp < xmin)
                 xmin = xTmp;
@@ -78,6 +80,74 @@
         
         _originalSize.width = xmax - xmin;
         _originalSize.height = ymax - ymin;
+        
+        ////////////////////////////////////////////////////////////
+        ///////   Calcul du rescaling du bloc à la taille    ///////
+        ///////        standard des blocs dans le jeu.       ///////
+        ////////////////////////////////////////////////////////////
+        
+        float scalingFactor = 0.0f;
+        float scalingReference = 0.0;
+        
+        if(_originalSize.width < _originalSize.height)
+            scalingReference = _originalSize.width;
+        else
+            scalingReference = _originalSize.height;
+        
+        scalingFactor = BLOC_SIZE / scalingReference;
+        
+        // On calcule les corrdonnées et on les range dans un tableau tampon
+        NSMutableArray* aVerticesTmp = [[NSMutableArray alloc] init];
+        
+        for(int i = 0 ; i < _aVertices.count ; i++)
+        {
+            // Calcul de chaque coordonnée
+            pointTmp = [[_aVertices objectAtIndex:i] CGPointValue];
+            pointTmp.x = pointTmp.x * scalingFactor;
+            pointTmp.y = pointTmp.y * scalingFactor;
+            
+            NSValue* pointValueTmp = [NSValue valueWithCGPoint:pointTmp];
+            [aVerticesTmp addObject:pointValueTmp];
+        }
+        
+        [_aVertices removeAllObjects];
+        [_aVertices addObjectsFromArray:aVerticesTmp];
+        
+        ////////////////////////////////////////////////////////////////
+        ///////        Calcul du rescaled size du bloc.            /////
+        ////////////////////////////////////////////////////////////////
+        
+        // Le rescaled size est la taille de la boîte englobante de la forme une fois redimensionnée
+        // (c'est à dire après rescaling optimal pour le jeu)
+        
+        // calcul de la distance entre xmax, xmin et ymax, ymin
+        
+        pointTmp = [[_aVertices objectAtIndex:0] CGPointValue];
+        xmin = pointTmp.x;
+        xmax = pointTmp.x;
+        ymin = pointTmp.y;
+        ymax = pointTmp.y;
+        
+        for(int i = 1 ; i < _aVertices.count ; i++)
+        {
+            pointTmp = [[_aVertices objectAtIndex:i] CGPointValue];
+            int xTmp = pointTmp.x;
+            int yTmp = pointTmp.y;
+            
+            if(xTmp < xmin)
+                xmin = xTmp;
+            if(yTmp < ymin)
+                ymin = yTmp;
+            
+            if(xTmp > xmax)
+                xmax = xTmp;
+            if(yTmp > ymax)
+                ymax = yTmp;
+        }
+        
+        _scaledSize.width = xmax - xmin;
+        _scaledSize.height = ymax - ymin;
+
 
     }
     
