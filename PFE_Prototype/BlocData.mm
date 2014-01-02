@@ -32,6 +32,9 @@
         _aVertices = [[NSMutableArray alloc] initWithArray:i_aVertices];
         _eBlocMaterial = i_eBlocMaterial;
         
+        ////////////////////////////////////////////////////////////////
+        ///////    Détermination d'un UUID pour le filename        /////
+        ////////////////////////////////////////////////////////////////
         
         // Création d'un filename unique associé au PNG.
         CFUUIDRef uuid = CFUUIDCreate(NULL);

@@ -2,7 +2,7 @@
 //  BlocVisitor.m
 //  ProjectTower
 //
-//  The BlocVisitor is a singleton, capable to draw a bloc view from a BlocModel,
+//  The BlocVisitor is a singleton, capable of drawing a bloc view from a BlocModel,
 //  read the blocs in the bloc bag and write new blocs in the bloc bag.
 //
 
