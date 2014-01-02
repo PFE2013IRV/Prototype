@@ -82,6 +82,31 @@
         _originalSize.height = ymax - ymin;
         
         ////////////////////////////////////////////////////////////
+        ///////       Décalage du bloc selon xmin/ymin       ///////
+        ////////////////////////////////////////////////////////////
+     
+        // Tableau tampon
+        NSMutableArray* aVerticesTmp = [[NSMutableArray alloc] init];
+        
+        if(!(xmin == 0 && ymin==0))
+        {
+            for(int i = 0 ; i < _aVertices.count ; i++)
+            {
+                // Translation de chaque coordonnée
+                pointTmp = [[_aVertices objectAtIndex:i] CGPointValue];
+                pointTmp.x = pointTmp.x - xmin;
+                pointTmp.y = pointTmp.y - ymin;
+                
+                NSValue* pointValueTmp = [NSValue valueWithCGPoint:pointTmp];
+                [aVerticesTmp addObject:pointValueTmp];
+            }
+            
+            [_aVertices removeAllObjects];
+            [_aVertices addObjectsFromArray:aVerticesTmp];
+            
+        }
+ 
+        ////////////////////////////////////////////////////////////
         ///////   Calcul du rescaling du bloc à la taille    ///////
         ///////        standard des blocs dans le jeu.       ///////
         ////////////////////////////////////////////////////////////
@@ -96,8 +121,8 @@
         
         scalingFactor = BLOC_SIZE / scalingReference;
         
-        // On calcule les corrdonnées et on les range dans un tableau tampon
-        NSMutableArray* aVerticesTmp = [[NSMutableArray alloc] init];
+        // On réutiise le tableau tampon précédemment initialisé. Rafraichissement :
+        [aVerticesTmp removeAllObjects];
         
         for(int i = 0 ; i < _aVertices.count ; i++)
         {
@@ -147,8 +172,6 @@
         
         _scaledSize.width = xmax - xmin;
         _scaledSize.height = ymax - ymin;
-
-
     }
     
     return self;    
