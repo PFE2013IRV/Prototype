@@ -20,6 +20,10 @@
 // retun value : self
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial;
 
+// Get the std vector with the physical vertices
+// retun value : the vector with the vertices treated for the physical engine.
+-(std::vector<CGPoint>) GetPhysicalVertices;
+
 // Basic init is re-implemented with NSException to be avoided
 // return value : nil
 -(id) init;

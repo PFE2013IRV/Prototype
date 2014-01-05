@@ -294,6 +294,11 @@
     return self;    
 }
 
+-(std::vector<CGPoint>) GetPhysicalVertices
+{
+    return _aPhysicalVertices;
+}
+
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
