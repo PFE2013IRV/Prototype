@@ -17,7 +17,7 @@
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
-    if(i_aVertices.count == 0 )
+    if(i_aVertices.count == 0)
     {
        [NSException raise:NSInternalInconsistencyException format:@"Fatal error : bloc data init failed"];
     }
@@ -117,12 +117,9 @@
         float scalingFactor = 0.0f;
         float scalingReference = 0.0;
         
-        if(_originalSize.width < _originalSize.height)
-            scalingReference = _originalSize.width;
-        else
-            scalingReference = _originalSize.height;
-        
-        scalingFactor = BLOC_SIZE / scalingReference;
+        // Le scaling factor est calculé de façon à ce que le bloc ait une largeur de BLOC_WIDTH.
+        scalingReference = _originalSize.width;
+        scalingFactor = BLOC_WIDTH / scalingReference;
         
         // On réutiise le tableau tampon précédemment initialisé. Rafraichissement :
         [aVerticesTmp removeAllObjects];
@@ -175,6 +172,92 @@
         
         _scaledSize.width = xmax - xmin;
         _scaledSize.height = ymax - ymin;
+        
+        ////////////////////////////////////////////////////////////////
+        //////            Calcul du physical vector !              /////
+        ////////////////////////////////////////////////////////////////
+        
+        [aVerticesTmp removeAllObjects];
+        [aVerticesTmp addObjectsFromArray:_aVertices];
+        
+        std::vector<int> aIndexesForYMinMax;
+        
+        // On traite en premier les ymax
+        // On récupère d'abord les index des points à ymax.
+        
+        for(int i=0 ; i < aVerticesTmp.count ; i++)
+        {
+            pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            
+            if(pointTmp.y == ymax)
+                aIndexesForYMinMax.push_back(i);
+        }
+        
+        int sizeOfYmax = aIndexesForYMinMax.size();
+        // S'il existe une "stalagmite"
+        if(sizeOfYmax == 1)
+        {
+            int insertionIndex = aIndexesForYMinMax.at(0);
+            
+            pointTmp = [[aVerticesTmp objectAtIndex:insertionIndex] CGPointValue];
+            
+            // On divise le point en deux points, extrémités d'un segment de longueur 20% de BLOC_WIDTH.
+            CGPoint pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
+            CGPoint pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            
+            NSValue* pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
+            NSValue* pointRightValue = [NSValue valueWithCGPoint:pointRight];
+            
+            [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
+            [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
+
+        }
+        
+        aIndexesForYMinMax.clear();
+        
+        // On traite à présent les ymin
+        // On récupère d'abord les index des points à ymin.
+        
+        for(int i=0 ; i < aVerticesTmp.count ; i++)
+        {
+            pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            
+            if (pointTmp.y == ymin)
+                aIndexesForYMinMax.push_back(i);
+            
+        }
+
+        /////////////
+        
+        int sizeOfYmin = aIndexesForYMinMax.size();
+        // S'il existe une "stalagtite"
+        if(sizeOfYmin == 1)
+        {
+            int insertionIndex = aIndexesForYMinMax.at(0);
+            
+            pointTmp = [[aVerticesTmp objectAtIndex:insertionIndex] CGPointValue];
+            
+            // On divise le point en deux points, extrémités d'un segment de longueur 20% de BLOC_WIDTH.
+            CGPoint pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
+            CGPoint pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            
+            NSValue* pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
+            NSValue* pointRightValue = [NSValue valueWithCGPoint:pointRight];
+            
+            [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
+            [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
+
+        }
+        
+        // On remplit le vector résultat avec les points traités pour le moteur physique.
+        
+        for(int i = 0 ; i < aVerticesTmp.count ; i++)
+        {
+            pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            _aPhysicalVertices.push_back(pointTmp);
+        }
+        
+        
     }
     
     return self;    

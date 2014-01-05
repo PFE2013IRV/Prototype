@@ -7,9 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "GlobalConfig.h"
+#import <vector>
 
-@interface BlocData : NSObject{
-    
+@interface BlocData : NSObject
+{
+    std::vector<CGPoint> _aPhysicalVertices;
 }
 
 // An init method that takes the mandatory information for a bloc data

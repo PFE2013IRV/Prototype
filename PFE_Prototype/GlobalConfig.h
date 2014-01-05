@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 // Bloc's bounding box minimum width or height
-static float BLOC_SIZE = 100.0f;
+static float BLOC_WIDTH = 100.0f;
 
 // The gamescene modes
 enum GameSceneMode {
