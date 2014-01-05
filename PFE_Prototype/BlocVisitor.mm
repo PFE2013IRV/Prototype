@@ -186,7 +186,7 @@ static BlocVisitor* pBlocVisitor = nil;
         
         // Calque 1 : lignes
         
-        NSMutableArray* aVertices = i_pData._aVertices;
+        NSMutableArray* aVertices = i_pData._aDrawingVertices;
         
         glEnable(GL_LINE_LOOP);
         ccDrawColor4B(209, 75, 75, 255);
@@ -262,6 +262,33 @@ static BlocVisitor* pBlocVisitor = nil;
         [NSException raise:NSInternalInconsistencyException format:@"Error : documents directory culd not be reached"];
     }
 }
+
+-(void) MoveBlocData: (BlocData*) i_pData withX: (float) i_x withY: (float) i_y
+{
+    if(i_pData)
+    {
+        // Décallage du centre de gravité
+        CGPoint gravityCenter = CGPointMake(i_pData._gravityCenter.x + i_x, i_pData._gravityCenter.y + i_y);
+        i_pData._gravityCenter = gravityCenter;
+        
+        // A DISCUTER :
+        // Faut-il aussi bouger tous les points ou le centre de gravité suffit-il ?
+    }
+    
+}
+
+-(void) MoveBlocDataToBubble: (BlocData*) i_pData
+{
+    if(i_pData)
+    {
+        // Calcul du vecteur de translation entre le centre de gravité courant et le bubble point.
+        // Après translation, le centre de gravité du bloc data sera confondu avec le bubble point.
+        CGPoint translation = CGPointMake(i_pData._gravityCenter.x - BUBBLE_POINT.x, i_pData._gravityCenter.y - BUBBLE_POINT.y);
+        
+        [self MoveBlocData:i_pData withX:translation.x withY:translation.y];
+    }
+}
+
 
 +(BlocVisitor*) GetBlocVisitor
 {

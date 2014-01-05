@@ -10,10 +10,12 @@
 @implementation BlocData
 
 @synthesize _aVertices;
+@synthesize _aDrawingVertices;
 @synthesize _eBlocMaterial;
 @synthesize _sFileName;
 @synthesize _originalSize;
 @synthesize _scaledSize;
+@synthesize _gravityCenter;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -180,8 +182,14 @@
         [aVerticesTmp removeAllObjects];
         [aVerticesTmp addObjectsFromArray:_aVertices];
         
-        std::vector<int> aIndexesForYMinMax;
+        // Variables utiles pour le traitement
         
+        std::vector<int> aIndexesForYMinMax;
+        CGPoint pointLeft, pointRight;
+        NSValue* pointLeftValue = nil;
+        NSValue* pointRightValue = nil;
+        
+        ///////////////////////////////////////////////////
         // On traite en premier les ymax
         // On récupère d'abord les index des points à ymax.
         
@@ -202,11 +210,11 @@
             pointTmp = [[aVerticesTmp objectAtIndex:insertionIndex] CGPointValue];
             
             // On divise le point en deux points, extrémités d'un segment de longueur 20% de BLOC_WIDTH.
-            CGPoint pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
-            CGPoint pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
             
-            NSValue* pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
-            NSValue* pointRightValue = [NSValue valueWithCGPoint:pointRight];
+            pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
+            pointRightValue = [NSValue valueWithCGPoint:pointRight];
             
             [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
             [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
@@ -215,6 +223,7 @@
         
         aIndexesForYMinMax.clear();
         
+        ///////////////////////////////////////////////////
         // On traite à présent les ymin
         // On récupère d'abord les index des points à ymin.
         
@@ -226,8 +235,6 @@
                 aIndexesForYMinMax.push_back(i);
             
         }
-
-        /////////////
         
         int sizeOfYmin = aIndexesForYMinMax.size();
         // S'il existe une "stalagtite"
@@ -238,11 +245,11 @@
             pointTmp = [[aVerticesTmp objectAtIndex:insertionIndex] CGPointValue];
             
             // On divise le point en deux points, extrémités d'un segment de longueur 20% de BLOC_WIDTH.
-            CGPoint pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
-            CGPoint pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
             
-            NSValue* pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
-            NSValue* pointRightValue = [NSValue valueWithCGPoint:pointRight];
+            pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
+            pointRightValue = [NSValue valueWithCGPoint:pointRight];
             
             [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
             [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
@@ -257,6 +264,30 @@
             _aPhysicalVertices.push_back(pointTmp);
         }
         
+        ////////////////////////////////////////////////////////////////
+        ///////          Calcul du centre de gravité             ///////
+        ////////////////////////////////////////////////////////////////
+        
+        _gravityCenter = CGPointMake(0, 0);
+        
+        for(int i = 0 ; i < _aVertices.count; i++)
+        {
+            pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            
+            _gravityCenter.x += pointTmp.x;
+            _gravityCenter.y += pointTmp.y;
+            
+        }
+        
+        _gravityCenter.x = _gravityCenter.x / _aVertices.count;
+        _gravityCenter.y = _gravityCenter.y / _aVertices.count;
+        
+        ////////////////////////////////////////////////////////////////
+        ///////             Init du drawing array               ////////
+        ////////////////////////////////////////////////////////////////
+        
+        // Au moment de l'init, _aVertices et _aDrawingVertices sont les mêmes.
+        _aDrawingVertices = [[NSMutableArray alloc] initWithArray:_aVertices];
         
     }
     

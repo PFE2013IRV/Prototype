@@ -24,8 +24,10 @@
 // return value : nil
 -(id) init;
 
-// The vertices array
+// The vertices array. This array can be used as in-game data and can be refrshed according to the bloc's position
 @property (nonatomic,strong) NSMutableArray* _aVertices;
+// The vertices array used for PNG drawing. Do not refresh during game.
+@property (nonatomic,strong) NSMutableArray* _aDrawingVertices;
 // The enum value of the bloc material
 @property (nonatomic,assign) Material _eBlocMaterial;
 // The filename of the generated image. Unique ID.
@@ -34,6 +36,8 @@
 @property (nonatomic,assign) CGSize _originalSize;
 // The rescaled size of the bloc
 @property (nonatomic,assign) CGSize _scaledSize;
+// Gravity center of the scaled shape
+@property (nonatomic,assign) CGPoint _gravityCenter;
 
 
 

@@ -12,6 +12,9 @@
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 100.0f;
 
+// Bubble point
+static CGPoint BUBBLE_POINT = CGPointMake(300, 300);
+
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,

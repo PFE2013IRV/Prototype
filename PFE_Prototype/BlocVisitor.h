@@ -39,5 +39,15 @@
 // Delete all the bloc PNG files located in the Documents directory 
 -(void) DeletePNGFiles;
 
+// Refresh information in the bloc data when a bloc was translated with a (x,y) vector
+// i_pData : the bloc model to move
+// i_x : the x of the vector
+// i_y : the y of the vector
+-(void) MoveBlocData: (BlocData*) i_pData withX: (float) i_x withY: (float) i_y;
+
+// Refresh information in the bloc data when a bloc is placed at the bubble point
+// i_pData : the bloc model to move to the bubble point
+-(void) MoveBlocDataToBubble: (BlocData*) i_pData;
+
 
 @end
