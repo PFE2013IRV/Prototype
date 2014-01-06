@@ -15,7 +15,7 @@
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
 		8AB50C3E1864BD980012A387 /* BlocBagData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.mm */; };
 		8AB50C3F1864BD980012A387 /* BlocData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.mm */; };
-		8AB50C401864BD980012A387 /* BlocVisitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocVisitor.mm */; };
+		8AB50C401864BD980012A387 /* BlocManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocManager.mm */; };
 		8AB50C411864BD980012A387 /* TowerData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3D1864BD980012A387 /* TowerData.mm */; };
 		8AB50C491866D0760012A387 /* GameData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C481866D0760012A387 /* GameData.mm */; };
 		8AB50C4C1866D1B80012A387 /* GodData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C4B1866D1B80012A387 /* GodData.mm */; };
@@ -223,8 +223,8 @@
 		8AB50C361864BD980012A387 /* BlocBagData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocBagData.mm; sourceTree = "<group>"; };
 		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
 		8AB50C381864BD980012A387 /* BlocData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocData.mm; sourceTree = "<group>"; };
-		8AB50C391864BD980012A387 /* BlocVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocVisitor.h; sourceTree = "<group>"; };
-		8AB50C3A1864BD980012A387 /* BlocVisitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocVisitor.mm; sourceTree = "<group>"; };
+		8AB50C391864BD980012A387 /* BlocManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocManager.h; sourceTree = "<group>"; };
+		8AB50C3A1864BD980012A387 /* BlocManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocManager.mm; sourceTree = "<group>"; };
 		8AB50C3B1864BD980012A387 /* GlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConfig.h; sourceTree = "<group>"; };
 		8AB50C3C1864BD980012A387 /* TowerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerData.h; sourceTree = "<group>"; };
 		8AB50C3D1864BD980012A387 /* TowerData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerData.mm; sourceTree = "<group>"; };
@@ -745,8 +745,8 @@
 		8AB50C461866CAD00012A387 /* Blocs */ = {
 			isa = PBXGroup;
 			children = (
-				8AB50C391864BD980012A387 /* BlocVisitor.h */,
-				8AB50C3A1864BD980012A387 /* BlocVisitor.mm */,
+				8AB50C391864BD980012A387 /* BlocManager.h */,
+				8AB50C3A1864BD980012A387 /* BlocManager.mm */,
 			);
 			name = Blocs;
 			sourceTree = "<group>";
@@ -1575,7 +1575,7 @@
 				8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */,
 				8AE98A6D186492F800705AAF /* vec3.c in Sources */,
 				8AE98A1F186492F700705AAF /* TGAlib.m in Sources */,
-				8AB50C401864BD980012A387 /* BlocVisitor.mm in Sources */,
+				8AB50C401864BD980012A387 /* BlocManager.mm in Sources */,
 				8AE98928186492F600705AAF /* CCAnimation.m in Sources */,
 				8AE98A53186492F800705AAF /* aabb.c in Sources */,
 				8AE989CA186492F700705AAF /* CCTMXObjectGroup.m in Sources */,

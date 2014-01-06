@@ -1,19 +1,19 @@
 //
-//  BlocVisitor.m
+//  BlocManager.m
 //  ProjectTower
 //
-//  The BlocVisitor is a singleton, capable of drawing a bloc view from a BlocModel,
+//  The BlocManager is a singleton, capable of drawing a bloc view from a BlocModel,
 //  read the blocs in the bloc bag and write new blocs in the bloc bag.
 //
 
-#import "BlocVisitor.h"
+#import "BlocManager.h"
 #import "BlocBagData.h"
 #import "cocos2d.h"
 
-@implementation BlocVisitor
+@implementation BlocManager
 
 // Instance variable for the bloc visitor
-static BlocVisitor* pBlocVisitor = nil;
+static BlocManager* pBlocManager = nil;
 
 -(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData
 {
@@ -290,20 +290,20 @@ static BlocVisitor* pBlocVisitor = nil;
 }
 
 
-+(BlocVisitor*) GetBlocVisitor
++(BlocManager*) GetBlocManager
 {
-    if(!pBlocVisitor)
+    if(!pBlocManager)
     {
         [[self alloc] init];
     }
     
-    return pBlocVisitor;
+    return pBlocManager;
 }
 
 +(id) alloc
 {
-    pBlocVisitor = [super alloc];
-    return pBlocVisitor;
+    pBlocManager = [super alloc];
+    return pBlocManager;
 }
 
 -(id) init

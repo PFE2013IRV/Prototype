@@ -12,7 +12,7 @@
 #import "BalanceScene.h"
 #import "ConstructionScene.h"
 #import "HelloWorldLayer.h"
-#import "BlocVisitor.h"
+#import "BlocManager.h"
 #import "BlocBagData.h"
 
 #pragma mark - IntroLayer
@@ -61,15 +61,15 @@
         /////////////////////////////////////////////////////////////////////////////////
         // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)    ///
         
-        BlocVisitor* pBlocVisitorInstance = [BlocVisitor GetBlocVisitor];
+        BlocManager* pBlocManagerInstance = [BlocManager GetBlocManager];
         BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
         
-        [pBlocVisitorInstance LoadBlocsToBlocBag];
-        [pBlocVisitorInstance DeletePNGFiles];
+        [pBlocManagerInstance LoadBlocsToBlocBag];
+        [pBlocManagerInstance DeletePNGFiles];
         
         BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:1];
         
-        CCSprite* pSpriteBloc = [pBlocVisitorInstance GetSpriteFromModel:pBloc];
+        CCSprite* pSpriteBloc = [pBlocManagerInstance GetSpriteFromModel:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
         pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
         

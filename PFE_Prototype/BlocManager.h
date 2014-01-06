@@ -1,8 +1,8 @@
 //
-//  BlocVisitor.h
+//  BlocManager.h
 //  ProjectTower
 //
-//  The BlocVisitor is a singleton, capable to draw a bloc view from a BlocModel,
+//  The BlocManager is a singleton, capable to draw a bloc view from a BlocModel,
 //  read the blocs in the bloc bag and write new blocs in the bloc bag.
 //
 
@@ -12,13 +12,13 @@
 #import "CCSprite.h"
 #import "BlocData.h"
 
-@interface BlocVisitor : NSObject{
+@interface BlocManager : NSObject{
     
 }
 
 // Static accessor to the single instance of the BlocVisitor
 // return value : a singleton Bloc Visitor object
-+(BlocVisitor*) GetBlocVisitor;
++(BlocManager*) GetBlocManager;
 
 // Create a CCSprite from a BlocModel
 // i_pModel : the bloc model to be converted
