@@ -20,12 +20,19 @@
     {
         _planet = i_pPlanet;
         [self addChild:_planet];
+        _planet.delegate = self;
+        [_planet launchBalanceModeForPlanet];
         
         _balanceTower = [[[BalanceTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
         [self addChild:_balanceTower];
     }
     
     return self;
+}
+
+-(void)hasRotate:(int)degrees;
+{
+    NSLog(@"planet has rotate of %d degrees", degrees);
 }
 
 @end

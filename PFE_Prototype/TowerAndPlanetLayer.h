@@ -12,7 +12,7 @@
 #import "PlanetLayer.h"
 #import "GameData.h"
 
-@interface TowerAndPlanetLayer : CCLayer {
+@interface TowerAndPlanetLayer : CCLayer <PlanetDelegate> {
     
 }
 
