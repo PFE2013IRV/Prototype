@@ -20,7 +20,8 @@
 // return value : a singleton Bloc Visitor object
 +(BlocManager*) GetBlocManager;
 
-// Create a CCSprite from a BlocModel
+// Create a CCSprite from a BlocModel. This method checks if there is an existing PNG
+// for the BlocData. If not, it will create it.
 // i_pModel : the bloc model to be converted
 // return value : a CCSprite object corresponding to the bloc Data
 -(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData;

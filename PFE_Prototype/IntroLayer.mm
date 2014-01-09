@@ -67,13 +67,15 @@
         [pBlocManagerInstance LoadBlocsToBlocBag];
         [pBlocManagerInstance DeletePNGFiles];
         
-        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:1];
+        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:0];
         
         CCSprite* pSpriteBloc = [pBlocManagerInstance GetSpriteFromModel:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
         pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
         
         [self addChild:pSpriteBloc];
+        
+       // [pBlocManagerInstance DeletePNGFiles];
         /////////////////////////////////////////////////////////////////////////////////
         
         
