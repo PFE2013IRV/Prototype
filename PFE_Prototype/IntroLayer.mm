@@ -67,7 +67,7 @@
         [pBlocManagerInstance LoadBlocsToBlocBag];
         [pBlocManagerInstance DeletePNGFiles];
         
-        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:1];
+        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:0];
         
         CCSprite* pSpriteBloc = [pBlocManagerInstance GetSpriteFromModel:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
@@ -86,12 +86,12 @@
     
     
     //Code pour Alex et Yann : Equilibre
-    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
+//    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
+//	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
    
     //Code pour Max et Thibault : Construction
     
-    //GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:nil withGods:nil];
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:pGameData] autorelease]]];
+    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:nil withGods:nil];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:pGameData] autorelease]]];
 }
 @end

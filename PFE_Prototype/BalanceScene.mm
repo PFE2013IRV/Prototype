@@ -21,12 +21,16 @@
         self._pGameData = i_pGameData;
         
         [self addChild:self._pSkyLayer];
+        [self addChild:self._pParticleLayer];
         
         TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
         [self addChild:pTowerAndPlanet];
         // Analyze game data
         
         // init layers
+        
+        // add light on tower column (particle)
+
     }
     
     return self;
