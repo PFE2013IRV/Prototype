@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "BlocManager.h"
 
 @implementation MyNavigationController
 
@@ -160,6 +161,8 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    [[BlocManager GetBlocManager] DeletePNGFiles];
+    
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
 }

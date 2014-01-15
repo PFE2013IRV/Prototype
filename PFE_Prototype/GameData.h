@@ -12,6 +12,7 @@
 #import "TowerData.h"
 #import "WindGodData.h"
 #import "GlobalConfig.h"
+#import "BlocBagData.h"
 
 @interface GameData : NSObject
 
@@ -38,6 +39,9 @@
 
 // The data for the wind god. 
 @property (nonatomic,strong) WindGodData* _pWindGodData;
+
+//The bloc bag data
+@property (nonatomic, strong) BlocBagData *pBlocBag;
 
 
 @end

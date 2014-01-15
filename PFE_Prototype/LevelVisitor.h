@@ -27,6 +27,12 @@
 // return value : the GameData at the beginning of the level
 -(GameData*) StartLevel : (int) _levelId;
 
+// Generates a game data for a specific level. Given a level identifier,
+// this method loads the specificities of the level and fills a GameData
+// object. This should be called during the loading phase of a level.
+// _levelId : the integer id of the level used to reach the information in the save file
+// return value : the GameData for Balance scene
+-(GameData*) StartLevelBalance : (int) _levelId;
 
 
 @end

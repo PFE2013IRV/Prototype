@@ -149,6 +149,8 @@ static BlocManager* pBlocManager = nil;
                 // Init BlocData and add it to the return array
                 BlocData* pBlocData = [[BlocData alloc] initBloc:aPointsRet withMaterial:materialRet];
                 [aBlocsRet addObject:pBlocData];
+                
+                [self MakePNGFromModel:pBlocData];
             }
             
             // Add extracted info to the BlocBagData
@@ -312,6 +314,7 @@ static BlocManager* pBlocManager = nil;
     if(self = [super init])
     {
         // Init of the bloc visitor
+        [self LoadBlocsToBlocBag];
     }
     
     return self;

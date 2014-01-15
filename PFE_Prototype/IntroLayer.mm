@@ -14,6 +14,7 @@
 #import "HelloWorldLayer.h"
 #import "BlocManager.h"
 #import "BlocBagData.h"
+#import "LevelVisitor.h"
 
 #pragma mark - IntroLayer
 
@@ -61,6 +62,8 @@
         /////////////////////////////////////////////////////////////////////////////////
         // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)    ///
         
+        /*
+        
         BlocManager* pBlocManagerInstance = [BlocManager GetBlocManager];
         BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
         
@@ -74,6 +77,8 @@
         pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
         
         [self addChild:pSpriteBloc];
+         
+         */
         /////////////////////////////////////////////////////////////////////////////////
 	}
 	
@@ -84,14 +89,11 @@
 {
 	[super onEnter];
     
-    
     //Code pour Alex et Yann : Equilibre
-    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevelBalance:0]] autorelease]]];
    
     //Code pour Max et Thibault : Construction
-    
-    //GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:nil withGods:nil];
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:pGameData] autorelease]]];
+    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
 }
+
 @end
