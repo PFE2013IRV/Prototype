@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		447E4656187DC830009205DE /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 447E4655187DC830009205DE /* planet.png */; };
 		44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */; };
 		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
@@ -208,6 +209,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		447E4655187DC830009205DE /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
 		44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceTowerLayer.h; sourceTree = "<group>"; };
 		44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceTowerLayer.mm; sourceTree = "<group>"; };
 		44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerAndPlanetLayer.h; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				447E4655187DC830009205DE /* planet.png */,
 				8A5B232918707E5B00B145A4 /* BlocBagData.json */,
 				8AE988E6186492F600705AAF /* Default.png */,
 				8AE988E8186492F600705AAF /* Default@2x.png */,
@@ -1450,6 +1453,7 @@
 				8AE988E9186492F600705AAF /* Default@2x.png in Resources */,
 				8AE988F3186492F600705AAF /* Icon-Small.png in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
+				447E4656187DC830009205DE /* planet.png in Resources */,
 				8AE988E7186492F600705AAF /* Default.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988FC186492F600705AAF /* iTunesArtwork in Resources */,

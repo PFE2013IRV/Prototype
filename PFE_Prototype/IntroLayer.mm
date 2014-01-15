@@ -77,9 +77,6 @@
         
        // [pBlocManagerInstance DeletePNGFiles];
         /////////////////////////////////////////////////////////////////////////////////
-        
-        
- 
 	}
 	
 	return self;
@@ -91,8 +88,8 @@
     
     
     //Code pour Alex et Yann : Equilibre
-   /* GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];*/
+    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
    
     //Code pour Max et Thibault : Construction
     
