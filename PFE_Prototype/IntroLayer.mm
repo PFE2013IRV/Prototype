@@ -63,12 +63,11 @@
         /////////////////////////////////////////////////////////////////////////////////
         // Karim : tests sur la création de blocs PNG. Ne pas toucher à ce code :)    ///
         
-        BlocManager* pBlocManagerInstance = [BlocManager GetBlocManager];
         BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
         
         BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:2];
         
-        CCSprite* pSpriteBloc = [pBlocManagerInstance GetSpriteFromModel:pBloc];
+        CCSprite* pSpriteBloc = [BlocManager GetSpriteFromModel:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
         pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
         

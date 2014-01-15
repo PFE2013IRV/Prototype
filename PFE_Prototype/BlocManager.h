@@ -24,7 +24,7 @@
 // for the BlocData. If not, it will create it.
 // i_pModel : the bloc model to be converted
 // return value : a CCSprite object corresponding to the bloc Data
--(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData;
++(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData;
 
 // Create a PNG Image from a BlocModel
 // i_pModel : the bloc model to be written in a PNG file

@@ -15,7 +15,7 @@
 // Instance variable for the bloc visitor
 static BlocManager* pBlocManager = nil;
 
--(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData
++(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData
 {
     CCSprite* pSprite = nil;
     
@@ -55,8 +55,8 @@ static BlocManager* pBlocManager = nil;
         }
         
         // Si le PNG associé n'existe pas encore, on le crée
-        if(!PNGExists)
-            [self MakePNGFromModel:i_pData];
+        //if(!PNGExists)
+            //[self MakePNGFromModel:i_pData];
         
         ////////////////////////
         // CREATION DU SPRITE //
