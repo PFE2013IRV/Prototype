@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic, strong) TowerData* towerData;
+@property (nonatomic, strong) NSMutableArray *aBlocsTowerSprite;
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;
 

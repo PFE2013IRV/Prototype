@@ -13,6 +13,7 @@
 #import "GodData.h"
 #import "TowerData.h"
 #import "GlobalConfig.h"
+#import "BlocBagData.h"
 
 @implementation LevelVisitor
 
@@ -67,7 +68,21 @@ static LevelVisitor* pLevelVisitor = nil;
     // La tour, vide puisque c'est le début du niveau.
     TowerData* pTower = [[[TowerData alloc] init] autorelease];
     
+    BlocBagData *pBagData = [BlocBagData GetBlocBagData];
     
+    //***** creation d'une tour avec 3 carrés, 1 triangle et un autre carré **********//
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    
+    //***** creation d'une tour avec 2 carrés, 2 triangle et un autre carré **********//
+    /*[pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];*/
     
     pGameData = [[[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:pTower withGods:aGods] autorelease];
     

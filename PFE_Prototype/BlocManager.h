@@ -28,7 +28,7 @@
 
 // Create a PNG Image from a BlocModel
 // i_pModel : the bloc model to be written in a PNG file
-//-(void) MakePNGFromModel: (BlocData*) i_pData;
+-(void) MakePNGFromModel: (BlocData*) i_pData;
 
 // Save a bloc
 // i_pModel : the bloc model to be saved

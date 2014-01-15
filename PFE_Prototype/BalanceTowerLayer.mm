@@ -12,12 +12,14 @@
 @implementation BalanceTowerLayer
 
 @synthesize towerData = _towerData;
+@synthesize aBlocsTowerSprite = _aBlocsTowerSprite;
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData
 {
     if (self = [super init])
     {
         _towerData = i_pTowerData;
+        _aBlocsTowerSprite = [[[NSMutableArray alloc] init] autorelease];
     }
     
     return self;
