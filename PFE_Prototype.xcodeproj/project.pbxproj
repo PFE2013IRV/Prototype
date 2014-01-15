@@ -27,6 +27,7 @@
 		8AB50C57186728D20012A387 /* ConstructionScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C56186728D20012A387 /* ConstructionScene.mm */; };
 		8AB50C5C18673AE60012A387 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5B18673AE60012A387 /* GameScene.mm */; };
 		8AB50C5F18673BEF0012A387 /* SkyLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5E18673BEF0012A387 /* SkyLayer.mm */; };
+		8AC442A31886CBA500DF2FA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC442A21886CBA500DF2FA1 /* Default.png */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
 		8AE988D5186492F600705AAF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D4186492F600705AAF /* OpenAL.framework */; };
@@ -37,7 +38,6 @@
 		8AE988DF186492F600705AAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988DE186492F600705AAF /* CoreGraphics.framework */; };
 		8AE988E1186492F600705AAF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988E0186492F600705AAF /* CoreText.framework */; };
 		8AE988E3186492F600705AAF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988E2186492F600705AAF /* GameKit.framework */; };
-		8AE988E7186492F600705AAF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE988E6186492F600705AAF /* Default.png */; };
 		8AE988E9186492F600705AAF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE988E8186492F600705AAF /* Default@2x.png */; };
 		8AE988EB186492F600705AAF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE988EA186492F600705AAF /* Default-568h@2x.png */; };
 		8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE988EC186492F600705AAF /* Default-Landscape~ipad.png */; };
@@ -251,6 +251,7 @@
 		8AB50C5B18673AE60012A387 /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
 		8AB50C5D18673BEF0012A387 /* SkyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyLayer.h; sourceTree = "<group>"; };
 		8AB50C5E18673BEF0012A387 /* SkyLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SkyLayer.mm; sourceTree = "<group>"; };
+		8AC442A21886CBA500DF2FA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AE988D2186492F600705AAF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -262,7 +263,6 @@
 		8AE988DE186492F600705AAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8AE988E0186492F600705AAF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		8AE988E2186492F600705AAF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		8AE988E6186492F600705AAF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		8AE988E8186492F600705AAF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		8AE988EA186492F600705AAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AE988EC186492F600705AAF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -869,7 +869,7 @@
 			children = (
 				447E4655187DC830009205DE /* planet.png */,
 				8A5B232918707E5B00B145A4 /* BlocBagData.json */,
-				8AE988E6186492F600705AAF /* Default.png */,
+				8AC442A21886CBA500DF2FA1 /* Default.png */,
 				8AE988E8186492F600705AAF /* Default@2x.png */,
 				8AE988EA186492F600705AAF /* Default-568h@2x.png */,
 				8AE988EC186492F600705AAF /* Default-Landscape~ipad.png */,
@@ -1464,7 +1464,7 @@
 				8AE988F3186492F600705AAF /* Icon-Small.png in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
 				447E4656187DC830009205DE /* planet.png in Resources */,
-				8AE988E7186492F600705AAF /* Default.png in Resources */,
+				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988FC186492F600705AAF /* iTunesArtwork in Resources */,
 				8AE98B15186492F800705AAF /* blocks.png in Resources */,
@@ -1708,7 +1708,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1736,7 +1736,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PFE_Prototype/Prefix.pch;

@@ -271,10 +271,18 @@ static BlocManager* pBlocManager = nil;
         CGPoint gravityCenter = CGPointMake(i_pData._gravityCenter.x + i_x, i_pData._gravityCenter.y + i_y);
         i_pData._gravityCenter = gravityCenter;
         
-        // A DISCUTER :
-        // Faut-il aussi bouger tous les points ou le centre de gravité suffit-il ?
+        // A DISCUTER : Mise à jour de tous les points de _aVertices
+        NSMutableArray* aVerticesTmp = [[NSMutableArray alloc] initWithArray:i_pData._aVertices];
+        for(int i = 0 ; i < aVerticesTmp.count; i++)
+        {
+            CGPoint pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            pointTmp.x += i_x;
+            pointTmp.y += i_y;
+            NSValue* replaceValue = [NSValue valueWithCGPoint:pointTmp];
+            
+            [i_pData._aVertices replaceObjectAtIndex:i withObject:replaceValue];
+        }
     }
-    
 }
 
 -(void) MoveBlocDataToBubble: (BlocData*) i_pData
