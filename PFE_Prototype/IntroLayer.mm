@@ -86,13 +86,10 @@
 	[super onEnter];
     
     //Code pour Alex et Yann : Equilibre
-//    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:nil withGods:nil];
-//	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:pGameData] autorelease]]];
+	//[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevelBalance:0]] autorelease]]];
    
     //Code pour Max et Thibault : Construction
-    
-    GameData *pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:nil withGods:nil];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:pGameData] autorelease]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
 }
 
 @end

@@ -14,8 +14,8 @@
     
 }
 
-@property (nonatomic, strong) CCSprite* _FireGod;
-@property (nonatomic, strong) CCSprite* _WindGod;
+@property (nonatomic, strong) CCSprite* _pFireGod;
+@property (nonatomic, strong) CCSprite* _pWindGod;
 
 
 @end

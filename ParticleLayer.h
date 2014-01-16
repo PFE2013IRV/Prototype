@@ -24,11 +24,8 @@
 @property (nonatomic, assign) id  _delegate;
 
 @property (nonatomic, assign) BOOL _isGodUpset;
+@property (nonatomic, assign) BOOL _isGodFireOn;
 
-//le tableau qui contient toutes les boules de feu lancées
-@property (nonatomic, strong) NSMutableArray* _aFireParticles;
-@property (nonatomic, strong) NSMutableArray* _aWaterParticles;
-@property (nonatomic, strong) NSMutableArray* _aWindParticles;
 
 @property (nonatomic, strong) CCParticleSystemQuad* _pGodFireFront;
 @property (nonatomic, strong) CCParticleSystemQuad* _pGodFireBehind;
@@ -37,11 +34,15 @@
 
 @property (nonatomic, strong) CCParticleSystemQuad* _pTowerLightColumn;
 
+@property (nonatomic, strong) CCParticleSystem* _pGodParticle;
+
 
 
 
 
 -(void)addFireParticle:(id)i_boutonClic;
--(void)addWaterParticle:(id)i_boutonClic;
+-(void)addWindParticle:(id)i_boutonClic;
+-(void)addGodParticle:(id)i_boutonClic;
+-(void)godIsUpset:(id)i_boutonCLic;
 
 @end

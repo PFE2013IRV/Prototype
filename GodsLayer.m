@@ -11,15 +11,19 @@
 
 @implementation GodsLayer
 
-@synthesize _FireGod;
-@synthesize _WindGod;
+@synthesize _pFireGod;
+@synthesize _pWindGod;
 
 -(id) init
 {
 	if( (self=[super init]) )
     {
-        //  [_FireGod initWithFile://path];
-        //  [_WindGod initWithFile://path];
+        _pFireGod = [CCSprite spriteWithFile:@"GodFire.png"];
+
+        //220x280
+        _pFireGod.position = ccp(110, 736);
+        //  [_pWindGod initWithFile://path];
+        [self addChild:_pFireGod];
 
         
 	}

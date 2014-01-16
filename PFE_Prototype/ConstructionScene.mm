@@ -22,7 +22,10 @@
         
         
         [self addChild:self._pSkyLayer];
+        [self addChild:self._pPlanetLayer];
+        [self addChild:self._pGodsLayer];
         [self addChild:self._pParticleLayer];
+        
         // Analyze game data
         
         // init layers
