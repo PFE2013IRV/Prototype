@@ -19,11 +19,6 @@
 -(id) initGameData : (GameSceneMode) i_eGameSceneMode withTowerData: (TowerData*) i_pTowerData
            withGods: (NSArray*) i_aGodData
 {
-    /******************************************************************************************************************/
-     //Ne peut pas travailler avec toutes les exeptions car aucune des données n'est initialisé ni définit
-    /*****************************************************************************************************************/
-    
-    /*
     if(!(i_eGameSceneMode == SCENE_MODE_CONSTRUCTION || i_eGameSceneMode == SCENE_MODE_BALANCE))
     {
         [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : game mode is unknown."];
@@ -52,26 +47,11 @@
                 _eGameSceneMode = i_eGameSceneMode;
                 _pTowerData = i_pTowerData;
                 _pWindGodData = [[WindGodData alloc] init];
+                
+                NSLog(@"test");
             }
         }
     }
-    */
-    
-    
-    /******************************************************************************************************************/
-    //Code a supprimer une fois qu'on aura les données de test pour un GameData
-    //Permet d'avancer sans le GameData
-    /*****************************************************************************************************************/
-     
-     if(self = [super init])
-     {
-         // true init starts here
-         
-         _aGodData = i_aGodData;
-         _eGameSceneMode = i_eGameSceneMode;
-         _pTowerData = i_pTowerData;
-         _pWindGodData = [[WindGodData alloc] init];
-     }
     
     return self;
 }

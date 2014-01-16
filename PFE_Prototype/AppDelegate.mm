@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "IntroLayer.h"
+#import "BlocManager.h"
 
 @implementation MyNavigationController
 
@@ -127,6 +128,8 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
+    [BlocManager GetBlocManager];
+    
 	// Create a Navigation Controller with the Director
 	navController_ = [[MyNavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
@@ -160,6 +163,8 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    [[BlocManager GetBlocManager] DeletePNGFiles];
+    
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
 }

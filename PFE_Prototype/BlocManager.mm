@@ -15,7 +15,7 @@
 // Instance variable for the bloc visitor
 static BlocManager* pBlocManager = nil;
 
--(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData
++(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData
 {
     CCSprite* pSprite = nil;
     
@@ -55,8 +55,8 @@ static BlocManager* pBlocManager = nil;
         }
         
         // Si le PNG associé n'existe pas encore, on le crée
-        if(!PNGExists)
-            [self MakePNGFromModel:i_pData];
+        //if(!PNGExists)
+            //[self MakePNGFromModel:i_pData];
         
         ////////////////////////
         // CREATION DU SPRITE //
@@ -149,6 +149,8 @@ static BlocManager* pBlocManager = nil;
                 // Init BlocData and add it to the return array
                 BlocData* pBlocData = [[BlocData alloc] initBloc:aPointsRet withMaterial:materialRet];
                 [aBlocsRet addObject:pBlocData];
+                
+                [self MakePNGFromModel:pBlocData];
             }
             
             // Add extracted info to the BlocBagData
@@ -320,6 +322,7 @@ static BlocManager* pBlocManager = nil;
     if(self = [super init])
     {
         // Init of the bloc visitor
+        [self LoadBlocsToBlocBag];
     }
     
     return self;

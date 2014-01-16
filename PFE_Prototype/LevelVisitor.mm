@@ -13,6 +13,7 @@
 #import "GodData.h"
 #import "TowerData.h"
 #import "GlobalConfig.h"
+#import "BlocBagData.h"
 
 @implementation LevelVisitor
 
@@ -44,8 +45,52 @@ static LevelVisitor* pLevelVisitor = nil;
     NSLog(@"End start level");
     
     return pGameData;
-    
 }
+
+
+-(GameData*) StartLevelBalance : (int) _levelId
+{
+    NSLog(@"Begin start level");
+    
+    GameData* pGameData = nil;
+    
+    // Parse JSON file and get the info
+    // ........
+    
+    // Note : comme on ne fait pas de liste de niveaux en JSON mais
+    // juste un prototype avec un niveau fixé, nous allons hardcoder le
+    // chargement ici.
+    
+    // Les dieux (un seul, le dieu du feu)
+    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withActiveFlag:true] autorelease];
+    NSArray* aGods = [[[NSArray alloc] initWithObjects:pFireGod, nil] autorelease];
+    
+    // La tour, vide puisque c'est le début du niveau.
+    TowerData* pTower = [[[TowerData alloc] init] autorelease];
+    
+    BlocBagData *pBagData = [BlocBagData GetBlocBagData];
+    
+    //***** creation d'une tour avec 3 carrés, 1 triangle et un autre carré **********//
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    
+    //***** creation d'une tour avec 2 carrés, 2 triangle et un autre carré **********//
+    /*[pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];*/
+    
+    pGameData = [[[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:pTower withGods:aGods] autorelease];
+    
+    NSLog(@"End start level");
+    
+    return pGameData;
+}
+
 
 +(LevelVisitor*) GetLevelVisitor
 {
