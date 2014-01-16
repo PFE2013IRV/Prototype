@@ -101,6 +101,7 @@ enum {
 
 -(void) createMenu
 {
+    /*
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
 	
@@ -148,12 +149,12 @@ enum {
 	[menu setPosition:ccp( size.width/2, size.height/2)];
 	
 	
-	[self addChild: menu z:-1];	
+	[self addChild: menu z:-1];	*/
 }
 
 -(void) initPhysics
 {
-	
+	/*
 	CGSize s = [[CCDirector sharedDirector] winSize];
 	
 	b2Vec2 gravity;
@@ -205,7 +206,7 @@ enum {
 	
 	// right
 	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
+	groundBody->CreateFixture(&groundBox,0);*/
 }
 
 -(void) draw
@@ -289,7 +290,7 @@ enum {
 		[self addNewSpriteAtPosition: location];
 	}
 }
-
+/*
 #pragma mark GameKit delegate
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
@@ -303,5 +304,5 @@ enum {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
-
+*/
 @end

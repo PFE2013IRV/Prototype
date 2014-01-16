@@ -57,7 +57,7 @@
     // créé via appli
     CCParticleSystem *pFireParticle=[[[CCParticleSystemQuad alloc] initWithTotalParticles:381] autorelease];
     ///////**** Assignment Texture Filename!  ****///////
-    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"FireParticle.png"];
+    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"Fire_Particle.png"];
     pFireParticle.texture=texture;
     pFireParticle.emissionRate=190.50;
     pFireParticle.angle=90.0;
@@ -103,7 +103,7 @@
 {
     CCParticleSystem *pWindParticle=[[[CCParticleSystemQuad alloc] initWithTotalParticles:1937] autorelease];
     ///////**** Assignment Texture Filename!  ****///////
-    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"WindParticle.png"];
+    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"Wind_Particle.png"];
     pWindParticle.texture=texture;
     pWindParticle.emissionRate=368.04;
     pWindParticle.angle=0.0;
@@ -149,7 +149,7 @@
 {
     _pGodParticle=[[[CCParticleSystemQuad alloc] initWithTotalParticles:127] autorelease];
     ///////**** Assignment Texture Filename!  ****///////
-    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"GodParticle.png"];
+    CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"God_Particle.png"];
     _pGodParticle.texture=texture;
     _pGodParticle.emissionRate=940.66;
     _pGodParticle.angle=90.0;
@@ -210,7 +210,7 @@
 -(void)update:(ccTime)delta
 {
     if(_isGodUpset && !_isGodFireOn){
-        [self addGodParticle];
+        //[self addGodParticle];
     }
     else if(!_isGodUpset && _isGodFireOn){
         [self removeChild:_pGodParticle];

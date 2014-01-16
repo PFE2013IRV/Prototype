@@ -45,7 +45,7 @@
         CGFloat angle = atan2(y, x) + M_PI_2;           // in radians
         CGFloat angleDegrees = angle * 180.0f / M_PI;
         
-        NSLog(@"%f", angleDegrees);
+        [self rotatePlanet:angleDegrees];
     
     }];
     _degreesRotation = 0;
@@ -57,35 +57,17 @@
     [motionManager stopDeviceMotionUpdates];
 }
 
-/*
--(void)rotate:(int) degrees
+-(void)rotatePlanet:(CGFloat)rotation
 {
-    if (degrees >= 360)
+    if (rotation > -85 && rotation < 90)
     {
-        [self stopBalanceModeForPlanet];
+        _pPlanetSprite.rotation = rotation / 2;
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(hasRotate:)])
+        {
+            [self.delegate hasRotate:rotation / 2];
+        }
     }
-    
-    _degreesRotation = degrees % 360;
-    _pPlanetSprite.rotation = _degreesRotation;
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(hasRotate:)])
-    {
-        [self.delegate hasRotate:_degreesRotation];
-    }
-    
-    
-}*/
-
--(void)update:(ccTime)delta
-{
-}
-
--(void)rotatePlanet:(CMRotationRate)rotation
-{
-    /*
-    
-    */
-    //[self rotate:_degreesRotation + 5];
 }
 
 @end
