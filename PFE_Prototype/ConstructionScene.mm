@@ -22,9 +22,16 @@
         
         
         [self addChild:self._pSkyLayer];
+        [self addChild:self._pPlanetLayer];
+        [self addChild:self._pGodsLayer];
+        [self addChild:self._pParticleLayer];
+        
         // Analyze game data
         
         // init layers
+        
+        // add light on tower column (particle)
+        [self scheduleUpdate];
     }
     
     return self;
@@ -35,6 +42,13 @@
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
+}
+
+-(void)update:(ccTime)delta
+{
+    // gerer link entre 2 blocs quand on est dans la zone de "dépot" du bloc
+    
+    // gerer quand le dieu s'énerve
 }
 
 @end

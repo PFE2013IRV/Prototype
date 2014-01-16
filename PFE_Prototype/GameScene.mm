@@ -11,6 +11,8 @@
 @synthesize _pGameData;
 @synthesize _pSkyLayer;
 @synthesize _pPlanetLayer;
+@synthesize _pParticleLayer;
+@synthesize _pGodsLayer;
 
 -(id)init
 {
@@ -18,6 +20,8 @@
     {
         _pSkyLayer = [SkyLayer node];
         _pPlanetLayer = [PlanetLayer node];
+        _pParticleLayer = [ParticleLayer node];
+        _pGodsLayer = [GodsLayer node];
     }
     return self;
 }
