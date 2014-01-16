@@ -73,7 +73,10 @@
         
         [self addChild:pSpriteBloc];
         
-       // [pBlocManagerInstance DeletePNGFiles];
+      //  BlocManager* pBlocManagerInstance = [BlocManager GetBlocManager];
+        
+        //[pBlocManagerInstance DeletePNGFiles];
+        
         
         /////////////////////////////////////////////////////////////////////////////////
 	}

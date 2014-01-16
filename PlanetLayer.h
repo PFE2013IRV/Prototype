@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreMotion/CoreMotion.h>
 #import "cocos2d.h"
 
 
@@ -24,6 +25,7 @@
 @interface PlanetLayer : CCLayer
 {
     id <PlanetDelegate> _delegate;
+    CMMotionManager *motionManager;
 }
 
 @property (nonatomic, assign) int degreesRotation;

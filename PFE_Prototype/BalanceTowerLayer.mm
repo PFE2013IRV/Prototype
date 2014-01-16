@@ -40,7 +40,7 @@
         
         y += bloc._scaledSize.height / 2;
         
-        int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.y;
+        int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.x;
         
         pBlocSprite.position = CGPointMake(x + gravityCenterOfBloc, y);
         

@@ -34,18 +34,30 @@
 -(void)launchBalanceModeForPlanet
 {
     //[self scheduleUpdate];
+    motionManager = [[CMMotionManager alloc] init];
+    motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
     
-    [self schedule:@selector(rotatePlanet) interval:2.00];
+    [motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical toQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
+        
+        CGFloat x = motion.gravity.x;
+        CGFloat y = motion.gravity.y;
+        
+        CGFloat angle = atan2(y, x) + M_PI_2;           // in radians
+        CGFloat angleDegrees = angle * 180.0f / M_PI;
+        
+        NSLog(@"%f", angleDegrees);
+    
+    }];
     _degreesRotation = 0;
+    //[self scheduleUpdate];
 }
 
 -(void)stopBalanceModeForPlanet
 {
-    //[self unscheduleUpdate];
-    
-    [self unschedule:@selector(rotatePlanet)];
+    [motionManager stopDeviceMotionUpdates];
 }
 
+/*
 -(void)rotate:(int) degrees
 {
     if (degrees >= 360)
@@ -62,16 +74,18 @@
     }
     
     
-}
+}*/
 
 -(void)update:(ccTime)delta
 {
-    
 }
 
--(void)rotatePlanet
+-(void)rotatePlanet:(CMRotationRate)rotation
 {
-    [self rotate:_degreesRotation + 5];
+    /*
+    
+    */
+    //[self rotate:_degreesRotation + 5];
 }
 
 @end

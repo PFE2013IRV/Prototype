@@ -272,7 +272,7 @@
         
         for(int i = 0 ; i < _aVertices.count; i++)
         {
-            pointTmp = [[aVerticesTmp objectAtIndex:i] CGPointValue];
+            pointTmp = [[_aVertices objectAtIndex:i] CGPointValue];
             
             _gravityCenter.x += pointTmp.x;
             _gravityCenter.y += pointTmp.y;

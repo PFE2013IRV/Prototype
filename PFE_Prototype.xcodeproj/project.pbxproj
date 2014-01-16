@@ -14,6 +14,7 @@
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
+		8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A91558B1888160B009A07A4 /* CoreMotion.framework */; };
 		8AB50C3E1864BD980012A387 /* BlocBagData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.mm */; };
 		8AB50C3F1864BD980012A387 /* BlocData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.mm */; };
 		8AB50C401864BD980012A387 /* BlocManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocManager.mm */; };
@@ -221,6 +222,7 @@
 		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
 		8A5B23231867543700B145A4 /* BalanceScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceScene.mm; sourceTree = "<group>"; };
 		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
+		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8AB50C351864BD980012A387 /* BlocBagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocBagData.h; sourceTree = "<group>"; };
 		8AB50C361864BD980012A387 /* BlocBagData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocBagData.mm; sourceTree = "<group>"; };
 		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */,
 				8AE988D5186492F600705AAF /* OpenAL.framework in Frameworks */,
 				8AE988DB186492F600705AAF /* UIKit.framework in Frameworks */,
 				8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */,
@@ -818,6 +821,7 @@
 		8AE988CF186492F600705AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A91558B1888160B009A07A4 /* CoreMotion.framework */,
 				8AE988D0186492F600705AAF /* QuartzCore.framework */,
 				8AE988D2186492F600705AAF /* OpenGLES.framework */,
 				8AE988D4186492F600705AAF /* OpenAL.framework */,

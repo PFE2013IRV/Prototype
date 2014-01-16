@@ -75,7 +75,7 @@ static LevelVisitor* pLevelVisitor = nil;
     [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
     [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
     [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
-    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
+    [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:2]];
     
     //***** creation d'une tour avec 2 carrés, 2 triangle et un autre carré **********//
     /*[pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];
