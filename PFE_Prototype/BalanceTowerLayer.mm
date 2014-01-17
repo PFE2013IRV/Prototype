@@ -12,15 +12,12 @@
 
 @implementation BalanceTowerLayer
 
-@synthesize towerData = _towerData;
-@synthesize aBlocsTowerSprite = _aBlocsTowerSprite;
-
 -(id) initWithTowerData : (TowerData*) i_pTowerData
 {
     if (self = [super init])
     {
-        _towerData = i_pTowerData;
-        _aBlocsTowerSprite = [[[NSMutableArray alloc] init] autorelease];
+        self._pTowerData = i_pTowerData;
+        self._aBlocsTowerSprite = [[NSMutableArray alloc] init];
         
         [self drawAllBlocsOfTower];
     }
@@ -34,7 +31,7 @@
     int x = 400;
     int y = 200;
     
-    for (BlocData *bloc in _towerData._aBlocs)
+    for (BlocData *bloc in self._pTowerData._aBlocs)
     {
         CCSprite *pBlocSprite = [BlocManager GetSpriteFromModel:bloc];
         
@@ -46,10 +43,9 @@
         
         y += bloc._scaledSize.height / 2;
         
-        [_aBlocsTowerSprite addObject:pBlocSprite];
+        [self._aBlocsTowerSprite addObject:pBlocSprite];
         [self addChild:pBlocSprite];
     }
 }
-
 
 @end

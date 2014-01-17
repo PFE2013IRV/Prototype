@@ -267,7 +267,7 @@ _incrementB;
 -(void) onEnter
 {
     [super onEnter];
-    [self schedule:@selector(changeBackground:)interval:_velocityFactor];
+    //[self schedule:@selector(changeBackground:)interval:_velocityFactor];
     
 }
 -(void) onExit

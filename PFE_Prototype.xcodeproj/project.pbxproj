@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */; };
 		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
+		44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.m */; };
+		44C8BF1A18896BF600931C90 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1918896BF600931C90 /* MenuLayer.m */; };
 		541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 541D754918883D090004F63A /* ConstructionTowerLayer.mm */; };
 		54909CAC1880227300268D54 /* ParticleLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAB1880227300268D54 /* ParticleLayer.mm */; };
 		54909CAF188035A300268D54 /* GodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* GodsLayer.mm */; };
@@ -224,6 +226,10 @@
 		44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceTowerLayer.mm; sourceTree = "<group>"; };
 		44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerAndPlanetLayer.h; sourceTree = "<group>"; };
 		44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerAndPlanetLayer.mm; sourceTree = "<group>"; };
+		44C8BF1518896BDA00931C90 /* MenuAndConstructionTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuAndConstructionTowerLayer.h; sourceTree = "<group>"; };
+		44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuAndConstructionTowerLayer.m; sourceTree = "<group>"; };
+		44C8BF1818896BF600931C90 /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		44C8BF1918896BF600931C90 /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 		541D754818883D090004F63A /* ConstructionTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionTowerLayer.h; sourceTree = "<group>"; };
 		541D754918883D090004F63A /* ConstructionTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConstructionTowerLayer.mm; sourceTree = "<group>"; };
 		54909CAA1880227300268D54 /* ParticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleLayer.h; sourceTree = "<group>"; };
@@ -688,6 +694,10 @@
 		541D754718883CE00004F63A /* Construction */ = {
 			isa = PBXGroup;
 			children = (
+				44C8BF1518896BDA00931C90 /* MenuAndConstructionTowerLayer.h */,
+				44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.m */,
+				44C8BF1818896BF600931C90 /* MenuLayer.h */,
+				44C8BF1918896BF600931C90 /* MenuLayer.m */,
 				541D754818883D090004F63A /* ConstructionTowerLayer.h */,
 				541D754918883D090004F63A /* ConstructionTowerLayer.mm */,
 			);
@@ -1584,6 +1594,7 @@
 				8AE98A27186492F700705AAF /* ZipUtils.m in Sources */,
 				8AE98919186492F600705AAF /* CCActionManager.m in Sources */,
 				8AE98981186492F700705AAF /* CCParticleSystemQuad.m in Sources */,
+				44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.m in Sources */,
 				8AE98944186492F600705AAF /* CCDrawNode.m in Sources */,
 				8AE98ADB186492F800705AAF /* b2PolygonContact.cpp in Sources */,
 				8AE989D6186492F700705AAF /* CCTransitionPageTurn.m in Sources */,
@@ -1655,6 +1666,7 @@
 				8AE98A9E186492F800705AAF /* b2Draw.cpp in Sources */,
 				8AE989EB186492F700705AAF /* CCGLView.m in Sources */,
 				541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */,
+				44C8BF1A18896BF600931C90 /* MenuLayer.m in Sources */,
 				8AE98A18186492F700705AAF /* CGPointExtension.m in Sources */,
 				8AE9891C186492F600705AAF /* CCActionPageTurn3D.m in Sources */,
 				8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */,

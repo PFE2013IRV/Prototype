@@ -15,5 +15,7 @@
 
 // The TowerData that contains all the layer's information
 @property(nonatomic,strong) TowerData* _pTowerData;
+//Al ccSprite of the Tower
+@property (nonatomic, strong) NSMutableArray *_aBlocsTowerSprite;
 
 @end
