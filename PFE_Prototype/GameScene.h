@@ -10,7 +10,7 @@
 #import "SunLayer.h"
 #import "PlanetLayer.h"
 #import "ParticleLayer.h"
-#import "GodsLayer.h"
+#import "ElementGodsLayer.h"
 #import "GameData.h"
 
 @interface GameScene : CCScene {
@@ -27,9 +27,6 @@
 
 @property (nonatomic, strong) PlanetLayer* _pPlanetLayer;
 
-@property (nonatomic, strong) ParticleLayer* _pParticleLayer;
-
-@property (nonatomic, strong) GodsLayer* _pGodsLayer;
 
 // init
 -(id)init;

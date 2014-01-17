@@ -21,5 +21,10 @@
 // return value : nil
 -(id) init;
 
+@property (nonatomic, strong) ParticleLayer* _pParticleLayer;
+
+@property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
+
+
 
 @end
