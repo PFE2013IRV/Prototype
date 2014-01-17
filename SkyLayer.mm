@@ -59,8 +59,10 @@ _incrementB;
 
 -(void) initColorsOfDay
 {
-    _nbSecondToPlay = 120;
+    _nbSecondToPlay = 12;
     _velocityFactor = 0.1;
+    
+    _nbSecondToPlay = _nbSecondToPlay*(1/_velocityFactor);
     _nbSecondPlayed = 0;
     
     
@@ -86,22 +88,22 @@ _incrementB;
     _aPaintColors[6] = night;
     _aPaintColors[7] = midnight;
     _aPaintColors[8] = dark;
-    _aPaintColors[9] = dawn;
-    
    
     
-    for(int i=1; i<=9;i++)
+   
+    _aTimeScale[0] = 0;
+    for(int i=1; i<=8;i++)
     {
-        _aTimeScale[i-1] = _nbSecondToPlay/9*i;
+        _aTimeScale[i] = _nbSecondToPlay/8*i;
     }
     
     _currentBackgroundColor = _aPaintColors[0];
     _currentMomentOfDay=0;
     _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
     
-    _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_nbSecondToPlay/10);
-    _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_nbSecondToPlay/10);
-    _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/ (_nbSecondToPlay/10);
+    _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[1]);
+    _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_aTimeScale[1]);
+    _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/ (_aTimeScale[1]);
     
     _pAnimation = [[CCAnimation alloc]init];
     
@@ -118,6 +120,7 @@ _incrementB;
     {
         _pBackground = [CCSprite spriteWithTexture:newTexture];
         _pBackground.position = (ccp(_backgroundWidth/2,_backgroundHeight/2));
+        
         [self addChild:_pBackground z:-1];
     }
     else
@@ -131,44 +134,8 @@ _incrementB;
     
     CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureWidth height:textureHeight];
     [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
-    
-    //Dessin dans la texture
-    /* Gradient */
-    /*
-     self.shaderProgram = [[CCShaderCache sharedShaderCache]programForKey:kCCShader_PositionColor];
-     CC_NODE_DRAW_SETUP();
-     float gradientAlpha = 0.7f;
-     int nbSlices = 360;
-     float incr = (float) (2* M_PI / nbSlices);
-     float radius = textureHeight*2;
-     
-     CGPoint vertices[nbSlices+2];
-     ccColor4F colors[nbSlices+2];
-     
-     //Le premier point est le centre du cercle , la position du centre du gradient
-     vertices[0] = CGPointMake(_pGradientCenter.position.x,_pGradientCenter.position.y);
-     //colors[0] = (ccColor4F){_currentSunColor.r,_currentSunColor.g,_currentSunColor.b,gradientAlpha};
-     colors[0] = (ccColor4F){227,180,68,gradientAlpha};
-     for(int i=0;i<=nbSlices;i++)
-     {
-     float angle= incr * i;
-     float x = (float) cosf(angle)*radius + _pGradientCenter.position.x;
-     float y = (float) sinf(angle)*radius + _pGradientCenter.position.y;
-     vertices[i+1] = CGPointMake(x, y);
-     colors[i+1] = (ccColor4F){0,0,0,0};
-     //colors[i+1] = (ccColor4F){_currentSunColor.r,_currentSunColor.g,_currentSunColor.b,0};
-     }
-     
-     ccGLEnableVertexAttribs(kCCVertexAttribFlag_Position | kCCVertexAttribFlag_Color);
-     
-     glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-     glVertexAttribPointer(kCCVertexAttrib_Color, 4, GL_FLOAT, GL_FALSE, 0, colors);
-     glEnable(GL_BLEND);
-     glBlendFunc(CC_BLEND, GL_DST_ALPHA);
-     glDrawArrays(GL_TRIANGLE_FAN, 0, (GLsizei)nbSlices+2);
-     
+
      /* Noise */
-    
     
     CCSprite *noise = [CCSprite spriteWithFile:@"noise.png"];
     [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR,GL_ZERO}];
@@ -184,18 +151,20 @@ _incrementB;
     
 }
 
+-(void) callChange:(ccTime)i_dt
+{
+    [self changeBackground:i_dt];
+}
+
 -(void) changeBackground:(ccTime)i_dt
 {
-    
+    NSLog(@"i_dt: %f",i_dt);
     _nbSecondPlayed ++;
-    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay])
+    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay+1])
     {
         ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
         _currentBackgroundColor = newColor;
-        
-        
-        
-        
+   
     }
     else
     {
@@ -204,30 +173,21 @@ _incrementB;
         {
             
             _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
-            _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
-            _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
-            _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/(_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
+            _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
+            _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
+            _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
             
             ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
             _currentBackgroundColor = newColor;
-            
-            
-            
-            
+      
         }
         else
         {
-            _currentMomentOfDay = 0;
-            _currentBackgroundColor = _aPaintColors[0];
-            _nbSecondPlayed=0;
-            
-            _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
-            _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[0]);
-            _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/  (_aTimeScale[0]);
-            _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/ (_aTimeScale[0]);
+           [self unschedule:@selector(changeBackground:)];
             
         }
     }
+    
     [self genBackground ];
 }
 
@@ -237,6 +197,7 @@ _incrementB;
     [self initColorsOfDay];
     
     [self schedule:@selector(changeBackground:)interval:_velocityFactor];
+    
     
 }
 -(void)ManageBackgroundBalance
@@ -251,7 +212,11 @@ _incrementB;
     
 }
 
-
+-(void) update:(ccTime)delta
+{
+    [self changeBackground:delta];
+    
+}
 
 
 // on "dealloc" you need to release all your retained objects
@@ -267,7 +232,7 @@ _incrementB;
 -(void) onEnter
 {
     [super onEnter];
-    [self schedule:@selector(changeBackground:)interval:_velocityFactor];
+    
     
 }
 -(void) onExit

@@ -13,12 +13,13 @@
 
 @interface SunLayer : CCLayer {
      int _aTimeScale[9];
-     ccColor4B _aSunColors[10];
+     ccColor4B _aSunColors[9];
 }
 @property  int
 _incrementSunR,
 _incrementSunG,
 _incrementSunB,
+_incrementSunA,
 _tailleGradient,
 _nbSecondToPlay,
 _nbSecondPlayed,
