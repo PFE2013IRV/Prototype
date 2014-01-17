@@ -21,10 +21,14 @@
         self._pGameData = i_pGameData;
         
         
+        [self._pSkyLayer ManageBackgroundConstruction];
         [self addChild:self._pSkyLayer];
-        [self addChild:self._pPlanetLayer];
-        [self addChild:self._pGodsLayer];
-        [self addChild:self._pParticleLayer];
+        
+        [self._pSunLayer ManageSunConstruction ];
+        [self addChild:self._pSunLayer];
+        //[self addChild:self._pPlanetLayer];
+        //[self addChild:self._pGodsLayer];
+       // [self addChild:self._pParticleLayer];
         
         // Analyze game data
         

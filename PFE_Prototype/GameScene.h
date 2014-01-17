@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "SkyLayer.h"
+#import "SunLayer.h"
 #import "PlanetLayer.h"
 #import "ParticleLayer.h"
 #import "GodsLayer.h"
@@ -21,6 +22,8 @@
 
 // The sky layer is declared here because it is the same layer for all specializations of GameScene.
 @property (nonatomic, strong) SkyLayer* _pSkyLayer;
+
+@property (nonatomic,strong) SunLayer* _pSunLayer;
 
 @property (nonatomic, strong) PlanetLayer* _pPlanetLayer;
 

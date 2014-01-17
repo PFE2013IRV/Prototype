@@ -214,6 +214,8 @@
 		8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0C186492F800705AAF /* HelloWorldLayer.mm */; };
 		8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0F186492F800705AAF /* IntroLayer.mm */; };
 		8AE98B13186492F800705AAF /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B12186492F800705AAF /* GLES-Render.mm */; };
+		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
+		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -643,6 +645,10 @@
 		8AE98B11186492F800705AAF /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		8AE98B12186492F800705AAF /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		8AE98B14186492F800705AAF /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		A3A4B5B41889336C00C54E5D /* SunLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunLayer.h; sourceTree = "<group>"; };
+		A3A4B5B51889336C00C54E5D /* SunLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SunLayer.mm; sourceTree = "<group>"; };
+		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
+		A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCRotationAround.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -721,6 +727,7 @@
 		8A5B23251867569A00B145A4 /* GameViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3A4B5B71889340B00C54E5D /* AnimationHelper */,
 				8AB50C58186728DD0012A387 /* Scenes */,
 				8A5B231E18674E5A00B145A4 /* Layers */,
 			);
@@ -821,6 +828,8 @@
 		8AB50C6018673BF50012A387 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				A3A4B5B41889336C00C54E5D /* SunLayer.h */,
+				A3A4B5B51889336C00C54E5D /* SunLayer.mm */,
 				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
 				54909CAA1880227300268D54 /* ParticleLayer.h */,
@@ -1436,6 +1445,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A3A4B5B71889340B00C54E5D /* AnimationHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A3A4B5BB1889345900C54E5D /* CCRotationAround.h */,
+				A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */,
+			);
+			name = AnimationHelper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1544,6 +1562,7 @@
 				8AE98A22186492F700705AAF /* TransformUtils.m in Sources */,
 				8AE98AFD186492F800705AAF /* b2WheelJoint.cpp in Sources */,
 				8AE9896F186492F700705AAF /* CCNode+Debug.m in Sources */,
+				A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */,
 				8AE9894A186492F700705AAF /* ccFPSImages.m in Sources */,
 				8AE98AC6186492F800705AAF /* b2ChainAndPolygonContact.cpp in Sources */,
 				8AE989D0186492F700705AAF /* CCTMXXMLParser.m in Sources */,
@@ -1553,6 +1572,7 @@
 				8AE98A02186492F700705AAF /* base64.c in Sources */,
 				8AE98925186492F600705AAF /* CCActionTween.m in Sources */,
 				8AE9895C186492F700705AAF /* CCLabelBMFont.m in Sources */,
+				A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */,
 				8AE98AE5186492F800705AAF /* b2GearJoint.cpp in Sources */,
 				8AE98A09186492F700705AAF /* ccCArray.m in Sources */,
 				8AE98A33186492F700705AAF /* CDXMacOSXSupport.m in Sources */,
