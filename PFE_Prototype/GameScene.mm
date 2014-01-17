@@ -12,8 +12,6 @@
 @synthesize _pSkyLayer;
 @synthesize _pSunLayer;
 @synthesize _pPlanetLayer;
-@synthesize _pParticleLayer;
-@synthesize _pGodsLayer;
 
 -(id)init
 {
@@ -22,8 +20,6 @@
         _pSkyLayer = [SkyLayer node];
         _pSunLayer = [SunLayer node];
         _pPlanetLayer = [PlanetLayer node];
-        _pParticleLayer = [ParticleLayer node];
-        _pGodsLayer = [GodsLayer node];
     }
     return self;
 }
