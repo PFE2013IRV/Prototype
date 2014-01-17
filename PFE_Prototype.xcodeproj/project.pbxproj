@@ -216,6 +216,7 @@
 		8AE98B13186492F800705AAF /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B12186492F800705AAF /* GLES-Render.mm */; };
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
+		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -649,6 +650,7 @@
 		A3A4B5B51889336C00C54E5D /* SunLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SunLayer.mm; sourceTree = "<group>"; };
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
 		A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCRotationAround.mm; sourceTree = "<group>"; };
+		A3A4B5BE188938E200C54E5D /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -900,6 +902,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3A4B5BE188938E200C54E5D /* noise.png */,
 				8AC11E2E188851C60029062B /* Fire_Particle.png */,
 				8AC11E2F188851C60029062B /* God_Particle.png */,
 				8AC11E30188851C60029062B /* Wind_Particle.png */,
@@ -1527,6 +1530,7 @@
 				8AC11E33188851C60029062B /* Wind_Particle.png in Resources */,
 				8AE988F3186492F600705AAF /* Icon-Small.png in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
+				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
