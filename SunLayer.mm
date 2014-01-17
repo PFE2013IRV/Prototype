@@ -14,6 +14,7 @@
 @synthesize _incrementSunR,
 _incrementSunG,
 _incrementSunB,
+_incrementSunA,
 _tailleGradient,
 _nbSecondToPlay,
 _nbSecondPlayed,
@@ -39,10 +40,12 @@ _currentMomentOfDay;
 }
 -(void) initColorsOfSun
 {
-    _nbSecondToPlay = 120;
+    _nbSecondToPlay = 12;
     _velocityFactor = 0.1;
     _nbSecondPlayed = 0;
+    _nbSecondToPlay = _nbSecondToPlay*(1/_velocityFactor);
     _animationDirection=1;
+    _tailleGradient=600;
     
     
     
@@ -66,21 +69,22 @@ _currentMomentOfDay;
     _aSunColors[6] = sunNight;
     _aSunColors[7] = sunMidnight;
     _aSunColors[8] = sunDark;
-    _aSunColors[9] = sunDawn;
     
-    for(int i=1; i<=9;i++)
+    _aTimeScale[0] = 0;
+    for(int i=1; i<=8;i++)
     {
-        _aTimeScale[i-1] = _nbSecondToPlay/9*i;
+        _aTimeScale[i] = _nbSecondToPlay/8*i;
     }
     
     
     _currentMomentOfDay=0;
-        _currentSunColor = _aSunColors[0];
+    _currentSunColor = _aSunColors[0];
     _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
     
-    _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_nbSecondToPlay/10);
-    _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_nbSecondToPlay/10);
-    _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/ (_nbSecondToPlay/10);
+    _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[1]);
+    _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_aTimeScale[1]);
+    _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/ (_aTimeScale[1]);
+    _incrementSunA = (_aimedSunColor.a - _currentSunColor.a)/ (_aTimeScale[1]);
     
     
     _pGradientCenter = [[CCSprite alloc]init];
@@ -103,18 +107,13 @@ _currentMomentOfDay;
     
     
     CCAction *moveGradient;
-    float rotationDuration = _nbSecondToPlay*_velocityFactor;
+    float rotationDuration = (_nbSecondToPlay)*_velocityFactor;
     
     if(_animationDirection)
     {
         
         moveGradient = [CCRotationAround actionWithDuration:rotationDuration position:RotationPoint radius:-radius direction:-1 rotation:1 angle:0];
         _animationDirection=0;
-    }
-    else
-    {
-        moveGradient = [CCRotationAround actionWithDuration:rotationDuration position:RotationPoint radius:radius direction:-1 rotation:-1 angle:0];
-        _animationDirection=1;
     }
     
     [_pGradientCenter runAction:moveGradient];
@@ -149,10 +148,10 @@ _currentMomentOfDay;
     
      self.shaderProgram = [[CCShaderCache sharedShaderCache]programForKey:kCCShader_PositionColor];
      CC_NODE_DRAW_SETUP();
-     float gradientAlpha = 1.f;
+    
      int nbSlices = 360;
      float incr = (float) (2* M_PI / nbSlices);
-    float radius = 600;
+    float radius = _tailleGradient;
     
      CGPoint vertices[nbSlices+2];
      ccColor4F colors[nbSlices+2];
@@ -160,7 +159,7 @@ _currentMomentOfDay;
      //Le premier point est le centre du cercle , la position du centre du gradient
      vertices[0] = CGPointMake(_pGradientCenter.position.x,_pGradientCenter.position.y);
     
-     colors[0] = (ccColor4F){bgColor.r,bgColor.g,bgColor.b,gradientAlpha};
+     colors[0] = (ccColor4F){bgColor.r,bgColor.g,bgColor.b,bgColor.a};
      for(int i=0;i<=nbSlices;i++)
      {
      float angle= incr * i;
@@ -190,48 +189,32 @@ _currentMomentOfDay;
 {
     
     _nbSecondPlayed ++;
-    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay])
+    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay+1])
     {
-        ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, 255);
+        ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, _currentSunColor.a+_incrementSunA);
         _currentSunColor = newColor;
         
     }
     else
     {
         _currentMomentOfDay++;
-        if(_currentMomentOfDay <9)
+        if(_currentMomentOfDay <8)
         {
             
             _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
-            _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
-            _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
-            _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/(_aTimeScale[_currentMomentOfDay]-_aTimeScale[_currentMomentOfDay-1]);
+            _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
+            _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
+            _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
+            _incrementSunA = (_aimedSunColor.a - _currentSunColor.a)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
             
-            ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, 255);
+            ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, _currentSunColor.a+_incrementSunA);
             _currentSunColor = newColor;
-            
-
             
         }
         else
         {
-            _currentMomentOfDay = 0;
-            _currentSunColor = _aSunColors[0];
-            _nbSecondPlayed=0;
-            
-            _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
-            _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[0]);
-            _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/  (_aTimeScale[0]);
-            _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/ (_aTimeScale[0]);
-            
-            if(_sceneMod == SCENE_MODE_CONSTRUCTION)
-            {
-                [self rotationGradient];
-            }
-
-            
-            
-            
+          [self unschedule:@selector(changeSun:)];
+      
         }
     }
     [self genSun ];
