@@ -11,7 +11,7 @@
 		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
 		541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 541D754918883D090004F63A /* ConstructionTowerLayer.mm */; };
 		54909CAC1880227300268D54 /* ParticleLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAB1880227300268D54 /* ParticleLayer.mm */; };
-		54909CAF188035A300268D54 /* GodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* GodsLayer.mm */; };
+		54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* ElementGodsLayer.mm */; };
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
@@ -36,6 +36,8 @@
 		8AC11E31188851C60029062B /* Fire_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2E188851C60029062B /* Fire_Particle.png */; };
 		8AC11E32188851C60029062B /* God_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2F188851C60029062B /* God_Particle.png */; };
 		8AC11E33188851C60029062B /* Wind_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E30188851C60029062B /* Wind_Particle.png */; };
+		8AC11E36188944010029062B /* FireGod_static1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E34188944010029062B /* FireGod_static1.plist */; };
+		8AC11E37188944010029062B /* FireGod_static1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E35188944010029062B /* FireGod_static1.png */; };
 		8AC442A31886CBA500DF2FA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC442A21886CBA500DF2FA1 /* Default.png */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
@@ -228,8 +230,8 @@
 		541D754918883D090004F63A /* ConstructionTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConstructionTowerLayer.mm; sourceTree = "<group>"; };
 		54909CAA1880227300268D54 /* ParticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleLayer.h; sourceTree = "<group>"; };
 		54909CAB1880227300268D54 /* ParticleLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParticleLayer.mm; sourceTree = "<group>"; };
-		54909CAD188035A300268D54 /* GodsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GodsLayer.h; sourceTree = "<group>"; };
-		54909CAE188035A300268D54 /* GodsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GodsLayer.mm; sourceTree = "<group>"; };
+		54909CAD188035A300268D54 /* ElementGodsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementGodsLayer.h; sourceTree = "<group>"; };
+		54909CAE188035A300268D54 /* ElementGodsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ElementGodsLayer.mm; sourceTree = "<group>"; };
 		8A5B231A18674E2A00B145A4 /* TowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerLayer.h; sourceTree = "<group>"; };
 		8A5B231B18674E2A00B145A4 /* TowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerLayer.mm; sourceTree = "<group>"; };
 		8A5B231F18674F4900B145A4 /* PlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetLayer.h; sourceTree = "<group>"; };
@@ -269,6 +271,8 @@
 		8AC11E2E188851C60029062B /* Fire_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fire_Particle.png; sourceTree = "<group>"; };
 		8AC11E2F188851C60029062B /* God_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = God_Particle.png; sourceTree = "<group>"; };
 		8AC11E30188851C60029062B /* Wind_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wind_Particle.png; sourceTree = "<group>"; };
+		8AC11E34188944010029062B /* FireGod_static1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FireGod_static1.plist; path = Resources/FireGod_static1.plist; sourceTree = "<group>"; };
+		8AC11E35188944010029062B /* FireGod_static1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FireGod_static1.png; path = Resources/FireGod_static1.png; sourceTree = "<group>"; };
 		8AC442A21886CBA500DF2FA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -836,8 +840,8 @@
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
 				54909CAA1880227300268D54 /* ParticleLayer.h */,
 				54909CAB1880227300268D54 /* ParticleLayer.mm */,
-				54909CAD188035A300268D54 /* GodsLayer.h */,
-				54909CAE188035A300268D54 /* GodsLayer.mm */,
+				54909CAD188035A300268D54 /* ElementGodsLayer.h */,
+				54909CAE188035A300268D54 /* ElementGodsLayer.mm */,
 			);
 			name = Graphics;
 			path = ..;
@@ -902,6 +906,8 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8AC11E34188944010029062B /* FireGod_static1.plist */,
+				8AC11E35188944010029062B /* FireGod_static1.png */,
 				A3A4B5BE188938E200C54E5D /* noise.png */,
 				8AC11E2E188851C60029062B /* Fire_Particle.png */,
 				8AC11E2F188851C60029062B /* God_Particle.png */,
@@ -1532,6 +1538,8 @@
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
+				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
+				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
@@ -1696,7 +1704,7 @@
 				8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */,
 				8AE98ACC186492F800705AAF /* b2Contact.cpp in Sources */,
 				8AE98941186492F600705AAF /* CCDrawingPrimitives.m in Sources */,
-				54909CAF188035A300268D54 /* GodsLayer.mm in Sources */,
+				54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */,
 				8AE989A9186492F700705AAF /* ccShaders.m in Sources */,
 				8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */,
 				8AB50C4F1866D2F60012A387 /* WindGodData.mm in Sources */,

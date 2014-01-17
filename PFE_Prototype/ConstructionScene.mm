@@ -9,6 +9,9 @@
 
 @implementation ConstructionScene
 
+@synthesize _pParticleLayer;
+@synthesize _pElementGodsLayer;
+
 
 -(id) initGameScene : (GameData*) i_pGameData
 {
@@ -18,6 +21,10 @@
     }
     else if (self = [super init])
     {
+        
+        _pParticleLayer = [ParticleLayer node];
+        _pElementGodsLayer = [ElementGodsLayer node];
+        
         self._pGameData = i_pGameData;
         
         
@@ -27,7 +34,7 @@
         [self._pSunLayer ManageSunConstruction ];
         [self addChild:self._pSunLayer];
         //[self addChild:self._pPlanetLayer];
-        //[self addChild:self._pGodsLayer];
+        [self addChild:self._pElementGodsLayer];
        // [self addChild:self._pParticleLayer];
         
         // Analyze game data
