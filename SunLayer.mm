@@ -142,17 +142,17 @@ _currentMomentOfDay;
 -(CCTexture2D *)createSunTexture:(ccColor4F)bgColor textureWidth:(float)textureWidth textureHeight:(float)textureHeight {
     
     CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureWidth height:textureHeight];
-    [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:0.2f];
+    [rt beginWithClear:0 g:0 b:0 a:0];
     
     //Dessin dans la texture
     /* Gradient */
     
      self.shaderProgram = [[CCShaderCache sharedShaderCache]programForKey:kCCShader_PositionColor];
      CC_NODE_DRAW_SETUP();
-     float gradientAlpha = 0.8f;
+     float gradientAlpha = 1.f;
      int nbSlices = 360;
      float incr = (float) (2* M_PI / nbSlices);
-    float radius = 400;
+    float radius = 600;
     
      CGPoint vertices[nbSlices+2];
      ccColor4F colors[nbSlices+2];
@@ -160,14 +160,14 @@ _currentMomentOfDay;
      //Le premier point est le centre du cercle , la position du centre du gradient
      vertices[0] = CGPointMake(_pGradientCenter.position.x,_pGradientCenter.position.y);
     
-     colors[0] = (ccColor4F){0,0,0,gradientAlpha};
+     colors[0] = (ccColor4F){bgColor.r,bgColor.g,bgColor.b,gradientAlpha};
      for(int i=0;i<=nbSlices;i++)
      {
      float angle= incr * i;
      float x = (float) cosf(angle)*radius + _pGradientCenter.position.x;
      float y = (float) sinf(angle)*radius + _pGradientCenter.position.y;
      vertices[i+1] = CGPointMake(x, y);
-     colors[i+1] = (ccColor4F){0,0,0,0};
+     colors[i+1] = (ccColor4F){bgColor.r,bgColor.g,bgColor.b,0};
      
      }
      
@@ -175,7 +175,7 @@ _currentMomentOfDay;
     
     glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(kCCVertexAttrib_Color, 4, GL_FLOAT, GL_FALSE, 0, colors);
-    glBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
+    glBlendFunc(GL_SRC_COLOR, GL_DST_COLOR);
     glDrawArrays(GL_TRIANGLE_FAN, 0, (GLsizei)nbSlices+2);
     
     
