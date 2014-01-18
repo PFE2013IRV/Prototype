@@ -31,6 +31,7 @@
 		8AB50C57186728D20012A387 /* ConstructionScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C56186728D20012A387 /* ConstructionScene.mm */; };
 		8AB50C5C18673AE60012A387 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5B18673AE60012A387 /* GameScene.mm */; };
 		8AB50C5F18673BEF0012A387 /* SkyLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5E18673BEF0012A387 /* SkyLayer.mm */; };
+		8AB8AD6D188A831400997BD3 /* borders.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB8AD6C188A831400997BD3 /* borders.png */; };
 		8AC11E2D1888508B0029062B /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2C1888508B0029062B /* planet.png */; };
 		8AC11E31188851C60029062B /* Fire_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2E188851C60029062B /* Fire_Particle.png */; };
 		8AC11E32188851C60029062B /* God_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2F188851C60029062B /* God_Particle.png */; };
@@ -274,6 +275,7 @@
 		8AB50C5B18673AE60012A387 /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
 		8AB50C5D18673BEF0012A387 /* SkyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyLayer.h; sourceTree = "<group>"; };
 		8AB50C5E18673BEF0012A387 /* SkyLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SkyLayer.mm; sourceTree = "<group>"; };
+		8AB8AD6C188A831400997BD3 /* borders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = borders.png; path = Resources/borders.png; sourceTree = "<group>"; };
 		8AC11E2C1888508B0029062B /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
 		8AC11E2E188851C60029062B /* Fire_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fire_Particle.png; sourceTree = "<group>"; };
 		8AC11E2F188851C60029062B /* God_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = God_Particle.png; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8AB8AD6C188A831400997BD3 /* borders.png */,
 				8AC11E441889C6840029062B /* WindGod_moveUp.plist */,
 				8AC11E451889C6840029062B /* WindGod_moveUp.png */,
 				8AC11E4018897AFA0029062B /* FireGod_static3.plist */,
@@ -1566,6 +1569,7 @@
 				8AC11E4318897AFA0029062B /* FireGod_static3.png in Resources */,
 				8AC11E3E188973F30029062B /* FireGod_static2.plist in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
+				8AB8AD6D188A831400997BD3 /* borders.png in Resources */,
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,

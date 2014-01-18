@@ -39,6 +39,16 @@
         // Analyze game data
         
         
+        ////////////////////////////////////////////////////////////////
+        ///////     AJOUT TEMPORAIRE - bordures du HUD
+        
+        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
+        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
+        pBordersSprite.position = ccp(0.0f,0.0f);
+        [self addChild:pBordersSprite];
+        ////////////////////////////////////////////////////////////////
+        
+        
         // add light on tower column (particle)
         [self scheduleUpdate];
     }
