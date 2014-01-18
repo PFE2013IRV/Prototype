@@ -11,6 +11,7 @@
 #import "PlanetLayer.h"
 #import "ParticleLayer.h"
 #import "ElementGodsLayer.h"
+#import "WindGodLayer.h"
 #import "GameData.h"
 
 @interface GameScene : CCScene {
@@ -23,9 +24,14 @@
 // The sky layer is declared here because it is the same layer for all specializations of GameScene.
 @property (nonatomic, strong) SkyLayer* _pSkyLayer;
 
+// Sun layer is on top of the sky layer
 @property (nonatomic,strong) SunLayer* _pSunLayer;
 
+// The planet layer is common to both game scene modes
 @property (nonatomic, strong) PlanetLayer* _pPlanetLayer;
+
+// The wind god is present in every game scene mode
+@property (nonatomic, strong) WindGodLayer* _pWindGodLayer;
 
 
 // init

@@ -43,6 +43,9 @@
 		8AC11E3F188973F30029062B /* FireGod_static2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E3B188973F30029062B /* FireGod_static2.png */; };
 		8AC11E4218897AFA0029062B /* FireGod_static3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E4018897AFA0029062B /* FireGod_static3.plist */; };
 		8AC11E4318897AFA0029062B /* FireGod_static3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E4118897AFA0029062B /* FireGod_static3.png */; };
+		8AC11E461889C6840029062B /* WindGod_moveUp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E441889C6840029062B /* WindGod_moveUp.plist */; };
+		8AC11E471889C6840029062B /* WindGod_moveUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E451889C6840029062B /* WindGod_moveUp.png */; };
+		8AC11E4A1889C6E10029062B /* WindGodLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11E491889C6E10029062B /* WindGodLayer.mm */; };
 		8AC442A31886CBA500DF2FA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC442A21886CBA500DF2FA1 /* Default.png */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
@@ -283,6 +286,10 @@
 		8AC11E3B188973F30029062B /* FireGod_static2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireGod_static2.png; sourceTree = "<group>"; };
 		8AC11E4018897AFA0029062B /* FireGod_static3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FireGod_static3.plist; sourceTree = "<group>"; };
 		8AC11E4118897AFA0029062B /* FireGod_static3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireGod_static3.png; sourceTree = "<group>"; };
+		8AC11E441889C6840029062B /* WindGod_moveUp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WindGod_moveUp.plist; sourceTree = "<group>"; };
+		8AC11E451889C6840029062B /* WindGod_moveUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindGod_moveUp.png; sourceTree = "<group>"; };
+		8AC11E481889C6E10029062B /* WindGodLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindGodLayer.h; sourceTree = "<group>"; };
+		8AC11E491889C6E10029062B /* WindGodLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindGodLayer.mm; sourceTree = "<group>"; };
 		8AC442A21886CBA500DF2FA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -850,6 +857,8 @@
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
 				54909CAA1880227300268D54 /* ParticleLayer.h */,
 				54909CAB1880227300268D54 /* ParticleLayer.mm */,
+				8AC11E481889C6E10029062B /* WindGodLayer.h */,
+				8AC11E491889C6E10029062B /* WindGodLayer.mm */,
 				54909CAD188035A300268D54 /* ElementGodsLayer.h */,
 				54909CAE188035A300268D54 /* ElementGodsLayer.mm */,
 			);
@@ -916,6 +925,8 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8AC11E441889C6840029062B /* WindGod_moveUp.plist */,
+				8AC11E451889C6840029062B /* WindGod_moveUp.png */,
 				8AC11E4018897AFA0029062B /* FireGod_static3.plist */,
 				8AC11E4118897AFA0029062B /* FireGod_static3.png */,
 				8AC11E38188973F30029062B /* FireGod_colere1.plist */,
@@ -1543,6 +1554,7 @@
 				8A9155A318884505009A07A4 /* WindButton.png in Resources */,
 				8A9155A518884505009A07A4 /* blocks.png in Resources */,
 				8AC11E4218897AFA0029062B /* FireGod_static3.plist in Resources */,
+				8AC11E461889C6840029062B /* WindGod_moveUp.plist in Resources */,
 				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,
 				8AC11E31188851C60029062B /* Fire_Particle.png in Resources */,
 				8AE988F7186492F600705AAF /* Icon.png in Resources */,
@@ -1562,6 +1574,7 @@
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
+				8AC11E471889C6840029062B /* WindGod_moveUp.png in Resources */,
 				8AC11E3F188973F30029062B /* FireGod_static2.png in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
 				8AC11E2D1888508B0029062B /* planet.png in Resources */,
@@ -1719,6 +1732,7 @@
 				8AE98A96186492F800705AAF /* b2PolygonShape.cpp in Sources */,
 				8AE98A6B186492F800705AAF /* vec2.c in Sources */,
 				8AB50C3F1864BD980012A387 /* BlocData.mm in Sources */,
+				8AC11E4A1889C6E10029062B /* WindGodLayer.mm in Sources */,
 				8AE98AAB186492F800705AAF /* b2Timer.cpp in Sources */,
 				8AE98A5B186492F800705AAF /* matrix.c in Sources */,
 				8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */,

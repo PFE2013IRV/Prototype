@@ -113,10 +113,10 @@
         ///////////////////////////////////////////////////////////////////
         
         // On lance l'action par défaut : FireGod_static1
-        _pFireGod = [CCSprite spriteWithSpriteFrameName:@"static3_1.png"];
+        _pFireGod = [CCSprite spriteWithSpriteFrameName:@"static1_1.png"];
         
-        [[_aFireGodSpriteSheets objectForKey:@"FireGod_static3"] addChild:_pFireGod];
-        [_pFireGod runAction:[_aFireGodActions objectForKey:@"FireGod_static3"]];
+        [[_aFireGodSpriteSheets objectForKey:@"FireGod_static1"] addChild:_pFireGod];
+        [_pFireGod runAction:[_aFireGodActions objectForKey:@"FireGod_static1"]];
         
         // Positionnement par défaut
         _pFireGod.position = ccp(110, 736);

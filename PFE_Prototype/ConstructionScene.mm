@@ -33,13 +33,11 @@
         
         [self._pSunLayer ManageSunConstruction ];
         [self addChild:self._pSunLayer];
-        //[self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
-       // [self addChild:self._pParticleLayer];
+        [self addChild:self._pWindGodLayer];
         
         // Analyze game data
         
-        // init layers
         
         // add light on tower column (particle)
         [self scheduleUpdate];
