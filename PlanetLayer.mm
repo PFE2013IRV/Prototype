@@ -11,7 +11,6 @@
 @implementation PlanetLayer
 
 @synthesize pPlanetSprite = _pPlanetSprite;
-@synthesize degreesRotation = _degreesRotation;
 
 
 -(id)init

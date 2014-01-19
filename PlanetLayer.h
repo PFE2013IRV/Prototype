@@ -28,7 +28,6 @@
     CMMotionManager *motionManager;
 }
 
-@property (nonatomic, assign) int degreesRotation;
 @property (nonatomic, strong) id delegate;
 @property (nonatomic, strong) CCSprite *pPlanetSprite;
 

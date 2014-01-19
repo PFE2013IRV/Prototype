@@ -11,6 +11,7 @@
 
 @synthesize _pParticleLayer;
 @synthesize _pElementGodsLayer;
+@synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
 
 
 -(id) initGameScene : (GameData*) i_pGameData

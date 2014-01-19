@@ -18,4 +18,6 @@
 //Al ccSprite of the Tower
 @property (nonatomic, strong) NSMutableArray *_aBlocsTowerSprite;
 
+-(id) init;
+
 @end

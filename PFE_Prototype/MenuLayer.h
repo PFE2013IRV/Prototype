@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "BlocData.h"
+#import "BlocBagData.h"
 
 @protocol MenuDelegate <NSObject>
 
 @required
--(void)BlocHasBeenSelected:(int)indexBlocSelected;
+-(void)BlocHasBeenSelected:(BlocData*)blocSelected;
 
 @end // end of delegate protocol
 
@@ -21,6 +23,8 @@
 {
     id <MenuDelegate> _delegate;
 }
+
+-(id) init;
 
 @property (nonatomic, strong) id delegate;
 

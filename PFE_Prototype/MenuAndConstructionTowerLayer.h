@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "MenuLayer.h"
+#import "ConstructionTowerLayer.h"
 
-@interface MenuAndConstructionTowerLayer : CCLayer
+@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>
 
+@property (nonatomic, strong) MenuLayer *pMenuLayer;
+@property (nonatomic, strong) ConstructionTowerLayer *pTowerLayer;
 
+-(id) init;
 
 @end

@@ -11,14 +11,28 @@
 
 @implementation MenuAndConstructionTowerLayer
 
+@synthesize pTowerLayer = _pTowerLayer;
+@synthesize pMenuLayer = _pMenuLayer;
+
 -(id) init
 {
     if (self = [super init])
     {
+        _pMenuLayer = [MenuLayer node];
+        _pTowerLayer = [ConstructionTowerLayer node];
         
+        _pMenuLayer.delegate = self;
+        
+        [self addChild:_pMenuLayer];
+        [self addChild:_pTowerLayer];
     }
     
     return self;
+}
+
+-(void)BlocHasBeenSelected:(BlocData*)blocSelected
+{
+    NSLog(@"One bloc has been selected");
 }
 
 @end
