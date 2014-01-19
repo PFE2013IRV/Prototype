@@ -17,12 +17,13 @@
     float startAngle;
     float delta;
     float angle;
+    float angleRotation;
     ccTime rotation;
     int direction;
     
 }
 /** creates the action */
-+(id) actionWithDuration: (ccTime)duration position:(CGPoint)position radius:(float)radius direction:(int)dir rotation: (ccTime)rot angle: (float)angle;
++(id) actionWithDuration: (ccTime)duration position:(CGPoint)position radius:(float)radius direction:(int)dir rotation: (ccTime)rot angle: (float)angle angleRotation:(float)angleRotation;
 /** initializes the action */
--(id) initWithDuration: (ccTime)duration position:(CGPoint)position radius:(float)radius direction:(int)dir rotation: (ccTime)rot angle: (float)angle;
+-(id) initWithDuration: (ccTime)duration position:(CGPoint)position radius:(float)radius direction:(int)dir rotation: (ccTime)rot angle: (float)angle angleRotation:(float)angleRotation;
 @end

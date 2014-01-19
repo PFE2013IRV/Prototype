@@ -4,7 +4,7 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>static1_1.png</key>
+		<key>static2_1.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{2,2},{198,272}}</string>
@@ -17,7 +17,7 @@
 			<key>sourceSize</key>
 			<string>{198,276}</string>
 		</dict>
-		<key>static1_2.png</key>
+		<key>static2_2.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{202,2},{198,270}}</string>
@@ -30,7 +30,7 @@
 			<key>sourceSize</key>
 			<string>{198,276}</string>
 		</dict>
-		<key>static1_3.png</key>
+		<key>static2_3.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{2,276},{198,272}}</string>
@@ -43,7 +43,7 @@
 			<key>sourceSize</key>
 			<string>{198,276}</string>
 		</dict>
-		<key>static1_4.png</key>
+		<key>static2_4.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{202,276},{198,272}}</string>
@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>FireGod_static1.png</string>
+		<string>FireGod_static2.png</string>
 		<key>size</key>
 		<string>{512,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:a07c4cebc8e74decab0fc4fb0bd9f08e:9ff230258f14d7cc463c2f530bb7bf37:018f0a578e395010726dbd2a971200fb$</string>
+		<string>$TexturePacker:SmartUpdate:6251e0c058421b25c6864b1a508c9ece:5cea7f62db4d9bbfa01b81c83887fe6c:a28878349ec6bf83cdfda15bcb18b27f$</string>
 		<key>textureFileName</key>
-		<string>FireGod_static1.png</string>
+		<string>FireGod_static2.png</string>
 	</dict>
 </dict>
 </plist>

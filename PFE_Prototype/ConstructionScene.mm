@@ -9,7 +9,6 @@
 
 @implementation ConstructionScene
 
-@synthesize _pParticleLayer;
 @synthesize _pElementGodsLayer;
 @synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
 
@@ -23,8 +22,10 @@
     else if (self = [super init])
     {
         
-        _pParticleLayer = [ParticleLayer node];
         _pElementGodsLayer = [ElementGodsLayer node];
+        _pFireAttackLayer = [FireAttackLayer node];
+        _pWindAttackLayer = [WindAttackLayer node];
+        
         
         self._pGameData = i_pGameData;
         
@@ -34,9 +35,11 @@
         
         [self._pSunLayer ManageSunConstruction];
         [self addChild:self._pSunLayer];
-        //[self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
-       // [self addChild:self._pParticleLayer];
+        [self addChild:self._pWindGodLayer];
+        [self addChild:self._pFireAttackLayer];
+        [self addChild:self._pWindAttackLayer];
+        [self addChild:self._pDustLayer];
         
         
         [self scheduleUpdate];

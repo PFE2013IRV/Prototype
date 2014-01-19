@@ -14,7 +14,9 @@ static float BLOC_WIDTH = 100.0f;
 
 // Bubble point
 static CGPoint BUBBLE_POINT = CGPointMake(300, 300);
-
+//The different size element
+static int BACKGROUND_WIDTH = 768;
+static int BACKGROUND_HEIGHT = 877;
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,
@@ -22,6 +24,7 @@ enum GameSceneMode {
     SCENE_MODE_BALANCE = 2
 };
 typedef enum GameSceneMode GameSceneMode;
+
 
 
 // The different elementary god types

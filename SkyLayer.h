@@ -17,7 +17,7 @@
 @interface SkyLayer : CCLayer
 {
     int _aTimeScale[9];
-    ccColor4B _aPaintColors[10];
+    ccColor4B _aPaintColors[9];
     
     
 }
