@@ -11,9 +11,10 @@
 #import "CCRotationAround.h"
 #import "GlobalConfig.h"
 
+
 @interface SunLayer : CCLayer {
-     int _aTimeScale[9];
-     ccColor4B _aSunColors[9];
+    int _aTimeScale[9];
+    ccColor4B _aSunColors[9];
 }
 @property  int
 _incrementSunR,

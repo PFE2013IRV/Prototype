@@ -44,14 +44,9 @@ _incrementB;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) )
     {
-        
-        CGSize winSize = [[CCDirector sharedDirector]winSize];
         //Taille à changer!!!
-        _backgroundHeight = winSize.height;
-        _backgroundWidth = winSize.width;
-        
-        
-        
+        _backgroundHeight = BACKGROUND_HEIGHT;
+        _backgroundWidth =  BACKGROUND_WIDTH;
         
 	}
 	return self;
@@ -78,7 +73,7 @@ _incrementB;
     ccColor4B night = ccc4(67, 98, 132, 255);
     ccColor4B midnight = ccc4(44, 73, 104, 255);
     ccColor4B dark = ccc4(18, 41, 68, 255);
-
+    
     _aPaintColors[0] = dawn;
     _aPaintColors[1] = morning;
     _aPaintColors[2] = middleMorning;
@@ -88,9 +83,9 @@ _incrementB;
     _aPaintColors[6] = night;
     _aPaintColors[7] = midnight;
     _aPaintColors[8] = dark;
-   
     
-   
+    
+    
     _aTimeScale[0] = 0;
     for(int i=1; i<=8;i++)
     {
@@ -118,8 +113,9 @@ _incrementB;
     
     if (!_pBackground)
     {
+        CGSize winSize = [[CCDirector sharedDirector]winSize];
         _pBackground = [CCSprite spriteWithTexture:newTexture];
-        _pBackground.position = (ccp(_backgroundWidth/2,_backgroundHeight/2));
+        _pBackground.position = (ccp(_backgroundWidth/2,_backgroundHeight/2+winSize.height-_backgroundHeight));
         
         [self addChild:_pBackground z:-1];
     }
@@ -134,8 +130,8 @@ _incrementB;
     
     CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureWidth height:textureHeight];
     [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
-
-     /* Noise */
+    
+    /* Noise */
     
     CCSprite *noise = [CCSprite spriteWithFile:@"noise.png"];
     [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR,GL_ZERO}];
@@ -164,7 +160,7 @@ _incrementB;
     {
         ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
         _currentBackgroundColor = newColor;
-   
+        
     }
     else
     {
@@ -179,11 +175,11 @@ _incrementB;
             
             ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
             _currentBackgroundColor = newColor;
-      
+            
         }
         else
         {
-           [self unschedule:@selector(changeBackground:)];
+            [self unschedule:@selector(changeBackground:)];
             
         }
     }
