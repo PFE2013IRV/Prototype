@@ -11,10 +11,13 @@
 
 @implementation MenuLayer
 
+@synthesize pBagData = _pBagData;
+
 -(id) init
 {
     if (self = [super init])
     {
+        _pBagData = [BlocBagData GetBlocBagData];
     }
     
     return self;

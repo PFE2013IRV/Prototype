@@ -32,7 +32,6 @@
 
 -(void)launchBalanceModeForPlanet
 {
-    //[self scheduleUpdate];
     motionManager = [[CMMotionManager alloc] init];
     motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
     
@@ -47,8 +46,6 @@
         [self rotatePlanet:angleDegrees];
     
     }];
-    _degreesRotation = 0;
-    //[self scheduleUpdate];
 }
 
 -(void)stopBalanceModeForPlanet

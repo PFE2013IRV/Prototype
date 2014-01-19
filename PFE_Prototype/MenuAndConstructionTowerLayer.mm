@@ -14,12 +14,12 @@
 @synthesize pTowerLayer = _pTowerLayer;
 @synthesize pMenuLayer = _pMenuLayer;
 
--(id) init
+-(id) initWithTowerData : (TowerData*) i_pTowerData
 {
     if (self = [super init])
     {
         _pMenuLayer = [MenuLayer node];
-        _pTowerLayer = [ConstructionTowerLayer node];
+        _pTowerLayer = [[[ConstructionTowerLayer alloc] initWithTowerData:i_pTowerData] autorelease];
         
         _pMenuLayer.delegate = self;
         

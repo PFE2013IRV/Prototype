@@ -26,7 +26,6 @@
 
 @property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;
 
-
 @property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
 
 @property (nonatomic, strong) MenuAndConstructionTowerLayer *pMenuAndTowerLayer;

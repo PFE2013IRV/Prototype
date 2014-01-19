@@ -27,5 +27,6 @@
 -(id) init;
 
 @property (nonatomic, strong) id delegate;
+@property (nonatomic, strong) BlocBagData *pBagData;
 
 @end

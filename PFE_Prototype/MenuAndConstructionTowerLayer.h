@@ -10,12 +10,13 @@
 #import "cocos2d.h"
 #import "MenuLayer.h"
 #import "ConstructionTowerLayer.h"
+#import "TowerData.h"
 
 @interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>
 
 @property (nonatomic, strong) MenuLayer *pMenuLayer;
 @property (nonatomic, strong) ConstructionTowerLayer *pTowerLayer;
 
--(id) init;
+-(id) initWithTowerData : (TowerData*) i_pTowerData;
 
 @end

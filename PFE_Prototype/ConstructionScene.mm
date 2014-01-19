@@ -10,6 +10,8 @@
 @implementation ConstructionScene
 
 @synthesize _pElementGodsLayer;
+@synthesize _pFireAttackLayer;
+@synthesize _pWindAttackLayer;
 @synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
 
 
@@ -25,10 +27,9 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pWindAttackLayer = [WindAttackLayer node];
-        
+        _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
         
         self._pGameData = i_pGameData;
-        
         
         [self._pSkyLayer ManageBackgroundConstruction];
         [self addChild:self._pSkyLayer];
@@ -40,8 +41,20 @@
         [self addChild:self._pFireAttackLayer];
         [self addChild:self._pWindAttackLayer];
         [self addChild:self._pDustLayer];
+        [self addChild:_pMenuAndTowerLayer];
         
         
+        ////////////////////////////////////////////////////////////////
+        ///////     AJOUT TEMPORAIRE - bordures du HUD
+        
+        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
+        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
+        pBordersSprite.position = ccp(0.0f,0.0f);
+        [self addChild:pBordersSprite];
+        ////////////////////////////////////////////////////////////////
+        
+        
+        // add light on tower column (particle)
         [self scheduleUpdate];
     }
     

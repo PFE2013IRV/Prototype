@@ -13,6 +13,6 @@
 
 @interface ConstructionTowerLayer : TowerLayer
 
--(id) init;
+-(id) initWithTowerData:(TowerData*) i_pTowerData;
 
 @end
