@@ -23,4 +23,14 @@
 // The key srings are equal to the animation names.
 @property (nonatomic, strong) NSMutableDictionary* _aFireGodActions;
 
+
+// Flames when god is upset
+@property (nonatomic, strong) CCParticleSystem* _pGodParticle;
+
+// Add Flames with bouton (for test)
+-(void)addGodParticle:(id)i_boutonClic;
+// Add flames with upset...
+-(void)addGodParticle;
+
+
 @end

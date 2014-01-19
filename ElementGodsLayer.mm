@@ -11,6 +11,7 @@
 @synthesize _pFireGod;
 @synthesize _aFireGodActions;
 @synthesize _aFireGodSpriteSheets;
+@synthesize _pGodParticle;
 
 -(id) init
 {
@@ -120,9 +121,38 @@
         
         // Positionnement par défaut
         _pFireGod.position = ccp(110, 736);
+       
+        ///////////////////////////////////////////////////////////////////
+        ///////     Initialisations des effets de particules dieux    /////
+        ///////////////////////////////////////////////////////////////////
         
+        _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"godParticle.plist"];
+        
+        // Bouton God
+        CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
+        addParticleGodFireButton.position = ccp(100, 0);
+        
+        // Menu des boutons
+        CCMenu *addMenu = [CCMenu menuWithItems:addParticleGodFireButton, nil];
+        addMenu.position = ccp(0, 20);
+        
+        // ajoute le menu
+        [self addChild:addMenu];
+
 	}
 	return self;
+}
+
+-(void)addGodParticle:(id)i_boutonClic
+{
+    [self addChild:_pGodParticle];
+    //_isGodFireOn = true;
+}
+
+-(void)addGodParticle
+{
+    [self addChild:_pGodParticle];
+    //_isGodFireOn = true;
 }
 
 @end

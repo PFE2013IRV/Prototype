@@ -21,7 +21,10 @@
 // return value : nil
 -(id) init;
 
-@property (nonatomic, strong) ParticleLayer* _pParticleLayer;
+@property (nonatomic, strong) FireAttackLayer* _pFireAttackLayer;
+
+@property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;
+
 
 @property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
 

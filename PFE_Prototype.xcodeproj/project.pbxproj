@@ -10,8 +10,14 @@
 		44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */; };
 		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
 		541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 541D754918883D090004F63A /* ConstructionTowerLayer.mm */; };
-		54909CAC1880227300268D54 /* ParticleLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAB1880227300268D54 /* ParticleLayer.mm */; };
 		54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* ElementGodsLayer.mm */; };
+		54984632188C16FA0007046B /* godParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54984631188C16FA0007046B /* godParticle.plist */; };
+		549B60B5188C230C0027E5FD /* FireAttackLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 549B60B4188C230C0027E5FD /* FireAttackLayer.mm */; };
+		549B60B8188C232A0027E5FD /* WindAttackLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 549B60B7188C232A0027E5FD /* WindAttackLayer.mm */; };
+		549E2D03188C30860069CF91 /* fireParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549E2D02188C30860069CF91 /* fireParticle.plist */; };
+		54A4835B188C3542003D47B8 /* windParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835A188C3542003D47B8 /* windParticle.plist */; };
+		54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54A4835D188C3940003D47B8 /* DustLayer.mm */; };
+		54A48360188C3979003D47B8 /* dustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835F188C3979003D47B8 /* dustParticle.plist */; };
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
@@ -237,10 +243,18 @@
 		44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerAndPlanetLayer.mm; sourceTree = "<group>"; };
 		541D754818883D090004F63A /* ConstructionTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionTowerLayer.h; sourceTree = "<group>"; };
 		541D754918883D090004F63A /* ConstructionTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConstructionTowerLayer.mm; sourceTree = "<group>"; };
-		54909CAA1880227300268D54 /* ParticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleLayer.h; sourceTree = "<group>"; };
-		54909CAB1880227300268D54 /* ParticleLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParticleLayer.mm; sourceTree = "<group>"; };
 		54909CAD188035A300268D54 /* ElementGodsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementGodsLayer.h; sourceTree = "<group>"; };
 		54909CAE188035A300268D54 /* ElementGodsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ElementGodsLayer.mm; sourceTree = "<group>"; };
+		54984631188C16FA0007046B /* godParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = godParticle.plist; sourceTree = "<group>"; };
+		549B60B3188C230C0027E5FD /* FireAttackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireAttackLayer.h; sourceTree = "<group>"; };
+		549B60B4188C230C0027E5FD /* FireAttackLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FireAttackLayer.mm; sourceTree = "<group>"; };
+		549B60B6188C232A0027E5FD /* WindAttackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindAttackLayer.h; sourceTree = "<group>"; };
+		549B60B7188C232A0027E5FD /* WindAttackLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindAttackLayer.mm; sourceTree = "<group>"; };
+		549E2D02188C30860069CF91 /* fireParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fireParticle.plist; sourceTree = "<group>"; };
+		54A4835A188C3542003D47B8 /* windParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = windParticle.plist; sourceTree = "<group>"; };
+		54A4835C188C3940003D47B8 /* DustLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayer.h; sourceTree = "<group>"; };
+		54A4835D188C3940003D47B8 /* DustLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayer.mm; sourceTree = "<group>"; };
+		54A4835F188C3979003D47B8 /* dustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dustParticle.plist; sourceTree = "<group>"; };
 		8A5B231A18674E2A00B145A4 /* TowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerLayer.h; sourceTree = "<group>"; };
 		8A5B231B18674E2A00B145A4 /* TowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerLayer.mm; sourceTree = "<group>"; };
 		8A5B231F18674F4900B145A4 /* PlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetLayer.h; sourceTree = "<group>"; };
@@ -857,12 +871,16 @@
 				A3A4B5B51889336C00C54E5D /* SunLayer.mm */,
 				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
-				54909CAA1880227300268D54 /* ParticleLayer.h */,
-				54909CAB1880227300268D54 /* ParticleLayer.mm */,
 				8AC11E481889C6E10029062B /* WindGodLayer.h */,
 				8AC11E491889C6E10029062B /* WindGodLayer.mm */,
 				54909CAD188035A300268D54 /* ElementGodsLayer.h */,
 				54909CAE188035A300268D54 /* ElementGodsLayer.mm */,
+				549B60B3188C230C0027E5FD /* FireAttackLayer.h */,
+				549B60B4188C230C0027E5FD /* FireAttackLayer.mm */,
+				549B60B6188C232A0027E5FD /* WindAttackLayer.h */,
+				549B60B7188C232A0027E5FD /* WindAttackLayer.mm */,
+				54A4835C188C3940003D47B8 /* DustLayer.h */,
+				54A4835D188C3940003D47B8 /* DustLayer.mm */,
 			);
 			name = Graphics;
 			path = ..;
@@ -927,6 +945,10 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54A4835F188C3979003D47B8 /* dustParticle.plist */,
+				54A4835A188C3542003D47B8 /* windParticle.plist */,
+				549E2D02188C30860069CF91 /* fireParticle.plist */,
+				54984631188C16FA0007046B /* godParticle.plist */,
 				8AB8AD6C188A831400997BD3 /* borders.png */,
 				8AC11E441889C6840029062B /* WindGod_moveUp.plist */,
 				8AC11E451889C6840029062B /* WindGod_moveUp.png */,
@@ -1571,6 +1593,7 @@
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
 				8AB8AD6D188A831400997BD3 /* borders.png in Resources */,
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
+				54A48360188C3979003D47B8 /* dustParticle.plist in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
 				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
@@ -1578,10 +1601,13 @@
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
+				54984632188C16FA0007046B /* godParticle.plist in Resources */,
 				8AC11E471889C6840029062B /* WindGod_moveUp.png in Resources */,
 				8AC11E3F188973F30029062B /* FireGod_static2.png in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
+				54A4835B188C3542003D47B8 /* windParticle.plist in Resources */,
 				8AC11E2D1888508B0029062B /* planet.png in Resources */,
+				549E2D03188C30860069CF91 /* fireParticle.plist in Resources */,
 				8AE988EB186492F600705AAF /* Default-568h@2x.png in Resources */,
 				8AE988F9186492F600705AAF /* Icon@2x.png in Resources */,
 			);
@@ -1602,7 +1628,6 @@
 				8AE989C7186492F700705AAF /* CCTMXLayer.m in Sources */,
 				8AE98A7C186492F800705AAF /* b2CollideEdge.cpp in Sources */,
 				8AE98A90186492F800705AAF /* b2CircleShape.cpp in Sources */,
-				54909CAC1880227300268D54 /* ParticleLayer.mm in Sources */,
 				8AE98A5F186492F800705AAF /* mat4.c in Sources */,
 				8AE9893B186492F600705AAF /* ccDeprecated.m in Sources */,
 				8AE98AF4186492F800705AAF /* b2RevoluteJoint.cpp in Sources */,
@@ -1646,6 +1671,7 @@
 				8AE98A93186492F800705AAF /* b2EdgeShape.cpp in Sources */,
 				8AE98AB8186492F800705AAF /* b2Island.cpp in Sources */,
 				8AB50C541866D7440012A387 /* LevelVisitor.mm in Sources */,
+				54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */,
 				8AE989BB186492F700705AAF /* CCTextureAtlas.m in Sources */,
 				44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */,
 				8AE98A69186492F800705AAF /* utility.c in Sources */,
@@ -1671,6 +1697,7 @@
 				8AE98AA2186492F800705AAF /* b2Math.cpp in Sources */,
 				8AE989E7186492F700705AAF /* CCES2Renderer.m in Sources */,
 				8AE98959186492F700705AAF /* CCLabelAtlas.m in Sources */,
+				549B60B8188C232A0027E5FD /* WindAttackLayer.mm in Sources */,
 				8AE98975186492F700705AAF /* CCParallaxNode.m in Sources */,
 				8AE9890D186492F600705AAF /* CCActionGrid.m in Sources */,
 				8AE98956186492F700705AAF /* CCGrid.m in Sources */,
@@ -1711,6 +1738,7 @@
 				8AE989CA186492F700705AAF /* CCTMXObjectGroup.m in Sources */,
 				8AE98AD5186492F800705AAF /* b2EdgeAndPolygonContact.cpp in Sources */,
 				8AE98AD8186492F800705AAF /* b2PolygonAndCircleContact.cpp in Sources */,
+				549B60B5188C230C0027E5FD /* FireAttackLayer.mm in Sources */,
 				8AE98ABC186492F800705AAF /* b2World.cpp in Sources */,
 				8AE98B01186492F800705AAF /* b2Rope.cpp in Sources */,
 				8AE98A2C186492F700705AAF /* CDAudioManager.m in Sources */,
