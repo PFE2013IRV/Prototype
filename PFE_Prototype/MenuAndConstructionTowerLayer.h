@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface MenuAndConstructionTowerLayer : CCLayer {
-    
-}
+@interface MenuAndConstructionTowerLayer : CCLayer
+
+
 
 @end

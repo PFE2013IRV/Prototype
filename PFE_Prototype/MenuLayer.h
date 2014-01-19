@@ -9,8 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface MenuLayer : CCLayer {
-    
+@protocol MenuDelegate <NSObject>
+
+@required
+-(void)BlocHasBeenSelected:(int)indexBlocSelected;
+
+@end // end of delegate protocol
+
+
+@interface MenuLayer : CCLayer
+{
+    id <MenuDelegate> _delegate;
 }
+
+@property (nonatomic, strong) id delegate;
 
 @end
