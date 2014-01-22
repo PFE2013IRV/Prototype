@@ -35,12 +35,14 @@
         [self addChild:self._pSkyLayer];
         
         [self._pSunLayer ManageSunConstruction];
+        
+        [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
         [self addChild:self._pElementGodsLayer];
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
         [self addChild:self._pWindAttackLayer];
-        [self addChild:self._pDustLayer];
+        
         [self addChild:_pMenuAndTowerLayer];
         
         

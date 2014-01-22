@@ -12,8 +12,16 @@
     
 }
 
+-(void) loadAnim: (id) sender data: (void*) data;
+
+-(void) playStaticAnims;
+
+
 // The sprite containing the FireGod
 @property (nonatomic, strong) CCSprite* _pFireGod;
+
+// The sprite containing the FireGod
+@property (nonatomic, strong) NSMutableDictionary* _aFireGodSprites;
 
 // This dictionary contains all the spritesheets for the Fire God.
 // The key srings are equal to the animation names.

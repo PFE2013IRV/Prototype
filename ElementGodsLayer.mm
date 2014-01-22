@@ -12,6 +12,7 @@
 @synthesize _aFireGodActions;
 @synthesize _aFireGodSpriteSheets;
 @synthesize _pGodParticle;
+@synthesize _aFireGodSprites;
 
 -(id) init
 {
@@ -93,10 +94,10 @@
         
         _aFireGodActions = [[NSMutableDictionary alloc] init];
         
-        CCAction* pActionGodFire_static1 = [CCRepeatForever actionWithAction:
-                                            [CCAnimate actionWithAnimation:pGodFire_static1_Anim]];
-        CCAction* pActionGodFire_static2 = [CCRepeatForever actionWithAction:
-                                            [CCAnimate actionWithAnimation:pGodFire_static2_Anim]];
+        CCAction* pActionGodFire_static1 = [CCRepeat actionWithAction:
+                                            [CCAnimate actionWithAnimation:pGodFire_static1_Anim] times:12];
+        CCAction* pActionGodFire_static2 = [CCRepeat actionWithAction:
+                                            [CCAnimate actionWithAnimation:pGodFire_static2_Anim] times:6];
         CCAction* pActionGodFire_static3 = [CCRepeatForever actionWithAction:
                                             [CCAnimate actionWithAnimation:pGodFire_static3_Anim]];
         CCAction* pActionGodFire_colere1 = [CCRepeatForever actionWithAction:
@@ -113,14 +114,21 @@
         ///////        Initialisations des sprites des dieux          /////
         ///////////////////////////////////////////////////////////////////
         
-        // On lance l'action par défaut : FireGod_static1
-        _pFireGod = [CCSprite spriteWithSpriteFrameName:@"static1_1.png"];
+        _aFireGodSprites = [[NSMutableDictionary alloc] init];
         
-        [[_aFireGodSpriteSheets objectForKey:@"FireGod_static1"] addChild:_pFireGod];
-        [_pFireGod runAction:[_aFireGodActions objectForKey:@"FireGod_static1"]];
+        CCSprite* pSprite_static1 = [[CCSprite spriteWithSpriteFrameName:@"static1_1.png"] autorelease];
+        CCSprite* pSprite_static2 = [[CCSprite spriteWithSpriteFrameName:@"static2_1.png"] autorelease];
+        CCSprite* pSprite_static3 = [[CCSprite spriteWithSpriteFrameName:@"static3_1.png"] autorelease];
+        CCSprite* pSprite_colere1 = [[CCSprite spriteWithSpriteFrameName:@"colere1_1.png"] autorelease];
         
-        // Positionnement par défaut
-        _pFireGod.position = ccp(110, 736);
+        [_aFireGodSprites setObject:pSprite_static1 forKey:@"FireGod_static1"];
+        [_aFireGodSprites setObject:pSprite_static2 forKey:@"FireGod_static2"];
+        [_aFireGodSprites setObject:pSprite_static3 forKey:@"FireGod_static3"];
+        [_aFireGodSprites setObject:pSprite_colere1 forKey:@"FireGod_colere1"];
+        
+        // On lance la séquence d'actions par défaut : les animations FireGod_static
+        
+        [self playStaticAnims];
        
         ///////////////////////////////////////////////////////////////////
         ///////     Initialisations des effets de particules dieux    /////
@@ -141,6 +149,48 @@
 
 	}
 	return self;
+}
+
+-(void) loadAnim: (id) sender data: (void*) data
+{
+
+   /* // Remise à null du sprite
+    [[_aFireGodSpriteSheets objectForKey:@"FireGod_static1" ] removeAllChildrenWithCleanup:NO];
+    
+    NSString* sPrefix = @"FireGod_";
+    NSString* sData = (NSString*) data;
+    
+    // Chargement de la première frame dans le sprite
+    _pFireGod = [[CCSprite spriteWithSpriteFrameName:[sData stringByAppendingString:@"_1.png"]] autorelease];
+    
+    // Le sprite sera affilié du spritesheet
+    [[_aFireGodSpriteSheets objectForKey:[sPrefix stringByAppendingString:sData]] addChild:_pFireGod];
+
+    // Positionnement
+    _pFireGod.position = ccp(110, 736);*/
+}
+
+-(void) playStaticAnims
+{
+    /*[_pFireGod stopAllActions];
+    
+    // Premier chargement pour le premier run
+    [self loadAnim:nil data:@"static1"];
+    
+    // On définit une séquence dans laquelle on charge et on joue les animations
+    // voulues les unes à la suite des autres.
+    CCSequence* pSequence = [CCSequence actions:
+                             [_aFireGodActions objectForKey:@"FireGod_static1"],
+                             [CCCallFuncND actionWithTarget:self selector:@selector(loadAnim:data:) data:@"static2"],[_aFireGodActions objectForKey:@"FireGod_static2"],
+                             [CCCallFuncND actionWithTarget:self selector:@selector(loadAnim:data:) data:@"static1"],
+                             nil];
+    
+    // On fait en sorte qu'elle se joue pour toujours
+    CCAction* pSequenceForever = [CCRepeatForever actionWithAction:pSequence];
+    
+    // On lance le tout !
+    [_pFireGod runAction:pSequenceForever];*/
+    
 }
 
 -(void)addGodParticle:(id)i_boutonClic
