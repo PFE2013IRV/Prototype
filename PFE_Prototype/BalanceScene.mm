@@ -23,6 +23,9 @@
         [self._pSkyLayer ManageBackgroundBalance];
         [self addChild:self._pSkyLayer];
         
+        [self._pSunLayer ManageSunBalance];
+        [self addChild:self._pSunLayer];
+        
         //[self addChild:self._pParticleLayer];
         
         TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
