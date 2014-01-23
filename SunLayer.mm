@@ -11,17 +11,14 @@
 
 @implementation SunLayer
 
-@synthesize _incrementSunR,
-_incrementSunG,
-_incrementSunB,
-_incrementSunA,
-_tailleGradient,
-_nbSecondToPlay,
-_nbSecondPlayed,
-_currentMomentOfDay;
+@synthesize _tailleGradient,
+            _nbSecondToPlay,
+            _currentMomentOfDay,
+            _nbDecrement;
 @synthesize _pSoleil,_pGradientCenter;
 @synthesize _sunDisplayHeight,_sunDisplayWidth;
-@synthesize _velocityFactor;
+@synthesize _previousGradientCenter;
+@synthesize _timeScale,_velocityFactor,_incrementAlpha;
 @synthesize _animationDirection;
 @synthesize _currentSunColor,_aimedSunColor;
 @synthesize _sceneMod;
@@ -31,23 +28,36 @@ _currentMomentOfDay;
     if( (self=[super init]) )
     {
         
-        
-        //Taille à changer!!!
-        _sunDisplayHeight = BACKGROUND_HEIGHT;
-        _sunDisplayWidth = BACKGROUND_WIDTH;
 	}
 	return self;
 }
--(void) initColorsOfSun
+
+-(void) initSunConstruction
 {
-    _nbSecondToPlay = 12;
-    _velocityFactor = 0.1;
-    _nbSecondPlayed = 0;
-    _nbSecondToPlay = _nbSecondToPlay*(1/_velocityFactor);
+    _sunDisplayHeight = BACKGROUND_HEIGHT;
+    _sunDisplayWidth = BACKGROUND_WIDTH;
     _animationDirection=1;
     _tailleGradient=600;
+    [self initColorsOfSun];
     
     
+}
+-(void) initSunBalance
+{
+    CGSize winSize = [[CCDirector sharedDirector]winSize];
+    _sunDisplayHeight = winSize.height;
+    _sunDisplayWidth = winSize.width;
+    _animationDirection=1;
+    _tailleGradient=600;
+    [self initColorsOfSun];
+    
+}
+-(void) initColorsOfSun
+{
+    _nbSecondToPlay = GAME_TIME_CONSTRUCTION;
+    _velocityFactor = 0.5;
+    _incrementAlpha = 0.0;
+    _nbDecrement = 0;
     
     /* Base couleur */
     ccColor4B sunDawn = ccc4(236, 239, 161, 255);
@@ -70,21 +80,11 @@ _currentMomentOfDay;
     _aSunColors[7] = sunMidnight;
     _aSunColors[8] = sunDark;
     
-    _aTimeScale[0] = 0;
-    for(int i=1; i<=8;i++)
-    {
-        _aTimeScale[i] = _nbSecondToPlay/8*i;
-    }
-    
+    _timeScale = (float)_nbSecondToPlay/8;
     
     _currentMomentOfDay=0;
     _currentSunColor = _aSunColors[0];
     _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
-    
-    _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[1]);
-    _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_aTimeScale[1]);
-    _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/ (_aTimeScale[1]);
-    _incrementSunA = (_aimedSunColor.a - _currentSunColor.a)/ (_aTimeScale[1]);
     
     
     _pGradientCenter = [[CCSprite alloc]init];
@@ -97,9 +97,29 @@ _currentMomentOfDay;
     }
     else
     {
-        _pGradientCenter.position = ccp(_sunDisplayWidth,_sunDisplayHeight);
+        //On prend une couleur aléatoire comme couleur de fond parmis le tableau des couleurs
+        int alea = arc4random() %9;
+        self._currentSunColor = _aSunColors[alea];
+        _pGradientCenter.position = ccp(_sunDisplayWidth/2,_sunDisplayHeight/2);
     }
+    [self initSun];
 }
+
+-(void) initSun
+{
+    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:_sunDisplayWidth height:_sunDisplayHeight];
+    [rt beginWithClear:_currentSunColor.r g:_currentSunColor.g b:_currentSunColor.b a:_currentSunColor.a];
+    [rt end];
+    
+    CGSize winSize = [[CCDirector sharedDirector]winSize];
+    _pSoleil = [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+    [_pSoleil setColor:ccc3(_currentSunColor.r, _currentSunColor.g, _currentSunColor.b)];
+    _pSoleil.position = (ccp(_sunDisplayWidth/2,_sunDisplayHeight/2+winSize.height-_sunDisplayHeight));
+   
+    [self addChild:_pSoleil ];
+}
+
 -(void) rotationGradient
 {
     int hauteurSoleil = 50;
@@ -124,7 +144,7 @@ _currentMomentOfDay;
     float angleRotation = 2* demiAngle;
     
     CCAction *moveGradient;
-    float rotationDuration = (_nbSecondToPlay)*_velocityFactor;
+    float rotationDuration = _nbSecondToPlay;
     
     if(_animationDirection)
     {
@@ -137,35 +157,42 @@ _currentMomentOfDay;
     
 }
 
--(void) genSun {
+-(void) genSunGradient:(ccTime)dt {
     
-    ccColor4F bgColor =  ccc4FFromccc4B(_currentSunColor);
-    CCTexture2D *newTexture = [self createSunTexture:bgColor textureWidth:_sunDisplayWidth textureHeight:_sunDisplayHeight];
-    
-    if (!_pSoleil)
+    CGPoint center = CGPointMake(_pGradientCenter.position.x, _pGradientCenter.position.y);
+    //En fin de jeu on vérifie que la fonction n'est pas exécutée plus de fois que nécessaire:on s'arrete quand le soleil à disparue(alpha=0)
+    if(255-_incrementAlpha*_nbDecrement <= 0)
     {
-        CGSize winSize = [[CCDirector sharedDirector]winSize];
-        _pSoleil = [CCSprite spriteWithTexture:newTexture];
-        _pSoleil.position = (ccp(_sunDisplayWidth/2,_sunDisplayHeight/2+winSize.height-_sunDisplayHeight));
-        [self addChild:_pSoleil ];
+        [self unschedule:@selector(genSunGradient:)];
     }
     else
     {
-        [_pSoleil setTexture:newTexture];
+    CCTexture2D *newTexture = [self createSunTexturetextureWidth:_sunDisplayWidth textureHeight:_sunDisplayHeight center:center];
+    
+    [_pSoleil setTexture:newTexture];
     }
+    
 }
 
 
--(CCTexture2D *)createSunTexture:(ccColor4F)bgColor textureWidth:(float)textureWidth textureHeight:(float)textureHeight {
+-(CCTexture2D *)createSunTexturetextureWidth:(float)i_textureWidth textureHeight:(float)i_textureHeight center:(CGPoint)i_center {
     
-    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureWidth height:textureHeight];
+    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:i_textureWidth height:i_textureHeight];
     [rt beginWithClear:0 g:0 b:0 a:0];
     
     //Dessin dans la texture
     /* Gradient */
     
+        ccColor4B color4B = ccc4(_pSoleil.color.r,_pSoleil.color.g,_pSoleil.color.b,255-_incrementAlpha*_nbDecrement);
+      ccColor4F bgColor =  ccc4FFromccc4B(color4B);
     self.shaderProgram = [[CCShaderCache sharedShaderCache]programForKey:kCCShader_PositionColor];
     CC_NODE_DRAW_SETUP();
+    
+    if(_incrementAlpha!=0)
+    {
+        _nbDecrement++;
+    }
+
     
     int nbSlices = 360;
     float incr = (float) (2* M_PI / nbSlices);
@@ -173,9 +200,10 @@ _currentMomentOfDay;
     
     CGPoint vertices[nbSlices+2];
     ccColor4F colors[nbSlices+2];
+   
     
     //Le premier point est le centre du cercle , la position du centre du gradient
-    vertices[0] = CGPointMake(_pGradientCenter.position.x,_pGradientCenter.position.y);
+    vertices[0] = i_center;
     
     colors[0] = (ccColor4F){bgColor.r,bgColor.g,bgColor.b,bgColor.a};
     for(int i=0;i<=nbSlices;i++)
@@ -194,67 +222,50 @@ _currentMomentOfDay;
     glVertexAttribPointer(kCCVertexAttrib_Color, 4, GL_FLOAT, GL_FALSE, 0, colors);
     glBlendFunc(GL_SRC_COLOR, GL_DST_COLOR);
     glDrawArrays(GL_TRIANGLE_FAN, 0, (GLsizei)nbSlices+2);
-    
-    
+        
     [rt end];
-    
     return rt.sprite.texture;
-    
-    
 }
 
--(void) changeSun:(ccTime)i_dt
+-(void) changeSunColor:(ccTime)i_dt
 {
     
-    _nbSecondPlayed ++;
-    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay+1])
+    _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
+    
+    if(_currentMomentOfDay <8)
     {
-        ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, _currentSunColor.a+_incrementSunA);
-        _currentSunColor = newColor;
-        
+        if(_currentMomentOfDay==7)
+        {
+            _incrementAlpha = (float)255.0/(_timeScale/_velocityFactor);
+        }
+        CCAction *changeColor = [CCTintTo actionWithDuration:_timeScale red:_aimedSunColor.r green:_aimedSunColor.g blue:_aimedSunColor.b];
+        [_pSoleil runAction:changeColor];
+        _currentMomentOfDay++;
     }
     else
     {
-        _currentMomentOfDay++;
-        if(_currentMomentOfDay <8)
-        {
-            
-            _aimedSunColor = _aSunColors[_currentMomentOfDay+1];
-            _incrementSunR = (_aimedSunColor.r - _currentSunColor.r)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            _incrementSunG = (_aimedSunColor.g - _currentSunColor.g)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            _incrementSunB = (_aimedSunColor.b - _currentSunColor.b)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            _incrementSunA = (_aimedSunColor.a - _currentSunColor.a)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            
-            ccColor4B newColor = ccc4(_currentSunColor.r + _incrementSunR, _currentSunColor.g + _incrementSunG, _currentSunColor.b + _incrementSunB, _currentSunColor.a+_incrementSunA);
-            _currentSunColor = newColor;
-            
-        }
-        else
-        {
-            [self unschedule:@selector(changeSun:)];
-            
-        }
+        [self unschedule:@selector(changeSunColor:)];
+        
     }
-    [self genSun ];
 }
 
 -(void)ManageSunConstruction
 {
     self._sceneMod = SCENE_MODE_CONSTRUCTION;
-    [self initColorsOfSun];
+    [self initSunConstruction];
     
-    [self schedule:@selector(changeSun:)interval:_velocityFactor];
+    [self schedule:@selector(changeSunColor:)interval:_timeScale];
+    [self schedule:@selector(genSunGradient:)interval:_velocityFactor];
+    
     
 }
 -(void)ManageSunBalance
 {
     self._sceneMod = SCENE_MODE_BALANCE;
-    [self initColorsOfSun];
+    [self initSunBalance];
     
-    //On prend une couleur aléatoire comme couleur de fond parmis le tableau des couleurs
-    int alea = arc4random() %9;
-    self._aimedSunColor = _aSunColors[alea];
-    [self genSun];
+    
+    [self genSunGradient:nil];
     
 }
 
