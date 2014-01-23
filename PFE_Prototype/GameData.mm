@@ -42,7 +42,7 @@
             if(self = [super init])
             {
                 // true init starts here
-                
+                _currentGodIndex = 0;
                 _aGodData = i_aGodData;
                 _eGameSceneMode = i_eGameSceneMode;
                 _pTowerData = i_pTowerData;
@@ -62,6 +62,11 @@
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
+}
+
+-(GodData*) getCurrentGod
+{
+    return [_aGodData objectAtIndex:_currentGodIndex];
 }
 
 @end

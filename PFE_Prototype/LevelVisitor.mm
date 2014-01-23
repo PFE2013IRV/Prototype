@@ -17,6 +17,8 @@
 
 @implementation LevelVisitor
 
+@synthesize _pCurrentGameData;
+
 // Instance variable for the level visitor
 static LevelVisitor* pLevelVisitor = nil;
 
@@ -34,17 +36,17 @@ static LevelVisitor* pLevelVisitor = nil;
     // chargement ici.
     
     // Les dieux (un seul, le dieu du feu)
-    GodData* pFireGod = [[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withActiveFlag:true];
+    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
     NSArray* aGods = [[NSArray alloc] initWithObjects:pFireGod, nil];
     
     // La tour, vide puisque c'est le début du niveau.
     TowerData* pTower = [[TowerData alloc] init];
     
-    pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods] autorelease];
+     _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods] autorelease];
     
     NSLog(@"End start level");
     
-    return pGameData;
+    return _pCurrentGameData;
 }
 
 
@@ -62,7 +64,7 @@ static LevelVisitor* pLevelVisitor = nil;
     // chargement ici.
     
     // Les dieux (un seul, le dieu du feu)
-    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withActiveFlag:true] autorelease];
+    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
     NSArray* aGods = [[[NSArray alloc] initWithObjects:pFireGod, nil] autorelease];
     
     // La tour, vide puisque c'est le début du niveau.
@@ -84,7 +86,7 @@ static LevelVisitor* pLevelVisitor = nil;
     [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:1]];
     [pTower._aBlocs addObject:[pBagData._aBlocs objectAtIndex:0]];*/
     
-    pGameData = [[[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:pTower withGods:aGods] autorelease];
+    _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:pTower withGods:aGods] autorelease];
     
     NSLog(@"End start level");
     
