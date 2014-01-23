@@ -29,38 +29,9 @@ enum {
         
         // init physics
 		[self initPhysics];
-        //[self drawAllBlocsOfTower];
-        
-		// Use batch node. Faster
-		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
-		spriteTexture_ = [parent texture];
-
-		[self addChild:parent z:0 tag:kTagParentNode];
-		
-		
-		[self addNewSpriteAtPosition:ccp(10, s.height/2)];
-        int x = 400;
-        int y = 200;
-        for (BlocData *bloc in self._pTowerData._aBlocs)
-          {
-                y += bloc._scaledSize.height / 2;
-        
-                int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.x;
-                y += bloc._scaledSize.height / 2;
-               // pBlocSprite.position = CGPointMake(x + gravityCenterOfBloc, y);
-
-                [self addNewCircleAtPosition:bloc AtPoint:CGPointMake(x + gravityCenterOfBloc, y)];
-        }
-        
-        // [pBlocSprite setB2Body: [self AddBloc:bloc AtPoint:(CGPointMake(x + gravityCenterOfBloc, y))] ];
-		
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
-		[self addChild:label z:0];
-		[label setColor:ccc3(0,0,255)];
-		label.position = ccp( s.width/2, s.height-50);
-		
-		//[self scheduleUpdate];
-	}
+        [self drawAllPhysicsBlocsOfTower];
+       	[self scheduleUpdate];
+    }
     return self;
 }
 
@@ -70,7 +41,7 @@ enum {
      CGSize s = [[CCDirector sharedDirector] winSize];
      
      b2Vec2 gravity;
-     gravity.Set(0.0f, -0.10f);
+     gravity.Set(0.0f, -1.00f);
      world = new b2World(gravity);
      
      // Do we want to let bodies sleep?
@@ -91,7 +62,7 @@ enum {
      
      // Define the ground body.
      b2BodyDef groundBodyDef;
-     groundBodyDef.position.Set(0, 0); // bottom-left corner
+     groundBodyDef.position.Set(0, (s.height/6)/PTM_RATIO); // bottom-left corner
      
      // Call the body factory which allocates memory for the ground body
      // from a pool and creates the ground box shape (also from a pool).
@@ -107,7 +78,7 @@ enum {
      groundBody->CreateFixture(&groundBox,0);
      
      // top
-     groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
+     groundBox.Set(b2Vec2(0,s.height /PTM_RATIO ), b2Vec2(s.width/PTM_RATIO,s.height /PTM_RATIO));
      groundBody->CreateFixture(&groundBox,0);
      
      // left
@@ -115,83 +86,63 @@ enum {
      groundBody->CreateFixture(&groundBox,0);
      
      // right
-     groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+     groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height /PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
      groundBody->CreateFixture(&groundBox,0);
 }
 
 
-/*
--(void)drawAllBlocsOfTower
-{
-    int x = 400;
-    int y = 200;
+
+-(void)drawAllPhysicsBlocsOfTower
+{ int x = 350;
+    int y = 100;
     
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
-        CCSprite *pBlocSprite = [BlocManager GetSpriteFromModel:bloc];
+        CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
+        pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
         
         y += bloc._scaledSize.height / 2;
         
         int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.x;
         
-        pBlocSprite.position = CGPointMake(x + gravityCenterOfBloc, y);
-        
-        y += bloc._scaledSize.height / 2;
-        
-        [self._aBlocsTowerSprite addObject:pBlocSprite];
-        [self addChild:pBlocSprite];
-    }
-}
-  */
-
-
--(void)drawAllBlocsOfTower
-{
-    int x = 400;
-    int y = 200;
-    
-    for (BlocData *bloc in self._pTowerData._aBlocs)
-    {
-        CCSprite *pBlocSprite = [BlocManager GetSpriteFromModel:bloc];
-        
-        y += bloc._scaledSize.height / 2;
-        
-        int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.x;
-        
-        pBlocSprite.position = CGPointMake(x + gravityCenterOfBloc, y);
         [self._aBlocsTowerSprite addObject:pBlocSprite];
         [self addChild:pBlocSprite];
         
-        [self createBodyForSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x + gravityCenterOfBloc, y)];
+        [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x -100, y-100)];
         
+       
+        CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
+
+        [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
         y += bloc._scaledSize.height / 2;
+        
     }
+
 }
 
 
 
-
--(void)createBodyForSprite:(CCSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p
+-(void)createBodyForPhysicSprite:(CCPhysicsSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p
 {
     std::vector<CGPoint> forme = [b GetPhysicalVertices];
     CGPoint pointTmp;
- 
-    CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-
+    
+    CCLOG(@"Add body %0.2f x %02.f",p.x,p.y);
+    
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-    bodyDef.userData = sprite;
+    bodyDef.position.Set(p.x-50/PTM_RATIO, p.y-50/PTM_RATIO);
+    //bodyDef.userData = sprite;
     b2Body *body = world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[100];
- 
-    CCLOG(@"Call Addbloc");
+    
+  //  CCLOG(@"Call Addbloc");
     for(int i = forme.size() ; i >= 0  ; i--)
     {
         pointTmp = forme[i];
-        vertices[i].Set( (double) pointTmp.y/PTM_RATIO,(double) pointTmp.x/PTM_RATIO);
-        CCLOG(@"Add sprite %0.f x %0.f",vertices[i].x,vertices[i].y);
+        vertices[i].Set( (double) pointTmp.x/PTM_RATIO,(double) pointTmp.y/PTM_RATIO);
+   //     CCLOG(@"Add sprite %0.f x %0.f",vertices[i].x,vertices[i].y);
     }
     
     b2PolygonShape polygonShape;
@@ -200,17 +151,15 @@ enum {
     fixtureDef.shape = &polygonShape;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
-    body->CreateFixture(&fixtureDef);/*    CCNode *parent = [self getChildByTag:kTagParentNode];
-    int idx = (CCRANDOM_0_1() > .5 ? 0:1);
-    int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-    CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];
+    body->CreateFixture(&fixtureDef);
     
-    [parent addChild:sprite];
+    
     [sprite setPTMRatio:PTM_RATIO];
     [sprite setB2Body:body];
-    [sprite setPosition: ccp( p.x, p.y)];*/
+    //[sprite setPosition: ccp( p.x, p.y)];
 }
-    
+
+
 -(void) update: (ccTime) dt
 {
 	//It is recommended that a fixed time step is used with Box2D for stability
@@ -242,181 +191,6 @@ enum {
 	world->DrawDebugData();
 	
 	kmGLPopMatrix();
-}
-
--(void) addNewSpriteAtPosition:(CGPoint)p
-{
-	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-	// Define the dynamic body.
-	//Set up a 1m squared box in the physics world
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-	b2Body *body = world->CreateBody(&bodyDef);
-	
-	// Define another box shape for our dynamic body.
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-	
-	// Define the dynamic body fixture.
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
-	body->CreateFixture(&fixtureDef);
-	
-    
-	CCNode *parent = [self getChildByTag:kTagParentNode];
-	
-	//We have a 64x64 sprite sheet with 4 different 32x32 images.  The following code is
-	//just randomly picking one of the images
-	int idx = (CCRANDOM_0_1() > .5 ? 0:1);
-	int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-	CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];
-	[parent addChild:sprite];
-	
-	[sprite setPTMRatio:PTM_RATIO];
-	[sprite setB2Body:body];
-	[sprite setPosition: ccp( p.x, p.y)];
-    
-}
-
-
--(void) addNewCircleAtPosition:(BlocData*)b AtPoint:(CGPoint)p
-
-{
-    std::vector<CGPoint> forme = [b GetPhysicalVertices];
-    
-    CGPoint pointTmp;
-    
-    
-    CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-    
-    // Define the dynamic body.
-    
-    //Set up a 1m squared box in the physics world
-    
-    b2BodyDef bodyDef;
-    
-    bodyDef.type = b2_dynamicBody;
-    
-    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-    
-    b2Body *body = world->CreateBody(&bodyDef);
-    
-    
-    // Define another box shape for our dynamic body.
-    
-    //b2CircleShape dynamicBox;
-    
-    
-    
-    //dynamicBox.m_p.Set(0, 0); //position, relative to body position
-    
-    //dynamicBox.m_radius = 34; //radius
-    
-    
-    b2Vec2 vertices[100];
-    
-    
-    
-    
-    CCLOG(@"Call Addbloc");
-    
-    
-    
-    for(int i = 0 ; i < forme.size()  ; i++)
-        
-    {
-        
-        pointTmp = forme[i];
-        
-        
-        
-        vertices[i].Set( (double) pointTmp.x/PTM_RATIO
-                        
-                        //*'0.0f'
-                        
-                        ,
-                        
-                        (double) pointTmp.y/PTM_RATIO
-                        
-                        //*'0.0f'
-                        
-                        );
-        
-        //[[for                           me objectAtIndex:i] CGPointValue];
-        
-        //forme.push_back(pointTmp);
-        
-        
-        
-        CCLOG(@"Add sprite %0.f x %0.f",vertices[i].x,vertices[i].y);
-        
-        
-        
-        
-        
-    }
-    
-    /*
-     
-     b2Vec2 vertices[5];
-     
-     vertices[0].Set(-1,  2);
-     
-     vertices[1].Set(-1,  0);
-     
-     vertices[2].Set( 0, -3);
-     
-     vertices[3].Set( 1,  0);
-     
-     vertices[4].Set( 1,  1);
-     */
-    
-    b2PolygonShape polygonShape;
-    
-    polygonShape.Set(vertices, forme.size()); //pass array to the shape
-    
-    // Define the dynamic body fixture.
-    
-    b2FixtureDef fixtureDef;
-    
-    fixtureDef.shape = &polygonShape;
-    
-    fixtureDef.density = 1.0f;
-    
-    fixtureDef.friction = 0.3f;
-    
-    body->CreateFixture(&fixtureDef);
-    
-    
-    
-    
-    CCNode *parent = [self getChildByTag:kTagParentNode];
-    
-    
-    //We have a 64x64 sprite sheet with 4 different 32x32 images.  The following code is
-    
-    //just randomly picking one of the images
-    
-    int idx = (CCRANDOM_0_1() > .5 ? 0:1);
-    
-    int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-    
-    CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];
-    
-    [parent addChild:sprite];
-    
-    
-    [sprite setPTMRatio:PTM_RATIO];
-    
-    [sprite setB2Body:body];
-    
-    [sprite setPosition: ccp( p.x, p.y)];
-    
-    
-    
 }
 
 @end
