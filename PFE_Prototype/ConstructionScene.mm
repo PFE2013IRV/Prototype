@@ -12,6 +12,7 @@
 @synthesize _pElementGodsLayer;
 @synthesize _pFireAttackLayer;
 @synthesize _pWindAttackLayer;
+@synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
 
 
 -(id) initGameScene : (GameData*) i_pGameData
@@ -26,23 +27,23 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pWindAttackLayer = [WindAttackLayer node];
-        
+        _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
         
         self._pGameData = i_pGameData;
-        
         
         [self._pSkyLayer ManageBackgroundConstruction];
         [self addChild:self._pSkyLayer];
         
-        [self._pSunLayer ManageSunConstruction ];
+        [self._pSunLayer ManageSunConstruction];
+        
+        [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
         [self addChild:self._pElementGodsLayer];
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
         [self addChild:self._pWindAttackLayer];
-        [self addChild:self._pDustLayer];
         
-        // Analyze game data
+        [self addChild:_pMenuAndTowerLayer];
         
         
         ////////////////////////////////////////////////////////////////
@@ -67,13 +68,6 @@
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
-}
-
--(void)update:(ccTime)delta
-{
-    // gerer link entre 2 blocs quand on est dans la zone de "dépot" du bloc
-    
-    // gerer quand le dieu s'énerve
 }
 
 @end

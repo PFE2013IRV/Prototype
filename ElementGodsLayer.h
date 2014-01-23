@@ -6,14 +6,31 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "GlobalConfig.h"
 
 @interface ElementGodsLayer : CCNode {
     
-    
+    BOOL _isAngry;
+    GodType _eCurrentGod;
 }
+
+-(void) runAnim: (id)sender data: (void *)data;
+
+-(void) stopAnim: (id)sender data: (void *)data;
+
+-(void) playStaticAnims;
+
+-(void) playAngerAnim;
+
+-(void) refreshGodInfo;
+
+-(void) stopAllRuningAnimations;
 
 // The sprite containing the FireGod
 @property (nonatomic, strong) CCSprite* _pFireGod;
+
+// The sprite containing the FireGod
+@property (nonatomic, strong) NSMutableDictionary* _aFireGodSprites;
 
 // This dictionary contains all the spritesheets for the Fire God.
 // The key srings are equal to the animation names.

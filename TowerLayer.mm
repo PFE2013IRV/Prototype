@@ -10,6 +10,14 @@
 
 @implementation TowerLayer
 
-
+-(id) init
+{
+    if(self = [super init])
+    {
+        self._aBlocsTowerSprite = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
 
 @end

@@ -11,8 +11,8 @@
 #import "TowerLayer.h"
 #import "TowerData.h"
 
-@interface ConstructionTowerLayer : TowerLayer {
-    
-}
+@interface ConstructionTowerLayer : TowerLayer
+
+-(id) initWithTowerData:(TowerData*) i_pTowerData;
 
 @end

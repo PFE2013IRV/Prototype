@@ -11,4 +11,14 @@
 
 @implementation ConstructionTowerLayer
 
+-(id) initWithTowerData:(TowerData*) i_pTowerData
+{
+    if (self = [super init])
+    {
+        self._pTowerData = i_pTowerData;
+    }
+    
+    return self;
+}
+
 @end

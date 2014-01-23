@@ -34,5 +34,8 @@
 // return value : the GameData for Balance scene
 -(GameData*) StartLevelBalance : (int) _levelId;
 
+// This property holds the current game data and can be accessed and changed at any time
+@property (nonatomic,strong) GameData* _pCurrentGameData;
+
 
 @end

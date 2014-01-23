@@ -8,6 +8,7 @@
 #import "cocos2d.h"
 #import "GameScene.h"
 #import "GameSceneProtocol.h"
+#import "MenuAndConstructionTowerLayer.h"
 
 @interface ConstructionScene : GameScene <GameSceneProtocol>
 
@@ -25,9 +26,8 @@
 
 @property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;
 
-
 @property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
 
-
+@property (nonatomic, strong) MenuAndConstructionTowerLayer *pMenuAndTowerLayer;
 
 @end
