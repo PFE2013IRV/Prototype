@@ -15,18 +15,12 @@
 
 // HelloWorldLayer implementation
 @implementation SkyLayer
-
-@synthesize _pAnimation;
-@synthesize _pAnimate;
 @synthesize _pBackground;
 @synthesize _backgroundHeight,_backgroundWidth;
 @synthesize _velocityFactor;
 @synthesize  _nbSecondToPlay,
-_nbSecondPlayed,
 _currentMomentOfDay,
-_incrementR,
-_incrementG,
-_incrementB;
+_timeScale;
 
 @synthesize _currentBackgroundColor;
 @synthesize _aimedBackgroundColor;
@@ -44,23 +38,28 @@ _incrementB;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) )
     {
-        //Taille à changer!!!
-        _backgroundHeight = BACKGROUND_HEIGHT;
-        _backgroundWidth =  BACKGROUND_WIDTH;
+        
         
 	}
 	return self;
 }
+-(void) initConstruction
+{
 
+    _backgroundHeight = BACKGROUND_HEIGHT;
+    _backgroundWidth =  BACKGROUND_WIDTH;
+    [self initColorsOfDay];
+}
+-(void)initBalance
+{
+    CGSize winSize = [[CCDirector sharedDirector]winSize];
+    _backgroundWidth = winSize.width;
+    _backgroundHeight = winSize.height;
+    [self initColorsOfDay];
+}
 -(void) initColorsOfDay
 {
-    _nbSecondToPlay = 12;
-    _velocityFactor = 0.1;
-    
-    _nbSecondToPlay = _nbSecondToPlay*(1/_velocityFactor);
-    _nbSecondPlayed = 0;
-    
-    
+    _nbSecondToPlay = GAME_TIME_CONSTRUCTION;
     
     /* Base couleur */
     
@@ -84,98 +83,64 @@ _incrementB;
     _aPaintColors[7] = midnight;
     _aPaintColors[8] = dark;
     
+    _timeScale = (float)_nbSecondToPlay/8;
     
-    
-    _aTimeScale[0] = 0;
-    for(int i=1; i<=8;i++)
+    if(_sceneMod == SCENE_MODE_CONSTRUCTION)
     {
-        _aTimeScale[i] = _nbSecondToPlay/8*i;
-    }
-    
     _currentBackgroundColor = _aPaintColors[0];
-    _currentMomentOfDay=0;
-    _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
-    
-    _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[1]);
-    _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_aTimeScale[1]);
-    _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/ (_aTimeScale[1]);
-    
-    _pAnimation = [[CCAnimation alloc]init];
-    
-}
-
-
-
--(void) genBackground {
-    
-    ccColor4F bgColor =  ccc4FFromccc4B(_currentBackgroundColor);
-    CCTexture2D *newTexture = [self spriteWithColor:bgColor textureWidth:_backgroundWidth textureHeight:_backgroundHeight];
-    
-    if (!_pBackground)
-    {
-        CGSize winSize = [[CCDirector sharedDirector]winSize];
-        _pBackground = [CCSprite spriteWithTexture:newTexture];
-        _pBackground.position = (ccp(_backgroundWidth/2,_backgroundHeight/2+winSize.height-_backgroundHeight));
-        
-        [self addChild:_pBackground z:-1];
     }
     else
     {
-        [_pBackground setTexture:newTexture];
+    //On prend une couleur aléatoire comme couleur de fond parmis le tableau des couleurs
+    int alea = arc4random() %9;
+    _currentBackgroundColor = _aPaintColors[alea];
     }
+    
+    _currentMomentOfDay=0;
+    _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
+    
+    [self initBackground];
+   
+    
+    
 }
-
-
--(CCTexture2D *)spriteWithColor:(ccColor4F)bgColor textureWidth:(float)textureWidth textureHeight:(float)textureHeight {
+-(void) initBackground
+{
     
-    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureWidth height:textureHeight];
-    [rt beginWithClear:bgColor.r g:bgColor.g b:bgColor.b a:bgColor.a];
+    CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:_backgroundWidth height:_backgroundHeight];
+    [rt beginWithClear:_currentBackgroundColor.r g:_currentBackgroundColor.g b:_currentBackgroundColor.b a:255];
+    [rt end];
     
-    /* Noise */
+    CGSize winSize = [[CCDirector sharedDirector]winSize];
+    _pBackground = [CCSprite spriteWithTexture:rt.sprite.texture];
+    
+    [_pBackground setColor:ccc3(_currentBackgroundColor.r, _currentBackgroundColor.g, _currentBackgroundColor.b)];
+    _pBackground.position = (ccp(_backgroundWidth/2,_backgroundHeight/2+winSize.height-_backgroundHeight));
+    
+    [self addChild:_pBackground z:-1];
     
     CCSprite *noise = [CCSprite spriteWithFile:@"noise.png"];
     [noise setBlendFunc:(ccBlendFunc){GL_DST_COLOR,GL_ZERO}];
-    noise.position = ccp(textureWidth/2,textureHeight/2);
+    noise.position = ccp(_backgroundWidth/2,_backgroundHeight/2+winSize.height-_backgroundHeight);
     [noise visit];
+    [self addChild:noise];
     
-    
-    
-    [rt end];
-    
-    return rt.sprite.texture;
-    
-    
-}
+   
 
--(void) callChange:(ccTime)i_dt
-{
-    [self changeBackground:i_dt];
+    
 }
 
 -(void) changeBackground:(ccTime)i_dt
 {
-    NSLog(@"i_dt: %f",i_dt);
-    _nbSecondPlayed ++;
-    if(_nbSecondPlayed < _aTimeScale[_currentMomentOfDay+1])
-    {
-        ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
-        _currentBackgroundColor = newColor;
-        
-    }
-    else
-    {
-        _currentMomentOfDay++;
-        if(_currentMomentOfDay <9)
+    
+    _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
+  
+        if(_currentMomentOfDay <8)
         {
             
-            _aimedBackgroundColor = _aPaintColors[_currentMomentOfDay+1];
-            _incrementR = (_aimedBackgroundColor.r - _currentBackgroundColor.r)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            _incrementG = (_aimedBackgroundColor.g - _currentBackgroundColor.g)/ (_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            _incrementB = (_aimedBackgroundColor.b - _currentBackgroundColor.b)/(_aTimeScale[_currentMomentOfDay+1]-_aTimeScale[_currentMomentOfDay]);
-            
-            ccColor4B newColor = ccc4(_currentBackgroundColor.r + _incrementR, _currentBackgroundColor.g + _incrementG, _currentBackgroundColor.b + _incrementB, 255);
-            _currentBackgroundColor = newColor;
-            
+            CCAction *changeColor = [CCTintTo actionWithDuration:_timeScale red:_aimedBackgroundColor.r green:_aimedBackgroundColor.g blue:_aimedBackgroundColor.b];
+            [_pBackground runAction:changeColor];
+            _currentMomentOfDay++;
         }
         else
         {
@@ -184,28 +149,19 @@ _incrementB;
         }
     }
     
-    [self genBackground ];
-}
+
 
 -(void)ManageBackgroundConstruction
 {
     self._sceneMod = SCENE_MODE_CONSTRUCTION;
-    [self initColorsOfDay];
-    
-    [self schedule:@selector(changeBackground:)interval:_velocityFactor];
-    
-    
+    [self initConstruction];
+    [self changeBackground:Nil];
+    [self schedule:@selector(changeBackground:)interval:_timeScale];
 }
 -(void)ManageBackgroundBalance
 {
     self._sceneMod = SCENE_MODE_BALANCE;
-    [self initColorsOfDay];
-    
-    //On prend une couleur aléatoire comme couleur de fond parmis le tableau des couleurs
-    int alea = arc4random() %9;
-    self._currentBackgroundColor = _aPaintColors[alea];
-    [self genBackground];
-    
+    [self initBalance];
 }
 
 -(void) update:(ccTime)delta
@@ -228,7 +184,7 @@ _incrementB;
 -(void) onEnter
 {
     [super onEnter];
-    //[self schedule:@selector(changeBackground:)interval:_velocityFactor];
+   
     
 }
 -(void) onExit

@@ -13,22 +13,19 @@
 
 
 @interface SunLayer : CCLayer {
-    int _aTimeScale[9];
     ccColor4B _aSunColors[9];
 }
 @property  int
-_incrementSunR,
-_incrementSunG,
-_incrementSunB,
-_incrementSunA,
 _tailleGradient,
 _nbSecondToPlay,
-_nbSecondPlayed,
-_currentMomentOfDay;
-@property  float _velocityFactor;
+_currentMomentOfDay,
+_nbDecrement;
+@property  float _timeScale,_velocityFactor;
+@property CGPoint _previousGradientCenter;
 @property  CGFloat _sunDisplayHeight,_sunDisplayWidth;
 @property (nonatomic,strong) CCSprite* _pSoleil;
 @property (nonatomic,strong) CCSprite* _pGradientCenter;
+@property float _incrementAlpha;
 @property  bool _animationDirection;
 @property  int _sceneMod;
 
@@ -39,9 +36,9 @@ _currentMomentOfDay;
 -(id) init;
 -(void) rotationGradient;
 -(void) initColorsOfSun;
--(void) changeSun:(ccTime)i_dt;
--(void) genSun;
--(CCTexture2D *)createSunTexture:(ccColor4F)i_bgColor textureWidth:(float)i_textureWidth textureHeight:(float)i_textureHeight;
+-(void) changeSunColor:(ccTime)i_dt;
+-(void) genSunGradient:(ccTime)i_dt;
+-(CCTexture2D *)createSunTexturetextureWidth:(float)i_textureWidth textureHeight:(float)i_textureHeight center:(CGPoint)i_center;
 -(void) ManageSunConstruction;
 -(void) ManageSunBalance;
 

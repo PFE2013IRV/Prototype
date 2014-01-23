@@ -17,6 +17,8 @@ static CGPoint BUBBLE_POINT = CGPointMake(300, 300);
 //The different size element
 static int BACKGROUND_WIDTH = 768;
 static int BACKGROUND_HEIGHT = 877;
+//Game Time
+static int GAME_TIME_CONSTRUCTION = 150;
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,

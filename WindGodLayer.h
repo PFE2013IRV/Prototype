@@ -9,8 +9,14 @@
 
 @interface WindGodLayer : CCNode {
     
-    
+    BOOL _godIsUp;
 }
+
+-(void) moveWindGod;
+
+-(void) moveEnded;
+
+-(void) loadAnim : (NSString*) i_sAnimName;
 
 // The sprite containing the Wind God
 @property (nonatomic, strong) CCSprite* _pWindGod;

@@ -281,6 +281,7 @@ enum {
     
 }
 
+
 -(void) addNewCircleAtPosition:(BlocData*)b AtPoint:(CGPoint)p
 
 {
@@ -324,7 +325,7 @@ enum {
     
     
     
-    for(int i = forme.size() ; i >= 0  ; i--)
+    for(int i = 0 ; i < forme.size()  ; i++)
         
     {
         
@@ -332,13 +333,13 @@ enum {
         
         
         
-        vertices[i].Set( (double) pointTmp.y/PTM_RATIO
+        vertices[i].Set( (double) pointTmp.x/PTM_RATIO
                         
                         //*'0.0f'
                         
                         ,
                         
-                        (double) pointTmp.x/PTM_RATIO
+                        (double) pointTmp.y/PTM_RATIO
                         
                         //*'0.0f'
                         
@@ -376,7 +377,6 @@ enum {
     b2PolygonShape polygonShape;
     
     polygonShape.Set(vertices, forme.size()); //pass array to the shape
-    
     
     // Define the dynamic body fixture.
     

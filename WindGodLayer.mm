@@ -57,8 +57,8 @@
         
         _aWindGodActions = [[NSMutableDictionary alloc] init];
         
-        CCAction* pActionGodFire_moveUp = [CCRepeatForever actionWithAction:
-                                            [CCAnimate actionWithAnimation:pGodFire_moveUp_Anim]];
+        CCAction* pActionGodFire_moveUp = [CCRepeat actionWithAction:
+                                            [CCAnimate actionWithAnimation:pGodFire_moveUp_Anim] times:1];
         
         
         [_aWindGodActions setObject:pActionGodFire_moveUp forKey:@"WindGod_moveUp"];
@@ -69,17 +69,57 @@
         ///////////////////////////////////////////////////////////////////
         
         // On lance l'action par défaut : WindGod_static1
-        _pWindGod = [CCSprite spriteWithSpriteFrameName:@"moveUp_1.png"];
         
-        [[_aWindGodSpriteSheets objectForKey:@"WindGod_moveUp"] addChild:_pWindGod];
-        [_pWindGod runAction:[_aWindGodActions objectForKey:@"WindGod_moveUp"]];
         
-        // Positionnement par défaut
-        _pWindGod.position = ccp(400, 300);
+        _godIsUp = NO;
+        [self moveWindGod];
         
 	}
+    
 	return self;
 }
+
+-(void) loadAnim : (NSString*) i_sAnimName
+{
+    _pWindGod = nil;
+    NSString* sPrefix = @"WindGod_";
+    
+    _pWindGod = [[CCSprite spriteWithSpriteFrameName:[i_sAnimName stringByAppendingString:@"_1.png"]] autorelease];
+    [[_aWindGodSpriteSheets objectForKey:[sPrefix stringByAppendingString:i_sAnimName]] addChild:_pWindGod];
+    
+    [_pWindGod setScale:0.8];
+    _pWindGod.anchorPoint = ccp(0.0f,0.0f);
+}
+
+-(void) moveWindGod
+{
+    CGPoint goalPosition;
+    NSString* sAnimName, *sWindGod = @"WindGod_";
+
+    if(_godIsUp == YES)
+    {
+        sAnimName = @"moveDown";
+        [self loadAnim:sAnimName];
+        _pWindGod.position = ccp(590, 600);
+        goalPosition = ccp(590, 232);
+        _godIsUp = NO;
+    }
+    else
+    {
+        sAnimName = @"moveUp";
+        [self loadAnim:sAnimName];
+        goalPosition = ccp(590, 600);
+        _pWindGod.position = ccp(590, 232);
+        _godIsUp = YES;
+    }
+    
+    CCAction* pMoveAction = [CCMoveTo actionWithDuration:1.5 position:goalPosition];
+    
+    [_pWindGod stopAllActions];
+    [_pWindGod runAction:[_aWindGodActions objectForKey:[sWindGod stringByAppendingString:sAnimName]]];
+    [_pWindGod runAction:pMoveAction];
+}
+
 
 @end
 
