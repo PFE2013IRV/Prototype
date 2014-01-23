@@ -210,8 +210,8 @@
             pointTmp = [[aVerticesTmp objectAtIndex:insertionIndex] CGPointValue];
             
             // On divise le point en deux points, extrémités d'un segment de longueur 20% de BLOC_WIDTH.
-            pointLeft = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
-            pointRight = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointLeft = CGPointMake((pointTmp.x + (0.1*BLOC_WIDTH)), pointTmp.y);
+            pointRight = CGPointMake((pointTmp.x - (0.1*BLOC_WIDTH)), pointTmp.y);
             
             pointLeftValue = [NSValue valueWithCGPoint:pointLeft];
             pointRightValue = [NSValue valueWithCGPoint:pointRight];
