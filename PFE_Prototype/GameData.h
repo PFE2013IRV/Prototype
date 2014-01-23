@@ -10,10 +10,14 @@
 
 #import <Foundation/Foundation.h>
 #import "TowerData.h"
+#import "GodData.h"
 #import "WindGodData.h"
 #import "GlobalConfig.h"
 
-@interface GameData : NSObject
+@interface GameData : NSObject{
+    
+    int _currentGodIndex;
+}
 
 // An init method that takes the mandatory information for a game data
 // i_eGameSceneMode : the current game scene mode. Legal values are defined in GameSceneMode enum.
@@ -25,6 +29,10 @@
 
 // Basic init is re-implemented with NSException to be avoided
 -(id) init;
+
+// This function gives the god data of the current god
+// retuen value : the god data of the current god in-game
+-(GodData*) getCurrentGod;
 
 // The current game scene mode
 @property (nonatomic,assign) GameSceneMode _eGameSceneMode;
@@ -38,6 +46,7 @@
 
 // The data for the wind god. 
 @property (nonatomic,strong) WindGodData* _pWindGodData;
+
 
 
 @end

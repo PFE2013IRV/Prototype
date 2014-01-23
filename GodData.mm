@@ -11,10 +11,11 @@
 @implementation GodData
 
 @synthesize _eGodType;
+@synthesize _isAngry;
 @synthesize _isActive;
 @synthesize _respect;
 
--(id) initGod: (GodType) i_eGodType withDefaultRespect: (int)i_respect withActiveFlag: (bool) i_isActive
+-(id) initGod: (GodType) i_eGodType withDefaultRespect: (int)i_respect withAngerFlag: (BOOL) i_isAngry withActiveFlag: (BOOL) i_isActive
 {
     if(!(i_eGodType == GOD_TYPE_EARTH || i_eGodType == GOD_TYPE_FIRE || i_eGodType == GOD_TYPE_WATER))
     {
@@ -24,6 +25,7 @@
     {
         _eGodType = i_eGodType;
         _respect = i_respect;
+        _isAngry = i_isAngry;
         _isActive = i_isActive;
     }
     return self;
