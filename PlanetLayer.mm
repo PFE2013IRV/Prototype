@@ -22,7 +22,8 @@
         // Pour faire d'autres actions il faut le faire grâce a des appels de méthode
         
         _pPlanetSprite = [[[CCSprite alloc] initWithFile:@"planet.png"] autorelease];
-        [_pPlanetSprite setPosition:CGPointMake(400, 200)];
+        _pPlanetSprite.anchorPoint = ccp(0.5,1.0);
+        [_pPlanetSprite setPosition:CGPointMake(384, 250)];
         
         [self addChild:_pPlanetSprite];
     }
@@ -32,6 +33,14 @@
 
 -(void)launchBalanceModeForPlanet
 {
+    
+    // Rescale du planet sprite (temporaire, pour soutenance PFE N°3)
+    [_pPlanetSprite setScale:0.4];
+    _pPlanetSprite.anchorPoint = ccp(0.5,0.5);
+    CGPoint pos = _pPlanetSprite.position;
+    pos.y -= 135.0f;
+    _pPlanetSprite.position = pos;
+    
     motionManager = [[CMMotionManager alloc] init];
     motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
     

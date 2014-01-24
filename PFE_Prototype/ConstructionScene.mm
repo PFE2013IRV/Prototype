@@ -38,6 +38,7 @@
         
         [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
+        [self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
