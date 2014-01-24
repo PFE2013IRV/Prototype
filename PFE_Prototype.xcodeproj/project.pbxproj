@@ -20,6 +20,7 @@
 		54A4835B188C3542003D47B8 /* windParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835A188C3542003D47B8 /* windParticle.plist */; };
 		54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54A4835D188C3940003D47B8 /* DustLayer.mm */; };
 		54A48360188C3979003D47B8 /* dustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835F188C3979003D47B8 /* dustParticle.plist */; };
+		54FAAA3C1891DA7B007895E5 /* FireParticleSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */; };
 		8A5B231C18674E2A00B145A4 /* TowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B231B18674E2A00B145A4 /* TowerLayer.mm */; };
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
@@ -261,6 +262,8 @@
 		54A4835C188C3940003D47B8 /* DustLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayer.h; sourceTree = "<group>"; };
 		54A4835D188C3940003D47B8 /* DustLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayer.mm; sourceTree = "<group>"; };
 		54A4835F188C3979003D47B8 /* dustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dustParticle.plist; sourceTree = "<group>"; };
+		54FAAA3A1891DA7B007895E5 /* FireParticleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireParticleSprite.h; sourceTree = "<group>"; };
+		54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FireParticleSprite.mm; sourceTree = "<group>"; };
 		8A5B231A18674E2A00B145A4 /* TowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerLayer.h; sourceTree = "<group>"; };
 		8A5B231B18674E2A00B145A4 /* TowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TowerLayer.mm; sourceTree = "<group>"; };
 		8A5B231F18674F4900B145A4 /* PlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetLayer.h; sourceTree = "<group>"; };
@@ -891,6 +894,8 @@
 				549B60B7188C232A0027E5FD /* WindAttackLayer.mm */,
 				54A4835C188C3940003D47B8 /* DustLayer.h */,
 				54A4835D188C3940003D47B8 /* DustLayer.mm */,
+				54FAAA3A1891DA7B007895E5 /* FireParticleSprite.h */,
+				54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */,
 			);
 			name = Graphics;
 			path = ..;
@@ -1807,6 +1812,7 @@
 				8AE98A89186492F800705AAF /* b2TimeOfImpact.cpp in Sources */,
 				8AB50C4C1866D1B80012A387 /* GodData.mm in Sources */,
 				8AE98931186492F600705AAF /* CCCamera.m in Sources */,
+				54FAAA3C1891DA7B007895E5 /* FireParticleSprite.mm in Sources */,
 				8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */,
 				8AE9892B186492F600705AAF /* CCAnimationCache.m in Sources */,
 				8AE9894D186492F700705AAF /* CCGLProgram.m in Sources */,

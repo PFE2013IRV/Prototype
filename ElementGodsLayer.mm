@@ -307,14 +307,26 @@
 
 -(void)addGodParticle:(id)i_boutonClic
 {
-    [self addChild:_pGodParticle];
-    [self playAngerAnim];
+    if (_pGodParticle.parent != self) {
+        [self addChild:_pGodParticle];
+        [self playAngerAnim];
+    }
+    else if (_pGodParticle.parent == self){
+        [self playStaticAnims];
+        [self removeChild:_pGodParticle cleanup:false];
+    }
 }
 
 -(void)addGodParticle
 {
-    [self addChild:_pGodParticle];
-    [self playAngerAnim];
+    if (_pGodParticle.parent != self) {
+        [self addChild:_pGodParticle];
+        [self playAngerAnim];
+    }
+    else if (_pGodParticle.parent == self){
+        [self playStaticAnims];
+        [self removeChild:_pGodParticle cleanup:false];
+    }
 }
 
 @end

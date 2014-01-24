@@ -43,6 +43,10 @@
     {
         [self addChild:_pWindParticle];
     }
+    else if (_pWindParticle.parent == self)
+    {
+        [self removeChild:_pWindParticle cleanup:false];
+    }
 }
 
 @end
