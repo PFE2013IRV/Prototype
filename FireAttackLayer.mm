@@ -42,11 +42,11 @@
         
         // Bouton add fire attack
         CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle:)];
-        addParticleFireButton.position = ccp(50, 0);
+        addParticleFireButton.position = ccp(30, 0);
         
         // Menu des boutons
         CCMenu *addMenu = [CCMenu menuWithItems:addParticleFireButton, nil];
-        addMenu.position = ccp(0, 20);
+        addMenu.position = ccp(0, 170);
         
         // ajoute le menu
         [self addChild:addMenu];

@@ -19,15 +19,16 @@
     {
         //init particles
         _pWindParticle=[[CCParticleSystemQuad alloc] initWithFile:@"windParticle.plist"];
+        _pWindParticle.position = ccp(0, 350);
         // position?
         
         // Bouton add wind attack
         CCMenuItemImage *addParticleWindButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addWindParticle:)];
-        addParticleWindButton.position = ccp(150, 0);
+        addParticleWindButton.position = ccp(130, 0);
         
         // Menu des boutons
         CCMenu *addMenu = [CCMenu menuWithItems:addParticleWindButton, nil];
-        addMenu.position = ccp(0, 20);
+        addMenu.position = ccp(0, 170);
         
         // ajoute le menu
         [self addChild:addMenu];

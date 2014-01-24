@@ -159,11 +159,11 @@
         
         // Bouton God
         CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
-        addParticleGodFireButton.position = ccp(100, 0);
+        addParticleGodFireButton.position = ccp(80, 0);
         
         // Menu des boutons
         CCMenu *addMenu = [CCMenu menuWithItems:addParticleGodFireButton, nil];
-        addMenu.position = ccp(0, 20);
+        addMenu.position = ccp(0, 170);
         
         // ajoute le menu
         [self addChild:addMenu];
