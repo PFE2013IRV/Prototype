@@ -32,7 +32,8 @@
 
 -(void)hasRotate:(int)degrees;
 {
-    NSLog(@"planet has rotate of %d degrees", degrees);
+    //NSLog(@"planet has rotate of %d degrees", degrees);
+    [_balanceTower rotateGroundWorld:degrees];
 }
 
 @end

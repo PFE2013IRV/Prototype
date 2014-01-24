@@ -12,7 +12,6 @@
 
 @synthesize pPlanetSprite = _pPlanetSprite;
 
-
 -(id)init
 {
     if (self = [super init])

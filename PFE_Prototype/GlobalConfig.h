@@ -1,6 +1,6 @@
 //
 //  GlobalConfig.h
-//  ProjectTower
+//  ProjectTowe
 //
 //  Created by Karim Le Nir Aboul-Enein on 18/12/2013.
 //  Copyright (c) 2013 Karim Le Nir Aboul-Enein. All rights reserved.
@@ -13,12 +13,17 @@
 static float BLOC_WIDTH = 100.0f;
 
 // Bubble point
-static CGPoint BUBBLE_POINT = CGPointMake(300, 300);
+static CGPoint BUBBLE_POINT;
+static float BUBBLE_POINT_X = 300.0f;
+static float BUBBLE_POINT_Y = 300.0f;
+
 //The different size element
 static int BACKGROUND_WIDTH = 768;
 static int BACKGROUND_HEIGHT = 877;
+
 //Game Time
 static int GAME_TIME_CONSTRUCTION = 150;
+
 // The gamescene modes
 enum GameSceneMode {
     SCENE_MODE_NULL = 0,
