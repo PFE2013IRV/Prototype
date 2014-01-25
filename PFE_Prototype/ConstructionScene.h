@@ -9,7 +9,7 @@
 #import "GameScene.h"
 #import "GameSceneProtocol.h"
 #import "MenuAndConstructionTowerLayer.h"
-
+#import "GodWrathLayer.h"
 @interface ConstructionScene : GameScene <GameSceneProtocol>
 
 // Game scene init with game data is requiered for every game scene.
@@ -29,5 +29,7 @@
 @property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
 
 @property (nonatomic, strong) MenuAndConstructionTowerLayer *pMenuAndTowerLayer;
+
+@property (nonatomic,strong) GodWrathLayer *_pGodWrathLayer;
 
 @end

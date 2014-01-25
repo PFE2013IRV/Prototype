@@ -11,6 +11,8 @@
 @implementation ElementGodsLayer
 
 @synthesize _pGodParticle;
+@synthesize _pGodData;
+@synthesize _pCurrGameData;
 
 -(id) init
 {
@@ -50,11 +52,11 @@
 - (void) refreshElementaryGodInfo
 {
     // On regarde à quel dieu on à faire et remet à jour la variable de colère
-    GameData* pCurrGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
-    GodData* pGodData = [pCurrGameData getCurrentGod];
+    _pCurrGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
+    _pGodData = [_pCurrGameData getCurrentGod];
     
-    _isAngry = pGodData._isAngry;
-    _eCurrentGod = pGodData._eGodType;
+    _isAngry = _pGodData._isAngry;
+    _eCurrentGod = _pGodData._eGodType;
 }
 
 - (void) playElementaryStaticAnims
@@ -80,14 +82,17 @@
          [CCDelayTime actionWithDuration: 2.4f],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
          nil];
+       
     }
     else if(_isAngry == YES)
     {
         // On met en place une séquence d'animations
+        //Update Max : Sequence de retour du dieu à la normale bug?
         pSequence =
         [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
-         nil];        
+         nil];
+       
     }
     
     // La séquence se joue "pour toujours"
@@ -119,11 +124,21 @@
 
 -(void)addGodParticle:(id)i_boutonClic
 {
+    //Update Max : changement du dieu en cours _isAngry ici ou ailleurs? je n'ai pas trouvé ailleurs
     if (_pGodParticle.parent != self) {
+        if(_pGodData._isAngry == YES)
+        {
+           _pGodData._isAngry = FALSE;
+        }
+        else
+        {
+            _pGodData._isAngry = YES;
+        }
         [self addChild:_pGodParticle];
         [self playAngerAnim];
     }
     else if (_pGodParticle.parent == self){
+        
         [self playElementaryStaticAnims];
         [self removeChild:_pGodParticle cleanup:false];
     }

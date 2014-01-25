@@ -122,7 +122,7 @@
 
 -(void) rotationGradient
 {
-    int hauteurSoleil = 50;
+    int hauteurSoleil = 120;
     
     //Formule : -(-w^2 + 4*h^2)/(8*h)
     /* Trouver le centre du cercle en connaissant 3 points par lesquels ils passent

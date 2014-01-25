@@ -150,13 +150,13 @@ _timeScale;
     }
     
 
-
 -(void)ManageBackgroundConstruction
 {
     self._sceneMod = SCENE_MODE_CONSTRUCTION;
     [self initConstruction];
     [self changeBackground:Nil];
     [self schedule:@selector(changeBackground:)interval:_timeScale];
+    
 }
 -(void)ManageBackgroundBalance
 {

@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "AnimatedGodLayer.h"
+#import "GameData.h"
 
 @interface ElementGodsLayer : AnimatedGodLayer
 {    
@@ -36,7 +37,8 @@
 
 // Flames when god is upset
 @property (nonatomic, strong) CCParticleSystem* _pGodParticle;
-
+@property (nonatomic,strong) GameData* _pCurrGameData;
+@property (nonatomic,strong) GodData* _pGodData;
 
 
 @end
