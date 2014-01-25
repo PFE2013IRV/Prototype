@@ -235,6 +235,7 @@
 		8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0C186492F800705AAF /* HelloWorldLayer.mm */; };
 		8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0F186492F800705AAF /* IntroLayer.mm */; };
 		8AE98B13186492F800705AAF /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B12186492F800705AAF /* GLES-Render.mm */; };
+		A38D6B531893E00B00CF29F1 /* GodWrathLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */; };
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
@@ -695,6 +696,8 @@
 		8AE98B11186492F800705AAF /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		8AE98B12186492F800705AAF /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		8AE98B14186492F800705AAF /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GodWrathLayer.h; sourceTree = "<group>"; };
+		A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GodWrathLayer.m; sourceTree = "<group>"; };
 		A3A4B5B41889336C00C54E5D /* SunLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunLayer.h; sourceTree = "<group>"; };
 		A3A4B5B51889336C00C54E5D /* SunLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SunLayer.mm; sourceTree = "<group>"; };
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 				A3A4B5B51889336C00C54E5D /* SunLayer.mm */,
 				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
+				A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */,
+				A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */,
 			);
 			name = Sky;
 			sourceTree = "<group>";
@@ -1792,6 +1797,7 @@
 				8AE98A80186492F800705AAF /* b2Collision.cpp in Sources */,
 				8AE989D9186492F700705AAF /* CCTransitionProgress.m in Sources */,
 				8AE989FC186492F700705AAF /* CCGLView.m in Sources */,
+				A38D6B531893E00B00CF29F1 /* GodWrathLayer.m in Sources */,
 				8AE98A30186492F700705AAF /* CDOpenALSupport.m in Sources */,
 				8AE98A83186492F800705AAF /* b2Distance.cpp in Sources */,
 				8AE98913186492F600705AAF /* CCActionInstant.m in Sources */,
