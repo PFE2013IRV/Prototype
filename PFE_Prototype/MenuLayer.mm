@@ -58,9 +58,14 @@
                 {
                     int nbOfBloc = y + i * 6;
                     
+                    BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
                     NSString *pictName = [BlocManager GetNameOfPictureFromModel:[_pBagData._aBlocs objectAtIndex:nbOfBloc]];
                     
                     CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
+                    
+                    float scaleFactor = 100 / bloc._scaledSize.height;
+                    addButton.scaleY = scaleFactor;
+                    
                     addButton.position = ccp(84 + y * 120, 69);
                     addButton.tag = nbOfBloc;
                     
