@@ -65,7 +65,7 @@
         
         BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
         
-        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:2];
+        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:8];
         
         CCSprite* pSpriteBloc = [BlocManager GetSpriteFromModel:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
