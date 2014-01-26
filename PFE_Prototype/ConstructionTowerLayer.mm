@@ -21,4 +21,9 @@
     return self;
 }
 
+-(void)menuSendOneBloc:(BlocData*)blocSelected
+{
+    NSLog(@"Bloc in Tower Layer send ByMenu");
+}
+
 @end

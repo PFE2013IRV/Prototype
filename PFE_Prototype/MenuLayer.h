@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "BlocData.h"
 #import "BlocBagData.h"
+#import "CCScrollLayer.h"
 
 @protocol MenuDelegate <NSObject>
 
@@ -25,6 +26,9 @@
 }
 
 -(id) init;
+
+@property (nonatomic, strong) CCScrollLayer *pScrollLayer;
+
 
 @property (nonatomic, strong) id delegate;
 @property (nonatomic, strong) BlocBagData *pBagData;

@@ -25,7 +25,6 @@ enum {
     {
         self._pTowerData = i_pTowerData;
         self._aBlocsTowerSprite = [[NSMutableArray alloc] init];
-        CGSize s = [CCDirector sharedDirector].winSize;
         
         // init physics
 		[self initPhysics];

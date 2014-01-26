@@ -32,7 +32,7 @@
 
 -(void)BlocHasBeenSelected:(BlocData*)blocSelected
 {
-    NSLog(@"One bloc has been selected");
+    [_pTowerLayer menuSendOneBloc:blocSelected];
 }
 
 @end

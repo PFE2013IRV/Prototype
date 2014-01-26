@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "TowerLayer.h"
-#import "TowerData.h"
+#import "BlocData.h"
 
 @interface ConstructionTowerLayer : TowerLayer
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData;
-
+-(void)menuSendOneBloc:(BlocData*)blocSelected;
 @end

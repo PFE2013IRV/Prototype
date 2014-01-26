@@ -389,13 +389,17 @@ enum
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if( scrollTouch_ == nil ) {
+    CGPoint touchPoint = [touch locationInView:[touch view]];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    if( scrollTouch_ == nil && !(touchPoint.y <= screenSize.height - 140)) {
         scrollTouch_ = touch;
-    } else {
+    }
+    else
+    {
         return NO;
     }
     
-    CGPoint touchPoint = [touch locationInView:[touch view]];
     touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
     
     startSwipe_ = touchPoint.x;
