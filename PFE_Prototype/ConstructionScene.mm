@@ -13,6 +13,7 @@
 @synthesize _pFireAttackLayer;
 @synthesize _pWindAttackLayer;
 @synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
+@synthesize _pGodWrathLayer;
 
 
 -(id) initGameScene : (GameData*) i_pGameData
@@ -27,6 +28,7 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pWindAttackLayer = [WindAttackLayer node];
+        _pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
         
         self._pGameData = i_pGameData;
@@ -38,6 +40,7 @@
         
         [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
+        [self addChild:self._pGodWrathLayer];
         [self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
         [self addChild:self._pWindGodLayer];

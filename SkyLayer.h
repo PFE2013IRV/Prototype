@@ -11,6 +11,8 @@
 #import "cocos2d.h"
 #import "CCRotationAround.h"
 #import "GlobalConfig.h"
+#import "GameData.h"
+#import "LevelVisitor.h"
 
 
 // BackgroundLayer
@@ -39,12 +41,13 @@
 
 
 @property (nonatomic,strong) CCSprite* _pBackground;
+
 @property  CGFloat _backgroundHeight,_backgroundWidth;
 @property  float _velocityFactor,_timeScale;
 
 @property  int _sceneMod;
 
-@property  int    _nbSecondToPlay,
+@property  int   _nbSecondToPlay,
 _nbSecondPlayed,
 _currentMomentOfDay;
 

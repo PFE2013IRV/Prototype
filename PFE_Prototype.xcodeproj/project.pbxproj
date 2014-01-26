@@ -57,6 +57,7 @@
 		8AC11E461889C6840029062B /* WindGod_moveUp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E441889C6840029062B /* WindGod_moveUp.plist */; };
 		8AC11E471889C6840029062B /* WindGod_moveUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E451889C6840029062B /* WindGod_moveUp.png */; };
 		8AC11E4A1889C6E10029062B /* WindGodLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11E491889C6E10029062B /* WindGodLayer.mm */; };
+		8AC32BFF18929DE600C50558 /* AnimatedGodLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC32BFE18929DE600C50558 /* AnimatedGodLayer.m */; };
 		8AC442A31886CBA500DF2FA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC442A21886CBA500DF2FA1 /* Default.png */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
@@ -235,6 +236,7 @@
 		8AE98B0D186492F800705AAF /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0C186492F800705AAF /* HelloWorldLayer.mm */; };
 		8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B0F186492F800705AAF /* IntroLayer.mm */; };
 		8AE98B13186492F800705AAF /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE98B12186492F800705AAF /* GLES-Render.mm */; };
+		A38D6B531893E00B00CF29F1 /* GodWrathLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */; };
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
@@ -318,6 +320,8 @@
 		8AC11E451889C6840029062B /* WindGod_moveUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindGod_moveUp.png; sourceTree = "<group>"; };
 		8AC11E481889C6E10029062B /* WindGodLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindGodLayer.h; sourceTree = "<group>"; };
 		8AC11E491889C6E10029062B /* WindGodLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindGodLayer.mm; sourceTree = "<group>"; };
+		8AC32BFD18929DE600C50558 /* AnimatedGodLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGodLayer.h; sourceTree = "<group>"; };
+		8AC32BFE18929DE600C50558 /* AnimatedGodLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGodLayer.m; sourceTree = "<group>"; };
 		8AC442A21886CBA500DF2FA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -695,6 +699,8 @@
 		8AE98B11186492F800705AAF /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		8AE98B12186492F800705AAF /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		8AE98B14186492F800705AAF /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GodWrathLayer.h; sourceTree = "<group>"; };
+		A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GodWrathLayer.m; sourceTree = "<group>"; };
 		A3A4B5B41889336C00C54E5D /* SunLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunLayer.h; sourceTree = "<group>"; };
 		A3A4B5B51889336C00C54E5D /* SunLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SunLayer.mm; sourceTree = "<group>"; };
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
@@ -893,14 +899,43 @@
 		8AB50C6018673BF50012A387 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				A3A4B5B41889336C00C54E5D /* SunLayer.h */,
-				A3A4B5B51889336C00C54E5D /* SunLayer.mm */,
-				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
-				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
+				8AC32C011892CF4C00C50558 /* Sky */,
+				8AC32C001892CF4100C50558 /* Gods */,
+				8AC32C021892CF5B00C50558 /* Particles */,
+			);
+			name = Graphics;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8AC32C001892CF4100C50558 /* Gods */ = {
+			isa = PBXGroup;
+			children = (
 				8AC11E481889C6E10029062B /* WindGodLayer.h */,
 				8AC11E491889C6E10029062B /* WindGodLayer.mm */,
 				54909CAD188035A300268D54 /* ElementGodsLayer.h */,
 				54909CAE188035A300268D54 /* ElementGodsLayer.mm */,
+				8AC32BFD18929DE600C50558 /* AnimatedGodLayer.h */,
+				8AC32BFE18929DE600C50558 /* AnimatedGodLayer.m */,
+			);
+			name = Gods;
+			sourceTree = "<group>";
+		};
+		8AC32C011892CF4C00C50558 /* Sky */ = {
+			isa = PBXGroup;
+			children = (
+				A3A4B5B41889336C00C54E5D /* SunLayer.h */,
+				A3A4B5B51889336C00C54E5D /* SunLayer.mm */,
+				8AB50C5D18673BEF0012A387 /* SkyLayer.h */,
+				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
+				A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */,
+				A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */,
+			);
+			name = Sky;
+			sourceTree = "<group>";
+		};
+		8AC32C021892CF5B00C50558 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
 				549B60B3188C230C0027E5FD /* FireAttackLayer.h */,
 				549B60B4188C230C0027E5FD /* FireAttackLayer.mm */,
 				549B60B6188C232A0027E5FD /* WindAttackLayer.h */,
@@ -910,8 +945,7 @@
 				54FAAA3A1891DA7B007895E5 /* FireParticleSprite.h */,
 				54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */,
 			);
-			name = Graphics;
-			path = ..;
+			name = Particles;
 			sourceTree = "<group>";
 		};
 		8AE988C4186492F600705AAF = {
@@ -1650,6 +1684,7 @@
 			files = (
 				8AE989C1186492F700705AAF /* CCTexturePVR.m in Sources */,
 				8AE98A11186492F700705AAF /* ccUtils.c in Sources */,
+				8AC32BFF18929DE600C50558 /* AnimatedGodLayer.m in Sources */,
 				8AE98962186492F700705AAF /* CCLayer.m in Sources */,
 				8AE98A8D186492F800705AAF /* b2ChainShape.cpp in Sources */,
 				8AE989C4186492F700705AAF /* CCTileMapAtlas.m in Sources */,
@@ -1776,6 +1811,7 @@
 				8AE98A80186492F800705AAF /* b2Collision.cpp in Sources */,
 				8AE989D9186492F700705AAF /* CCTransitionProgress.m in Sources */,
 				8AE989FC186492F700705AAF /* CCGLView.m in Sources */,
+				A38D6B531893E00B00CF29F1 /* GodWrathLayer.m in Sources */,
 				8AE98A30186492F700705AAF /* CDOpenALSupport.m in Sources */,
 				8AE98A83186492F800705AAF /* b2Distance.cpp in Sources */,
 				8AE98913186492F600705AAF /* CCActionInstant.m in Sources */,
