@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		449B8A6A18955E6400B219CA /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 449B8A6918955E6400B219CA /* CCScrollLayer.mm */; };
 		44A48EF9186DCB7A004F694C /* BalanceTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */; };
 		44A48EFC186DCC4D004F694C /* TowerAndPlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A48EFB186DCC4D004F694C /* TowerAndPlanetLayer.mm */; };
 		44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.mm */; };
@@ -240,6 +241,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		449B8A6818955E6400B219CA /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
+		449B8A6918955E6400B219CA /* CCScrollLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCScrollLayer.mm; sourceTree = "<group>"; };
 		44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceTowerLayer.h; sourceTree = "<group>"; };
 		44A48EF8186DCB7A004F694C /* BalanceTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceTowerLayer.mm; sourceTree = "<group>"; };
 		44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowerAndPlanetLayer.h; sourceTree = "<group>"; };
@@ -720,6 +723,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		449B8A6718955E4700B219CA /* ScrollLayer */ = {
+			isa = PBXGroup;
+			children = (
+				449B8A6818955E6400B219CA /* CCScrollLayer.h */,
+				449B8A6918955E6400B219CA /* CCScrollLayer.mm */,
+			);
+			name = ScrollLayer;
+			sourceTree = "<group>";
+		};
 		44A48EF3186DCAAF004F694C /* Balance */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +780,7 @@
 		8A5B231E18674E5A00B145A4 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				449B8A6718955E4700B219CA /* ScrollLayer */,
 				541D754718883CE00004F63A /* Construction */,
 				44A48EF3186DCAAF004F694C /* Balance */,
 				8AB50C6018673BF50012A387 /* Graphics */,
@@ -1683,6 +1696,7 @@
 				8AE98AB2186492F800705AAF /* b2ContactManager.cpp in Sources */,
 				8AE9897B186492F700705AAF /* CCParticleExamples.m in Sources */,
 				8AE98978186492F700705AAF /* CCParticleBatchNode.m in Sources */,
+				449B8A6A18955E6400B219CA /* CCScrollLayer.mm in Sources */,
 				8AB50C57186728D20012A387 /* ConstructionScene.mm in Sources */,
 				8AE98A93186492F800705AAF /* b2EdgeShape.cpp in Sources */,
 				8AE98AB8186492F800705AAF /* b2Island.cpp in Sources */,
