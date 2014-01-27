@@ -15,6 +15,7 @@
 #import "WindAttackLayer.h"
 #import "DustLayer.h"
 #import "GameData.h"
+#import "StarsLayer.h"
 
 @interface GameScene : CCScene {
     
@@ -36,6 +37,8 @@
 @property (nonatomic, strong) WindGodLayer* _pWindGodLayer;
 
 @property(nonatomic, strong) DustLayer* _pDustLayer;
+
+@property(nonatomic, strong) StarsLayer* _pStarsLayer;
 
 
 // init

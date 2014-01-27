@@ -34,12 +34,16 @@
         self._pGameData = i_pGameData;
         
         [self._pSkyLayer ManageBackgroundConstruction];
+        
+        // CIEL
+        
         [self addChild:self._pSkyLayer];
-        
+        [self addChild:self._pStarsLayer];
         [self._pSunLayer ManageSunConstruction];
-        
         [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
+        
+        
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];

@@ -46,6 +46,8 @@
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
+		8A860E5D1896DCEE00FB0B25 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A860E5C1896DCEE00FB0B25 /* star.png */; };
+		8A860E601896DD3F00FB0B25 /* StarsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */; };
 		8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A91558B1888160B009A07A4 /* CoreMotion.framework */; };
 		8A91559F18884505009A07A4 /* FireButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155931888448A009A07A4 /* FireButton.png */; };
 		8A9155A318884505009A07A4 /* WindButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155971888448A009A07A4 /* WindButton.png */; };
@@ -308,6 +310,9 @@
 		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
 		8A5B23231867543700B145A4 /* BalanceScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceScene.mm; sourceTree = "<group>"; };
 		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
+		8A860E5C1896DCEE00FB0B25 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Resources/star.png; sourceTree = "<group>"; };
+		8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarsLayer.h; sourceTree = "<group>"; };
+		8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarsLayer.m; sourceTree = "<group>"; };
 		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8A9155931888448A009A07A4 /* FireButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireButton.png; sourceTree = "<group>"; };
 		8A9155971888448A009A07A4 /* WindButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindButton.png; sourceTree = "<group>"; };
@@ -998,6 +1003,8 @@
 				8AB50C5E18673BEF0012A387 /* SkyLayer.mm */,
 				A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */,
 				A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */,
+				8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */,
+				8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */,
 			);
 			name = Sky;
 			sourceTree = "<group>";
@@ -1076,6 +1083,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8A860E5C1896DCEE00FB0B25 /* star.png */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				54A4835F188C3979003D47B8 /* dustParticle.plist */,
 				54A4835A188C3542003D47B8 /* windParticle.plist */,
@@ -1702,6 +1710,7 @@
 				8A4091381896B0A4009CD5B0 /* WindGod_moveDown.png in Resources */,
 				8A4091531896B1C8009CD5B0 /* FireGod_static3.plist in Resources */,
 				8A40913B1896B0A4009CD5B0 /* WindGod_static1.plist in Resources */,
+				8A860E5D1896DCEE00FB0B25 /* star.png in Resources */,
 				8A9155A518884505009A07A4 /* blocks.png in Resources */,
 				8A4091471896B14D009CD5B0 /* FireGod_colere2.png in Resources */,
 				8A4091521896B1C8009CD5B0 /* FireGod_static2.png in Resources */,
@@ -1928,6 +1937,7 @@
 				8AE989AF186492F700705AAF /* CCSpriteBatchNode.m in Sources */,
 				8AE98938186492F600705AAF /* CCConfiguration.m in Sources */,
 				8AE98994186492F700705AAF /* CCScheduler.m in Sources */,
+				8A860E601896DD3F00FB0B25 /* StarsLayer.m in Sources */,
 				8AE989E4186492F700705AAF /* CCDirectorIOS.m in Sources */,
 				8AE98966186492F700705AAF /* CCMenu.m in Sources */,
 				8AE98A6F186492F800705AAF /* vec4.c in Sources */,
