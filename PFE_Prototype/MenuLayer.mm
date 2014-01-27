@@ -38,7 +38,6 @@
             
             if (i == nbPage - 1 && [_pBagData._aBlocs count]%6 != 0)
             {
-            
                 itemArray = [NSArray arrayWithArray:[self makeMenuItemForOnePage:[_pBagData._aBlocs count]%6 FirstForkCpt:i]];
             }
             else
@@ -51,7 +50,6 @@
             [layer addChild:addMenu];
             [layerArray addObject:layer];
         }
-        
         
         _pScrollLayer = [CCScrollLayer nodeWithLayers:layerArray widthOffset:screenSize.width * [layerArray count]];
         [self addChild:_pScrollLayer];
