@@ -87,13 +87,30 @@
     else if(_isAngry == YES)
     {
         // On met en place une séquence d'animations
-        //Update Max : Sequence de retour du dieu à la normale bug?
-        pSequence =
+        //Update Max : Sequence de retour du dieu à la normale ==> bug?
+        
+         /*
+          pSequence =
         [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
          nil];
-       
-    }
+          */
+        
+        /* changement temporaire MAX : Remise brutal de l'anim de base sans annim de transition.
+         a voir pour Karim si il existe une en sens inverse quand le dieu se calme -noir=>blanc-
+         */
+        pSequence =
+        [CCSequence actions:
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
+         [CCDelayTime actionWithDuration: 3.2f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
+         [CCDelayTime actionWithDuration: 2.4f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+         nil];
+         
+        
+           }
     
     // La séquence se joue "pour toujours"
     //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
@@ -139,6 +156,14 @@
     }
     else if (_pGodParticle.parent == self){
         
+        if(_pGodData._isAngry == YES)
+        {
+            _pGodData._isAngry = FALSE;
+        }
+        else
+        {
+            _pGodData._isAngry = YES;
+        }
         [self playElementaryStaticAnims];
         [self removeChild:_pGodParticle cleanup:false];
     }

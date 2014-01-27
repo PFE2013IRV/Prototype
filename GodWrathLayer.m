@@ -12,7 +12,7 @@
 
 @implementation GodWrathLayer
 
-@synthesize _isAnimAngryBeingCancelled,_isAnimAngryBeingLaunched;
+@synthesize _isAnimAngryBeingCancelled,_isAnimAngryBeingLaunched,_lockAnim;
 @synthesize _pCurrGameData,_pGodData;
 @synthesize _godWrathDisplayHeight,_godWrathDisplayWidth;
 @synthesize _velocityFactor;
@@ -27,15 +27,17 @@ if( (self=[super init]) )
 {
     _godWrathDisplayWidth = BACKGROUND_WIDTH;
     _godWrathDisplayHeight = BACKGROUND_HEIGHT;
-    _annimationDuration = 3.0;
+    _annimationDuration = 2.0;
     _velocityFactor = 0.1;
-    _isAnimAngryBeingCancelled=false;
-    _isAnimAngryBeingLaunched=false;
+    _isAnimAngryBeingCancelled=YES;
+    _isAnimAngryBeingLaunched=NO;
     _incrementAlpha = (float)255/(_annimationDuration/_velocityFactor);
         _colorRWrath=20;
     _colorGWrath=20;
     _colorBWrath=30;
     _nbAnnimationStep=1;
+    _lockAnim = NO;
+    
     CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:_godWrathDisplayWidth height:_godWrathDisplayHeight];
     [rt beginWithClear:_colorRWrath g:_colorGWrath b:_colorBWrath a:0];
     [rt end];
@@ -53,11 +55,15 @@ return self;
 }
 -(void) skyWarthAnnimation:(ccTime)i_dt
 {
-    if(_nbAnnimationStep*_incrementAlpha > 255)
+    float currentAlpha = _nbAnnimationStep*_incrementAlpha;
+    if(currentAlpha > 255)
     {
         [self unschedule:@selector(skyWarthAnnimation:)];
+        _lockAnim=NO;;
+        _nbAnnimationStep=1;
+        
     }
-    else
+    else if(_lockAnim)
     {
         ccColor4B color4B = ccc4(_colorRWrath,_colorGWrath,_colorBWrath,_nbAnnimationStep*_incrementAlpha);
         ccColor4F WrathColor =  ccc4FFromccc4B(color4B);
@@ -75,7 +81,30 @@ return self;
 }
 -(void) skyUnWarthAnnimation:(ccTime)i_dt
 {
-    
+    float currentAlpha  = 255.0 - (float)_nbAnnimationStep*_incrementAlpha;
+    if(currentAlpha<=0)
+    {
+        [self unschedule:@selector(skyUnWarthAnnimation:)];
+        _lockAnim=NO;
+        _nbAnnimationStep=1;
+    }
+    else if(_lockAnim)
+    {
+        ccColor4B color4B = ccc4(_colorRWrath,_colorGWrath,_colorBWrath,currentAlpha);
+        ccColor4F WrathColor =  ccc4FFromccc4B(color4B);
+        self.shaderProgram = [[CCShaderCache sharedShaderCache]programForKey:kCCShader_PositionColor];
+        CC_NODE_DRAW_SETUP();
+        CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:_godWrathDisplayWidth height:_godWrathDisplayHeight];
+        [rt beginWithClear:WrathColor.r g:WrathColor.g b:WrathColor.b a:WrathColor.a];
+        
+        glBlendFunc(GL_SRC_COLOR, GL_DST_COLOR);
+        [rt end];
+        
+        [_pGodWrathAnnimation setTexture:rt.sprite.texture];
+        _nbAnnimationStep++;
+    }
+   
+
 }
 
 -(void) skyGodWrath:(ccTime)i_dt
@@ -88,8 +117,10 @@ return self;
     {
         _isAnimAngryBeingCancelled=NO;
         _isAnimAngryBeingLaunched = YES;
+        _lockAnim= YES;
         if(_pGodData._eGodType==GOD_TYPE_FIRE )
         {
+            
             [self schedule:@selector(skyWarthAnnimation:)interval:_velocityFactor];
         }
     }
@@ -98,6 +129,7 @@ return self;
     {
         _isAnimAngryBeingLaunched = NO;
         _isAnimAngryBeingCancelled = YES;
+        _lockAnim=YES;
         if(_pGodData._eGodType == GOD_TYPE_FIRE)
         {
             [self schedule:@selector(skyUnWarthAnnimation:)interval:_velocityFactor];
