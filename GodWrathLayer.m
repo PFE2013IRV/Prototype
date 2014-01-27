@@ -20,6 +20,7 @@
 @synthesize _nbAnnimationStep;
 @synthesize _pGodWrathAnnimation;
 @synthesize _colorRWrath,_colorGWrath,_colorBWrath;
+@synthesize _maxAlpha;
 
 -(id) init
 {
@@ -29,9 +30,10 @@ if( (self=[super init]) )
     _godWrathDisplayHeight = BACKGROUND_HEIGHT;
     _annimationDuration = 2.0;
     _velocityFactor = 0.1;
+    _maxAlpha = 200;
     _isAnimAngryBeingCancelled=YES;
     _isAnimAngryBeingLaunched=NO;
-    _incrementAlpha = (float)255/(_annimationDuration/_velocityFactor);
+    _incrementAlpha = (float)_maxAlpha/(_annimationDuration/_velocityFactor);
         _colorRWrath=20;
     _colorGWrath=20;
     _colorBWrath=30;
@@ -56,7 +58,7 @@ return self;
 -(void) skyWarthAnnimation:(ccTime)i_dt
 {
     float currentAlpha = _nbAnnimationStep*_incrementAlpha;
-    if(currentAlpha > 255)
+    if(currentAlpha > _maxAlpha)
     {
         [self unschedule:@selector(skyWarthAnnimation:)];
         _lockAnim=NO;;
@@ -81,7 +83,7 @@ return self;
 }
 -(void) skyUnWarthAnnimation:(ccTime)i_dt
 {
-    float currentAlpha  = 255.0 - (float)_nbAnnimationStep*_incrementAlpha;
+    float currentAlpha  = _maxAlpha - (float)_nbAnnimationStep*_incrementAlpha;
     if(currentAlpha<=0)
     {
         [self unschedule:@selector(skyUnWarthAnnimation:)];
