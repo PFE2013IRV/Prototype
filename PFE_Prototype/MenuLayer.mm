@@ -22,7 +22,11 @@
         _pBagData = [BlocBagData GetBlocBagData];
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        int nbPage = round([_pBagData._aBlocs count] / 6 + 0.5);
+        int nbPage = [_pBagData._aBlocs count] / 6;
+        if ([_pBagData._aBlocs count]%6 != 0)
+        {
+            nbPage ++;
+        }
         
         NSMutableArray *layerArray = [[NSMutableArray alloc] init];
         
@@ -30,47 +34,16 @@
         {
             CCLayer *layer = [[CCLayer alloc] init];
             CCMenu *addMenu;
-            NSMutableArray *itemArray = [[NSMutableArray alloc] init];
+            NSArray *itemArray;
             
-            if (i == nbPage - 1)
+            if (i == nbPage - 1 && [_pBagData._aBlocs count]%6 != 0)
             {
-                for (int y = 0; y < [_pBagData._aBlocs count]%6; y++)
-                {
-                    int nbOfBloc = y + i * 6;
-                    
-                    BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
-                    NSString *pictName = [BlocManager GetNameOfPictureFromModel:bloc];
-                    
-                    CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
-                    
-                    float scaleFactor = 100 / bloc._scaledSize.height;
-                    addButton.scaleY = scaleFactor;
-
-                    addButton.position = ccp(84 + y * 120, 69);
-                    addButton.tag = nbOfBloc;
-                    
-                    [itemArray addObject:addButton];
-                }
+            
+                itemArray = [NSArray arrayWithArray:[self makeMenuItemForOnePage:[_pBagData._aBlocs count]%6 FirstForkCpt:i]];
             }
             else
             {
-                for (int y = 0; y < 6; y++)
-                {
-                    int nbOfBloc = y + i * 6;
-                    
-                    BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
-                    NSString *pictName = [BlocManager GetNameOfPictureFromModel:[_pBagData._aBlocs objectAtIndex:nbOfBloc]];
-                    
-                    CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
-                    
-                    float scaleFactor = 100 / bloc._scaledSize.height;
-                    addButton.scaleY = scaleFactor;
-                    
-                    addButton.position = ccp(84 + y * 120, 69);
-                    addButton.tag = nbOfBloc;
-                    
-                    [itemArray addObject:addButton];
-                }
+                itemArray = [NSArray arrayWithArray:[self makeMenuItemForOnePage:6 FirstForkCpt:i]];
             }
             
             addMenu = [CCMenu menuWithArray:itemArray];
@@ -85,6 +58,32 @@
     }
     
     return self;
+}
+
+
+-(NSArray*)makeMenuItemForOnePage:(int)nbItemInPage FirstForkCpt:(int)tag
+{
+    NSMutableArray *itemArray = [[NSMutableArray alloc] init];
+    
+    for (int y = 0; y < nbItemInPage; y++)
+    {
+        int nbOfBloc = y + tag * 6;
+        
+        BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
+        NSString *pictName = [BlocManager GetNameOfPictureFromModel:[_pBagData._aBlocs objectAtIndex:nbOfBloc]];
+        
+        CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
+        
+        float scaleFactor = 100 / bloc._scaledSize.height;
+        addButton.scaleY = scaleFactor;
+        
+        addButton.position = ccp(84 + y * 120, 69);
+        addButton.tag = nbOfBloc;
+        
+        [itemArray addObject:addButton];
+    }
+    
+    return itemArray;
 }
 
 
