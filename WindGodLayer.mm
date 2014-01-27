@@ -8,74 +8,156 @@
 
 @implementation WindGodLayer
 
+#define FLOAT(x) [NSNumber numberWithFloat:x]
 
 -(id) init
 {
     // Animations par défaut (Dieu du feu)
-    NSMutableArray* aAnims = [[NSMutableArray alloc] initWithObjects:@"moveUp", nil];
+    NSMutableArray* aAnims = [[NSMutableArray alloc]
+    initWithObjects:@"moveUp",@"moveDown",@"static1",@"static2",@"static3", nil];
+    
+    NSArray* aDelays = [[NSArray alloc] initWithObjects:FLOAT(0.2), nil];
+    
     GodType eDefaultGod = GOD_TYPE_NULL;
     
-	if( (self=[super initWithGod:eDefaultGod withAnims:aAnims]))
+	if( (self=[super initWithGod:eDefaultGod withAnims:aAnims withDelays:aDelays]))
     {
    
-        // On lance l'action par défaut : WindGod_static1
+
+        _godIsUp = YES;
         
-        _godIsUp = NO;
-        //[self moveWindGod];
+        // On lance la série d'actions par défaut : les anims static
+        [self playWindStaticAnims: nil];
+
 	}
     
 	return self;
 }
-/*
--(void) moveWindGod (id)sender data: (void *)data
-{
-    NSString* sAnimName = (NSString*) data;
 
-    if(_godIsUp == YES)
-    {
-        sAnimName = @"moveDown";
-        [self loadAnim:sAnimName];
-        _pWindGod.position = ccp(590, 600);
-        goalPosition = ccp(590, 232);
-        _godIsUp = NO;
-    }
-    else
-    {
-        sAnimName = @"moveUp";
-        [self loadAnim:sAnimName];
-        goalPosition = ccp(590, 600);
-        _pWindGod.position = ccp(590, 232);
-        _godIsUp = YES;
-    }
-    
-    
-    [_pWindGod stopAllActions];
-    [_pWindGod runAction:[_aWindGodActions objectForKey:[sWindGod stringByAppendingString:sAnimName]]];
-    [_pWindGod runAction:pMoveAction];
-}
-
--(void) playMoveUpAnim
+- (void) playWindStaticAnims : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
     [self stopAllRuningAnimations];
     
-    // On refraichit l'information sur le dieu courant
+    // On refraichit l'information sur le dieu du vent
     // au cas où celle-ci ait changé
-    //[self refreshElementaryGodInfo];
+    [self refreshWindGodInfo];
     
-    CCAction* pMoveAction = [CCMoveTo actionWithDuration:1.5 position:goalPosition];
-    
-    CCSequence* pSequence =
+    CCSequence* pSequence = nil;
+
+    // On met en place une séquence d'animations alternant static1 et static2
+    pSequence =
     [CCSequence actions:
-     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"colere1"],
-     [CCDelayTime actionWithDuration: 1.6f],
-     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere1"],
-     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
-     nil];
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
+         [CCDelayTime actionWithDuration: 4.0f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
+         [CCDelayTime actionWithDuration: 2.4f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+    nil];
+
+    // La séquence se joue "pour toujours"
+    //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
+    CCAction* pSequenceForever = [CCRepeatForever actionWithAction:pSequence];
+    
+    [self runAction:pSequenceForever];
+}
+
+- (void) refreshWindGodInfo
+{
+    // a remplir
+    
+}
+
+
+-(void) moveWindGod : (id) sender
+{
+    
+    // On stoppe toutes les séquences d'actions précédentes
+    [self stopAllRuningAnimations];
+    
+    // On refraichit l'information sur le dieu du vent
+    // au cas où celle-ci ait changé
+    [self refreshWindGodInfo];
+    
+    
+    NSArray* aMoveData;
+    NSValue* pGoalValue;
+    NSNumber* pDuration = FLOAT(1.6);
+    
+    CCSequence* pSequence = nil;
+
+    if(_godIsUp == YES)
+    {
+        // On init les données du moveTo
+        CGPoint goalPosition = ccp(580, 232);
+        pGoalValue = [NSValue valueWithCGPoint:goalPosition];
+        
+        aMoveData = [[NSArray alloc] initWithObjects:@"moveDown",pGoalValue,pDuration, nil];
+        
+        pSequence =
+        [CCSequence actions:
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveDown"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
+         [CCDelayTime actionWithDuration: 2.8f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveDown"],
+         [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
+         nil];
+        
+        _godIsUp = NO;
+    }
+    else
+    {
+        // On init les données du moveTo
+        CGPoint goalPosition = ccp(580, 700);
+        pGoalValue = [NSValue valueWithCGPoint:goalPosition];
+        
+        aMoveData = [[NSArray alloc] initWithObjects:@"moveUp",pGoalValue,pDuration, nil];
+        
+        pSequence =
+        [CCSequence actions:
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveUp"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
+         [CCDelayTime actionWithDuration: 2.8f],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveUp"],
+         [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
+         nil];
+        
+        _godIsUp = YES;
+    }
+    
     
     [self runAction:pSequence];
 }
-*/
+
+- (void) playCuteAnim : (id) sender
+{
+    // On stoppe toutes les séquences d'actions précédentes
+    [self stopAllRuningAnimations];
+    
+    // On refraichit l'information sur le dieu du vent
+    // au cas où celle-ci ait changé
+    [self refreshWindGodInfo];
+    
+    CCSequence* pSequence = nil;
+    
+    // On met en place une séquence d'animations alternant static1 et static2
+    pSequence =
+    [CCSequence actions:
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
+     [CCDelayTime actionWithDuration: 2.6f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
+     nil];
+    
+    // La séquence se joue "pour toujours"
+    //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
+    CCAction* pSequenceForever = [CCRepeatForever actionWithAction:pSequence];
+    
+    [self runAction:pSequenceForever];
+    
+}
+
+
 
 @end
 

@@ -14,9 +14,13 @@
     BOOL _godIsUp;
 }
 
--(void) moveWindGod;
+-(void) moveWindGod : (id) sender;
 
--(void) moveEnded;
+- (void) playWindStaticAnims : (id) sender;
+
+- (void) playCuteAnim : (id) sender;
+
+- (void) refreshWindGodInfo;
 
 @end
 

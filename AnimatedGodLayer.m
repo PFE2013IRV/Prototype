@@ -6,15 +6,32 @@
 //  Defines all the base behaviors for animations and animations cycles.
 //
 
+#define FLOAT(x) [NSNumber numberWithFloat:x]
+
 #import "AnimatedGodLayer.h"
 
 @implementation AnimatedGodLayer
 
 
-- (id) initWithGod: (GodType) i_eGodType withAnims: (NSMutableArray*) i_aAnimStrings
+- (id) initWithGod: (GodType) i_eGodType withAnims: (NSMutableArray*) i_aAnimStrings  withDelays: (NSArray*) i_aDelays
 {
     if( (self=[super init]) )
     {
+        
+        float delayDefault = 0.0f;
+        
+        // On traite les delais
+        if(i_aDelays.count == 0 || (i_aDelays.count < i_aAnimStrings.count && i_aDelays.count > 1))
+        {
+            [NSException raise:NSInternalInconsistencyException format:@"Fatal Error : please give a correct size for the delays array"];
+        }
+        else
+        {
+            if(i_aDelays.count == 1)
+                delayDefault = [[i_aDelays objectAtIndex:0] floatValue];
+        }
+        
+        
         // On récupère le type de dieu
         _eGodType = i_eGodType;
         NSString* sGodType;
@@ -29,9 +46,9 @@
             sGodType = @"WindGod_";
         
         
-        self._aGodSpriteSheets = [[NSMutableDictionary alloc] init];
-        self._aGodActions = [[NSMutableDictionary alloc] init];
-        self._aGodSprites = [[NSMutableDictionary alloc] init];
+        self._aGodSpriteSheets = [[[NSMutableDictionary alloc] init] autorelease];
+        self._aGodActions = [[[NSMutableDictionary alloc] init] autorelease];
+        self._aGodSprites = [[[NSMutableDictionary alloc] init] autorelease];
         
         
         for(int i = 0; i < i_aAnimStrings.count; i++)
@@ -82,8 +99,22 @@
             }
             
             // On initialise pour chaque spritesheet une animation
+            // avec les bons delais renseignés par l'utilisateur de la classe
+            
+            float delay = 0.0f;
+            
+            if (delayDefault == 0.0f)
+            {
+                delay = [[i_aDelays objectAtIndex:i] floatValue];
+            }
+            else
+            {
+                delay = delayDefault;
+            }
+            
+            
             CCAnimation* pAnimation = [CCAnimation
-                                       animationWithSpriteFrames:aFramesTmp delay:0.1f];
+                                       animationWithSpriteFrames:aFramesTmp delay:delay];
             
             // On initialise les différentes actions du Dieu et on les conserve dans un dictionnaire
             
@@ -112,7 +143,8 @@
             else
             {
                 pSprite.anchorPoint = ccp(0.0f,0.0f);
-                pSprite.position = ccp(590, 232);
+                pSprite.position = ccp(580, 700);
+                [pSprite setScale:0.85];
             }
             
             pSprite.visible = NO;
@@ -164,7 +196,9 @@
     CCSprite* pAnimSprite = (CCSprite*) [self._aGodSprites objectForKey:sAnimName];
     
     [pAnimSprite stopAllActions];
-    [pAnimSprite setVisible:NO];
+    
+    if(![sAnimName isEqualToString:@"FireGod_wind"])
+        [pAnimSprite setVisible:NO];
     
 }
 
@@ -184,6 +218,45 @@
     
     // On arrête toutes les séquences en cours sur le layer.
     [self stopAllActions];
+}
+
+- (void) runMoveTo: (id) sender data: (void*) data
+{
+    // On récupère le type de dieu pour lequel il faut lancer l'animation
+    NSString* sGodType;
+    
+    if(_eGodType == GOD_TYPE_FIRE)
+        sGodType = @"FireGod_";
+    else if(_eGodType == GOD_TYPE_WATER)
+        sGodType = @"WaterGod_";
+    else if(_eGodType == GOD_TYPE_EARTH)
+        sGodType = @"EarthGod_";
+    else
+        sGodType = @"WindGod_";
+    
+    // On cast la data vers un array et on extrait l'info
+    NSArray* aData = (NSArray*) data;
+    NSString* sAnimName = [sGodType stringByAppendingString:[aData objectAtIndex:0]];
+    NSValue* pGoalValue = [aData objectAtIndex:1];
+    NSNumber* pDuration = [aData objectAtIndex:2];
+
+    // On lance l'action !
+    CCSprite* pAnimSprite = (CCSprite*) [self._aGodSprites objectForKey:sAnimName];
+    CCAction* pMoveAction = [CCMoveTo actionWithDuration:pDuration.floatValue position:[pGoalValue CGPointValue]];
+    
+    [pAnimSprite runAction:pMoveAction];
+    
+    // On remet à jour la position de tous les autres sprites du dieu
+    // (sauf celui qui a eu le moveTo)
+    for(NSString* key in self._aGodSprites)
+    {
+        if(![key isEqualToString:sAnimName]){
+            CCSprite* pSprite = [self._aGodSprites objectForKey:key];
+            pSprite.position = [pGoalValue CGPointValue];
+        }
+        
+    }
+    
 }
 
 @end
