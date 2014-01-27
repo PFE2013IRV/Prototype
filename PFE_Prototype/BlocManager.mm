@@ -74,6 +74,60 @@ static BlocManager* pBlocManager = nil;
 }
 
 
++(NSString*) GetNameOfPictureFromModel: (BlocData*) i_pData
+{
+    if(i_pData)
+    {
+        NSLog(@"Begin Bloc Sprite creation");
+        
+        ////////////////////////////////////////////////////
+        // VERIFICATION EXISTENCE DU PNG POUR LE BLOCDATA //
+        ////////////////////////////////////////////////////
+        
+        bool PNGExists = false;
+        
+        // On récupère le path du documents directory
+        NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString* sDocumentsDirectory = [aPaths objectAtIndex:0];
+        
+        // On initialise un file manager
+        NSFileManager* pFileManager = [[[NSFileManager alloc] init] autorelease];
+        NSError* pError = nil;
+        NSArray* aDirectoryContents = [pFileManager contentsOfDirectoryAtPath:sDocumentsDirectory error:&pError];
+        if (pError == nil)
+        {
+            for (NSString* sFile in aDirectoryContents)
+            {
+                if([[sFile substringFromIndex:5] isEqualToString:i_pData._sFileName])
+                {
+                    PNGExists = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            // Error handling
+            [NSException raise:NSInternalInconsistencyException format:@"Error : documents directory culd not be reached"];
+        }
+        
+        // Si le PNG associé n'existe pas encore, on le crée
+        //if(!PNGExists)
+        //[self MakePNGFromModel:i_pData];
+        
+        ////////////////////////
+        // CREATION DU SPRITE //
+        ////////////////////////
+        
+        return [sDocumentsDirectory stringByAppendingPathComponent:i_pData._sFileName];
+    }
+    else
+    {
+        return @"";
+    }
+}
+
+
 +(CCPhysicsSprite*) GetPhysicsSpriteFromModel: (BlocData*) i_pData
 {
     CCPhysicsSprite* pSprite = nil;

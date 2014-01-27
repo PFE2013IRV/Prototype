@@ -28,6 +28,8 @@
 // return value : a CCSprite object corresponding to the bloc Data
 +(CCSprite*) GetSpriteFromModel: (BlocData*) i_pData;
 
++(NSString*) GetNameOfPictureFromModel: (BlocData*) i_pData;
+
 +(CCPhysicsSprite*) GetPhysicsSpriteFromModel: (BlocData*) i_pData;
 
 // Create a PNG Image from a BlocModel

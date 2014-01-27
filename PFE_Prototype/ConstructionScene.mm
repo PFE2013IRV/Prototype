@@ -47,16 +47,19 @@
         [self addChild:self._pFireAttackLayer];
         [self addChild:self._pWindAttackLayer];
         
+        
+        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
+        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
+        pBordersSprite.position = ccp(0.0f,0.0f);
+        [self addChild:pBordersSprite];
+        
         [self addChild:_pMenuAndTowerLayer];
         
         
         ////////////////////////////////////////////////////////////////
         ///////     AJOUT TEMPORAIRE - bordures du HUD
         
-        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
-        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
-        pBordersSprite.position = ccp(0.0f,0.0f);
-        [self addChild:pBordersSprite];
+        
         ////////////////////////////////////////////////////////////////
         
         
