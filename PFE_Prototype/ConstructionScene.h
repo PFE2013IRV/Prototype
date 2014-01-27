@@ -22,6 +22,9 @@
 // return value : nil
 -(id) init;
 
+// Add Flames with bouton (for test)
+- (void) addGodParticle:(id)i_boutonClic;
+
 @property (nonatomic, strong) FireAttackLayer* _pFireAttackLayer;
 
 @property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;

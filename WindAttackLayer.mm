@@ -7,7 +7,7 @@
 //
 
 #import "WindAttackLayer.h"
-
+#import "ConstructionScene.h"
 
 @implementation WindAttackLayer
 
@@ -19,7 +19,7 @@
     {
         //init particles
         _pWindParticle=[[CCParticleSystemQuad alloc] initWithFile:@"windParticle.plist"];
-        _pWindParticle.position = ccp(0, 350);
+        _pWindParticle.position = ccp(0, 700);
         // position?
         
         // Bouton add wind attack
@@ -40,13 +40,21 @@
 
 -(void)addWindParticle:(id)i_boutonClic
 {
+    ConstructionScene* pScene = (ConstructionScene*)[self parent];
+    
     if(_pWindParticle.parent != self)
     {
+        
         [self addChild:_pWindParticle];
+        [pScene._pWindGodLayer playCuteAnim:nil];
+        [pScene._pElementGodsLayer playWindAnim:nil];
+        
     }
     else if (_pWindParticle.parent == self)
     {
         [self removeChild:_pWindParticle cleanup:false];
+        [pScene._pElementGodsLayer playElementaryStaticAnims:nil];
+        [pScene._pWindGodLayer playWindStaticAnims:nil];
     }
 }
 

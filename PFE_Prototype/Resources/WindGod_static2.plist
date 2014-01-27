@@ -4,185 +4,159 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>moveUp_1.png</key>
+		<key>static2_1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{192,281}}</string>
-			<key>offset</key>
-			<string>{-2,11}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{1,4},{192,281}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{196,2},{194,293}}</string>
-			<key>offset</key>
-			<string>{-2,5}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,293}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{392,2},{196,299}}</string>
-			<key>offset</key>
-			<string>{-1,1}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,5},{196,299}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_4.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{590,2},{198,305}}</string>
-			<key>offset</key>
-			<string>{0,-2}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,5},{198,305}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_5.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{790,2},{196,307}}</string>
-			<key>offset</key>
-			<string>{0,-2}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{1,4},{196,307}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_6.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,311},{194,303}}</string>
-			<key>offset</key>
-			<string>{-2,-1}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,5},{194,303}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_7.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{198,311},{194,297}}</string>
-			<key>offset</key>
-			<string>{-2,3}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,297}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_8.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{394,311},{194,283}}</string>
-			<key>offset</key>
-			<string>{-2,10}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,283}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_9.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{590,311},{194,285}}</string>
-			<key>offset</key>
-			<string>{-2,9}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,285}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_10.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{786,311},{194,277}}</string>
-			<key>offset</key>
-			<string>{-2,12}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,5},{194,277}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_11.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,616},{194,261}}</string>
-			<key>offset</key>
-			<string>{-2,21}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,261}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_12.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{198,616},{194,257}}</string>
+			<string>{{2,2},{192,257}}</string>
 			<key>offset</key>
 			<string>{-2,23}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,4},{194,257}}</string>
+			<string>{{1,4},{192,257}}</string>
 			<key>sourceSize</key>
 			<string>{198,311}</string>
 		</dict>
-		<key>moveUp_13.png</key>
+		<key>static2_2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,616},{194,261}}</string>
-			<key>offset</key>
-			<string>{-2,21}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,4},{194,261}}</string>
-			<key>sourceSize</key>
-			<string>{198,311}</string>
-		</dict>
-		<key>moveUp_14.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{394,616},{194,257}}</string>
+			<string>{{196,2},{192,257}}</string>
 			<key>offset</key>
 			<string>{-2,23}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,4},{194,257}}</string>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{390,2},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{584,2},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{778,2},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{196,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{196,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{196,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{196,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{390,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
+			<key>sourceSize</key>
+			<string>{198,311}</string>
+		</dict>
+		<key>static2_12.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{390,261},{192,257}}</string>
+			<key>offset</key>
+			<string>{-2,23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,4},{192,257}}</string>
 			<key>sourceSize</key>
 			<string>{198,311}</string>
 		</dict>
@@ -192,13 +166,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>WindGod_moveUp.png</string>
+		<string>WindGod_static2.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:903ccd93c3ad948ed219b6f1e2f8f789:1ab42e132387031a4c6d031324e98c5d:d0c0c23a3b7874673cd6f97fb35a2eb6$</string>
+		<string>$TexturePacker:SmartUpdate:82124ad3d5bc5715285251376bbe0b77:5fb51f985509bc224116279f1a514b4b:560e9b642e150ded7b52e71ed4876f5c$</string>
 		<key>textureFileName</key>
-		<string>WindGod_moveUp.png</string>
+		<string>WindGod_static2.png</string>
 	</dict>
 </dict>
 </plist>

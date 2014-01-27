@@ -14,6 +14,7 @@
 @synthesize _pPlanetLayer;
 @synthesize _pWindGodLayer;
 @synthesize _pDustLayer;
+@synthesize _pStarsLayer;
 
 -(id)init
 {
@@ -24,6 +25,7 @@
         _pPlanetLayer = [PlanetLayer node];
         _pWindGodLayer = [WindGodLayer node];
         _pDustLayer = [DustLayer node];
+        _pStarsLayer = [[StarsLayer alloc] init];
     }
     return self;
 }

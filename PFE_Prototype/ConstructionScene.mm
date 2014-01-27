@@ -34,12 +34,16 @@
         self._pGameData = i_pGameData;
         
         [self._pSkyLayer ManageBackgroundConstruction];
+        
+        // CIEL
+        
         [self addChild:self._pSkyLayer];
-        
+        [self addChild:self._pStarsLayer];
         [self._pSunLayer ManageSunConstruction];
-        
         [self addChild:self._pDustLayer];
         [self addChild:self._pSunLayer];
+        
+        
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
@@ -64,6 +68,19 @@
         
         
         // add light on tower column (particle)
+        
+        // Bouton God
+        CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
+        addParticleGodFireButton.position = ccp(80, 0);
+        
+        // Menu des boutons
+        CCMenu *addMenu = [CCMenu menuWithItems:addParticleGodFireButton, nil];
+        addMenu.position = ccp(0, 170);
+        
+        // ajoute le menu
+        [self addChild:addMenu];
+        
+        
         [self scheduleUpdate];
     }
     
@@ -76,5 +93,44 @@
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
 }
+
+-(void)addGodParticle:(id)i_boutonClic
+{
+    
+    GodData* pGodData = _pElementGodsLayer._pGodData;
+    
+    //Update Max : changement du dieu en cours _isAngry ici ou ailleurs? je n'ai pas trouvé ailleurs
+    if (_pElementGodsLayer._pGodParticle.parent != _pElementGodsLayer)
+    {
+        if(pGodData._isAngry == YES)
+        {
+            pGodData._isAngry = FALSE;
+        }
+        else
+        {
+            pGodData._isAngry = YES;
+        }
+        [_pElementGodsLayer addChild:_pElementGodsLayer._pGodParticle];
+        [_pElementGodsLayer playAngerAnim: nil];
+        [super._pWindGodLayer playCuteAnim:nil];
+        
+    }
+    else if (_pElementGodsLayer._pGodParticle.parent == _pElementGodsLayer)
+    {
+        
+        if(pGodData._isAngry == YES)
+        {
+            pGodData._isAngry = FALSE;
+        }
+        else
+        {
+            pGodData._isAngry = YES;
+        }
+        [_pElementGodsLayer playCalmDownAnim: nil];
+        [super._pWindGodLayer playWindStaticAnims:nil];
+        [_pElementGodsLayer removeChild:_pElementGodsLayer._pGodParticle cleanup:false];
+    }
+}
+
 
 @end

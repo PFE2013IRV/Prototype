@@ -7,26 +7,32 @@
 #import "ElementGodsLayer.h"
 #import "LevelVisitor.h"
 #import "GodData.h"
+#import "GameScene.h"
 
 @implementation ElementGodsLayer
 
 @synthesize _pGodParticle;
 @synthesize _pGodData;
 @synthesize _pCurrGameData;
+@synthesize _isAngry;
+
+#define FLOAT(x) [NSNumber numberWithFloat:x]
 
 -(id) init
 {
     // Animations par défaut (Dieu du feu)
-    NSMutableArray* aAnims = [[NSMutableArray alloc] initWithObjects:@"static1",@"static2",@"static3",@"colere1", nil];
+    NSMutableArray* aAnims = [[NSMutableArray alloc] initWithObjects:@"static1",@"static2",@"static3",@"colere1",@"colere2",@"wind", nil];
+    
+    NSArray* aDelays = [[NSArray alloc] initWithObjects:FLOAT(0.1), nil];
     
     GodType eDefaultGod = GOD_TYPE_FIRE;
     
-	if( (self=[super initWithGod:eDefaultGod withAnims:aAnims]))
+	if( (self=[super initWithGod:eDefaultGod withAnims:aAnims withDelays:aDelays]))
     {
 
         // On lance la séquence d'actions par défaut : les animations FireGod_static
         
-        [self playElementaryStaticAnims];
+        [self playElementaryStaticAnims: nil];
        
         ///////////////////////////////////////////////////////////////////
         ///////     Initialisations des effets de particules dieux    /////
@@ -34,16 +40,6 @@
         
         _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"godParticle.plist"];
         
-        // Bouton God
-        CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
-        addParticleGodFireButton.position = ccp(80, 0);
-        
-        // Menu des boutons
-        CCMenu *addMenu = [CCMenu menuWithItems:addParticleGodFireButton, nil];
-        addMenu.position = ccp(0, 170);
-        
-        // ajoute le menu
-        [self addChild:addMenu];
 
 	}
 	return self;
@@ -59,7 +55,7 @@
     _eCurrentGod = _pGodData._eGodType;
 }
 
-- (void) playElementaryStaticAnims
+- (void) playElementaryStaticAnims  : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
     [self stopAllRuningAnimations];
@@ -70,10 +66,8 @@
     
     CCSequence* pSequence = nil;
     
-    if(_isAngry == NO)
-    {
         // On met en place une séquence d'animations alternant static1 et static2
-        pSequence =
+    pSequence =
         [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
          [CCDelayTime actionWithDuration: 3.2f],
@@ -81,36 +75,8 @@
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
          [CCDelayTime actionWithDuration: 2.4f],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
-         nil];
-       
-    }
-    else if(_isAngry == YES)
-    {
-        // On met en place une séquence d'animations
-        //Update Max : Sequence de retour du dieu à la normale ==> bug?
-        
-         /*
-          pSequence =
-        [CCSequence actions:
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
-         nil];
-          */
-        
-        /* changement temporaire MAX : Remise brutal de l'anim de base sans annim de transition.
-         a voir pour Karim si il existe une en sens inverse quand le dieu se calme -noir=>blanc-
-         */
-        pSequence =
-        [CCSequence actions:
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
-         [CCDelayTime actionWithDuration: 3.2f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
-         [CCDelayTime actionWithDuration: 2.4f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
-         nil];
-         
-        
-           }
+    nil];
+
     
     // La séquence se joue "pour toujours"
     //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
@@ -119,7 +85,7 @@
     [self runAction:pSequenceForever];
 }
 
--(void) playAngerAnim
+-(void) playAngerAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
     [self stopAllRuningAnimations];
@@ -139,47 +105,45 @@
     [self runAction:pSequence];
 }
 
--(void)addGodParticle:(id)i_boutonClic
+-(void) playCalmDownAnim : (id) sender
 {
-    //Update Max : changement du dieu en cours _isAngry ici ou ailleurs? je n'ai pas trouvé ailleurs
-    if (_pGodParticle.parent != self) {
-        if(_pGodData._isAngry == YES)
-        {
-           _pGodData._isAngry = FALSE;
-        }
-        else
-        {
-            _pGodData._isAngry = YES;
-        }
-        [self addChild:_pGodParticle];
-        [self playAngerAnim];
-    }
-    else if (_pGodParticle.parent == self){
-        
-        if(_pGodData._isAngry == YES)
-        {
-            _pGodData._isAngry = FALSE;
-        }
-        else
-        {
-            _pGodData._isAngry = YES;
-        }
-        [self playElementaryStaticAnims];
-        [self removeChild:_pGodParticle cleanup:false];
-    }
+    // On stoppe toutes les séquences d'actions précédentes
+    [self stopAllRuningAnimations];
+    
+    // On refraichit l'information sur le dieu courant
+    // au cas où celle-ci ait changé
+    [self refreshElementaryGodInfo];
+    
+    CCSequence* pSequence =
+    [CCSequence actions:
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"colere2"],
+     [CCDelayTime actionWithDuration: 1.6f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere2"],
+     [CCCallFunc actionWithTarget:self selector:@selector(playElementaryStaticAnims:)],
+     nil];
+    
+    [self runAction:pSequence];
 }
 
--(void)addGodParticle
+-(void) playWindAnim : (id) sender
 {
-    if (_pGodParticle.parent != self) {
-        [self addChild:_pGodParticle];
-        [self playAngerAnim];
-    }
-    else if (_pGodParticle.parent == self)
-    {
-        [self playElementaryStaticAnims];
-        [self removeChild:_pGodParticle cleanup:false];
-    }
+    // On stoppe toutes les séquences d'actions précédentes
+    [self stopAllRuningAnimations];
+    
+    // On refraichit l'information sur le dieu courant
+    // au cas où celle-ci ait changé
+    [self refreshElementaryGodInfo];
+    
+    CCSequence* pSequence =
+    [CCSequence actions:
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"wind"],
+     [CCDelayTime actionWithDuration: 1.5f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"wind"],
+     nil];
+    
+    [self runAction:pSequence];
 }
+
+
 
 @end
