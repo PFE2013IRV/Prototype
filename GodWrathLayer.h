@@ -20,6 +20,9 @@
 @property (nonatomic,strong) GodData* _pGodData;
 @property BOOL _isAnimAngryBeingLaunched;
 @property BOOL _isAnimAngryBeingCancelled;
+@property  BOOL _lockAnim;
+@property float _maxAlpha;
+
 @property  CGFloat _godWrathDisplayHeight,_godWrathDisplayWidth;
 @property int _annimationDuration,
 _colorRWrath,
