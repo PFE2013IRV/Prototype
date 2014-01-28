@@ -13,14 +13,14 @@
     if((self=[super init]))
     {
         
-        int minX = 0;
-        int maxX = 700;
+        int minX = 50;
+        int maxX = 718;
         
-        int minY = 300;
-        int maxY = 900;
+        int minY = 450;
+        int maxY = 1000;
         
         // Le ciel contiendra 100 étoiles
-        for(int i = 0 ; i < 100 ; i++)
+        for(int i = 0 ; i < 150 ; i++)
         {
             //float posX = (float)(minX + (arc4random() % (maxX - minX)));
             float posX = (float)(minX + (arc4random() % (maxX - minX)));
@@ -28,7 +28,7 @@
             
             CGPoint position = CGPointMake(posX,posY);
             float opacity = (float)(arc4random() % 100);
-            float scale = (float)(30.0f + (arc4random() % 70)) / 100.0f;
+            float scale = (float)(10.0f + (arc4random() % 80)) / 100.0f;
             
             CCSprite* pSprite = [[CCSprite alloc] initWithFile:@"star.png"];
             
@@ -40,8 +40,8 @@
             
             [self addChild:pSprite];
             
-            float fadeInDuration = (float) (3 + (arc4random() % 8) / 10.0f);
-            float fadeOutDuration = (float) (3 + (arc4random() % 8) / 10.0f);
+            float fadeInDuration = (float) (1 + (arc4random() % 6) / 10.0f);
+            float fadeOutDuration = (float) (1 + (arc4random() % 6) / 10.0f);
 
             CCFadeTo *fadeIn = [CCFadeTo actionWithDuration:fadeInDuration opacity:opacity];
             CCFadeTo *fadeOut = [CCFadeTo actionWithDuration:fadeOutDuration opacity:(opacity + (arc4random() % (200)))];

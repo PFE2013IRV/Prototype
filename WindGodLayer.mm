@@ -27,7 +27,7 @@
         _godIsUp = YES;
         
         // On lance la série d'actions par défaut : les anims static
-        [self playWindStaticAnims: nil];
+        [self moveWindGod: nil];
 
 	}
     

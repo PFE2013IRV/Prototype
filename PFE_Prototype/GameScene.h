@@ -16,6 +16,7 @@
 #import "DustLayer.h"
 #import "GameData.h"
 #import "StarsLayer.h"
+#import "AnimatedBackground.h"
 
 @interface GameScene : CCScene {
     

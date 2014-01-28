@@ -22,6 +22,9 @@
 		54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54A4835D188C3940003D47B8 /* DustLayer.mm */; };
 		54A48360188C3979003D47B8 /* dustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835F188C3979003D47B8 /* dustParticle.plist */; };
 		54FAAA3C1891DA7B007895E5 /* FireParticleSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */; };
+		8A2242721897E6E700C451A5 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2242711897E6E700C451A5 /* square.png */; };
+		8A2242741897EE8400C451A5 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2242731897EE8400C451A5 /* triangle.png */; };
+		8A23AF461897DDEB002E1EB4 /* AnimatedBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */; };
 		8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A40912D1896B0A4009CD5B0 /* WindGod_moveDown.plist */; };
 		8A4091381896B0A4009CD5B0 /* WindGod_moveDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A40912E1896B0A4009CD5B0 /* WindGod_moveDown.png */; };
 		8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A40912F1896B0A4009CD5B0 /* WindGod_moveUp.plist */; };
@@ -47,7 +50,7 @@
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
 		8A860E5D1896DCEE00FB0B25 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A860E5C1896DCEE00FB0B25 /* star.png */; };
-		8A860E601896DD3F00FB0B25 /* StarsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */; };
+		8A860E601896DD3F00FB0B25 /* StarsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */; };
 		8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A91558B1888160B009A07A4 /* CoreMotion.framework */; };
 		8A91559F18884505009A07A4 /* FireButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155931888448A009A07A4 /* FireButton.png */; };
 		8A9155A318884505009A07A4 /* WindButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155971888448A009A07A4 /* WindButton.png */; };
@@ -283,6 +286,10 @@
 		54A4835F188C3979003D47B8 /* dustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dustParticle.plist; sourceTree = "<group>"; };
 		54FAAA3A1891DA7B007895E5 /* FireParticleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireParticleSprite.h; sourceTree = "<group>"; };
 		54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FireParticleSprite.mm; sourceTree = "<group>"; };
+		8A2242711897E6E700C451A5 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		8A2242731897EE8400C451A5 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		8A23AF441897DDEB002E1EB4 /* AnimatedBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedBackground.h; sourceTree = "<group>"; };
+		8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AnimatedBackground.mm; sourceTree = "<group>"; };
 		8A40912D1896B0A4009CD5B0 /* WindGod_moveDown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WindGod_moveDown.plist; path = Resources/WindGod_moveDown.plist; sourceTree = "<group>"; };
 		8A40912E1896B0A4009CD5B0 /* WindGod_moveDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WindGod_moveDown.png; path = Resources/WindGod_moveDown.png; sourceTree = "<group>"; };
 		8A40912F1896B0A4009CD5B0 /* WindGod_moveUp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WindGod_moveUp.plist; path = Resources/WindGod_moveUp.plist; sourceTree = "<group>"; };
@@ -312,7 +319,7 @@
 		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
 		8A860E5C1896DCEE00FB0B25 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Resources/star.png; sourceTree = "<group>"; };
 		8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarsLayer.h; sourceTree = "<group>"; };
-		8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarsLayer.m; sourceTree = "<group>"; };
+		8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarsLayer.mm; sourceTree = "<group>"; };
 		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8A9155931888448A009A07A4 /* FireButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireButton.png; sourceTree = "<group>"; };
 		8A9155971888448A009A07A4 /* WindButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindButton.png; sourceTree = "<group>"; };
@@ -1004,7 +1011,9 @@
 				A38D6B511893E00B00CF29F1 /* GodWrathLayer.h */,
 				A38D6B521893E00B00CF29F1 /* GodWrathLayer.m */,
 				8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */,
-				8A860E5F1896DD3F00FB0B25 /* StarsLayer.m */,
+				8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */,
+				8A23AF441897DDEB002E1EB4 /* AnimatedBackground.h */,
+				8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */,
 			);
 			name = Sky;
 			sourceTree = "<group>";
@@ -1089,8 +1098,10 @@
 				54A4835A188C3542003D47B8 /* windParticle.plist */,
 				549E2D02188C30860069CF91 /* fireParticle.plist */,
 				54984631188C16FA0007046B /* godParticle.plist */,
+				8A2242711897E6E700C451A5 /* square.png */,
 				8AB8AD6C188A831400997BD3 /* borders.png */,
 				A3A4B5BE188938E200C54E5D /* noise.png */,
+				8A2242731897EE8400C451A5 /* triangle.png */,
 				8AC11E2E188851C60029062B /* Fire_Particle.png */,
 				8AC11E2F188851C60029062B /* God_Particle.png */,
 				8AC11E30188851C60029062B /* Wind_Particle.png */,
@@ -1716,6 +1727,7 @@
 				8A4091521896B1C8009CD5B0 /* FireGod_static2.png in Resources */,
 				8A4091481896B14D009CD5B0 /* FireGod_colere2.plist in Resources */,
 				8A4091441896B13C009CD5B0 /* FireGod_wind.plist in Resources */,
+				8A2242741897EE8400C451A5 /* triangle.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,
 				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,
@@ -1750,6 +1762,7 @@
 				8A4091541896B1C8009CD5B0 /* FireGod_static3.png in Resources */,
 				8A40913D1896B0A4009CD5B0 /* WindGod_static2.plist in Resources */,
 				8A4091501896B1C8009CD5B0 /* FireGod_colere1.png in Resources */,
+				8A2242721897E6E700C451A5 /* square.png in Resources */,
 				549E2D03188C30860069CF91 /* fireParticle.plist in Resources */,
 				8AE988EB186492F600705AAF /* Default-568h@2x.png in Resources */,
 				8AE988F9186492F600705AAF /* Icon@2x.png in Resources */,
@@ -1937,7 +1950,7 @@
 				8AE989AF186492F700705AAF /* CCSpriteBatchNode.m in Sources */,
 				8AE98938186492F600705AAF /* CCConfiguration.m in Sources */,
 				8AE98994186492F700705AAF /* CCScheduler.m in Sources */,
-				8A860E601896DD3F00FB0B25 /* StarsLayer.m in Sources */,
+				8A860E601896DD3F00FB0B25 /* StarsLayer.mm in Sources */,
 				8AE989E4186492F700705AAF /* CCDirectorIOS.m in Sources */,
 				8AE98966186492F700705AAF /* CCMenu.m in Sources */,
 				8AE98A6F186492F800705AAF /* vec4.c in Sources */,
@@ -1947,6 +1960,7 @@
 				54FAAA3C1891DA7B007895E5 /* FireParticleSprite.mm in Sources */,
 				8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */,
 				8AE9892B186492F600705AAF /* CCAnimationCache.m in Sources */,
+				8A23AF461897DDEB002E1EB4 /* AnimatedBackground.mm in Sources */,
 				8AE9894D186492F700705AAF /* CCGLProgram.m in Sources */,
 				8AE98A3D186492F700705AAF /* SimpleAudioEngine.m in Sources */,
 				8AE989EF186492F700705AAF /* CCTouchDispatcher.m in Sources */,

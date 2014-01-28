@@ -35,15 +35,21 @@
         
         [self._pSkyLayer ManageBackgroundConstruction];
         
-        // CIEL
+        // CIEL ET BACKGROUND
+        CGPoint positionBkg1 = ccp(560,700);
+        CGPoint positionBkg2 = ccp(150,350);
+        
+        AnimatedBackground* pBkg1 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg1 withScale:0.5 withBeginDelay:20];
+        AnimatedBackground* pBkg2 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg2 withScale:1 withBeginDelay:10];
         
         [self addChild:self._pSkyLayer];
         [self addChild:self._pStarsLayer];
         [self._pSunLayer ManageSunConstruction];
         [self addChild:self._pDustLayer];
+        [self addChild:pBkg1];
+        [self addChild:pBkg2];
+        
         [self addChild:self._pSunLayer];
-        
-        
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pPlanetLayer];
         [self addChild:self._pElementGodsLayer];
