@@ -174,6 +174,7 @@
          [CCCallFuncND actionWithTarget:self selector:@selector(runRotatePlanet:data:) data:[NSNumber numberWithInt:5]],
          [CCDelayTime actionWithDuration: 2.0f],
          [CCCallFunc actionWithTarget:self selector:@selector(stopAllActions:)],
+         [CCDelayTime actionWithDuration: 1.0f],
          
          nil];
         
