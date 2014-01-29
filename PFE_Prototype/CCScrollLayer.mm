@@ -76,6 +76,7 @@ enum
 @synthesize pagesWidthOffset = pagesWidthOffset_;
 @synthesize pages = layers_;
 @synthesize stealTouches = stealTouches_;
+@synthesize touchInMenu = _touchInMenu;
 
 @dynamic totalScreens;
 - (int) totalScreens
@@ -101,6 +102,7 @@ enum
         self.isMouseEnabled = YES;
 #endif
         
+        _touchInMenu = false;
         self.stealTouches = YES;
         
         // Set default minimum touch length to scroll.
@@ -334,10 +336,10 @@ enum
 {
 #if COCOS2D_VERSION >= 0x00020000
     CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
-    int priority = kCCMenuHandlerPriority - 2;
+    int priority = kCCMenuHandlerPriority + 2;
 #else
     CCTouchDispatcher *dispatcher = [CCTouchDispatcher sharedDispatcher];
-    int priority = kCCMenuTouchPriority - 2;
+    int priority = kCCMenuTouchPriority + 2;
 #endif
     
     [dispatcher addTargetedDelegate:self priority: priority swallowsTouches:NO];
@@ -393,6 +395,7 @@ enum
     
     if( scrollTouch_ == nil && !(touchPoint.y <= screenSize.height - 140))
     {
+        _touchInMenu = true;
         scrollTouch_ = touch;
         touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
         
@@ -408,7 +411,7 @@ enum
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if( scrollTouch_ != touch ) {
+    if( scrollTouch_ != touch  && !_touchInMenu) {
         return;
     }
     
@@ -452,7 +455,7 @@ enum
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if( scrollTouch_ != touch )
+    if( scrollTouch_ != touch && !_touchInMenu)
         return;
     scrollTouch_ = nil;
     
@@ -473,6 +476,8 @@ enum
         }
     }
     [self moveToPage:selectedPage];
+    
+    _touchInMenu = false;
 }
 
 #endif

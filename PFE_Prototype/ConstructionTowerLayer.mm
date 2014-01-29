@@ -76,13 +76,27 @@
         
         CCSprite *bloc = [self._aBlocsTowerSprite objectAtIndex:self._aBlocsTowerSprite.count - 1];
         
+        int bordurSize = 9;
+        
         int minHeight = 220 + [bloc boundingBox].size.height /2;
+        int maxHeight = screenSize.height - [bloc boundingBox].size.height /2 - bordurSize;
+        
+        int minWidth = [bloc boundingBox].size.width /2 + bordurSize;
+        int maxWidth = screenSize.width - [bloc boundingBox].size.width /2 - bordurSize;
+        
         //on bouge le sprite du cube
-        if (location.x < screenSize.width && location.x > 0 && location.y > minHeight && location.y < screenSize.height)
+        if (location.x < maxWidth && location.x > minWidth && location.y > minHeight && location.y < maxHeight)
         {
             bloc.position = ccp(location.x, location.y);
         }
-        
+        else if (location.x < maxWidth && location.x > minWidth)
+        {
+            bloc.position = ccp(location.x, bloc.position.y);
+        }
+        else if (location.y > minHeight && location.y < maxHeight)
+        {
+            bloc.position = ccp(bloc.position.x, location.y);
+        }
     }
 }
 
@@ -106,10 +120,10 @@
 {
 #if COCOS2D_VERSION >= 0x00020000
     CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
-    int priority = kCCMenuHandlerPriority - 1;
+    int priority = kCCMenuHandlerPriority + 3;
 #else
     CCTouchDispatcher *dispatcher = [CCTouchDispatcher sharedDispatcher];
-    int priority = kCCMenuTouchPriority - 1;
+    int priority = kCCMenuTouchPriority + 3;
 #endif
     
     [dispatcher addTargetedDelegate:self priority: priority swallowsTouches:NO];

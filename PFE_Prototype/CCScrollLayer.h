@@ -99,6 +99,8 @@
     CGFloat marginOffset_;
 }
 
+@property (nonatomic, assign) BOOL touchInMenu;
+
 @property (readwrite, assign) NSObject <CCScrollLayerDelegate> *delegate;
 
 #pragma mark Scroll Config Properties
