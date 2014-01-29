@@ -157,6 +157,7 @@
 /** Returns array of pages CCLayer's  */
 @property(readonly) NSArray *pages;
 
+
 #pragma mark Init/Creation
 
 /** Creates new scrollLayer with given pages & width offset.

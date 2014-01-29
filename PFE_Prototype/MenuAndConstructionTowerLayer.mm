@@ -18,13 +18,14 @@
 {
     if (self = [super init])
     {
+        [self setTouchEnabled:YES];
         _pMenuLayer = [MenuLayer node];
         _pTowerLayer = [[[ConstructionTowerLayer alloc] initWithTowerData:i_pTowerData] autorelease];
         
         _pMenuLayer.delegate = self;
         
-        [self addChild:_pMenuLayer];
         [self addChild:_pTowerLayer];
+        [self addChild:_pMenuLayer];
     }
     
     return self;

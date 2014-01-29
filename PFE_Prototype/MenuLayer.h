@@ -29,7 +29,6 @@
 
 @property (nonatomic, strong) CCScrollLayer *pScrollLayer;
 
-
 @property (nonatomic, strong) id delegate;
 @property (nonatomic, strong) BlocBagData *pBagData;
 

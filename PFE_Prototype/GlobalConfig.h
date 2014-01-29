@@ -13,9 +13,8 @@
 static float BLOC_WIDTH = 100.0f;
 
 // Bubble point
-static CGPoint BUBBLE_POINT;
-static float BUBBLE_POINT_X = 300.0f;
-static float BUBBLE_POINT_Y = 300.0f;
+static float BUBBLE_POINT_X = 384.0f;
+static float BUBBLE_POINT_Y = 900.0f;
 
 //The different size element
 static int BACKGROUND_WIDTH = 768;

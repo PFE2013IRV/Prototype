@@ -24,7 +24,6 @@ enum {
     if (self = [super init])
     {
         self._pTowerData = i_pTowerData;
-        self._aBlocsTowerSprite = [[NSMutableArray alloc] init];
         
         // init physics
 		[self initPhysics];
