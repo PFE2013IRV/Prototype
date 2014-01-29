@@ -407,7 +407,7 @@ static BlocManager* pBlocManager = nil;
     {
         // Calcul du vecteur de translation entre le centre de gravité courant et le bubble point.
         // Après translation, le centre de gravité du bloc data sera confondu avec le bubble point.
-        CGPoint translation = CGPointMake(i_pData._gravityCenter.x - BUBBLE_POINT.x, i_pData._gravityCenter.y - BUBBLE_POINT.y);
+        CGPoint translation = CGPointMake(i_pData._gravityCenter.x - BUBBLE_POINT_X, i_pData._gravityCenter.y - BUBBLE_POINT_Y);
         
         [self MoveBlocData:i_pData withX:translation.x withY:translation.y];
     }

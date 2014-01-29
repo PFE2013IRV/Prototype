@@ -115,9 +115,7 @@ static LevelVisitor* pLevelVisitor = nil;
     
     if(self = [super init])
     {
-        // Le Bubble Point est initialisé dans le Level Visitor (à run time)
         // car son init fait appel à des fonctions run time.
-        BUBBLE_POINT = CGPointMake(BUBBLE_POINT_X,BUBBLE_POINT_Y);
     }
     
     return self;

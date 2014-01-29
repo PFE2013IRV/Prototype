@@ -99,6 +99,8 @@
     CGFloat marginOffset_;
 }
 
+@property (nonatomic, assign) BOOL touchInMenu;
+
 @property (readwrite, assign) NSObject <CCScrollLayerDelegate> *delegate;
 
 #pragma mark Scroll Config Properties
@@ -156,6 +158,7 @@
 
 /** Returns array of pages CCLayer's  */
 @property(readonly) NSArray *pages;
+
 
 #pragma mark Init/Creation
 
