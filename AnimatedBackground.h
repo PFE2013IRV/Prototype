@@ -12,9 +12,12 @@
 {
 }
 
-- (id) init;
-
-- (id) initWithPlanetPosition: (CGPoint) i_planetPosition withScale: (float) i_scale withBeginDelay: (float) i_beginDelay;
+// An init method that takes the mandatory information for an animated background
+// i_planetPosition : the position of the center of the planet
+// i_scale : the scale, compared to the original images (all images will be rescaled)
+// i_beginDelay : the delay before the animation begins (in order to desynchronise in the case of many anims on screen)
+// retun value : self
+- (id) initWithPlanetPosition: (CGPoint) i_planetPosition withScale: (float) i_scale withBeginDelay: (float) i_beginDelay withPlanetType: (int) i_planetType;
 
 // Runs a moveTo action on the blocs. data is an NUSSumber with the index of the sprite / action.
 - (void) runMoveTo : (id) sender data: (void*) data;

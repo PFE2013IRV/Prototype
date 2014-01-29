@@ -63,14 +63,14 @@ _timeScale;
     
     /* Base couleur */
     
-    ccColor4B dawn = ccc4(152, 188, 228, 255);
-    ccColor4B morning = ccc4(128, 171, 219, 255);
-    ccColor4B middleMorning = ccc4(112, 171, 219, 255);
-    ccColor4B noon = ccc4(95, 145, 201, 255);
-    ccColor4B afternoon = ccc4(89, 129, 174, 255);
-    ccColor4B evening = ccc4(81, 117, 157, 255);
-    ccColor4B night = ccc4(67, 98, 132, 255);
-    ccColor4B midnight = ccc4(44, 73, 104, 255);
+    ccColor4B dawn = ccc4(159, 186, 245, 255);
+    ccColor4B morning = ccc4(131, 161, 234, 255);
+    ccColor4B middleMorning = ccc4(124, 160, 239, 255);
+    ccColor4B noon = ccc4(98, 141, 236, 255);
+    ccColor4B afternoon = ccc4(88, 129, 219, 255);
+    ccColor4B evening = ccc4(126, 148, 198, 255);
+    ccColor4B night = ccc4(84, 99, 133, 255);
+    ccColor4B midnight = ccc4(49, 66, 103, 255);
     ccColor4B dark = ccc4(18, 41, 68, 255);
     
     _aPaintColors[0] = dawn;

@@ -49,7 +49,6 @@
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
-		8A860E5D1896DCEE00FB0B25 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A860E5C1896DCEE00FB0B25 /* star.png */; };
 		8A860E601896DD3F00FB0B25 /* StarsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */; };
 		8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A91558B1888160B009A07A4 /* CoreMotion.framework */; };
 		8A91559F18884505009A07A4 /* FireButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155931888448A009A07A4 /* FireButton.png */; };
@@ -76,6 +75,22 @@
 		8AC11E4A1889C6E10029062B /* WindGodLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AC11E491889C6E10029062B /* WindGodLayer.mm */; };
 		8AC32BFF18929DE600C50558 /* AnimatedGodLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC32BFE18929DE600C50558 /* AnimatedGodLayer.m */; };
 		8AC442A31886CBA500DF2FA1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC442A21886CBA500DF2FA1 /* Default.png */; };
+		8AE87F7318994B3D000BEE47 /* cloudsBottom_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F6F18994B3D000BEE47 /* cloudsBottom_back.png */; };
+		8AE87F7418994B3D000BEE47 /* cloudsBottom_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F7018994B3D000BEE47 /* cloudsBottom_front.png */; };
+		8AE87F7518994B3D000BEE47 /* cloudsTop_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F7118994B3D000BEE47 /* cloudsTop_back.png */; };
+		8AE87F7618994B3D000BEE47 /* cloudsTop_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F7218994B3D000BEE47 /* cloudsTop_front.png */; };
+		8AE87F7918994B97000BEE47 /* CloudsBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE87F7818994B97000BEE47 /* CloudsBack.mm */; };
+		8AE87F7C18994BAB000BEE47 /* CloudsFront.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AE87F7B18994BAB000BEE47 /* CloudsFront.mm */; };
+		8AE87F9E18997026000BEE47 /* BkgBloc_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F9A18997026000BEE47 /* BkgBloc_0.png */; };
+		8AE87F9F18997026000BEE47 /* BkgBloc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F9B18997026000BEE47 /* BkgBloc_1.png */; };
+		8AE87FA018997026000BEE47 /* BkgBloc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F9C18997026000BEE47 /* BkgBloc_2.png */; };
+		8AE87FA118997026000BEE47 /* BkgBloc_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87F9D18997026000BEE47 /* BkgBloc_3.png */; };
+		8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FA21899721D000BEE47 /* BkgBloc_4.png */; };
+		8AE87FA71899721D000BEE47 /* BkgBloc_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FA31899721D000BEE47 /* BkgBloc_5.png */; };
+		8AE87FA81899721D000BEE47 /* BkgBloc_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FA41899721D000BEE47 /* BkgBloc_6.png */; };
+		8AE87FA91899721D000BEE47 /* BkgBloc_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FA51899721D000BEE47 /* BkgBloc_7.png */; };
+		8AE87FAB18997C81000BEE47 /* microplanet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FAA18997C81000BEE47 /* microplanet1.png */; };
+		8AE87FAD18998519000BEE47 /* microplanet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE87FAC18998519000BEE47 /* microplanet2.png */; };
 		8AE988D1186492F600705AAF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D0186492F600705AAF /* QuartzCore.framework */; };
 		8AE988D3186492F600705AAF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D2186492F600705AAF /* OpenGLES.framework */; };
 		8AE988D5186492F600705AAF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE988D4186492F600705AAF /* OpenAL.framework */; };
@@ -317,7 +332,6 @@
 		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
 		8A5B23231867543700B145A4 /* BalanceScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceScene.mm; sourceTree = "<group>"; };
 		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
-		8A860E5C1896DCEE00FB0B25 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Resources/star.png; sourceTree = "<group>"; };
 		8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarsLayer.h; sourceTree = "<group>"; };
 		8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarsLayer.mm; sourceTree = "<group>"; };
 		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -359,6 +373,24 @@
 		8AC32BFD18929DE600C50558 /* AnimatedGodLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGodLayer.h; sourceTree = "<group>"; };
 		8AC32BFE18929DE600C50558 /* AnimatedGodLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGodLayer.m; sourceTree = "<group>"; };
 		8AC442A21886CBA500DF2FA1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8AE87F6F18994B3D000BEE47 /* cloudsBottom_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloudsBottom_back.png; path = Resources/cloudsBottom_back.png; sourceTree = "<group>"; };
+		8AE87F7018994B3D000BEE47 /* cloudsBottom_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloudsBottom_front.png; path = Resources/cloudsBottom_front.png; sourceTree = "<group>"; };
+		8AE87F7118994B3D000BEE47 /* cloudsTop_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloudsTop_back.png; path = Resources/cloudsTop_back.png; sourceTree = "<group>"; };
+		8AE87F7218994B3D000BEE47 /* cloudsTop_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloudsTop_front.png; path = Resources/cloudsTop_front.png; sourceTree = "<group>"; };
+		8AE87F7718994B97000BEE47 /* CloudsBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudsBack.h; sourceTree = "<group>"; };
+		8AE87F7818994B97000BEE47 /* CloudsBack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CloudsBack.mm; sourceTree = "<group>"; };
+		8AE87F7A18994BAB000BEE47 /* CloudsFront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudsFront.h; sourceTree = "<group>"; };
+		8AE87F7B18994BAB000BEE47 /* CloudsFront.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CloudsFront.mm; sourceTree = "<group>"; };
+		8AE87F9A18997026000BEE47 /* BkgBloc_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_0.png; path = Resources/BkgBloc_0.png; sourceTree = "<group>"; };
+		8AE87F9B18997026000BEE47 /* BkgBloc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_1.png; path = Resources/BkgBloc_1.png; sourceTree = "<group>"; };
+		8AE87F9C18997026000BEE47 /* BkgBloc_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_2.png; path = Resources/BkgBloc_2.png; sourceTree = "<group>"; };
+		8AE87F9D18997026000BEE47 /* BkgBloc_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_3.png; path = Resources/BkgBloc_3.png; sourceTree = "<group>"; };
+		8AE87FA21899721D000BEE47 /* BkgBloc_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_4.png; path = Resources/BkgBloc_4.png; sourceTree = "<group>"; };
+		8AE87FA31899721D000BEE47 /* BkgBloc_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_5.png; path = Resources/BkgBloc_5.png; sourceTree = "<group>"; };
+		8AE87FA41899721D000BEE47 /* BkgBloc_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_6.png; path = Resources/BkgBloc_6.png; sourceTree = "<group>"; };
+		8AE87FA51899721D000BEE47 /* BkgBloc_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BkgBloc_7.png; path = Resources/BkgBloc_7.png; sourceTree = "<group>"; };
+		8AE87FAA18997C81000BEE47 /* microplanet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microplanet1.png; path = Resources/microplanet1.png; sourceTree = "<group>"; };
+		8AE87FAC18998519000BEE47 /* microplanet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = microplanet2.png; path = Resources/microplanet2.png; sourceTree = "<group>"; };
 		8AE988CD186492F600705AAF /* PFE_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFE_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE988D0186492F600705AAF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AE988D2186492F600705AAF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -801,6 +833,7 @@
 		8A4091551896B1D0009CD5B0 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				8AE87F7D18996A2E000BEE47 /* AnimatedBackground */,
 				8A4091571896B1EE009CD5B0 /* FireGod */,
 				8A4091561896B1D8009CD5B0 /* WindGod */,
 			);
@@ -1014,6 +1047,10 @@
 				8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */,
 				8A23AF441897DDEB002E1EB4 /* AnimatedBackground.h */,
 				8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */,
+				8AE87F7718994B97000BEE47 /* CloudsBack.h */,
+				8AE87F7818994B97000BEE47 /* CloudsBack.mm */,
+				8AE87F7A18994BAB000BEE47 /* CloudsFront.h */,
+				8AE87F7B18994BAB000BEE47 /* CloudsFront.mm */,
 			);
 			name = Sky;
 			sourceTree = "<group>";
@@ -1031,6 +1068,34 @@
 				54FAAA3B1891DA7B007895E5 /* FireParticleSprite.mm */,
 			);
 			name = Particles;
+			sourceTree = "<group>";
+		};
+		8AE87F6E18994B2F000BEE47 /* Sky */ = {
+			isa = PBXGroup;
+			children = (
+				8AE87F6F18994B3D000BEE47 /* cloudsBottom_back.png */,
+				8AE87F7018994B3D000BEE47 /* cloudsBottom_front.png */,
+				8AE87F7118994B3D000BEE47 /* cloudsTop_back.png */,
+				8AE87F7218994B3D000BEE47 /* cloudsTop_front.png */,
+			);
+			name = Sky;
+			sourceTree = "<group>";
+		};
+		8AE87F7D18996A2E000BEE47 /* AnimatedBackground */ = {
+			isa = PBXGroup;
+			children = (
+				8AE87FAA18997C81000BEE47 /* microplanet1.png */,
+				8AE87FAC18998519000BEE47 /* microplanet2.png */,
+				8AE87FA21899721D000BEE47 /* BkgBloc_4.png */,
+				8AE87FA31899721D000BEE47 /* BkgBloc_5.png */,
+				8AE87FA41899721D000BEE47 /* BkgBloc_6.png */,
+				8AE87FA51899721D000BEE47 /* BkgBloc_7.png */,
+				8AE87F9A18997026000BEE47 /* BkgBloc_0.png */,
+				8AE87F9B18997026000BEE47 /* BkgBloc_1.png */,
+				8AE87F9C18997026000BEE47 /* BkgBloc_2.png */,
+				8AE87F9D18997026000BEE47 /* BkgBloc_3.png */,
+			);
+			name = AnimatedBackground;
 			sourceTree = "<group>";
 		};
 		8AE988C4186492F600705AAF = {
@@ -1092,7 +1157,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8A860E5C1896DCEE00FB0B25 /* star.png */,
+				8AE87F6E18994B2F000BEE47 /* Sky */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				54A4835F188C3979003D47B8 /* dustParticle.plist */,
 				54A4835A188C3542003D47B8 /* windParticle.plist */,
@@ -1721,7 +1786,7 @@
 				8A4091381896B0A4009CD5B0 /* WindGod_moveDown.png in Resources */,
 				8A4091531896B1C8009CD5B0 /* FireGod_static3.plist in Resources */,
 				8A40913B1896B0A4009CD5B0 /* WindGod_static1.plist in Resources */,
-				8A860E5D1896DCEE00FB0B25 /* star.png in Resources */,
+				8AE87FA018997026000BEE47 /* BkgBloc_2.png in Resources */,
 				8A9155A518884505009A07A4 /* blocks.png in Resources */,
 				8A4091471896B14D009CD5B0 /* FireGod_colere2.png in Resources */,
 				8A4091521896B1C8009CD5B0 /* FireGod_static2.png in Resources */,
@@ -1729,6 +1794,7 @@
 				8A4091441896B13C009CD5B0 /* FireGod_wind.plist in Resources */,
 				8A2242741897EE8400C451A5 /* triangle.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
+				8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,
 				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,
 				8A40913F1896B0A4009CD5B0 /* WindGod_static3.plist in Resources */,
@@ -1736,9 +1802,11 @@
 				8A40913A1896B0A4009CD5B0 /* WindGod_moveUp.png in Resources */,
 				8A4091431896B13C009CD5B0 /* FireGod_wind.png in Resources */,
 				8AE988F7186492F600705AAF /* Icon.png in Resources */,
+				8AE87F7418994B3D000BEE47 /* cloudsBottom_front.png in Resources */,
 				8A4091511896B1C8009CD5B0 /* FireGod_static2.plist in Resources */,
 				8AE98A55186492F800705AAF /* ChangeLog in Resources */,
 				8AE988E9186492F600705AAF /* Default@2x.png in Resources */,
+				8AE87FA81899721D000BEE47 /* BkgBloc_6.png in Resources */,
 				8AC11E33188851C60029062B /* Wind_Particle.png in Resources */,
 				8A40913C1896B0A4009CD5B0 /* WindGod_static1.png in Resources */,
 				8AE988F3186492F600705AAF /* Icon-Small.png in Resources */,
@@ -1748,24 +1816,34 @@
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
 				54A48360188C3979003D47B8 /* dustParticle.plist in Resources */,
 				8A4091401896B0A4009CD5B0 /* WindGod_static3.png in Resources */,
+				8AE87F7618994B3D000BEE47 /* cloudsTop_front.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
+				8AE87F7518994B3D000BEE47 /* cloudsTop_back.png in Resources */,
 				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
+				8AE87FAB18997C81000BEE47 /* microplanet1.png in Resources */,
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
 				54984632188C16FA0007046B /* godParticle.plist in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
 				54A4835B188C3542003D47B8 /* windParticle.plist in Resources */,
+				8AE87F7318994B3D000BEE47 /* cloudsBottom_back.png in Resources */,
+				8AE87FA118997026000BEE47 /* BkgBloc_3.png in Resources */,
 				8A40913E1896B0A4009CD5B0 /* WindGod_static2.png in Resources */,
 				8AC11E2D1888508B0029062B /* planet.png in Resources */,
 				8A4091541896B1C8009CD5B0 /* FireGod_static3.png in Resources */,
 				8A40913D1896B0A4009CD5B0 /* WindGod_static2.plist in Resources */,
+				8AE87F9F18997026000BEE47 /* BkgBloc_1.png in Resources */,
 				8A4091501896B1C8009CD5B0 /* FireGod_colere1.png in Resources */,
+				8AE87FAD18998519000BEE47 /* microplanet2.png in Resources */,
 				8A2242721897E6E700C451A5 /* square.png in Resources */,
+				8AE87FA91899721D000BEE47 /* BkgBloc_7.png in Resources */,
 				549E2D03188C30860069CF91 /* fireParticle.plist in Resources */,
+				8AE87F9E18997026000BEE47 /* BkgBloc_0.png in Resources */,
 				8AE988EB186492F600705AAF /* Default-568h@2x.png in Resources */,
 				8AE988F9186492F600705AAF /* Icon@2x.png in Resources */,
+				8AE87FA71899721D000BEE47 /* BkgBloc_5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1821,6 +1899,7 @@
 				8AB50C5F18673BEF0012A387 /* SkyLayer.mm in Sources */,
 				8AE9897E186492F700705AAF /* CCParticleSystem.m in Sources */,
 				8AE989D3186492F700705AAF /* CCTransition.m in Sources */,
+				8AE87F7918994B97000BEE47 /* CloudsBack.mm in Sources */,
 				8AE98A86186492F800705AAF /* b2DynamicTree.cpp in Sources */,
 				8AE98AB2186492F800705AAF /* b2ContactManager.cpp in Sources */,
 				8AE9897B186492F700705AAF /* CCParticleExamples.m in Sources */,
@@ -1842,6 +1921,7 @@
 				8AE98AB5186492F800705AAF /* b2Fixture.cpp in Sources */,
 				8AE98969186492F700705AAF /* CCMenuItem.m in Sources */,
 				8AE98904186492F600705AAF /* CCActionCamera.m in Sources */,
+				8AE87F7C18994BAB000BEE47 /* CloudsFront.mm in Sources */,
 				8AE98A36186492F700705AAF /* CDXPropertyModifierAction.m in Sources */,
 				8AE98A06186492F700705AAF /* CCArray.m in Sources */,
 				8AE98A63186492F800705AAF /* plane.c in Sources */,

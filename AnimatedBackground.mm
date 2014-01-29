@@ -17,17 +17,20 @@
 @synthesize _aRotate;
 @synthesize _pPlanet;
 
-- (id) initWithPlanetPosition: (CGPoint) i_planetPosition withScale: (float) i_scale withBeginDelay: (float) i_beginDelay
+- (id) initWithPlanetPosition: (CGPoint) i_planetPosition withScale: (float) i_scale withBeginDelay: (float) i_beginDelay withPlanetType: (int) i_planetType
 {
     if((self=[super init]))
     {
         
         /////////////////////////////////////////
-        // Créationd des sprites
+        // Création des sprites
         
         // Faire une image pour small planet
-        _pPlanet = [CCSprite spriteWithFile:@"planet.png"];
-        [_pPlanet setScale:0.1*i_scale];
+        if(i_planetType == 1)
+            _pPlanet = [CCSprite spriteWithFile:@"microplanet1.png"];
+        else if (i_planetType == 2)
+            _pPlanet = [CCSprite spriteWithFile:@"microplanet2.png"];
+        [_pPlanet setScale:i_scale];
         _pPlanet.position = ccp(i_planetPosition.x,i_planetPosition.y);
         
         [self addChild:_pPlanet];
@@ -37,12 +40,19 @@
         
         for(int i = 0; i < 8 ; i++)
         {
-            CCSprite* pSprite = nil;
+           /* int index;
             
-            if((i % 2) == 0)
-                pSprite = [[CCSprite spriteWithFile:@"square.png"] autorelease];
+            if(i <= 3)
+            {
+                index = i;
+            }
             else
-                pSprite = [[CCSprite spriteWithFile:@"triangle.png"] autorelease];
+                index = i-4;*/
+            
+            NSString* sPrefix = @"BkgBloc_";
+            NSString* sName = [sPrefix stringByAppendingString:[NSString stringWithFormat:@"%d.png",i]];
+            
+            CCSprite* pSprite = [[CCSprite spriteWithFile:sName] autorelease];
             
             [pSprite setScale:i_scale];
             pSprite.anchorPoint = ccp(0.5f, 0.0f);
@@ -61,15 +71,15 @@
         // Le positionnement des blocs doit évoluer à chaque tour
         
         float planetOffset = [_pPlanet boundingBox].size.height / 3;
+        float blocHeights = 0;
         
         for(int i = 0 ; i < _aBlocs.count ; i++)
         {
             CGPoint positionBloc = _pPlanet.position;
-            positionBloc.y += planetOffset + i*([[_aBlocs objectAtIndex:i] boundingBox].size.height);
+            positionBloc.y += planetOffset + blocHeights;
             
-            float duration = (float)(10 + (arc4random()%40))/10.0f;
-            
-            CCAction* pAction = [CCMoveTo actionWithDuration:duration position:positionBloc];
+            blocHeights+= [[_aBlocs objectAtIndex:i] boundingBox].size.height;
+            CCAction* pAction = [CCMoveTo actionWithDuration:3 position:positionBloc];
             [_aMoveTo addObject:pAction];
             
         }
@@ -167,9 +177,9 @@
          
          nil];
         
-        CCAction* pBalanceTower = [CCRepeat actionWithAction:pRotations times:5];
+        CCAction* pBalanceTower = [CCRepeat actionWithAction:pRotations times:4];
         
-        CCSequence* pRunAll = [CCSequence actions:[CCDelayTime actionWithDuration: i_beginDelay],pBuildTower,pBalanceTower, pAddMoreBlocs, nil];
+        CCSequence* pRunAll = [CCSequence actions:[CCDelayTime actionWithDuration: i_beginDelay],pBuildTower,pBalanceTower, pAddMoreBlocs, pRotations, nil];
         
         [self runAction:pRunAll];
         
