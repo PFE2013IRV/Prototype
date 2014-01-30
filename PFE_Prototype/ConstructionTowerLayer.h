@@ -18,6 +18,13 @@
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
 
+@property (nonatomic, assign) int HeightTower;
+@property (nonatomic, assign) int centerWidthTower;
+@property (nonatomic, assign) CGRect towerMagnetization;
+
+@property (nonatomic, strong) CCSprite *pMovingSprite;
+@property (nonatomic, strong) NSMutableArray *aFallingBloc;
+
 -(id) initWithTowerData:(TowerData*) i_pTowerData;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
 @end
