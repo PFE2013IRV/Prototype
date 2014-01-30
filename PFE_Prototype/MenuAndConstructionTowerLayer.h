@@ -19,6 +19,6 @@
 @property (nonatomic, strong) ConstructionTowerLayer *pTowerLayer;
 @property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
--(id) initWithTowerData : (TowerData*) i_pTowerData;
+-(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win;
 
 @end

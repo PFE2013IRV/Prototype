@@ -31,7 +31,7 @@
         _pWindAttackLayer = [WindAttackLayer node];
         _pUpsetGodParticleLayer = [UpsetGodParticleLayer node];
         _pGodWrathLayer = [GodWrathLayer node];
-        _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
+        _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
         
         self._pGameData = i_pGameData;
         
