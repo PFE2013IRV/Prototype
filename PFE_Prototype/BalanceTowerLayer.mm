@@ -213,7 +213,8 @@ enum {
             if(i==5)
             {
                 
-                
+                b->SetLinearVelocity(b2Vec2(0,0));
+                b->SetAngularVelocity(0);
               //  b2Vec2  b2Position = b->GetPosition();
             
                
@@ -231,6 +232,9 @@ enum {
                  // b->SetTransform(pos, CC_DEGREES_TO_RADIANS(degree));
                 
             }
+            else
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree *0.5));
+
             i++;
         }
     }
