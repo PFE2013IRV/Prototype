@@ -95,8 +95,17 @@
 
 -(void)placeBlocToTower
 {
-    int centerWidthBloc = _pMovingBlocData._scaledSize.width / 2 - _pMovingBlocData._gravityCenter.x;
+    int centerWidthBloc;
     int centerHeighBloc = _pMovingBlocData._scaledSize.height / 2;
+    
+    if (_pMovingBlocData._hasSmallerBase)
+    {
+        centerWidthBloc = _pMovingBlocData._specialBaseOffset / 2;
+    }
+    else
+    {
+        centerWidthBloc = _pMovingBlocData._scaledSize.width / 2 - _pMovingBlocData._gravityCenter.x;
+    }
     
     centerWidthBloc += _centerWidthTower;
     centerHeighBloc += _HeightTower;
@@ -163,9 +172,34 @@
 {
     [self._aBlocsTowerSprite addObject:_pMovingSprite];
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
-    _HeightTower += _pMovingBlocData._scaledSize.height;
+    
+    if (_HeightTower > 650)
+    {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
+        {
+            [self.delegate movePlanet:_pMovingBlocData._scaledSize.height];
+        }
+        
+        [self moveAllBlocTower];
+    }
+    else
+    {
+        _HeightTower += _pMovingBlocData._scaledSize.height;
+    }
+    
     _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
 }
+
+-(void)moveAllBlocTower
+{
+    int height = _pMovingBlocData._scaledSize.height;
+    
+    for (CCSprite* blocSprite in self._aBlocsTowerSprite)
+    {
+        blocSprite.position = ccp(blocSprite.position.x, blocSprite.position.y - height);
+    }
+}
+
 
 -(void)addToFallingBloc
 {
