@@ -11,7 +11,19 @@
 #import "TowerLayer.h"
 #import "BlocData.h"
 
+@protocol ConstructionTowerDelegate <NSObject>
+
+@required
+-(void)movePlanet:(int)height;
+
+@end // end of delegate protocol
+
 @interface ConstructionTowerLayer : TowerLayer
+{
+    id <ConstructionTowerDelegate> _delegate;
+}
+
+@property (nonatomic, strong) id delegate;
 
 @property (nonatomic, strong) BlocData *pMovingBlocData;
 @property (nonatomic, assign) BOOL blocNotPlace;
@@ -25,6 +37,9 @@
 @property (nonatomic, strong) CCSprite *pMovingSprite;
 @property (nonatomic, strong) NSMutableArray *aFallingBloc;
 
--(id) initWithTowerData:(TowerData*) i_pTowerData;
+@property (nonatomic, assign) int winningHeight;
+@property (nonatomic, assign) int currentHeightNoScroll;
+
+-(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
 @end

@@ -19,6 +19,11 @@
 {
     if (self = [super init])
     {
+        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
+        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
+        pBordersSprite.position = ccp(0.0f,0.0f);
+        [self addChild:pBordersSprite];
+        
         _pBagData = [BlocBagData GetBlocBagData];
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         

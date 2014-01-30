@@ -11,12 +11,14 @@
 #import "MenuLayer.h"
 #import "ConstructionTowerLayer.h"
 #import "TowerData.h"
+#import "PlanetLayer.h"
 
-@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>
+@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate, ConstructionTowerDelegate>
 
 @property (nonatomic, strong) MenuLayer *pMenuLayer;
 @property (nonatomic, strong) ConstructionTowerLayer *pTowerLayer;
+@property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
--(id) initWithTowerData : (TowerData*) i_pTowerData;
+-(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win;
 
 @end

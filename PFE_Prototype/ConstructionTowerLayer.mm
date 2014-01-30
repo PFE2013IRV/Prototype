@@ -20,8 +20,10 @@
 @synthesize towerMagnetization = _towerMagnetization;
 @synthesize aFallingBloc = _aFallingBloc;
 @synthesize pMovingSprite = _pMovingSprite;
+@synthesize winningHeight = _winningHeight;
+@synthesize currentHeightNoScroll = _currentHeightNoScroll;
 
--(id) initWithTowerData:(TowerData*) i_pTowerData
+-(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
     {
@@ -29,7 +31,9 @@
         _blocNotPlace = false;
         _aFallingBloc = [[NSMutableArray alloc] init];
         _pMovingSprite = nil;
+        _winningHeight = winHeight;
         
+        _currentHeightNoScroll = 0;
         _HeightTower = 220;
         _centerWidthTower = [[CCDirector sharedDirector] winSize].width / 2;
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
@@ -95,8 +99,17 @@
 
 -(void)placeBlocToTower
 {
-    int centerWidthBloc = _pMovingBlocData._scaledSize.width / 2 - _pMovingBlocData._gravityCenter.x;
+    int centerWidthBloc;
     int centerHeighBloc = _pMovingBlocData._scaledSize.height / 2;
+    
+    if (_pMovingBlocData._hasSmallerBase)
+    {
+        centerWidthBloc = _pMovingBlocData._specialBaseOffset / 2;
+    }
+    else
+    {
+        centerWidthBloc = _pMovingBlocData._scaledSize.width / 2 - _pMovingBlocData._gravityCenter.x;
+    }
     
     centerWidthBloc += _centerWidthTower;
     centerHeighBloc += _HeightTower;
@@ -163,9 +176,44 @@
 {
     [self._aBlocsTowerSprite addObject:_pMovingSprite];
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
-    _HeightTower += _pMovingBlocData._scaledSize.height;
-    _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
+    
+    _currentHeightNoScroll += _pMovingBlocData._scaledSize.height;
+    
+    if (_currentHeightNoScroll > _winningHeight)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"C'EST VOUS LE PATRON" message:@"Vous avez réussi ce magnifique niveau de démo" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        if (_HeightTower > 650)
+        {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
+            {
+                [self.delegate movePlanet:_pMovingBlocData._scaledSize.height];
+            }
+            
+            [self moveAllBlocTower];
+        }
+        else
+        {
+            _HeightTower += _pMovingBlocData._scaledSize.height;
+        }
+        
+        _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
+    }
 }
+
+-(void)moveAllBlocTower
+{
+    int height = _pMovingBlocData._scaledSize.height;
+    
+    for (CCSprite* blocSprite in self._aBlocsTowerSprite)
+    {
+        blocSprite.position = ccp(blocSprite.position.x, blocSprite.position.y - height);
+    }
+}
+
 
 -(void)addToFallingBloc
 {
