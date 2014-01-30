@@ -57,7 +57,7 @@ static BlocManager* pBlocManager = nil;
         
         // Si le PNG associé n'existe pas encore, on le crée
         //if(!PNGExists)
-            //[self MakePNGFromModel:i_pData];
+          //  [self MakePNGFromModel:i_pData];
         
         ////////////////////////
         // CREATION DU SPRITE //
@@ -205,6 +205,9 @@ static BlocManager* pBlocManager = nil;
 
 -(void) LoadBlocsToBlocBag
 {
+    
+    [self DeletePNGFiles];
+    
     BlocBagData* pBlocBagData = nil;
     // Get the bloc bag data instance
     pBlocBagData = [BlocBagData GetBlocBagData];
@@ -269,6 +272,7 @@ static BlocManager* pBlocManager = nil;
             
             // Add extracted info to the BlocBagData
             [pBlocBagData SetBlocBagData:blocBagSize withBlocs:aBlocsRet];
+
         }
         else
         {
@@ -307,14 +311,83 @@ static BlocManager* pBlocManager = nil;
         for(int i = 0; i < nbVertices ; i++)
         {
             vertices[i] = [[aVertices objectAtIndex:i] CGPointValue];
+            //vertices[i].y = originalHeight - vertices[i].y;
         }
         
-        ccDrawSolidPoly(vertices, nbVertices,ccc4f(209.0f/255, 75.0f/255, 75.0f/255, 255.0f/255));
+        ccDrawSolidPoly(vertices, nbVertices,ccc4f(209/255, 75/255, 75/255, 255.0f/255));
         
         // Fin du rendu
         [pRenderTexture end];
         
+        //CCTexture2D* pMaskTexture = pRenderTexture.sprite.texture;
+        //pRetval.flipY = YES;
+        
+        //CCRenderTexture* pRt = [self ApplyMaterialToTexture:i_pData._eBlocMaterial withMaskTexture:pMaskTexture];
+        
+        //[self ApplyMaterialToTexture:i_pData withMaskTexture:pRenderTexture];
+        
+        
+        /*CCSprite* pMaskSprite = [CCSprite spriteWithTexture:pRenderTexture.sprite.texture];
+        
+        NSString* sSuffix = @"_texture.png";
+        NSString* sTextureFileName;
+        
+        if(i_pData._eBlocMaterial == MAT_WOOD)
+            sTextureFileName = [@"Wood" stringByAppendingString:sSuffix];
+        
+        CCSprite* pTextureSprite = [CCSprite spriteWithFile:sTextureFileName];
+        
+        [pMaskSprite setColor:ccc3(0.0, 0.0, 0.0)];
+        
+        // On coupe le sprite
+        
+        float dx;
+        float dy;
+        
+        // On calcule le masque correct
+        
+        //[i_pMaskTextureRenderer]
+        pRenderTexture = [CCRenderTexture renderTextureWithWidth:pMaskSprite.contentSize.width * pMaskSprite.scale height:pMaskSprite.contentSize.height * pMaskSprite.scale];
+        
+        dx = pTextureSprite.position.x - pMaskSprite.position.x;
+        dy = pTextureSprite.position.y - pMaskSprite.position.y;
+        
+        pMaskSprite.position = ccp(pMaskSprite.contentSize.width/2 * pMaskSprite.scale, pMaskSprite.contentSize.height/2 *pMaskSprite.scale);
+        pMaskSprite.position = ccp(pMaskSprite.position.x+dx, pMaskSprite.position.y+dy);
+        
+        [pTextureSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
+        [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
+        
+        [pRenderTexture begin];
+        [pTextureSprite visit];
+        [pMaskSprite visit];
+        [pRenderTexture end];
+        
+        CCSprite* pCorrectMaskSprite = [CCSprite spriteWithTexture:pRenderTexture.sprite.texture];
+        pCorrectMaskSprite.flipY = YES;
+        
+        pCorrectMaskSprite.position = pMaskSprite.position;
+        pCorrectMaskSprite.rotation = pMaskSprite.rotation;
+        pCorrectMaskSprite.opacity = pMaskSprite.opacity;
+        pCorrectMaskSprite.scale = pMaskSprite.scale;
+        pCorrectMaskSprite.zOrder = pMaskSprite.zOrder;
+        
+        // Nouveau sprite avec le masque correct
+        
+        [pCorrectMaskSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
+        [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
+        
+        [pRenderTexture begin];
+        [pCorrectMaskSprite visit];
+        [pTextureSprite visit];
+        [pRenderTexture end];
+        
+        //CCSprite* pRetval = [CCSprite spriteWithTexture:pRt.sprite.texture];
+        //pRetval.flipY = YES;*/
+        
         [pRenderTexture saveToFile:i_pData._sFileName format:kCCImageFormatPNG];
+        
+        //[pRenderTexture cleanup];
         
         NSLog(@"End write PNG Bloc");
         
@@ -324,6 +397,72 @@ static BlocManager* pBlocManager = nil;
         [NSException raise:NSInternalInconsistencyException format:@"Error : bloc could write PNG file. Data was corrupted"];
     }
 }
+
+-(void) ApplyMaterialToTexture:(BlocData*) i_pData withMaskTexture: (CCRenderTexture*) i_pMaskTextureRenderer
+{
+    
+    
+    CCSprite* pMaskSprite = [CCSprite spriteWithTexture:i_pMaskTextureRenderer.sprite.texture];
+    
+    NSString* sSuffix = @"_texture.png";
+    NSString* sTextureFileName;
+    
+    if(i_pData._eBlocMaterial == MAT_WOOD)
+        sTextureFileName = [@"Wood" stringByAppendingString:sSuffix];
+    
+    CCSprite* pTextureSprite = [CCSprite spriteWithFile:sTextureFileName];
+    
+    [pMaskSprite setColor:ccc3(0.0, 0.0, 0.0)];
+    
+    // On coupe le sprite
+    
+    float dx;
+    float dy;
+    
+    // On calcule le masque correct
+    
+    //[i_pMaskTextureRenderer]
+    //pRt = [CCRenderTexture renderTextureWithWidth:pMaskSprite.contentSize.width * pMaskSprite.scale height:pMaskSprite.contentSize.height * pMaskSprite.scale];
+    
+    dx = pTextureSprite.position.x - pMaskSprite.position.x;
+    dy = pTextureSprite.position.y - pMaskSprite.position.y;
+    
+    pMaskSprite.position = ccp(pMaskSprite.contentSize.width/2 * pMaskSprite.scale, pMaskSprite.contentSize.height/2 *pMaskSprite.scale);
+    pMaskSprite.position = ccp(pMaskSprite.position.x+dx, pMaskSprite.position.y+dy);
+    
+    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
+    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
+    
+    [i_pMaskTextureRenderer begin];
+    [pTextureSprite visit];
+    [pMaskSprite visit];
+    [i_pMaskTextureRenderer end];
+    
+    CCSprite* pCorrectMaskSprite = [CCSprite spriteWithTexture:i_pMaskTextureRenderer.sprite.texture];
+    pCorrectMaskSprite.flipY = YES;
+    
+    pCorrectMaskSprite.position = pMaskSprite.position;
+    pCorrectMaskSprite.rotation = pMaskSprite.rotation;
+    pCorrectMaskSprite.opacity = pMaskSprite.opacity;
+    pCorrectMaskSprite.scale = pMaskSprite.scale;
+    pCorrectMaskSprite.zOrder = pMaskSprite.zOrder;
+    
+    // Nouveau sprite avec le masque correct
+    
+    [pCorrectMaskSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
+    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
+    
+    [i_pMaskTextureRenderer begin];
+    [pCorrectMaskSprite visit];
+    [pTextureSprite visit];
+    [i_pMaskTextureRenderer end];
+    
+    //CCSprite* pRetval = [CCSprite spriteWithTexture:pRt.sprite.texture];
+    //pRetval.flipY = YES;
+    
+    [i_pMaskTextureRenderer saveToFile:i_pData._sFileName format:kCCImageFormatPNG];
+}
+
 
 -(void) DeletePNGFiles
 {
@@ -395,84 +534,6 @@ static BlocManager* pBlocManager = nil;
     }
 }
 
--(CCRenderTexture*) ApplyTexture:(BlocData*) i_pData
-{
-    // On récupère le path du documents directory
-    NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* sDocumentsDirectory = [aPaths objectAtIndex:0];
-
-    
-    // Si le PNG associé n'existe pas encore, on le crée
-    //if(!PNGExists)
-    //[self MakePNGFromModel:i_pData];
-    
-    ////////////////////////
-    // CREATION DU SPRITE //
-    ////////////////////////
-    
-    NSString* sPathWithFileName = [sDocumentsDirectory stringByAppendingPathComponent:i_pData._sFileName];
-    
-    
-    CCSprite* pMaskSprite = [CCSprite spriteWithFile:sPathWithFileName];
-    
-    NSString* sSuffix = @"_texture.png";
-    NSString* sTextureFileName;
-    
-    if(i_pData._eBlocMaterial == MAT_WOOD)
-        sTextureFileName = [@"Wood" stringByAppendingString:sSuffix];
-
-    CCSprite* pTextureSprite = [CCSprite spriteWithFile:sTextureFileName];
-    
-    [pMaskSprite setColor:ccc3(0.0, 0.0, 0.0)];
-    
-    // On coupe le sprite
-    
-    CCRenderTexture* pRt;
-    float dx;
-    float dy;
-    
-    // On calcule le masque correct
-    
-    pRt = [CCRenderTexture renderTextureWithWidth:pMaskSprite.contentSize.width * pMaskSprite.scale height:pMaskSprite.contentSize.height * pMaskSprite.scale];
-    
-    dx = pTextureSprite.position.x - pMaskSprite.position.x;
-    dy = pTextureSprite.position.y - pMaskSprite.position.y;
-    
-    pMaskSprite.position = ccp(pMaskSprite.contentSize.width/2 * pMaskSprite.scale, pMaskSprite.contentSize.height/2 *pMaskSprite.scale);
-    pMaskSprite.position = ccp(pMaskSprite.position.x+dx, pMaskSprite.position.y+dy);
-    
-    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
-    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
-    
-    [pRt begin];
-    [pTextureSprite visit];
-    [pMaskSprite visit];
-    [pRt end];
-    
-    CCSprite* pCorrectMaskSprite = [CCSprite spriteWithTexture:pRt.sprite.texture];
-    pCorrectMaskSprite.flipY = YES;
-    
-    pCorrectMaskSprite.position = pMaskSprite.position;
-    pCorrectMaskSprite.rotation = pMaskSprite.rotation;
-    pCorrectMaskSprite.opacity = pMaskSprite.opacity;
-    pCorrectMaskSprite.scale = pMaskSprite.scale;
-    pCorrectMaskSprite.zOrder = pMaskSprite.zOrder;
-    
-    // Nouveau sprite avec le masque correct
-    
-    [pCorrectMaskSprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ZERO}];
-    [pTextureSprite setBlendFunc:(ccBlendFunc){GL_DST_ALPHA, GL_ZERO}];
-    
-    [pRt begin];
-    [pCorrectMaskSprite visit];
-    [pTextureSprite visit];
-    [pRt end];
-    
-    //CCSprite* pRetval = [CCSprite spriteWithTexture:pRt.sprite.texture];
-    //pRetval.flipY = YES;
-    
-    return pRt;
-}
 
 
 +(BlocManager*) GetBlocManager

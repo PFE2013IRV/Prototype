@@ -13,6 +13,7 @@
 #import "BlocData.h"
 // Not included in "cocos2d.h"
 #import "CCPhysicsSprite.h"
+#import "CCRenderTexture.h"
 
 @interface BlocManager : NSObject{
     
@@ -46,7 +47,7 @@
 // Delete all the bloc PNG files located in the Documents directory 
 -(void) DeletePNGFiles;
 
--(CCSprite*) ApplyTexture:(BlocData*) i_pData;
+-(void) ApplyMaterialToTexture:(BlocData*) i_pData withMaskTexture: (CCRenderTexture*) i_pMaskTextureRenderer;
 
 // Refresh information in the bloc data when a bloc was translated with a (x,y) vector
 // i_pData : the bloc model to move
