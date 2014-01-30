@@ -39,7 +39,7 @@ enum {
      CGSize s = [[CCDirector sharedDirector] winSize];
      
      b2Vec2 gravity;
-     gravity.Set(0.0f, -20.0f);
+     gravity.Set(0.0f, -10.0f);
      world = new b2World(gravity);
      
      // Do we want to let bodies sleep?
@@ -60,6 +60,7 @@ enum {
      
      // Define the ground body.
      b2BodyDef groundBodyDef;
+
      groundBodyDef.position.Set(0, (
                                     
                                     s.height/6
@@ -69,7 +70,7 @@ enum {
      // from a pool and creates the ground box shape (also from a pool).
      // The body is also added to the world.
      groundBody = world->CreateBody(&groundBodyDef);
-    groundBody->SetFixedRotation(false);
+     groundBody->SetFixedRotation(false);
      
      // Define the ground box shape.
      b2EdgeShape groundBox;
@@ -152,8 +153,8 @@ enum {
     polygonShape.Set(vertices, forme.size()); //pass array to the shape
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &polygonShape;
-    fixtureDef.density = 1000.0f;
-    fixtureDef.friction = 1000;//0.3f;
+    fixtureDef.density = 10.0f;
+    fixtureDef.friction = 10;
     //fixtureDef.isSensor = true;
     
     fixtureDef.restitution = 0;
@@ -206,15 +207,17 @@ enum {
     int j =1;
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
     {
-       // if (b != groundBody)
+       if (b != groundBody)
         {
            
             
             if(i==5)
             {
-                
-                b->SetLinearVelocity(b2Vec2(0,0));
+                    CGSize s = [[CCDirector sharedDirector] winSize];
+                b->SetLinearVelocity(b2Vec2(0, 0));
                 b->SetAngularVelocity(0);
+                //b->SetLinearVelocity(b2Vec2(0,0));
+                
               //  b2Vec2  b2Position = b->GetPosition();
             
                
@@ -233,7 +236,7 @@ enum {
                 
             }
             else
-                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree *0.5));
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
 
             i++;
         }
@@ -248,8 +251,8 @@ enum {
      //b2Vec2(s.width/2/PTM_RATIO,s.height/2/PTM_RATIO)
      groundBody->GetWorldCenter()
      , CC_DEGREES_TO_RADIANS(degree));
-    
-*/
+    */
+
 
 }
 
