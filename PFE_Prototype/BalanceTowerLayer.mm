@@ -95,7 +95,8 @@ enum {
 
 
 -(void)drawAllPhysicsBlocsOfTower
-{ int x = 350;
+{
+    int x = 350;
     int y = 100;
     
     for (BlocData *bloc in self._pTowerData._aBlocs)
@@ -117,7 +118,6 @@ enum {
 
         [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
         y += bloc._scaledSize.height / 2;
-        
     }
 
 }

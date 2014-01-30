@@ -15,6 +15,11 @@
 @synthesize pMovingBlocData = _pMovingBlocData;
 @synthesize blocNotPlace = _blocNotPlace;
 @synthesize isTouch = _isTouch;
+@synthesize HeightTower = _HeightTower;
+@synthesize centerWidthTower = _centerWidthTower;
+@synthesize towerMagnetization = _towerMagnetization;
+@synthesize aFallingBloc = _aFallingBloc;
+@synthesize pMovingSprite = _pMovingSprite;
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData
 {
@@ -22,6 +27,12 @@
     {
         self._pTowerData = i_pTowerData;
         _blocNotPlace = false;
+        _aFallingBloc = [[NSMutableArray alloc] init];
+        _pMovingSprite = nil;
+        
+        _HeightTower = 220;
+        _centerWidthTower = [[CCDirector sharedDirector] winSize].width / 2;
+        _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
         
         [self setTouchEnabled:YES];
         _isTouch = false;
@@ -39,7 +50,7 @@
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
         blocSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
         [self addChild:blocSprite];
-        [self._aBlocsTowerSprite addObject:blocSprite];
+        _pMovingSprite = blocSprite;
     }
     else
     {
@@ -53,15 +64,14 @@
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
     
-    if ([self._aBlocsTowerSprite count] > 0)
+    if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
-        if (CGRectContainsPoint([[self._aBlocsTowerSprite objectAtIndex:self._aBlocsTowerSprite.count - 1] boundingBox], location))
+        if (CGRectContainsPoint([_pMovingSprite boundingBox], location))
         {
             _isTouch = YES;
         }
     }
-    
     
     return YES;
 }
@@ -72,31 +82,58 @@
     {
         //récupère les coordonnées pour cocos2D
         CGPoint location = [self convertTouchToNodeSpace: touch];
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+        [self moveBlocInScreen:location];
         
-        CCSprite *bloc = [self._aBlocsTowerSprite objectAtIndex:self._aBlocsTowerSprite.count - 1];
-        
-        int bordurSize = 9;
-        
-        int minHeight = 220 + [bloc boundingBox].size.height /2;
-        int maxHeight = screenSize.height - [bloc boundingBox].size.height /2 - bordurSize;
-        
-        int minWidth = [bloc boundingBox].size.width /2 + bordurSize;
-        int maxWidth = screenSize.width - [bloc boundingBox].size.width /2 - bordurSize;
-        
-        //on bouge le sprite du cube
-        if (location.x < maxWidth && location.x > minWidth && location.y > minHeight && location.y < maxHeight)
+        if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
         {
-            bloc.position = ccp(location.x, location.y);
+            [self placeBlocToTower];
         }
-        else if (location.x < maxWidth && location.x > minWidth)
-        {
-            bloc.position = ccp(location.x, bloc.position.y);
-        }
-        else if (location.y > minHeight && location.y < maxHeight)
-        {
-            bloc.position = ccp(bloc.position.x, location.y);
-        }
+    }
+}
+
+
+-(void)placeBlocToTower
+{
+    int centerWidthBloc = _pMovingBlocData._scaledSize.width / 2 - _pMovingBlocData._gravityCenter.x;
+    int centerHeighBloc = _pMovingBlocData._scaledSize.height / 2;
+    
+    centerWidthBloc += _centerWidthTower;
+    centerHeighBloc += _HeightTower;
+    
+    _pMovingSprite.position = ccp(centerWidthBloc, centerHeighBloc);
+}
+
+
+-(void)moveBlocInScreen:(CGPoint)location
+{
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    int bordurSize = 9;
+    int minHeight = 220 + [_pMovingSprite boundingBox].size.height /2;
+    int maxHeight = screenSize.height - [_pMovingSprite boundingBox].size.height /2 - bordurSize;
+    int minWidth = [_pMovingSprite boundingBox].size.width /2 + bordurSize;
+    int maxWidth = screenSize.width - [_pMovingSprite boundingBox].size.width /2 - bordurSize;
+    
+    //on bouge le sprite du cube en testant si il ne dépasse pas les limits de déplacement autorisé.
+    if (location.x < maxWidth && location.x > minWidth && location.y > minHeight && location.y < maxHeight)
+    {
+        _pMovingSprite.position = ccp(location.x, location.y);
+    }
+    else if (location.x < maxWidth && location.x > minWidth && location.y < minHeight)
+    {
+        _pMovingSprite.position = ccp(location.x, minHeight);
+    }
+    else if (location.x < maxWidth && location.x > minWidth && location.y > maxHeight)
+    {
+        _pMovingSprite.position = ccp(location.x, maxHeight);
+    }
+    else if (location.y > minHeight && location.y < maxHeight && location.x < minWidth)
+    {
+        _pMovingSprite.position = ccp(minWidth, location.y);
+    }
+    else if (location.y > minHeight && location.y < maxHeight && location.x > maxWidth)
+    {
+        _pMovingSprite.position = ccp(maxWidth, location.y);
     }
 }
 
@@ -107,8 +144,35 @@
         [self._pTowerData._aBlocs addObject:_pMovingBlocData];
         _blocNotPlace = false;
         _isTouch = NO;
+        
+        if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
+        {
+            [self addBlocToTower];
+        }
+        else
+        {
+            [self addToFallingBloc];
+        }
+        
+        _pMovingSprite = nil;
+        _pMovingBlocData = nil;
     }
 }
+
+-(void)addBlocToTower
+{
+    [self._aBlocsTowerSprite addObject:_pMovingSprite];
+    [self._pTowerData._aBlocs addObject:_pMovingBlocData];
+    _HeightTower += _pMovingBlocData._scaledSize.height;
+    _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
+}
+
+-(void)addToFallingBloc
+{
+    [_aFallingBloc addObject:_pMovingBlocData];
+    [_pMovingSprite removeFromParent];
+}
+
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {

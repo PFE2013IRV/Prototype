@@ -46,6 +46,8 @@
 // Delete all the bloc PNG files located in the Documents directory 
 -(void) DeletePNGFiles;
 
+-(CCSprite*) ApplyTexture:(BlocData*) i_pData;
+
 // Refresh information in the bloc data when a bloc was translated with a (x,y) vector
 // i_pData : the bloc model to move
 // i_x : the x of the vector

@@ -16,6 +16,9 @@
 @synthesize _originalSize;
 @synthesize _scaledSize;
 @synthesize _gravityCenter;
+@synthesize _baseWidth;
+@synthesize _hasSmallerBase;
+@synthesize _specialBaseOffset;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -50,6 +53,8 @@
         CFRelease(sUUIDString);
         
         _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
+        
+        _hasSmallerBase = NO;
         
         ////////////////////////////////////////////////////////////////
         ///////        Calcul du original size du bloc.            /////
@@ -253,7 +258,28 @@
             
             [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
             [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
+            
+            _baseWidth = 0;
 
+        }// On en profite pour vérifier la base du bloc !
+        else if(sizeOfYmin == 2)
+        {
+            int indexPt0 = aIndexesForYMinMax.at(0);
+            int indexPt1 = aIndexesForYMinMax.at(1);
+            
+            CGPoint point0 = [[aVerticesTmp objectAtIndex:indexPt0] CGPointValue];
+            CGPoint point1 = [[aVerticesTmp objectAtIndex:indexPt1] CGPointValue];
+            
+            _baseWidth = point1.x - point0.x;
+            
+            
+            if(_baseWidth < 75)
+            {
+                _specialBaseOffset = point0.x + _baseWidth/2;
+                _hasSmallerBase = YES;
+                
+            }
+            
         }
         
         // On remplit le vector résultat avec les points traités pour le moteur physique.
