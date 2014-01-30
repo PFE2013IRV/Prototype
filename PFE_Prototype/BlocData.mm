@@ -18,6 +18,7 @@
 @synthesize _gravityCenter;
 @synthesize _baseWidth;
 @synthesize _hasSmallerBase;
+@synthesize _specialBaseOffset;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -271,8 +272,13 @@
             
             _baseWidth = point1.x - point0.x;
             
+            
             if(_baseWidth < 75)
+            {
+                _specialBaseOffset = point0.x + _baseWidth/2;
                 _hasSmallerBase = YES;
+                
+            }
             
         }
         

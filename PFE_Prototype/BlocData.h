@@ -46,6 +46,7 @@
 @property(nonatomic,assign) BOOL _hasSmallerBase;
 // The base's width
 @property(nonatomic,assign) float _baseWidth;
+@property(nonatomic,assign) float _specialBaseOffset;
 
 
 

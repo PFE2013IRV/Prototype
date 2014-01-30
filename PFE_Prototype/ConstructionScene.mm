@@ -99,11 +99,11 @@
         BlocManager* pBM = [BlocManager GetBlocManager];
         
         
-        CCSprite* pSpriteBloc = [pBM ApplyTexture:pBloc];
+        /*CCSprite* pSpriteBloc = [pBM ApplyTexture:pBloc];
         pSpriteBloc.position = ccp(0.0f,0.0f);
         pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
         
-        [self addChild:pSpriteBloc];
+        [self addChild:pSpriteBloc];*/
         
         
         [self scheduleUpdate];

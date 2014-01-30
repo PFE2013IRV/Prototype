@@ -395,7 +395,7 @@ static BlocManager* pBlocManager = nil;
     }
 }
 
--(CCSprite*) ApplyTexture:(BlocData*) i_pData
+-(CCRenderTexture*) ApplyTexture:(BlocData*) i_pData
 {
     // On récupère le path du documents directory
     NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -468,10 +468,10 @@ static BlocManager* pBlocManager = nil;
     [pTextureSprite visit];
     [pRt end];
     
-    CCSprite* pRetval = [CCSprite spriteWithTexture:pRt.sprite.texture];
-    pRetval.flipY = YES;
+    //CCSprite* pRetval = [CCSprite spriteWithTexture:pRt.sprite.texture];
+    //pRetval.flipY = YES;
     
-    return pRetval;
+    return pRt;
 }
 
 
