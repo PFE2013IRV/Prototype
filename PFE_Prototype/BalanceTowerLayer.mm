@@ -39,7 +39,7 @@ enum {
      CGSize s = [[CCDirector sharedDirector] winSize];
      
      b2Vec2 gravity;
-     gravity.Set(0.0f, -5.0f);
+     gravity.Set(0.0f, -20.0f);
      world = new b2World(gravity);
      
      // Do we want to let bodies sleep?
@@ -56,12 +56,15 @@ enum {
      //		flags += b2Draw::e_pairBit;
      //		flags += b2Draw::e_centerOfMassBit;
      m_debugDraw->SetFlags(flags);
-     
+    
      
      // Define the ground body.
      b2BodyDef groundBodyDef;
-     groundBodyDef.position.Set(0, (s.height/6)/PTM_RATIO); // bottom-left corner
-     
+     groundBodyDef.position.Set(0, (
+                                    
+                                    s.height/6
+                                    )/PTM_RATIO); // bottom-left corner
+    
      // Call the body factory which allocates memory for the ground body
      // from a pool and creates the ground box shape (also from a pool).
      // The body is also added to the world.
@@ -149,11 +152,13 @@ enum {
     polygonShape.Set(vertices, forme.size()); //pass array to the shape
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &polygonShape;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 10;//0.3f;
+    fixtureDef.density = 1000.0f;
+    fixtureDef.friction = 1000;//0.3f;
+    //fixtureDef.isSensor = true;
+    
+    fixtureDef.restitution = 0;
     body->CreateFixture(&fixtureDef);
-    
-    
+        
     [sprite setPTMRatio:PTM_RATIO];
     [sprite setB2Body:body];
     //[sprite setPosition: ccp( p.x, p.y)];
@@ -195,7 +200,53 @@ enum {
 
 -(void) rotateGroundWorld:(int)degree
 {
-    groundBody->SetTransform(groundBody->GetWorldCenter(), CC_DEGREES_TO_RADIANS(degree));
+ 
+    
+    int i = 1;
+    int j =1;
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
+    {
+       // if (b != groundBody)
+        {
+           
+            
+            if(i==5)
+            {
+                
+                
+              //  b2Vec2  b2Position = b->GetPosition();
+            
+               
+                 //CCPhysicsSprite *sprite = (CCPhysicsSprite *)b->GetUserData();
+                 
+              // b->ApplyForce( b->GetMass() * - world->GetGravity(), b->GetWorldCenter() );
+                // float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
+                // b->setGravityScale(0);
+               //  b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree));
+                 //b2Vec2 pos = b->GetPosition();
+                 //   b->ApplyTorque(degree);
+                 //    b->Get
+                 //b->ApplyForce( b2Vec2(10,0), b->GetWorldPoint( b2Vec2(1,1) ) );
+                 // b->SetAngularVelocity(degree);
+                 // b->SetTransform(pos, CC_DEGREES_TO_RADIANS(degree));
+                
+            }
+            i++;
+        }
+    }
+    /*
+     // CGSize s = [[CCDirector sharedDirector] winSize];
+     groundBody->SetTransform(
+     
+     
+     
+     //b2Vec2(1,1)
+     //b2Vec2(s.width/2/PTM_RATIO,s.height/2/PTM_RATIO)
+     groundBody->GetWorldCenter()
+     , CC_DEGREES_TO_RADIANS(degree));
+    
+*/
+
 }
 
 @end
