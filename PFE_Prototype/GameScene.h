@@ -17,6 +17,8 @@
 #import "GameData.h"
 #import "StarsLayer.h"
 #import "AnimatedBackground.h"
+#import "CloudsBack.h"
+#import "CloudsFront.h"
 
 @interface GameScene : CCScene {
     

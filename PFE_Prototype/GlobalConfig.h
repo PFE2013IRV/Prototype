@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 // Bloc's bounding box minimum width or height
-static float BLOC_WIDTH = 100.0f;
+static float BLOC_WIDTH = 80.0f;
 
 // Bubble point
 static float BUBBLE_POINT_X = 384.0f;

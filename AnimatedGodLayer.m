@@ -143,8 +143,8 @@
             else
             {
                 pSprite.anchorPoint = ccp(0.0f,0.0f);
-                pSprite.position = ccp(580, 700);
-                [pSprite setScale:0.85];
+                pSprite.position = ccp(590, 700);
+                [pSprite setScale:0.75];
             }
             
             pSprite.visible = NO;

@@ -72,10 +72,18 @@
         
         CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
         
-        float scaleFactor = 100 / bloc._scaledSize.height;
-        addButton.scaleY = scaleFactor;
+        float scaleFactor = 0.0f;
         
-        addButton.position = ccp(84 + y * 120, 69);
+        if(bloc._scaledSize.height > bloc._scaledSize.width)
+            scaleFactor = BLOC_WIDTH / bloc._scaledSize.height;
+        else
+            scaleFactor = BLOC_WIDTH / bloc._scaledSize.width;
+        
+        addButton.scaleY = scaleFactor;
+        addButton.scaleX = scaleFactor;
+        
+        addButton.anchorPoint = ccp(0.5f,0.0f);
+        addButton.position = ccp(84 + y * 120, 30);
         addButton.tag = nbOfBloc;
         
         [itemArray addObject:addButton];

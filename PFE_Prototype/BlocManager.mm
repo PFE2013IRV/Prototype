@@ -300,34 +300,16 @@ static BlocManager* pBlocManager = nil;
         
         // On dessine dans la texture.
         
-        // Calque 1 : lignes
-        
         NSMutableArray* aVertices = i_pData._aDrawingVertices;
+          int nbVertices = aVertices.count;
+        CGPoint vertices[nbVertices];
         
-        glEnable(GL_LINE_LOOP);
-        ccDrawColor4B(209, 75, 75, 255);
-        
-        float lineWidth = 8.0 * CC_CONTENT_SCALE_FACTOR();
-        glLineWidth(lineWidth);
-        
-        for(int i = 1 ; i < aVertices.count ; i++)
+        for(int i = 0; i < nbVertices ; i++)
         {
-            NSValue* pGetPointA = [aVertices objectAtIndex:i-1];
-            NSValue* pGetPointB = [aVertices objectAtIndex:i];
-            
-            CGPoint pointA = [pGetPointA CGPointValue];
-            CGPoint pointB = [pGetPointB CGPointValue];
-            
-            ccDrawLine(pointA, pointB);
+            vertices[i] = [[aVertices objectAtIndex:i] CGPointValue];
         }
         
-        // On ferme la forme
-        NSValue* pGetPointA = [aVertices firstObject];
-        NSValue* pGetPointB = [aVertices lastObject];
-        
-        CGPoint pointA = [pGetPointA CGPointValue];
-        CGPoint pointB = [pGetPointB CGPointValue];
-        ccDrawLine(pointA, pointB);
+        ccDrawSolidPoly(vertices, nbVertices,ccc4f(209.0f/255, 75.0f/255, 75.0f/255, 255.0f/255));
         
         // Fin du rendu
         [pRenderTexture end];

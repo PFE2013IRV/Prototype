@@ -24,7 +24,7 @@
         _pTopSprite = [CCSprite spriteWithFile:@"cloudsTop_back.png"];
         
         _pBottomSprite.anchorPoint = ccp(0.0f,0.0f);
-        _pBottomSprite.position = ccp(0.0f,-50.0f);
+        _pBottomSprite.position = ccp(0.0f,-200.0f);
         
         _pTopSprite.anchorPoint = ccp(0.0f,1.0f);
         _pTopSprite.position = ccp(0.0f,1100);
@@ -33,10 +33,10 @@
         
         
         CCSequence* pMoveClouds = [CCSequence actions:
-                    [CCMoveBy actionWithDuration:5 position:ccp(0,50)]
-                    ,[CCDelayTime actionWithDuration: 6.0f]
-                    ,[CCMoveBy actionWithDuration:5 position:ccp(0,-50)]
-                    ,[CCDelayTime actionWithDuration: 6.0f]
+                    [CCMoveBy actionWithDuration:3 position:ccp(0,50)]
+                    ,[CCDelayTime actionWithDuration: 3.0f]
+                    ,[CCMoveBy actionWithDuration:3 position:ccp(0,-50)]
+                    ,[CCDelayTime actionWithDuration: 3.0f]
                     ,nil];
         
         CCAction* pTop= [CCRepeatForever actionWithAction:pMoveClouds];

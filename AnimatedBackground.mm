@@ -40,21 +40,20 @@
         
         for(int i = 0; i < 8 ; i++)
         {
-           /* int index;
+            int index;
             
-            if(i <= 3)
-            {
+            if(i_planetType == 1)
                 index = i;
-            }
-            else
-                index = i-4;*/
+            else if (i_planetType == 2)
+                index = 7 - i;
             
             NSString* sPrefix = @"BkgBloc_";
-            NSString* sName = [sPrefix stringByAppendingString:[NSString stringWithFormat:@"%d.png",i]];
+            NSString* sName = [sPrefix stringByAppendingString:[NSString stringWithFormat:@"%d.png",index]];
             
             CCSprite* pSprite = [[CCSprite spriteWithFile:sName] autorelease];
             
             [pSprite setScale:i_scale];
+            pSprite.opacity = 150;
             pSprite.anchorPoint = ccp(0.5f, 0.0f);
             pSprite.position = ccp(i_planetPosition.x,1100);
             [_aBlocs addObject:pSprite];
