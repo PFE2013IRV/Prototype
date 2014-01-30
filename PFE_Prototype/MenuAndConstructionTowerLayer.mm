@@ -15,7 +15,7 @@
 @synthesize pMenuLayer = _pMenuLayer;
 @synthesize pPlanetLayer = _pPlanetLayer;
 
--(id) initWithTowerData : (TowerData*) i_pTowerData
+-(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win
 {
     if (self = [super init])
     {
@@ -23,18 +23,12 @@
         
         _pPlanetLayer = [PlanetLayer node];
         _pMenuLayer = [MenuLayer node];
-        _pTowerLayer = [[[ConstructionTowerLayer alloc] initWithTowerData:i_pTowerData] autorelease];
+        _pTowerLayer = [[[ConstructionTowerLayer alloc] initWithTowerData:i_pTowerData WinningHeight:win] autorelease];
         
         _pMenuLayer.delegate = self;
         _pTowerLayer.delegate = self;
         
         [self addChild:_pPlanetLayer];
-        
-        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
-        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
-        pBordersSprite.position = ccp(0.0f,0.0f);
-        [self addChild:pBordersSprite];
-        
         [self addChild:_pTowerLayer];
         [self addChild:_pMenuLayer];
     }

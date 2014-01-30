@@ -15,6 +15,7 @@
 @synthesize _eGameSceneMode;
 @synthesize _pTowerData;
 @synthesize _pWindGodData;
+@synthesize winHeight = _winHeight;
 
 -(id) initGameData : (GameSceneMode) i_eGameSceneMode withTowerData: (TowerData*) i_pTowerData
            withGods: (NSArray*) i_aGodData
@@ -47,6 +48,7 @@
                 _eGameSceneMode = i_eGameSceneMode;
                 _pTowerData = i_pTowerData;
                 _pWindGodData = [[WindGodData alloc] init];
+                _winHeight = 3000;
                 
                 NSLog(@"test");
             }

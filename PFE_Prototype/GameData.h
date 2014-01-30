@@ -47,6 +47,9 @@
 // The data for the wind god. 
 @property (nonatomic,strong) WindGodData* _pWindGodData;
 
+//hauteur de la tour pour gagner la partie
+@property (nonatomic, assign) int winHeight;
+
 
 
 

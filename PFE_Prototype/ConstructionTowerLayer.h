@@ -37,6 +37,9 @@
 @property (nonatomic, strong) CCSprite *pMovingSprite;
 @property (nonatomic, strong) NSMutableArray *aFallingBloc;
 
--(id) initWithTowerData:(TowerData*) i_pTowerData;
+@property (nonatomic, assign) int winningHeight;
+@property (nonatomic, assign) int currentHeightNoScroll;
+
+-(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
 @end
