@@ -56,7 +56,7 @@
         [self addChild:self._pWindGodLayer];
         [self addChild:pCloudsBack];
         [self addChild:self._pSunLayer];
-        [self addChild:self._pPlanetLayer];
+        //[self addChild:self._pPlanetLayer];
         [self addChild:pCloudsFront];
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
@@ -66,10 +66,10 @@
         [self addChild:self._pWindAttackLayer];
         
         
-        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
+        /*CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
         pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
         pBordersSprite.position = ccp(0.0f,0.0f);
-        [self addChild:pBordersSprite];
+        [self addChild:pBordersSprite];*/
         
         [self addChild:_pMenuAndTowerLayer];
         

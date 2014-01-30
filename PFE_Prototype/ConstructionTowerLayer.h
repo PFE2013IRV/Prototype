@@ -11,7 +11,19 @@
 #import "TowerLayer.h"
 #import "BlocData.h"
 
+@protocol ConstructionTowerDelegate <NSObject>
+
+@required
+-(void)movePlanet:(int)height;
+
+@end // end of delegate protocol
+
 @interface ConstructionTowerLayer : TowerLayer
+{
+    id <ConstructionTowerDelegate> _delegate;
+}
+
+@property (nonatomic, strong) id delegate;
 
 @property (nonatomic, strong) BlocData *pMovingBlocData;
 @property (nonatomic, assign) BOOL blocNotPlace;
