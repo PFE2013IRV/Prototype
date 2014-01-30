@@ -39,7 +39,7 @@ enum {
      CGSize s = [[CCDirector sharedDirector] winSize];
      
      b2Vec2 gravity;
-     gravity.Set(0.0f, -1.00f);
+     gravity.Set(0.0f, -5.0f);
      world = new b2World(gravity);
      
      // Do we want to let bodies sleep?
@@ -132,6 +132,7 @@ enum {
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(p.x-50/PTM_RATIO, p.y-50/PTM_RATIO);
     //bodyDef.userData = sprite;
+   
     b2Body *body = world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[100];
@@ -149,7 +150,7 @@ enum {
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &polygonShape;
     fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.3f;
+    fixtureDef.friction = 10;//0.3f;
     body->CreateFixture(&fixtureDef);
     
     
