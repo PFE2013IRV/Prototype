@@ -8,28 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "FireParticleSprite.h"
+
+#define ARC4RANDOM_MAX 0x100000000
 
 @interface FireAttackLayer : CCNode {
     
 }
 
 -(void)addFireParticle:(id)i_boutonClic;
+-(void)initParticles;
+-(float) randFloat:(float)min :(float)max;
+-(void)moveParticle:(CCParticleSystem*)particle withIndex:(int)index ;
 
-// gauche middle
-@property(nonatomic,strong)CCParticleSystem* _pFireParticle1;
-// droite middle
-@property(nonatomic,strong)CCParticleSystem* _pFireParticle2;
 // gauche bas
+@property(nonatomic,strong)CCParticleSystem* _pFireParticle1;
+// gauche middle
+@property(nonatomic,strong)CCParticleSystem* _pFireParticle2;
+// gauche haut
 @property(nonatomic,strong)CCParticleSystem* _pFireParticle3;
 // droite bas
 @property(nonatomic,strong)CCParticleSystem* _pFireParticle4;
-// god
+// droite middle
 @property(nonatomic,strong)CCParticleSystem* _pFireParticle5;
+// droite haut
+@property(nonatomic,strong)CCParticleSystem* _pFireParticle6;
 
 // tableau de particles
 @property(nonatomic,strong)NSMutableArray* _aFireParticles;
 
-@property int _i;
 
 @end

@@ -32,14 +32,6 @@
 // the current game data;
 - (void) refreshElementaryGodInfo;
 
-// Add flames with upset...
-- (void) addGodParticle;
-
-
-
-
-// Flames when god is upset
-@property (nonatomic, strong) CCParticleSystem* _pGodParticle;
 @property (nonatomic,strong) GameData* _pCurrGameData;
 @property (nonatomic,strong) GodData* _pGodData;
 

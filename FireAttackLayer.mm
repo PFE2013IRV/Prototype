@@ -17,28 +17,16 @@
 @synthesize _pFireParticle4;
 @synthesize _pFireParticle5;
 @synthesize _aFireParticles;
-@synthesize _i;
+@synthesize _pFireParticle6;
 
 -(id) init
 {
 	if( (self=[super init]) )
     {
-        _i = 0;
         //init particles
-        _pFireParticle1=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-        _pFireParticle1.position=ccp(20,512);
-        _pFireParticle2=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-        _pFireParticle2.position=ccp(748,512);
-        _pFireParticle3=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-        _pFireParticle3.position=ccp(20,158);
-        _pFireParticle4=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-        _pFireParticle4.position=ccp(748,158);
-        _pFireParticle5=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-        _pFireParticle5.position=ccp(190,766);
-        _pFireParticle5.lifeVar=0.33;
-        
+        [self initParticles];
         //init array
-        _aFireParticles=[[NSMutableArray alloc]initWithObjects:_pFireParticle1,_pFireParticle2, _pFireParticle3, _pFireParticle4, _pFireParticle5, nil];
+        _aFireParticles=[[NSMutableArray alloc]initWithObjects:_pFireParticle1,_pFireParticle2, _pFireParticle3, _pFireParticle4, _pFireParticle5, _pFireParticle6, nil];
         
         // Bouton add fire attack
         CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle:)];
@@ -50,25 +38,86 @@
         
         // ajoute le menu
         [self addChild:addMenu];
-
+        
 	}
 	return self;
+}
+
+-(void)initParticles{
+    _pFireParticle1=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+    
+    _pFireParticle2=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+    
+    _pFireParticle3=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+    
+    _pFireParticle4=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+    
+    _pFireParticle5=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+    
+    _pFireParticle6=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+}
+
+-(void)initParticlesPosition{
+    _pFireParticle1.position=ccp(-52,178);
+    
+    _pFireParticle2.position=ccp(-52,591);
+    
+    _pFireParticle3.position=ccp(-52,1064);
+    
+    _pFireParticle4.position=ccp(820,178);
+    
+    _pFireParticle5.position=ccp(820,591);
+    
+    _pFireParticle6.position=ccp(820,1064);
 }
 
 
 -(void)addFireParticle:(id)i_boutonClic
 {
-    if(_i < _aFireParticles.count){
-        FireParticleSprite* sprite = [FireParticleSprite node];
-        CCParticleSystem* particle = [_aFireParticles objectAtIndex:_i];
-        sprite.position = particle.position;
-        [sprite addChild:particle];
-        [sprite makeRandomMovement];
-        [self addChild:sprite];
-
-    _i++;
+    [self initParticlesPosition];
+    for(int i = 0; i < _aFireParticles.count; i++){
+        CCParticleSystem* particle = [_aFireParticles objectAtIndex:i];
+        [self addChild:particle];
+        [self moveParticle:particle withIndex:i];
     }
     
+    
+}
+
+-(void)moveParticle:(CCParticleSystem*)particle withIndex:(int)index{
+    CGPoint target;
+    switch (index) {
+        case 0:
+            target = ccp(820, [self randFloat:400 :1064]);
+            break;
+        case 1:
+            target = ccp(820, [self randFloat:178 :1064]);
+            break;
+        case 2:
+            target = ccp(820, [self randFloat:178 :782]);
+            break;
+        case 3:
+            target = ccp(-52, [self randFloat:400 :1064]);
+            break;
+        case 4:
+            target = ccp(-52, [self randFloat:178 :1064]);
+            break;
+        case 5:
+            target = ccp(-52, [self randFloat:178 :782]);
+            break;
+            
+        default:
+            break;
+    }
+    ccTime moveDuration = ccpDistance(self.position, target) / 80;
+    
+    id randomMoveAction = [CCMoveTo actionWithDuration:moveDuration position:target];
+    [particle runAction:randomMoveAction];
+}
+
+-(float) randFloat:(float)min :(float)max{
+    float x = min + ((float)arc4random() / ARC4RANDOM_MAX) * (max - min);
+    return x;
 }
 
 @end

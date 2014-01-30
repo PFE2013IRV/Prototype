@@ -11,7 +11,6 @@
 
 @implementation ElementGodsLayer
 
-@synthesize _pGodParticle;
 @synthesize _pGodData;
 @synthesize _pCurrGameData;
 @synthesize _isAngry;
@@ -29,18 +28,10 @@
     
 	if( (self=[super initWithGod:eDefaultGod withAnims:aAnims withDelays:aDelays]))
     {
-
+        
         // On lance la séquence d'actions par défaut : les animations FireGod_static
         
         [self playElementaryStaticAnims: nil];
-       
-        ///////////////////////////////////////////////////////////////////
-        ///////     Initialisations des effets de particules dieux    /////
-        ///////////////////////////////////////////////////////////////////
-        
-        _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"godParticle.plist"];
-        
-
 	}
 	return self;
 }
@@ -66,17 +57,17 @@
     
     CCSequence* pSequence = nil;
     
-        // On met en place une séquence d'animations alternant static1 et static2
+    // On met en place une séquence d'animations alternant static1 et static2
     pSequence =
-        [CCSequence actions:
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
-         [CCDelayTime actionWithDuration: 3.2f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
-         [CCDelayTime actionWithDuration: 2.4f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
-    nil];
-
+    [CCSequence actions:
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
+     [CCDelayTime actionWithDuration: 3.2f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
+     [CCDelayTime actionWithDuration: 2.4f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+     nil];
+    
     
     // La séquence se joue "pour toujours"
     //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
@@ -95,12 +86,12 @@
     [self refreshElementaryGodInfo];
     
     CCSequence* pSequence =
-        [CCSequence actions:
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"colere1"],
-         [CCDelayTime actionWithDuration: 1.6f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere1"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
-         nil];
+    [CCSequence actions:
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"colere1"],
+     [CCDelayTime actionWithDuration: 1.6f],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere1"],
+     [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
+     nil];
     
     [self runAction:pSequence];
 }
