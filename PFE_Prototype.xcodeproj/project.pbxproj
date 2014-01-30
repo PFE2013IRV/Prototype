@@ -272,6 +272,7 @@
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
+		FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3DE914189A8DC0003ED864 /* Wood_texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -774,6 +775,7 @@
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
 		A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCRotationAround.mm; sourceTree = "<group>"; };
 		A3A4B5BE188938E200C54E5D /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		FA3DE914189A8DC0003ED864 /* Wood_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Wood_texture.png; path = Resources/Wood_texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1157,6 +1159,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA3DE914189A8DC0003ED864 /* Wood_texture.png */,
 				8AE87F6E18994B2F000BEE47 /* Sky */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				54A4835F188C3979003D47B8 /* dustParticle.plist */,
@@ -1793,6 +1796,7 @@
 				8A4091481896B14D009CD5B0 /* FireGod_colere2.plist in Resources */,
 				8A4091441896B13C009CD5B0 /* FireGod_wind.plist in Resources */,
 				8A2242741897EE8400C451A5 /* triangle.png in Resources */,
+				FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
 				8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,

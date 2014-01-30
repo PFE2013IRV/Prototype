@@ -42,6 +42,10 @@
 @property (nonatomic,assign) CGSize _scaledSize;
 // Gravity center of the scaled shape
 @property (nonatomic,assign) CGPoint _gravityCenter;
+// Tests if the bloc has a smaller base
+@property(nonatomic,assign) BOOL _hasSmallerBase;
+// The base's width
+@property(nonatomic,assign) float _baseWidth;
 
 
 

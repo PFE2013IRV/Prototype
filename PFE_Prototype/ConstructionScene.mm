@@ -5,7 +5,7 @@
 //
 
 #import "ConstructionScene.h"
-
+#import "BlocManager.h"
 
 @implementation ConstructionScene
 
@@ -90,6 +90,20 @@
         
         // ajoute le menu
         [self addChild:addMenu];
+        
+        /////// TESTS
+        
+        BlocBagData* pBlocBagData = [BlocBagData GetBlocBagData];
+        
+        BlocData* pBloc = [pBlocBagData._aBlocs objectAtIndex:1];
+        BlocManager* pBM = [BlocManager GetBlocManager];
+        
+        
+        CCSprite* pSpriteBloc = [pBM ApplyTexture:pBloc];
+        pSpriteBloc.position = ccp(0.0f,0.0f);
+        pSpriteBloc.anchorPoint = ccp(0.0f,0.0f);
+        
+        [self addChild:pSpriteBloc];
         
         
         [self scheduleUpdate];
