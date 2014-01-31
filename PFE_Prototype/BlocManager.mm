@@ -327,7 +327,7 @@ static BlocManager* pBlocManager = nil;
         //[self ApplyMaterialToTexture:i_pData withMaskTexture:pRenderTexture];
         
         
-        /*CCSprite* pMaskSprite = [CCSprite spriteWithTexture:pRenderTexture.sprite.texture];
+       /* CCSprite* pMaskSprite = [CCSprite spriteWithTexture:pRenderTexture.sprite.texture];
         
         NSString* sSuffix = @"_texture.png";
         NSString* sTextureFileName;

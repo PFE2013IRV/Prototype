@@ -92,7 +92,7 @@
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevelBalance:0]] autorelease]]];
    
     //Code pour Max et Thibault : Construction
-   // [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
+    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
 }
 
 @end
