@@ -47,6 +47,7 @@
 // The base's width
 @property(nonatomic,assign) float _baseWidth;
 @property(nonatomic,assign) float _specialBaseOffset;
+@property(nonatomic,assign) int _indexInBlocBag;
 
 
 

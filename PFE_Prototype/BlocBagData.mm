@@ -6,11 +6,13 @@
 //
 
 #import "BlocBagData.h"
+#import "BlocManager.h"
 
 @implementation BlocBagData
 
 @synthesize _aBlocs;
 @synthesize _eBagSize;
+@synthesize _aBlocTextures;
 
 // Instance variable for the bloc bag data
 static BlocBagData* pBlocBagData = nil;
@@ -35,6 +37,18 @@ static BlocBagData* pBlocBagData = nil;
         [_aBlocs addObjectsFromArray:i_aBlocs];
         
         _eBagSize = i_eBagSize;
+        
+        // Création des sprites
+        _aBlocTextures = [[NSMutableArray alloc] init];
+        BlocManager* pBM = [BlocManager GetBlocManager];
+        
+        for(int i = 0 ; i < i_aBlocs.count; i++)
+        {
+            CCSprite* pSprite = [pBM GetTexturedSprite:[i_aBlocs objectAtIndex:i]];
+            CCTexture2D* pTexture = pSprite.texture;
+            [_aBlocTextures addObject:pTexture];
+        }
+        
     }
 }
 

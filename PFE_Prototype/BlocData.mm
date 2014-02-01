@@ -19,6 +19,7 @@
 @synthesize _baseWidth;
 @synthesize _hasSmallerBase;
 @synthesize _specialBaseOffset;
+@synthesize _indexInBlocBag;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -34,6 +35,7 @@
     
     else if (self = [super init])
     {
+        _indexInBlocBag = 0;
         _aVertices = [[NSMutableArray alloc] initWithArray:i_aVertices];
         _eBlocMaterial = i_eBlocMaterial;
         

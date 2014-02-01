@@ -73,7 +73,6 @@
         int nbOfBloc = y + tag * 6;
         
         BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
-        NSString *pictName = [BlocManager GetNameOfPictureFromModel:[_pBagData._aBlocs objectAtIndex:nbOfBloc]];
         
         CCSprite* blocSprite = [BlocManager GetSpriteFromModel:bloc];
         
@@ -85,7 +84,7 @@
             scaleFactor = BLOC_WIDTH / bloc._scaledSize.height;
         else
             scaleFactor = BLOC_WIDTH / bloc._scaledSize.width;
-        //[self addChild:addButtonSprite];
+        
         addButtonSprite.scaleY = scaleFactor;
         addButtonSprite.scaleX = scaleFactor;
         

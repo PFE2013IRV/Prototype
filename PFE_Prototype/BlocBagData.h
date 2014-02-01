@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "GlobalConfig.h"
 #import "BlocData.h"
+#import "CCTexture2D.h"
 
 @interface BlocBagData : NSObject
 
@@ -22,10 +23,13 @@
 
 // The bloc data array
 @property (nonatomic,strong) NSMutableArray* _aBlocs;
+
 // The maximum size of the bag (game unlock)
 // The legal values are the values of the BagSize enum
 @property (nonatomic,assign) BagSize _eBagSize;
 
+// The textures corresponding to the blocs of the blocbag
+@property (nonatomic,strong) NSMutableArray* _aBlocTextures;
 
 @end
 

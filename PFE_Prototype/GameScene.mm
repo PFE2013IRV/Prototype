@@ -25,7 +25,9 @@
         _pPlanetLayer = [PlanetLayer node];
         _pWindGodLayer = [WindGodLayer node];
         _pDustLayer = [DustLayer node];
-        _pStarsLayer = [[StarsLayer alloc] init];
+        
+        if(!SIMULATOR_MODE)
+            _pStarsLayer = [[StarsLayer alloc] init];
     }
     return self;
 }

@@ -37,7 +37,9 @@
 // i_pModel : the bloc model to be written in a PNG file
 -(void) MakePNGMask: (BlocData*) i_pData;
 
-- (CCSprite*) GetTexturedSprite:(CCSprite*) i_pTextureSprite maskSprite:(CCSprite*) i_pMaskSprite withBlocData:(BlocData*) i_pData;
+// Get the textured sprite corresponding to te given BlocData
+// i_pModel : the bloc data to be textured
+- (CCSprite*) GetTexturedSprite: (BlocData*) i_pData;
 
 // Save a bloc
 // i_pModel : the bloc model to be saved
