@@ -75,7 +75,9 @@
         BlocData *bloc = [_pBagData._aBlocs objectAtIndex:nbOfBloc];
         NSString *pictName = [BlocManager GetNameOfPictureFromModel:[_pBagData._aBlocs objectAtIndex:nbOfBloc]];
         
-        CCMenuItemImage *addButton = [CCMenuItemImage itemWithNormalImage:pictName selectedImage:pictName target:self selector:@selector(addBloc:)];
+        CCSprite* blocSprite = [BlocManager GetSpriteFromModel:bloc];
+        
+        CCMenuItemSprite* addButtonSprite = [CCMenuItemSprite itemWithNormalSprite:blocSprite selectedSprite:nil target:self selector:@selector(addBloc:)];
         
         float scaleFactor = 0.0f;
         
@@ -83,15 +85,15 @@
             scaleFactor = BLOC_WIDTH / bloc._scaledSize.height;
         else
             scaleFactor = BLOC_WIDTH / bloc._scaledSize.width;
+        //[self addChild:addButtonSprite];
+        addButtonSprite.scaleY = scaleFactor;
+        addButtonSprite.scaleX = scaleFactor;
         
-        addButton.scaleY = scaleFactor;
-        addButton.scaleX = scaleFactor;
+        addButtonSprite.anchorPoint = ccp(0.5f,0.0f);
+        addButtonSprite.position = ccp(84 + y * 120, 30);
+        addButtonSprite.tag = nbOfBloc;
         
-        addButton.anchorPoint = ccp(0.5f,0.0f);
-        addButton.position = ccp(84 + y * 120, 30);
-        addButton.tag = nbOfBloc;
-        
-        [itemArray addObject:addButton];
+        [itemArray addObject:addButtonSprite];
     }
     
     return itemArray;

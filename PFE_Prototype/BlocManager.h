@@ -35,7 +35,9 @@
 
 // Create a PNG Image from a BlocModel
 // i_pModel : the bloc model to be written in a PNG file
--(void) MakePNGFromModel: (BlocData*) i_pData;
+-(void) MakePNGMask: (BlocData*) i_pData;
+
+- (CCSprite*) GetTexturedSprite:(CCSprite*) i_pTextureSprite maskSprite:(CCSprite*) i_pMaskSprite withBlocData:(BlocData*) i_pData;
 
 // Save a bloc
 // i_pModel : the bloc model to be saved
@@ -46,8 +48,6 @@
 
 // Delete all the bloc PNG files located in the Documents directory 
 -(void) DeletePNGFiles;
-
--(void) ApplyMaterialToTexture:(BlocData*) i_pData withMaskTexture: (CCRenderTexture*) i_pMaskTextureRenderer;
 
 // Refresh information in the bloc data when a bloc was translated with a (x,y) vector
 // i_pData : the bloc model to move

@@ -93,6 +93,8 @@
 	<key>tangentialAcceleration</key>
 	<string>0.000000</string>
 	<key>textureFileName</key>
-	<string>ParticleTexture.png</string>
+	<string>Fire_Particle.png</string>
+	<key>New item</key>
+	<string></string>
 </dict>
 </plist>

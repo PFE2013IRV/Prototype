@@ -30,7 +30,7 @@
             float opacity = (float)(arc4random() % 100);
             float scale = (float)(1.0f + (arc4random() % 20)) / 100.0f;
             
-            CCSprite* pSprite = [[CCSprite alloc] initWithFile:@"Fire_Particle.png"];
+            CCSprite* pSprite = [[CCSprite alloc] initWithFile:@"ParticleTexture.png"];
             
             pSprite.anchorPoint = ccp(0.0f,0.0f);
             [pSprite setPosition:position];
