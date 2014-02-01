@@ -69,6 +69,7 @@
 		8AB50C5C18673AE60012A387 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5B18673AE60012A387 /* GameScene.mm */; };
 		8AB50C5F18673BEF0012A387 /* SkyLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C5E18673BEF0012A387 /* SkyLayer.mm */; };
 		8AB8AD6D188A831400997BD3 /* borders.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB8AD6C188A831400997BD3 /* borders.png */; };
+		8ABE8F39189D390500687542 /* Glass_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABE8F38189D390500687542 /* Glass_texture.png */; };
 		8AC11E2D1888508B0029062B /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2C1888508B0029062B /* planet.png */; };
 		8AC11E32188851C60029062B /* God_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E2F188851C60029062B /* God_Particle.png */; };
 		8AC11E33188851C60029062B /* Wind_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC11E30188851C60029062B /* Wind_Particle.png */; };
@@ -369,6 +370,7 @@
 		8AB50C5D18673BEF0012A387 /* SkyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyLayer.h; sourceTree = "<group>"; };
 		8AB50C5E18673BEF0012A387 /* SkyLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SkyLayer.mm; sourceTree = "<group>"; };
 		8AB8AD6C188A831400997BD3 /* borders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = borders.png; path = Resources/borders.png; sourceTree = "<group>"; };
+		8ABE8F38189D390500687542 /* Glass_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Glass_texture.png; path = Resources/Glass_texture.png; sourceTree = "<group>"; };
 		8AC11E2C1888508B0029062B /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
 		8AC11E2F188851C60029062B /* God_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = God_Particle.png; sourceTree = "<group>"; };
 		8AC11E30188851C60029062B /* Wind_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wind_Particle.png; sourceTree = "<group>"; };
@@ -1174,6 +1176,7 @@
 				8AE87F6E18994B2F000BEE47 /* Sky */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				54A4835F188C3979003D47B8 /* dustParticle.plist */,
+				8ABE8F38189D390500687542 /* Glass_texture.png */,
 				54A4835A188C3542003D47B8 /* windParticle.plist */,
 				8A2242711897E6E700C451A5 /* square.png */,
 				8AB8AD6C188A831400997BD3 /* borders.png */,
@@ -1830,6 +1833,7 @@
 				54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */,
 				54A48360188C3979003D47B8 /* dustParticle.plist in Resources */,
 				8A4091401896B0A4009CD5B0 /* WindGod_static3.png in Resources */,
+				8ABE8F39189D390500687542 /* Glass_texture.png in Resources */,
 				8AE87F7618994B3D000BEE47 /* cloudsTop_front.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,

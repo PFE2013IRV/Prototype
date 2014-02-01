@@ -59,25 +59,28 @@ static BlocManager* pBlocManager = nil;
 
 - (CCSprite*) GetTexturedSprite: (BlocData*) i_pData
 {
-    
     // On récupère le path du documents directory
     NSArray* aPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* sDocumentsDirectory = [aPaths objectAtIndex:0];
     
     NSString* sPathWithFileName = [sDocumentsDirectory stringByAppendingPathComponent:i_pData._sFileName];
     
-    NSString* sSuffix = @"_texture.png";
-    NSString* sTextureFileName;
-    
-    if(i_pData._eBlocMaterial == MAT_WOOD)
-        sTextureFileName = [@"Wood" stringByAppendingString:sSuffix];
-    
-    CCSprite* pTextureSprite = [CCSprite spriteWithFile:sTextureFileName] ;
     CCSprite* pMaskSprite = [[CCSprite alloc] initWithFile:sPathWithFileName] ;
     pMaskSprite.flipY = YES;
 
     if(!SIMULATOR_MODE)
     {
+        
+        NSString* sSuffix = @"_texture.png";
+        NSString* sTextureFileName;
+        
+        if(i_pData._eBlocMaterial == MAT_WOOD)
+            sTextureFileName = [@"Wood" stringByAppendingString:sSuffix];
+        else if(i_pData._eBlocMaterial == MAT_GLASS)
+            sTextureFileName = [@"Glass" stringByAppendingString:sSuffix];
+        
+        CCSprite* pTextureSprite = [CCSprite spriteWithFile:sTextureFileName] ;
+        
         CCRenderTexture* pRt = [CCRenderTexture renderTextureWithWidth:pMaskSprite.contentSize.width height:pMaskSprite.contentSize.height];
         
         float dx = pTextureSprite.position.x - pMaskSprite.position.x;
@@ -105,7 +108,6 @@ static BlocManager* pBlocManager = nil;
     }
     else
     {
-        //pMaskSprite.flipY = YES;
         return pMaskSprite;
         
     }
