@@ -83,8 +83,8 @@
 								   depthFormat:0
 							preserveBackbuffer:NO
 									sharegroup:nil
-								 multiSampling:YES
-							   numberOfSamples:4];
+								 multiSampling:NO
+							   numberOfSamples:0];
 
 	// Enable multiple touches
 	[glView setMultipleTouchEnabled:YES];
