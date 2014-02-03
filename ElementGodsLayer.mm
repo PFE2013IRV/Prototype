@@ -49,7 +49,7 @@
 - (void) playElementaryStaticAnims  : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    [self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé
@@ -79,7 +79,7 @@
 -(void) playAngerAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    [self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé
@@ -99,7 +99,7 @@
 -(void) playCalmDownAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    //[self stopAllRuningAnimations];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé
@@ -119,7 +119,7 @@
 -(void) playWindAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    [self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé

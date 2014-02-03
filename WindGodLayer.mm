@@ -37,7 +37,7 @@
 - (void) playWindStaticAnims : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+
     
     // On refraichit l'information sur le dieu du vent
     // au cas où celle-ci ait changé
@@ -49,6 +49,7 @@
     pSequence =
     [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
          [CCDelayTime actionWithDuration: 4.0f],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
@@ -58,7 +59,9 @@
 
     // La séquence se joue "pour toujours"
     //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
-    CCAction* pSequenceForever = [CCRepeatForever actionWithAction:pSequence];
+    CCSequence* pSequenceForever = [CCSequence actions:
+                                    [CCRepeatForever actionWithAction:pSequence],
+                                    nil];
     
     [self runAction:pSequenceForever];
 }
@@ -74,7 +77,8 @@
 {
     
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    [self stopAllActions];
+    [self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu du vent
     // au cas où celle-ci ait changé
@@ -100,8 +104,8 @@
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveDown"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
          [CCDelayTime actionWithDuration: 2.8f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveDown"],
          [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveDown"],
          nil];
         
         _godIsUp = NO;
@@ -119,8 +123,8 @@
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveUp"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
          [CCDelayTime actionWithDuration: 2.8f],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveUp"],
          [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveUp"],
          nil];
         
         _godIsUp = YES;
@@ -133,7 +137,7 @@
 - (void) playCuteAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations];
+    [self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu du vent
     // au cas où celle-ci ait changé
@@ -151,7 +155,9 @@
     
     // La séquence se joue "pour toujours"
     //... ou du moins jusqu'à ce qu'on l'arrête nous mêmes !
-    CCAction* pSequenceForever = [CCRepeatForever actionWithAction:pSequence];
+    CCSequence* pSequenceForever = [CCSequence actions:
+                                    [CCRepeatForever actionWithAction:pSequence],
+                                    nil];
     
     [self runAction:pSequenceForever];
     

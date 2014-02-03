@@ -43,7 +43,8 @@
 
 -(void)movePlanet:(int)height
 {
-    _pPlanetLayer.position = ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - height);
+    CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - height)];
+    [_pPlanetLayer runAction:pMoveTo];
 }
 
 @end

@@ -46,7 +46,7 @@
 - (void) runMoveTo: (id) sender data: (void*) data;
 
 // This function stops all the animations on the animated god.
-- (void) stopAllRuningAnimations;
+- (void) stopAllRuningAnimations: (id) sender;
 
 
 

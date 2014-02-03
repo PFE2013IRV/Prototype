@@ -6,6 +6,7 @@
 
 #import "ConstructionScene.h"
 #import "BlocManager.h"
+#import "GlobalConfig.h"
 
 @implementation ConstructionScene
 
@@ -137,7 +138,7 @@
         }
         [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
         [_pElementGodsLayer playAngerAnim: nil];
-        [super._pWindGodLayer playCuteAnim:nil];
+        [super._pWindGodLayer moveWindGod:nil];
         
     }
     else if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
@@ -152,7 +153,7 @@
             pGodData._isAngry = YES;
         }
         [_pElementGodsLayer playCalmDownAnim: nil];
-        [super._pWindGodLayer playWindStaticAnims:nil];
+        [super._pWindGodLayer moveWindGod:nil];
         [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
     }
 }

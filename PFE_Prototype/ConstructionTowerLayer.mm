@@ -84,6 +84,8 @@
 {
     if(_isTouch)
     {
+        _pMovingSprite.scale = 1.0;
+        
         //récupère les coordonnées pour cocos2D
         CGPoint location = [self convertTouchToNodeSpace: touch];
 
@@ -91,7 +93,7 @@
         
         if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
         {
-            [self placeBlocToTower];
+            _pMovingSprite.scale = 1.2;
         }
     }
 }
@@ -114,7 +116,9 @@
     centerWidthBloc += _centerWidthTower;
     centerHeighBloc += _HeightTower;
     
-    _pMovingSprite.position = ccp(centerWidthBloc, centerHeighBloc);
+    _pMovingSprite.scale = 1.0;
+    CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(centerWidthBloc, centerHeighBloc)];
+    [_pMovingSprite runAction:pMoveTo];
 }
 
 
@@ -160,6 +164,7 @@
         
         if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
         {
+            [self placeBlocToTower];
             [self addBlocToTower];
         }
         else
@@ -167,7 +172,7 @@
             [self addToFallingBloc];
         }
         
-        _pMovingSprite = nil;
+        
         _pMovingBlocData = nil;
     }
 }
@@ -186,7 +191,7 @@
     }
     else
     {
-        if (_HeightTower > 650)
+        if (_HeightTower > SCROLLING_HEIGHT)
         {
             if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
             {
@@ -202,6 +207,8 @@
         
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
     }
+    
+    _pMovingSprite = nil;
 }
 
 -(void)moveAllBlocTower
@@ -210,15 +217,40 @@
     
     for (CCSprite* blocSprite in self._aBlocsTowerSprite)
     {
-        blocSprite.position = ccp(blocSprite.position.x, blocSprite.position.y - height);
+        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - height)];
+        [blocSprite runAction:pMoveTo];
     }
 }
 
 
 -(void)addToFallingBloc
 {
+    _pMovingSprite.scale = 0.8;
+    _pMovingSprite.opacity = 100;
     [_aFallingBloc addObject:_pMovingBlocData];
+    CCSequence* pFallAndRemove = [CCSequence actions:
+                         [CCCallFunc actionWithTarget:self selector:@selector(movingSpriteFalling:)],
+                         [CCDelayTime actionWithDuration: 0.8f],
+                         [CCCallFunc actionWithTarget:self selector:@selector(removeMovingSpriteFromParent:)],
+                         nil];
+    
+    
+    [self runAction:pFallAndRemove];
+}
+
+- (void) movingSpriteFalling : (id) sender
+{
+    CCSequence* pFall = [CCSequence actions:
+                [CCMoveTo actionWithDuration:0.8f position:ccp(_pMovingSprite.position.x, -10)],
+                nil];
+    
+    [_pMovingSprite runAction:pFall];
+}
+
+- (void) removeMovingSpriteFromParent : (id) sender
+{
     [_pMovingSprite removeFromParent];
+    _pMovingSprite = nil;
 }
 
 

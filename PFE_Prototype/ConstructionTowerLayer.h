@@ -42,4 +42,7 @@
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
+- (void) movingSpriteFalling : (id) sender;
+- (void) removeMovingSpriteFromParent : (id) sender;
+
 @end

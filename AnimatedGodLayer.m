@@ -171,7 +171,7 @@
     NSString* sAnimName = [sGodType stringByAppendingString:(NSString*) data];
     CCSprite* pAnimSprite = (CCSprite*) [self._aGodSprites objectForKey:sAnimName];
     
-    [pAnimSprite stopAllActions];
+    //[pAnimSprite stopAllActions];
     [pAnimSprite setVisible:YES];
     
     [pAnimSprite runAction:[self._aGodActions objectForKey:sAnimName]];
@@ -203,7 +203,7 @@
 }
 
 
-- (void) stopAllRuningAnimations
+- (void) stopAllRuningAnimations: (id)sender
 {
     // On arrête toutes les actions sur les sprites du Dieu concerné.
     NSMutableDictionary* aCurrentDico;
