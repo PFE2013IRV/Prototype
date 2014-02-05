@@ -304,7 +304,6 @@
 
 -(void) zoomOutTower:(ccTime)delta
 {
-    // just to be sure no other actions interfere
     [self stopAllActions];
 
     _isZooming = YES;
@@ -321,26 +320,6 @@
         
 
     
-}
-
--(void) update:(ccTime)delta
-{
-    
-    if (_isZooming)
-    {
-       /* CGSize screenSize = [CCDirector sharedDirector].winSize;
-        CGPoint screenCenter = CGPointMake(screenSize.width * 0.5f,
-                                           screenSize.height);
-        
-        _zoomOutPosition.x = self.position.x;
-        _zoomOutPosition.y = 1024 - self.boundingBox.size.height;
-        
-        CGPoint offsetToCenter = ccpSub(_zoomOutPosition, self.position);
-        self.position = ccpMult(offsetToCenter, self.scale);
-        self.position = ccpSub(self.position, ccpMult(offsetToCenter,
-                                                                  (_scalingFactor - self.scale) /
-                                                                  (_scalingFactor - 1.0f)));*/
-    }
 }
 
 -(void)movePlanet:(int)height
