@@ -17,6 +17,7 @@
     if(self = [super init])
     {
         _aBlocs = [[NSMutableArray alloc] init];
+        
     }
     
     return self;

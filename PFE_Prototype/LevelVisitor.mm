@@ -36,13 +36,13 @@ static LevelVisitor* pLevelVisitor = nil;
     // chargement ici.
     
     // Les dieux (un seul, le dieu du feu)
-    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
+    GodData* pFireGod = [[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:GOD_RESPECT_DEFAULT withAngerFlag:NO withActiveFlag:YES];
     NSArray* aGods = [[NSArray alloc] initWithObjects:pFireGod, nil];
     
     // La tour, vide puisque c'est le début du niveau.
     TowerData* pTower = [[TowerData alloc] init];
     
-     _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods] autorelease];
+     _pCurrentGameData = pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods];
     
     NSLog(@"End start level");
     

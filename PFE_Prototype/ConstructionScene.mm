@@ -164,5 +164,52 @@
     }
 }
 
+-(void) update:(ccTime)delta
+{
+    
+     GameData* pCurrentGameData = super._pGameData;
+     GodData* pCurrentGodData = nil;
+     if(pCurrentGameData)
+     pCurrentGodData = [pCurrentGameData getCurrentGod];
+     
+     if(pCurrentGodData)
+     {
+         if(pCurrentGodData._respect < GOD_ANGER_LIMIT)
+         {
+             
+             if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
+             {
+                 [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
+             }
+             // Afin de ne faire cette opération qu'une fois
+             if(pCurrentGodData._isAngry == NO)
+             {
+                 // On lance l'animation une bonne fois pour toutes !
+                 [_pElementGodsLayer playAngerAnim: nil];
+                 // On met à jour la colère du dieu
+                 [pCurrentGodData raiseGodAnger];
+             }
+             
+         }
+         else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
+         {
+             if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
+             {
+                 [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
+             }
+             
+             // Comme précédemment, afin de ne le "calmer" qu'une fois
+             if(pCurrentGodData._isAngry == YES)
+             {
+                 [_pElementGodsLayer playCalmDownAnim: nil];
+                 [pCurrentGodData calmDownGodAnger];
+             }
+         }
+     }
+
+}
+
+
+
 
 @end

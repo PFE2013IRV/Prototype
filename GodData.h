@@ -23,6 +23,16 @@
 // return value : nil
 -(id) init;
 
+// raise the God's anger by changing its anger status
+-(void) raiseGodAnger;
+
+// calm down the God's anger by changing its anger status
+-(void) calmDownGodAnger;
+
+// Increases the respect from the elementary god
+-(void) increaseRespect: (int) i_respect;
+
+
 
 // The god's elementary type. Legal values or the values
 // of the enum GodType.
