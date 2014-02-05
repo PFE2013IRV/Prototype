@@ -28,6 +28,9 @@
 @synthesize startingScroll = _startingScroll;
 @synthesize possibleScrollSize = _possibleScrollSize;
 @synthesize scrollPosition = _scrollPosition;
+@synthesize _currentGodData;
+@synthesize _currentGameData;
+@synthesize _aParticlesArray;
 @synthesize isZooming = _isZooming;
 @synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
@@ -144,8 +147,6 @@
     {
         int heightScroll = _startingScroll - location.y;
         int testScrollPosition = _scrollPosition - heightScroll;
-        
-        NSLog(@"%d  -  %d    -    %d", testScrollPosition, _possibleScrollSize, heightScroll);
         
         if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
         {
