@@ -30,6 +30,12 @@
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
 
+//bool pour savoir si on a appuyé sur l'écran pour scroller
+@property (nonatomic, assign) BOOL isScrolling;
+@property (nonatomic, assign) int startingScroll;
+@property (nonatomic, assign) int possibleScrollSize;
+@property (nonatomic, assign) int scrollPosition;
+
 @property (nonatomic, assign) int HeightTower;
 @property (nonatomic, assign) int centerWidthTower;
 @property (nonatomic, assign) CGRect towerMagnetization;

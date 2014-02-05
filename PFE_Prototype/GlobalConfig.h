@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 // Hauteur avant scroll de tour
-static int SCROLLING_HEIGHT = 500;
+static int SCROLLING_HEIGHT = 800;
 
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;

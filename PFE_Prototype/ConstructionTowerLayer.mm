@@ -22,6 +22,11 @@
 @synthesize pMovingSprite = _pMovingSprite;
 @synthesize winningHeight = _winningHeight;
 @synthesize currentHeightNoScroll = _currentHeightNoScroll;
+@synthesize isScrolling = _isScrolling;
+@synthesize startingScroll = _startingScroll;
+@synthesize possibleScrollSize = _possibleScrollSize;
+@synthesize scrollPosition = _scrollPosition;
+
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
@@ -40,6 +45,7 @@
         
         [self setTouchEnabled:YES];
         _isTouch = false;
+        _isScrolling = false;
     }
     
     return self;
@@ -67,6 +73,7 @@
 {
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
     if (_pMovingSprite != nil)
     {
@@ -77,17 +84,26 @@
         }
     }
     
+    if(!_isTouch && (location.y <= screenSize.height - 140) && (_currentHeightNoScroll + 220 > SCROLLING_HEIGHT))
+    {
+        _possibleScrollSize = _currentHeightNoScroll + 220 - _HeightTower;
+        _scrollPosition = _possibleScrollSize;
+        _isScrolling = YES;
+        _startingScroll = location.y;
+    }
+        
+    
     return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    //récupère les coordonnées pour cocos2D
+    CGPoint location = [self convertTouchToNodeSpace: touch];
+    
     if(_isTouch)
     {
         _pMovingSprite.scale = 1.0;
-        
-        //récupère les coordonnées pour cocos2D
-        CGPoint location = [self convertTouchToNodeSpace: touch];
 
         [self moveBlocInScreen:location];
         
@@ -96,8 +112,20 @@
             _pMovingSprite.scale = 1.2;
         }
     }
+    
+    if (_isScrolling)
+    {
+        int heightScroll = _startingScroll - location.y;
+        int testScrollPosition = _scrollPosition + heightScroll;
+        
+        if (testScrollPosition > 0 && testScrollPosition < _possibleScrollSize)
+        {
+            [self scrollTower:heightScroll];
+            _startingScroll = location.y;
+            _scrollPosition += heightScroll;
+        }
+    }
 }
-
 
 -(void)placeBlocToTower
 {
@@ -175,6 +203,8 @@
         
         _pMovingBlocData = nil;
     }
+    
+    _isScrolling = NO;
 }
 
 -(void)addBlocToTower
@@ -183,6 +213,7 @@
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
     
     _currentHeightNoScroll += _pMovingBlocData._scaledSize.height;
+    _HeightTower += _pMovingBlocData._scaledSize.height;
     
     if (_currentHeightNoScroll > _winningHeight)
     {
@@ -199,10 +230,7 @@
             }
             
             [self moveAllBlocTower];
-        }
-        else
-        {
-            _HeightTower += _pMovingBlocData._scaledSize.height;
+            _HeightTower -= _pMovingBlocData._scaledSize.height;
         }
         
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
@@ -221,6 +249,21 @@
         [blocSprite runAction:pMoveTo];
     }
 }
+
+-(void)scrollTower:(int)scroll
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
+    {
+        [self.delegate movePlanet:scroll];
+    }
+    
+    for (CCSprite* blocSprite in self._aBlocsTowerSprite)
+    {
+        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - scroll)];
+        [blocSprite runAction:pMoveTo];
+    }
+}
+
 
 
 -(void)addToFallingBloc
