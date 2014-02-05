@@ -19,6 +19,7 @@
 {
     if (self = [super init])
     {
+        
         [self setTouchEnabled:YES];
         
         _pPlanetLayer = [PlanetLayer node];

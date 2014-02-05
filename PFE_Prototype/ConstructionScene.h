@@ -38,4 +38,8 @@
 
 @property (nonatomic,strong) GodWrathLayer *_pGodWrathLayer;
 
+@property (nonatomic,strong) AnimatedBackground* _pBkg1;
+
+@property (nonatomic,strong) AnimatedBackground* _pBkg2;
+
 @end

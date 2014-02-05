@@ -33,7 +33,6 @@
         // ajoute le menu
         [self addChild:addMenu];
         
-        //[self scheduleUpdate];
 	}
 	return self;
 }
@@ -53,6 +52,7 @@
     else if (_pWindParticle.parent == self)
     {
         [self removeChild:_pWindParticle cleanup:false];
+        [pScene._pElementGodsLayer stopAllActions];
         [pScene._pElementGodsLayer playElementaryStaticAnims:nil];
         [pScene._pWindGodLayer playWindStaticAnims:nil];
     }

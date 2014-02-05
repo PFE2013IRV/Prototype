@@ -9,11 +9,11 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
-// Hauteur avant scroll de tour
-static int SCROLLING_HEIGHT = 500;
-
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;
+
+// Hauteur avant scroll de tour
+static float SCROLLING_HEIGHT = 600.0f;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;

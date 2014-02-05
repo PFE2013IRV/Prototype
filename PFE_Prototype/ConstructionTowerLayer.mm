@@ -22,6 +22,10 @@
 @synthesize pMovingSprite = _pMovingSprite;
 @synthesize winningHeight = _winningHeight;
 @synthesize currentHeightNoScroll = _currentHeightNoScroll;
+@synthesize isZooming = _isZooming;
+@synthesize scalingFactor = _scalingFactor;
+@synthesize positionBeforeZoom = _positionBeforeZoom;
+@synthesize zoomOutPosition = _zoomOutPosition;
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
@@ -223,6 +227,7 @@
 }
 
 
+
 -(void)addToFallingBloc
 {
     _pMovingSprite.scale = 0.8;
@@ -258,6 +263,80 @@
 {
     
 }
+
+
+-(void) zoomInTower:(ccTime)delta
+{
+
+    [self stopAllActions];
+    
+    if(_currentHeightNoScroll < SCROLLING_HEIGHT);
+    
+    _scalingFactor = 700.0f / _currentHeightNoScroll;
+    
+    if(_scalingFactor > 1) _scalingFactor = 0.8f;
+    
+    _isZooming = YES;
+    _positionBeforeZoom = self.position;
+        
+        
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    _zoomOutPosition = _positionBeforeZoom;
+        
+    id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
+    id calculatePosition = [CCCallBlock actionWithBlock:^{
+        
+        self.anchorPoint = ccp(0.5f,0.0f);
+        _zoomOutPosition.y = 100;
+    
+    }];
+    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_zoomOutPosition];
+    id reset = [CCCallBlock actionWithBlock:^{ _isZooming = NO; }];
+    id sequence = [CCSequence actions:calculatePosition,zoomIn,reset,moveTo,nil];
+    
+    [self runAction:sequence];
+    
+}
+
+-(void) zoomOutTower:(ccTime)delta
+{
+    // just to be sure no other actions interfere
+    [self stopAllActions];
+
+    _isZooming = YES;
+        
+    id zoomOut = [CCScaleTo actionWithDuration:0.5f scale:1];
+    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_positionBeforeZoom];
+
+    id reset = [CCCallBlock actionWithBlock:^{
+        CCLOG(@"zoom in/out complete");
+            _isZooming = NO;
+    }];
+    id sequence = [CCSequence actions:zoomOut,reset,moveTo,nil];
+    [self runAction:sequence];
+        
+
+    
+}
+
+-(void) update:(ccTime)delta
+{
+    
+    if (_isZooming)
+    {
+        
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        CGPoint screenCenter = CGPointMake(screenSize.width * 0.5f,
+                                           screenSize.height * 0.5f);
+        
+        CGPoint offsetToCenter = ccpSub(screenCenter, self.position);
+        self.position = ccpMult(offsetToCenter, self.scale);
+        self.position = ccpSub(self.position, ccpMult(offsetToCenter,
+                                                                  (_scalingFactor - self.scale) /
+                                                                  (_scalingFactor - 1.0f)));
+    }
+}
+
 
 /** Register with more priority than CCMenu's but don't swallow touches. */
 -(void) registerWithTouchDispatcher
