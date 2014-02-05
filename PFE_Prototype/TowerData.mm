@@ -21,5 +21,10 @@
     
     return self;
 }
-
+-(int) Size
+{
+   return( [_aBlocs count]);
+}
+    
+    
 @end

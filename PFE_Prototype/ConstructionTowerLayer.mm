@@ -373,7 +373,7 @@
             [self._aBlocsTowerSprite removeObject:blocSprite];
             [blocSprite removeFromParent];
             [particle removeFromParent];
-            [blocSprite dealloc];
+          //  [blocSprite dealloc];
             NSLog(@"bloc touché !!!");
         }
     }
