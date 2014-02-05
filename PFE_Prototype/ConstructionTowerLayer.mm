@@ -27,6 +27,10 @@
 @synthesize _currentGodData;
 @synthesize _currentGameData;
 @synthesize _aParticlesArray;
+@synthesize isZooming = _isZooming;
+@synthesize scalingFactor = _scalingFactor;
+@synthesize positionBeforeZoom = _positionBeforeZoom;
+@synthesize zoomOutPosition = _zoomOutPosition;
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
