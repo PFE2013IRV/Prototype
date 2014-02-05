@@ -13,7 +13,6 @@
 
 @synthesize pTowerLayer = _pTowerLayer;
 @synthesize pMenuLayer = _pMenuLayer;
-@synthesize pPlanetLayer = _pPlanetLayer;
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win
 {
@@ -22,14 +21,12 @@
         
         [self setTouchEnabled:YES];
         
-        _pPlanetLayer = [PlanetLayer node];
         _pMenuLayer = [MenuLayer node];
         _pTowerLayer = [[[ConstructionTowerLayer alloc] initWithTowerData:i_pTowerData WinningHeight:win] autorelease];
         
         _pMenuLayer.delegate = self;
         _pTowerLayer.delegate = self;
         
-        [self addChild:_pPlanetLayer];
         [self addChild:_pTowerLayer];
         [self addChild:_pMenuLayer];
     }
@@ -42,10 +39,6 @@
     [_pTowerLayer menuSendOneBloc:blocSelected];
 }
 
--(void)movePlanet:(int)height
-{
-    CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - height)];
-    [_pPlanetLayer runAction:pMoveTo];
-}
+
 
 @end

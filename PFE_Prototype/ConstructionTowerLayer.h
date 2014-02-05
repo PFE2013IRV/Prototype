@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "TowerLayer.h"
 #import "BlocData.h"
+#import "PlanetLayer.h"
 
 @protocol ConstructionTowerDelegate <NSObject>
 
@@ -40,6 +41,8 @@
 @property (nonatomic, assign) int winningHeight;
 @property (nonatomic, assign) int currentHeightNoScroll;
 
+@property (nonatomic, strong) PlanetLayer* pPlanetLayer;
+
 // Pour le zoom
 @property (nonatomic, assign) BOOL isZooming;
 @property (nonatomic, assign) float scalingFactor;
@@ -51,7 +54,7 @@
 - (void) movingSpriteFalling : (id) sender;
 - (void) removeMovingSpriteFromParent : (id) sender;
 
--(float) zoomInTower:(ccTime)delta;
+-(void) zoomInTower:(ccTime)delta;
 -(void) zoomOutTower:(ccTime)delta;
 
 @end

@@ -12,6 +12,8 @@
 
 @implementation ConstructionTowerLayer
 
+
+@synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize pMovingBlocData = _pMovingBlocData;
 @synthesize blocNotPlace = _blocNotPlace;
 @synthesize isTouch = _isTouch;
@@ -30,7 +32,8 @@
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
-    {
+    { 
+        _pPlanetLayer = [PlanetLayer node];
         self._pTowerData = i_pTowerData;
         _blocNotPlace = false;
         _aFallingBloc = [[NSMutableArray alloc] init];
@@ -44,6 +47,8 @@
         
         [self setTouchEnabled:YES];
         _isTouch = false;
+        
+        [self addChild:_pPlanetLayer];
     }
     
     return self;
@@ -197,10 +202,8 @@
     {
         if (_HeightTower > SCROLLING_HEIGHT)
         {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
-            {
-                [self.delegate movePlanet:_pMovingBlocData._scaledSize.height];
-            }
+                [self movePlanet:_pMovingBlocData._scaledSize.height];
+            
             
             [self moveAllBlocTower];
         }
@@ -270,9 +273,9 @@
 
     [self stopAllActions];
     
-    if(_currentHeightNoScroll < SCROLLING_HEIGHT);
+    if(_currentHeightNoScroll < SCROLLING_HEIGHT) return;
     
-    _scalingFactor = 700.0f / _currentHeightNoScroll;
+    _scalingFactor = 700.0f / (_currentHeightNoScroll + _pPlanetLayer.pPlanetSprite.boundingBox.size.height);
     
     if(_scalingFactor > 1) _scalingFactor = 0.8f;
     
@@ -282,17 +285,18 @@
         
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     _zoomOutPosition = _positionBeforeZoom;
-        
+    
     id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
     id calculatePosition = [CCCallBlock actionWithBlock:^{
         
-        self.anchorPoint = ccp(0.5f,0.0f);
-        _zoomOutPosition.y = 100;
+        _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor;
     
     }];
     id moveTo = [CCMoveTo actionWithDuration:0.5f position:_zoomOutPosition];
-    id reset = [CCCallBlock actionWithBlock:^{ _isZooming = NO; }];
-    id sequence = [CCSequence actions:calculatePosition,zoomIn,reset,moveTo,nil];
+    id reset = [CCCallBlock actionWithBlock:^{
+        _isZooming = NO;
+    }];
+    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, moveTo, nil];
     
     [self runAction:sequence];
     
@@ -324,17 +328,25 @@
     
     if (_isZooming)
     {
-        
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
+       /* CGSize screenSize = [CCDirector sharedDirector].winSize;
         CGPoint screenCenter = CGPointMake(screenSize.width * 0.5f,
-                                           screenSize.height * 0.5f);
+                                           screenSize.height);
         
-        CGPoint offsetToCenter = ccpSub(screenCenter, self.position);
+        _zoomOutPosition.x = self.position.x;
+        _zoomOutPosition.y = 1024 - self.boundingBox.size.height;
+        
+        CGPoint offsetToCenter = ccpSub(_zoomOutPosition, self.position);
         self.position = ccpMult(offsetToCenter, self.scale);
         self.position = ccpSub(self.position, ccpMult(offsetToCenter,
                                                                   (_scalingFactor - self.scale) /
-                                                                  (_scalingFactor - 1.0f)));
+                                                                  (_scalingFactor - 1.0f)));*/
     }
+}
+
+-(void)movePlanet:(int)height
+{
+    CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - height)];
+    [_pPlanetLayer runAction:pMoveTo];
 }
 
 

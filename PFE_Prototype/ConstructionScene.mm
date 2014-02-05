@@ -144,7 +144,7 @@
         CCSprite* baseBloc = [_pMenuAndTowerLayer.pTowerLayer._aBlocsTowerSprite firstObject];
         float planetZoomYPosition = 100;//;baseBloc.position.y + (screenSize.height - SCROLLING_HEIGHT - 20);
         
-        [_pMenuAndTowerLayer.pPlanetLayer zoomInPlanet:_pMenuAndTowerLayer.pTowerLayer.scalingFactor withEndYPosition:planetZoomYPosition];
+        //[_pMenuAndTowerLayer.pPlanetLayer zoomInPlanet:_pMenuAndTowerLayer.pTowerLayer.scalingFactor withEndYPosition:planetZoomYPosition];
 
         
     }
@@ -163,7 +163,7 @@
         [super._pWindGodLayer moveWindGod:nil];
         [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
         [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
-        [_pMenuAndTowerLayer.pPlanetLayer zoomOutPlanet:1];
+        //[_pMenuAndTowerLayer.pPlanetLayer zoomOutPlanet:1];
 
     }
 }
