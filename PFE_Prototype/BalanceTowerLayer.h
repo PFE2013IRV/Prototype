@@ -21,6 +21,7 @@
 	b2World* world;					// strong ref
 	GLESDebugDraw *m_debugDraw;		// strong ref
     b2Body* groundBody;
+    NSMutableIndexSet* RemovedBlocs;
 }
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;

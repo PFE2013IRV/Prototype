@@ -23,31 +23,19 @@ enum {
 {
     if (self = [super init])
     {
+        self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
         self._pTowerData = i_pTowerData;
         // init physics
 		[self initPhysics];
         [self drawAllPhysicsBlocsOfTower];
-        //[self ApplyWindAttack:b2Vec2(1, 1) withForce:5.0f excludeBody:nil];
-       	
-        //[self rotateGroundWorld:nil data:30];
-        //[self rotateGroundWorld:nil data:-20];
-        
-       
-        /*NSNumber* dataNum = [[NSNumber alloc] initWithInt:30];
-        id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:(NSNumber*)dataNum];
-        
+      
+        id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
         id action2 = [CCDelayTime actionWithDuration:3];
+        id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackRight:)];
+        id action4 = [CCDelayTime actionWithDuration:3];
+        //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
         
-        dataNum = [[NSNumber alloc] initWithInt:-20];
-        id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:(NSNumber*)dataNum];
-        */
-        
-        
-        /*
-        [self runAction: [CCSequence actions:
-                          [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:[NSNumber numberWithInt:30]],
-                          [CCDelayTime actionWithDuration:3],
-                          [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:[NSNumber numberWithInt:-20]], nil]];*/
+    
         
         [self scheduleUpdate];
 
@@ -228,7 +216,7 @@ enum {
     int degree = [dataNum intValue];
     
     CGSize s = [[CCDirector sharedDirector] winSize];
-    int i = 1;
+    int i = [self._pTowerData Size];
     
     CCLOG(@"Rotation a %02.f", (double)degree);
     
@@ -237,24 +225,10 @@ enum {
         
        if (b != groundBody)
         {
-            if(i == 5)//[self._pTowerData Size] )
+            if(i == 1)//[self._pTowerData Size] )
             {
                 b->SetLinearVelocity(b2Vec2(0, 0));
                 b->SetAngularVelocity(0);
-                //b->SetLinearVelocity(b2Vec2(0,0));
-              //  b2Vec2  b2Position = b->GetPosition();
-                 //CCPhysicsSprite *sprite = (CCPhysicsSprite *)b->GetUserData();
-              // b->ApplyForce( b->GetMass() * - world->GetGravity(), b->GetWorldCenter() );
-                // float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
-                // b->setGravityScale(0);
-               //  b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree));
-                 //b2Vec2 pos = b->GetPosition();
-                 //   b->ApplyTorque(degree);
-                 //    b->Get
-                 //b->ApplyForce( b2Vec2(10,0), b->GetWorldPoint( b2Vec2(1,1) ) );
-                 // b->SetAngularVelocity(degree);
-                 // b->SetTransform(pos, CC_DEGREES_TO_RADIANS(degree));
-                
             }
             else
             {
@@ -269,19 +243,75 @@ enum {
                     }
                     if(!world->IsLocked())
                     {
-                     //   world->DestroyBody(b);
+                        world->DestroyBody(b);
                         CCPhysicsSprite *Bloc = (CCPhysicsSprite *)  b->GetUserData();
                         id fadeOut = [CCFadeOut actionWithDuration:0.4];
                     
                         [Bloc runAction:fadeOut];
+                        [self._pTowerData Remove:i-1];
+                        [RemovedBlocs addIndex:i-1];
                    // [self removeChild:Bloc cleanup:YES];
                     }
                 }
             }
-            i++;
+            i--;
         }
     }
 }
+
+-(void)ApplyWindAttackLeft
+{
+    int degree = -30;
+    
+    int i = [self._pTowerData Size];
+    
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
+    {
+        
+        if (b != groundBody)
+        {
+            if(i == 1)//[self._pTowerData Size] )
+            {
+                b->SetLinearVelocity(b2Vec2(0, 0));
+                b->SetAngularVelocity(0);
+                
+            }
+            else
+            {
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
+            }
+            i--;
+        }
+    }
+}
+
+-(void)ApplyWindAttackRight
+{
+    int degree = -30;
+    
+    int i = [self._pTowerData Size];
+    
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
+    {
+        
+        if (b != groundBody)
+        {
+            if(i == 1)//[self._pTowerData Size] )
+            {
+                b->SetLinearVelocity(b2Vec2(0, 0));
+                b->SetAngularVelocity(0);
+                
+            }
+            else
+            {
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
+            }
+            i--;
+        }
+    }
+}
+
+
 -(void)ApplyWindAttack:(b2Vec2)p withForce:(float)f excludeBody:(b2Body *)eb {
     if (f < 1.0f) f = 1.0f;
 {
