@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 // Mettre à true pour mode optimal
-static bool SIMULATOR_MODE = false;
+static bool SIMULATOR_MODE = true;
 
 // Hauteur avant scroll de tour
 static float SCROLLING_HEIGHT = 800.0f;

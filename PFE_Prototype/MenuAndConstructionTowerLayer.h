@@ -11,6 +11,8 @@
 #import "MenuLayer.h"
 #import "ConstructionTowerLayer.h"
 #import "TowerData.h"
+#import "PlanetLayer.h"
+#import "FireAttackLayer.h"
 
 @interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>//, ConstructionTowerDelegate>
 

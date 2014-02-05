@@ -10,6 +10,12 @@
 #import "cocos2d.h"
 #import "TowerLayer.h"
 #import "BlocData.h"
+#import "FireAttackLayer.h"
+#import "GameData.h"
+#import "GodData.h"
+#import "LevelVisitor.h"
+#import "ParticleFire.h"
+//#import "ConstructionScene.h"
 #import "PlanetLayer.h"
 
 @protocol ConstructionTowerDelegate <NSObject>
@@ -19,7 +25,7 @@
 
 @end // end of delegate protocol
 
-@interface ConstructionTowerLayer : TowerLayer
+@interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
     id <ConstructionTowerDelegate> _delegate;
 }
@@ -47,13 +53,17 @@
 @property (nonatomic, assign) int winningHeight;
 @property (nonatomic, assign) int currentHeightNoScroll;
 
+@property(nonatomic, strong) GameData* _currentGameData;
+@property(nonatomic, strong) GodData* _currentGodData;
 @property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
+@property(nonatomic, strong) NSMutableArray* _aParticlesArray;
 // Pour le zoom
 @property (nonatomic, assign) BOOL isZooming;
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
+
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
