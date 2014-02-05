@@ -276,6 +276,7 @@
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
 		A3C14E8618A2422E00C423FF /* IntroScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3C14E8518A2422E00C423FF /* IntroScene.mm */; };
+		FA222D0418A294DB00536F0E /* HUDLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA222D0318A294DB00536F0E /* HUDLayer.mm */; };
 		FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3DE914189A8DC0003ED864 /* Wood_texture.png */; };
 /* End PBXBuildFile section */
 
@@ -785,6 +786,8 @@
 		A3A4B5BE188938E200C54E5D /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		A3C14E8418A2422E00C423FF /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
 		A3C14E8518A2422E00C423FF /* IntroScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroScene.mm; sourceTree = "<group>"; };
+		FA222D0218A294DB00536F0E /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
+		FA222D0318A294DB00536F0E /* HUDLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HUDLayer.mm; sourceTree = "<group>"; };
 		FA3DE914189A8DC0003ED864 /* Wood_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Wood_texture.png; path = Resources/Wood_texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -903,6 +906,8 @@
 				8A5B231A18674E2A00B145A4 /* TowerLayer.h */,
 				8A5B231B18674E2A00B145A4 /* TowerLayer.mm */,
 				8A5B231F18674F4900B145A4 /* PlanetLayer.h */,
+				FA222D0218A294DB00536F0E /* HUDLayer.h */,
+				FA222D0318A294DB00536F0E /* HUDLayer.mm */,
 				8A5B232018674F4900B145A4 /* PlanetLayer.mm */,
 			);
 			name = GameElements;
@@ -2061,6 +2066,7 @@
 				8AE98A6F186492F800705AAF /* vec4.c in Sources */,
 				8AE98A89186492F800705AAF /* b2TimeOfImpact.cpp in Sources */,
 				8AB50C4C1866D1B80012A387 /* GodData.mm in Sources */,
+				FA222D0418A294DB00536F0E /* HUDLayer.mm in Sources */,
 				8AE98931186492F600705AAF /* CCCamera.m in Sources */,
 				8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */,
 				8AE9892B186492F600705AAF /* CCAnimationCache.m in Sources */,

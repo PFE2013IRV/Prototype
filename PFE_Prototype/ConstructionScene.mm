@@ -7,6 +7,7 @@
 #import "ConstructionScene.h"
 #import "BlocManager.h"
 #import "GlobalConfig.h"
+#import "HUDLayer.h"
 
 @implementation ConstructionScene
 
@@ -102,6 +103,12 @@
         
         // ajoute le menu
         [self addChild:addMenu];
+        
+        // HUD Layer
+        
+        HUDLayer* pHUD = [HUDLayer node];
+        [self addChild:pHUD];
+        
 
         [self scheduleUpdate];
     }
