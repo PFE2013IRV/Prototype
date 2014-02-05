@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "ParticleFire.h"
+#import "GameData.h"
+#import "GodData.h"
+#import "LevelVisitor.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -17,8 +20,6 @@
 @required
 
 -(void)handleParticle:(ParticleFire*) particle;
--(void)getParticles:(NSMutableArray*) particles;
--(void)setParticles:(NSMutableArray*) particles;
 
 @end // end of delegate protocol
 
@@ -53,6 +54,9 @@
 @property(nonatomic, assign)ccTime _duration;
 
 @property(nonatomic, assign)int _speed;
+
+@property(nonatomic, strong) GameData* _currentGameData;
+@property(nonatomic, strong) GodData* _currentGodData;
 
 
 @end
