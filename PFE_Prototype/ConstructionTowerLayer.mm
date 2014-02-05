@@ -29,6 +29,7 @@
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 
+
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
@@ -40,13 +41,16 @@
         _pMovingSprite = nil;
         _winningHeight = winHeight;
         
-        _currentHeightNoScroll = 0;
+        _currentHeightNoScroll = 220;
         _HeightTower = 220;
+        _scrollPosition = 0;
+        
         _centerWidthTower = [[CCDirector sharedDirector] winSize].width / 2;
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
         
         [self setTouchEnabled:YES];
         _isTouch = false;
+        _isScrolling = false;
         
         [self addChild:_pPlanetLayer];
     }
@@ -58,6 +62,8 @@
 {
     if (!_blocNotPlace)
     {
+        [self replaceTowerToTopWithoutScroll];
+        
         _blocNotPlace = true;
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
@@ -71,6 +77,12 @@
         [alert show];
 
     }
+}
+
+-(void)replaceTowerToTopWithoutScroll
+{
+    [self scrollTower:_scrollPosition];
+    _scrollPosition = 0;
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
@@ -87,17 +99,25 @@
         }
     }
     
+    if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > SCROLLING_HEIGHT && !_blocNotPlace)
+    {
+        _possibleScrollSize = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
+        _isScrolling = YES;
+        _startingScroll = location.y;
+    }
+        
+    
     return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    //récupère les coordonnées pour cocos2D
+    CGPoint location = [self convertTouchToNodeSpace: touch];
+    
     if(_isTouch)
     {
         _pMovingSprite.scale = 1.0;
-        
-        //récupère les coordonnées pour cocos2D
-        CGPoint location = [self convertTouchToNodeSpace: touch];
 
         [self moveBlocInScreen:location];
         
@@ -106,8 +126,21 @@
             _pMovingSprite.scale = 1.2;
         }
     }
+    
+    if (_isScrolling)
+    {
+        int heightScroll = _startingScroll - location.y;
+        int testScrollPosition = _scrollPosition - heightScroll;
+        
+        if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
+        {
+            [self scrollTower:heightScroll];
+            _scrollPosition -= heightScroll;
+        }
+        
+        _startingScroll = location.y;
+    }
 }
-
 
 -(void)placeBlocToTower
 {
@@ -185,6 +218,8 @@
         
         _pMovingBlocData = nil;
     }
+    
+    _isScrolling = NO;
 }
 
 -(void)addBlocToTower
@@ -193,6 +228,7 @@
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
     
     _currentHeightNoScroll += _pMovingBlocData._scaledSize.height;
+    _HeightTower += _pMovingBlocData._scaledSize.height;
     
     if (_currentHeightNoScroll > _winningHeight)
     {
@@ -203,14 +239,10 @@
     {
         if (_HeightTower > SCROLLING_HEIGHT)
         {
-                [self movePlanet:_pMovingBlocData._scaledSize.height];
-            
+            [self movePlanet:_pMovingBlocData._scaledSize.height];
             
             [self moveAllBlocTower];
-        }
-        else
-        {
-            _HeightTower += _pMovingBlocData._scaledSize.height;
+            _HeightTower -= _pMovingBlocData._scaledSize.height;
         }
         
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
@@ -226,6 +258,17 @@
     for (CCSprite* blocSprite in self._aBlocsTowerSprite)
     {
         CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - height)];
+        [blocSprite runAction:pMoveTo];
+    }
+}
+
+-(void)scrollTower:(int)scroll
+{
+    [self movePlanet:scroll];
+    
+    for (CCSprite* blocSprite in self._aBlocsTowerSprite)
+    {
+        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - scroll)];
         [blocSprite runAction:pMoveTo];
     }
 }
