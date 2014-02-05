@@ -21,12 +21,12 @@
     if (self = [super init])
     {
         _pSkyLayer = [SkyLayer node];
-        _pSunLayer = [SunLayer node];
         _pPlanetLayer = [PlanetLayer node];
         _pWindGodLayer = [WindGodLayer node];
         _pDustLayer = [DustLayer node];
         
         if(!SIMULATOR_MODE)
+            _pSunLayer = [SunLayer node];
             _pStarsLayer = [[StarsLayer alloc] init];
     }
     return self;

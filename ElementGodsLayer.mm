@@ -49,7 +49,7 @@
 - (void) playElementaryStaticAnims  : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    [self stopAllRuningAnimations:nil];
+    //[self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé
@@ -61,6 +61,7 @@
     pSequence =
     [CCSequence actions:
      [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"wind"],
      [CCDelayTime actionWithDuration: 3.2f],
      [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
      [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
@@ -99,7 +100,7 @@
 -(void) playCalmDownAnim : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-    //[self stopAllRuningAnimations];
+    //[self stopAllRuningAnimations:nil];
     
     // On refraichit l'information sur le dieu courant
     // au cas où celle-ci ait changé
@@ -108,9 +109,10 @@
     CCSequence* pSequence =
     [CCSequence actions:
      [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"colere2"],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
      [CCDelayTime actionWithDuration: 1.6f],
-     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere2"],
      [CCCallFunc actionWithTarget:self selector:@selector(playElementaryStaticAnims:)],
+     [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"colere2"],
      nil];
     
     [self runAction:pSequence];

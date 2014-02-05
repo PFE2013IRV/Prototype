@@ -57,4 +57,7 @@
 - (void) movingSpriteFalling : (id) sender;
 - (void) removeMovingSpriteFromParent : (id) sender;
 
+-(void) zoomInTower:(ccTime)delta;
+-(void) zoomOutTower:(ccTime)delta;
+
 @end

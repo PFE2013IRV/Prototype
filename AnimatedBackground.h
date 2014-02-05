@@ -10,6 +10,8 @@
 
 @interface AnimatedBackground : CCNode
 {
+    BOOL _isZooming;
+    
 }
 
 // An init method that takes the mandatory information for an animated background
@@ -38,5 +40,6 @@
 @property (nonatomic, strong) NSMutableArray* _aRotate;
 // The planet
 @property (nonatomic, strong) CCSprite* _pPlanet;
+
 
 @end

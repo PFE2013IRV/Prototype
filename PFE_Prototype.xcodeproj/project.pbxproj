@@ -275,6 +275,7 @@
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
+		A3C14E8618A2422E00C423FF /* IntroScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3C14E8518A2422E00C423FF /* IntroScene.mm */; };
 		FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3DE914189A8DC0003ED864 /* Wood_texture.png */; };
 /* End PBXBuildFile section */
 
@@ -782,6 +783,8 @@
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
 		A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCRotationAround.mm; sourceTree = "<group>"; };
 		A3A4B5BE188938E200C54E5D /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		A3C14E8418A2422E00C423FF /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
+		A3C14E8518A2422E00C423FF /* IntroScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroScene.mm; sourceTree = "<group>"; };
 		FA3DE914189A8DC0003ED864 /* Wood_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Wood_texture.png; path = Resources/Wood_texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1015,6 +1018,8 @@
 				8AB50C5A18673AE60012A387 /* GameScene.h */,
 				8AB50C5B18673AE60012A387 /* GameScene.mm */,
 				8AB50C5918672BDD0012A387 /* GameSceneProtocol.h */,
+				A3C14E8418A2422E00C423FF /* IntroScene.h */,
+				A3C14E8518A2422E00C423FF /* IntroScene.mm */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1982,6 +1987,7 @@
 				8AE9896C186492F700705AAF /* CCMotionStreak.m in Sources */,
 				8AE98A9E186492F800705AAF /* b2Draw.cpp in Sources */,
 				8AE989EB186492F700705AAF /* CCGLView.m in Sources */,
+				A3C14E8618A2422E00C423FF /* IntroScene.mm in Sources */,
 				541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */,
 				44C8BF1A18896BF600931C90 /* MenuLayer.mm in Sources */,
 				8AE98A18186492F700705AAF /* CGPointExtension.m in Sources */,

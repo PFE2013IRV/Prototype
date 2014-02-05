@@ -125,8 +125,6 @@ _timeScale;
     [noise visit];
     [self addChild:noise];
     
-   
-
     
 }
 
