@@ -11,6 +11,7 @@
 #import "MenuAndConstructionTowerLayer.h"
 #import "GodWrathLayer.h"
 #import "UpsetGodParticleLayer.h"
+
 @interface ConstructionScene : GameScene <GameSceneProtocol>
 
 // Game scene init with game data is requiered for every game scene.
@@ -30,11 +31,11 @@
 
 @property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;
 
-@property(nonatomic, strong) UpsetGodParticleLayer* _pUpsetGodParticleLayer;
+@property (nonatomic, strong) UpsetGodParticleLayer* _pUpsetGodParticleLayer;
 
 @property (nonatomic, strong) ElementGodsLayer* _pElementGodsLayer;
 
-@property (nonatomic, strong) MenuAndConstructionTowerLayer *pMenuAndTowerLayer;
+@property (nonatomic, strong) MenuAndConstructionTowerLayer* _pMenuAndTowerLayer;
 
 @property (nonatomic,strong) GodWrathLayer *_pGodWrathLayer;
 

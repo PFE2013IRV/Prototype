@@ -22,6 +22,9 @@
 @synthesize pMovingSprite = _pMovingSprite;
 @synthesize winningHeight = _winningHeight;
 @synthesize currentHeightNoScroll = _currentHeightNoScroll;
+@synthesize _currentGodData;
+@synthesize _currentGameData;
+@synthesize _aParticlesArray;
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
@@ -60,14 +63,23 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous êtes déjà entrain de placer un bloc sur la tour" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+
     }
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 {
+    _currentGameData = [[LevelVisitor GetLevelVisitor] _pCurrentGameData];
+    _currentGodData = [_currentGameData getCurrentGod];
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
     
+    if(_currentGodData._eGodType == 1){
+        if (_currentGodData._isAngry) {
+            //on teste si les coordonnées sont sur la boule de feu à détruire
+            [self removeTouchedParticle:_aParticlesArray :location];
+        }
+    }
     if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
@@ -271,6 +283,52 @@
 #endif
     
     [dispatcher addTargetedDelegate:self priority: priority swallowsTouches:NO];
+}
+
+-(void)getParticles:(NSMutableArray*) particles{
+    self._aParticlesArray = particles;
+    NSLog(@"maj particles cote construction");
+}
+
+-(void)setParticles:(NSMutableArray*) particles{
+    particles = self._aParticlesArray;
+    NSLog(@"maj particles cote layerFire");
+}
+
+-(void)handleParticle:(ParticleFire *)particle{
+    for(int i = 0; i<self._aBlocsTowerSprite.count; i++){
+        CCSprite *blocSprite = [self._aBlocsTowerSprite
+                    objectAtIndex:i];
+        if ((CGRectContainsPoint([blocSprite boundingBox], particle.position))) {
+            [self._aBlocsTowerSprite removeObject:blocSprite];
+            [blocSprite removeFromParent];
+            [particle removeFromParent];
+            [blocSprite dealloc];
+            NSLog(@"bloc touché !!!");
+        }
+    }
+}
+
+-(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location{
+    ParticleFire* particle1 = [particles objectAtIndex:0];
+    NSLog(@"position particle1:%f,%f", particle1.position.x, particle1.position.y);
+    NSLog(@"position location:%f,%f", location.x, location.y);
+    //CGRect bbox = [particle1 boundingBox];
+   // NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
+    for(int i = 0; i<particles.count; i++)
+    {
+        ParticleFire* particle = [particles objectAtIndex:i];
+        CGRect bbox = [particle boundingBox];
+        bbox.size.height = 80;
+        bbox.size.width = 80;
+        NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
+        if (CGRectContainsPoint(bbox, location)){
+            NSLog(@"removeparticleeeeeee!!!!!");
+            
+
+            [particle removeFromParent];
+        }
+    }
 }
 
 

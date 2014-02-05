@@ -13,7 +13,7 @@
 static int SCROLLING_HEIGHT = 500;
 
 // Mettre à true pour mode optimal
-static bool SIMULATOR_MODE = false;
+static bool SIMULATOR_MODE = true;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;

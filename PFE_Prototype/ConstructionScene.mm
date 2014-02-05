@@ -14,7 +14,7 @@
 @synthesize _pFireAttackLayer;
 @synthesize _pWindAttackLayer;
 @synthesize _pUpsetGodParticleLayer;
-@synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
+@synthesize _pMenuAndTowerLayer;
 @synthesize _pGodWrathLayer;
 
 
@@ -26,7 +26,6 @@
     }
     else if (self = [super init])
     {
-        
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pWindAttackLayer = [WindAttackLayer node];
@@ -41,7 +40,7 @@
         // CIEL ET BACKGROUND
 
         
-        
+        _pFireAttackLayer.delegate = _pMenuAndTowerLayer.pTowerLayer;
         [self addChild:self._pSkyLayer];
         
         if(!SIMULATOR_MODE)
