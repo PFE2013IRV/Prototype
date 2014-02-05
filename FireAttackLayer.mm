@@ -20,6 +20,8 @@
 @synthesize _pFireParticle6;
 @synthesize _duration;
 @synthesize _speed;
+@synthesize _currentGameData;
+@synthesize _currentGodData;
 
 -(id) init
 {
@@ -27,6 +29,7 @@
     {
         //init particles
         [self initParticles];
+        [self setTouchEnabled:true];
         
         _speed = 6;
         
@@ -132,8 +135,6 @@
     //ccTime moveDuration = ccpDistance(particle.position, target) / 80;
     if (self.delegate && [self.delegate respondsToSelector:@selector(handleParticle:)])
     {
-        [self.delegate getParticles:_aFireParticles];
-
         [self.delegate handleParticle:_pFireParticle1];
         _pFireParticle1.position = ccp(_pFireParticle1.position.x + _speed*2, (int)(_pFireParticle1._pente*(_pFireParticle1.position.x + _speed*2) + _pFireParticle1._coeffB));
         
@@ -152,8 +153,6 @@
         [self.delegate handleParticle:_pFireParticle6];
         _pFireParticle6.position = ccp(_pFireParticle6.position.x - _speed*3, (int)(_pFireParticle6._pente*(_pFireParticle6.position.x - _speed*3) + _pFireParticle6._coeffB));
         
-        [self.delegate setParticles:_aFireParticles];
-
         _duration += delta;
     
     }
@@ -169,6 +168,70 @@
 -(float) randFloat:(float)min :(float)max{
     float x = min + ((float)arc4random() / ARC4RANDOM_MAX) * (max - min);
     return x;
+}
+
+/** Register with more priority than CCMenu's but don't swallow touches. */
+-(void) registerWithTouchDispatcher
+{
+#if COCOS2D_VERSION >= 0x00020000
+    CCTouchDispatcher *dispatcher = [[CCDirector sharedDirector] touchDispatcher];
+    int priority = kCCMenuHandlerPriority + 1;
+#else
+    CCTouchDispatcher *dispatcher = [CCTouchDispatcher sharedDispatcher];
+    int priority = kCCMenuTouchPriority + 1;
+#endif
+    
+    [dispatcher addTargetedDelegate:self priority: priority swallowsTouches:NO];
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
+{
+    _currentGameData = [[LevelVisitor GetLevelVisitor] _pCurrentGameData];
+    _currentGodData = [_currentGameData getCurrentGod];
+    //on récupère la location du point pour cocos2D
+    CGPoint location = [self convertTouchToNodeSpace: touch];
+
+            //on teste si les coordonnées sont sur la boule de feu à détruire
+            [self removeTouchedParticle:_aFireParticles :location];
+
+    return YES;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+
+}
+
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+
+}
+
+-(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location{
+    ParticleFire* particle1 = [particles objectAtIndex:0];
+    NSLog(@"position particle1:%f,%f", particle1.position.x, particle1.position.y);
+    NSLog(@"position location:%f,%f", location.x, location.y);
+    //CGRect bbox = [particle1 boundingBox];
+    // NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
+    for(int i = 0; i<particles.count; i++)
+    {
+        ParticleFire* particle = [particles objectAtIndex:i];
+        CGRect bbox = [particle boundingBox];
+        bbox.size.height = 80;
+        bbox.size.width = 80;
+        NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
+        if (CGRectContainsPoint(bbox, location)){
+            NSLog(@"removeparticleeeeeee!!!!!");
+            
+            
+            [particle removeFromParent];
+        }
+    }
 }
 
 @end
