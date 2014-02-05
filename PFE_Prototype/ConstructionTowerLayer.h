@@ -16,6 +16,7 @@
 #import "LevelVisitor.h"
 #import "ParticleFire.h"
 //#import "ConstructionScene.h"
+#import "PlanetLayer.h"
 
 @protocol ConstructionTowerDelegate <NSObject>
 
@@ -48,8 +49,14 @@
 
 @property(nonatomic, strong) GameData* _currentGameData;
 @property(nonatomic, strong) GodData* _currentGodData;
+@property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
 @property(nonatomic, strong) NSMutableArray* _aParticlesArray;
+// Pour le zoom
+@property (nonatomic, assign) BOOL isZooming;
+@property (nonatomic, assign) float scalingFactor;
+@property (nonatomic, assign) CGPoint positionBeforeZoom;
+@property (nonatomic, assign) CGPoint zoomOutPosition;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
