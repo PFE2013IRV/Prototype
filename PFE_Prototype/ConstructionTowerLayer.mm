@@ -337,14 +337,17 @@
     id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
     id calculatePosition = [CCCallBlock actionWithBlock:^{
         
-        _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor;
+        _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor + _currentHeightNoScroll*_scalingFactor/2;
+        _zoomOutPosition = self.position;
+        _zoomOutPosition.y += _currentHeightNoScroll*_scalingFactor/2;
+        self.position = _zoomOutPosition;
     
     }];
     id moveTo = [CCMoveTo actionWithDuration:0.5f position:_zoomOutPosition];
     id reset = [CCCallBlock actionWithBlock:^{
         _isZooming = NO;
     }];
-    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, moveTo, nil];
+    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, nil];
     
     [self runAction:sequence];
     
@@ -399,7 +402,7 @@
             [self._aBlocsTowerSprite removeObject:blocSprite];
             [blocSprite removeFromParent];
             [particle removeFromParent];
-           // [blocSprite dealloc];
+          //  [blocSprite dealloc];
             NSLog(@"bloc touché !!!");
             //todo alex
         }

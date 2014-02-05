@@ -23,19 +23,29 @@ enum {
 {
     if (self = [super init])
     {
+        self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
         self._pTowerData = i_pTowerData;
-        
         // init physics
 		[self initPhysics];
         [self drawAllPhysicsBlocsOfTower];
-       	[self scheduleUpdate];
+      
+        id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
+        id action2 = [CCDelayTime actionWithDuration:3];
+        id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackRight:)];
+        id action4 = [CCDelayTime actionWithDuration:3];
+        //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
+        
+    
+        
+        [self scheduleUpdate];
+
     }
+    
     return self;
 }
 
 -(void) initPhysics
 {
-	
      CGSize s = [[CCDirector sharedDirector] winSize];
      
      b2Vec2 gravity;
@@ -61,10 +71,7 @@ enum {
      // Define the ground body.
      b2BodyDef groundBodyDef;
 
-     groundBodyDef.position.Set(0, (
-                                    
-                                    s.height/6
-                                    )/PTM_RATIO); // bottom-left corner
+     groundBodyDef.position.Set(0, ( s.height/6)/PTM_RATIO); // bottom-left corner
     
      // Call the body factory which allocates memory for the ground body
      // from a pool and creates the ground box shape (also from a pool).
@@ -76,7 +83,6 @@ enum {
      b2EdgeShape groundBox;
      
      // bottom
-     
      groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
      groundBody->CreateFixture(&groundBox,0);
      
@@ -91,6 +97,7 @@ enum {
      // right
      groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height /PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
      groundBody->CreateFixture(&groundBox,0);
+   
 }
 
 
@@ -104,6 +111,7 @@ enum {
     {
         CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
+
         
         y += bloc._scaledSize.height / 2;
         
@@ -111,7 +119,7 @@ enum {
         
         [self._aBlocsTowerSprite addObject:pBlocSprite];
         [self addChild:pBlocSprite];
-        
+        //b2Body First_Block =
         [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x -100, y-100)];
         
        
@@ -120,6 +128,7 @@ enum {
         [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
         y += bloc._scaledSize.height / 2;
     }
+   
 
 }
 
@@ -135,7 +144,7 @@ enum {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(p.x-50/PTM_RATIO, p.y-50/PTM_RATIO);
-    //bodyDef.userData = sprite;
+    bodyDef.userData = sprite;
    
     b2Body *body = world->CreateBody(&bodyDef);
     
@@ -175,7 +184,7 @@ enum {
 	
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
-	
+  	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
@@ -199,61 +208,134 @@ enum {
 	kmGLPopMatrix();
 }
 
--(void) rotateGroundWorld:(int)degree
+
+-(void)rotateGroundWorld: (id)sender data:(void*)data
 {
- 
+
+    NSNumber* dataNum = (NSNumber*) data;
+    int degree = [dataNum intValue];
     
-    int i = 1;
-    int j =1;
+    CGSize s = [[CCDirector sharedDirector] winSize];
+    int i = [self._pTowerData Size];
+    
+    CCLOG(@"Rotation a %02.f", (double)degree);
+    
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
     {
+        
        if (b != groundBody)
         {
-           
-            
-            if(i==5)
+            if(i == 1)//[self._pTowerData Size] )
             {
-                    CGSize s = [[CCDirector sharedDirector] winSize];
                 b->SetLinearVelocity(b2Vec2(0, 0));
                 b->SetAngularVelocity(0);
-                //b->SetLinearVelocity(b2Vec2(0,0));
-                
-              //  b2Vec2  b2Position = b->GetPosition();
-            
-               
-                 //CCPhysicsSprite *sprite = (CCPhysicsSprite *)b->GetUserData();
-                 
-              // b->ApplyForce( b->GetMass() * - world->GetGravity(), b->GetWorldCenter() );
-                // float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
-                // b->setGravityScale(0);
-               //  b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree));
-                 //b2Vec2 pos = b->GetPosition();
-                 //   b->ApplyTorque(degree);
-                 //    b->Get
-                 //b->ApplyForce( b2Vec2(10,0), b->GetWorldPoint( b2Vec2(1,1) ) );
-                 // b->SetAngularVelocity(degree);
-                 // b->SetTransform(pos, CC_DEGREES_TO_RADIANS(degree));
+            }
+            else
+            {
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
+                if(b->GetPosition().y <=  (s.height/6  /PTM_RATIO +1) && b != groundBody)
+                {
+                    CCLOG(@"Destruction %0.2f vs %0.2f ", b->GetPosition().y, (s.height/6  /PTM_RATIO +1));
+                    
+                   for(b2JointEdge *j=b->GetJointList();j;j=j->next){
+                       b2Joint *jj=j->joint;
+                       world->DestroyJoint(jj);
+                    }
+                    if(!world->IsLocked())
+                    {
+                        world->DestroyBody(b);
+                        CCPhysicsSprite *Bloc = (CCPhysicsSprite *)  b->GetUserData();
+                        id fadeOut = [CCFadeOut actionWithDuration:0.4];
+                    
+                        [Bloc runAction:fadeOut];
+                        [self._pTowerData Remove:i-1];
+                        [RemovedBlocs addIndex:i-1];
+                   // [self removeChild:Bloc cleanup:YES];
+                    }
+                }
+            }
+            i--;
+        }
+    }
+}
+
+-(void)ApplyWindAttackLeft
+{
+    int degree = -30;
+    
+    int i = [self._pTowerData Size];
+    
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
+    {
+        
+        if (b != groundBody)
+        {
+            if(i == 1)//[self._pTowerData Size] )
+            {
+                b->SetLinearVelocity(b2Vec2(0, 0));
+                b->SetAngularVelocity(0);
                 
             }
             else
+            {
                 b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
-
-            i++;
+            }
+            i--;
         }
     }
-    /*
-     // CGSize s = [[CCDirector sharedDirector] winSize];
-     groundBody->SetTransform(
-     
-     
-     
-     //b2Vec2(1,1)
-     //b2Vec2(s.width/2/PTM_RATIO,s.height/2/PTM_RATIO)
-     groundBody->GetWorldCenter()
-     , CC_DEGREES_TO_RADIANS(degree));
-    */
-
-
 }
+
+-(void)ApplyWindAttackRight
+{
+    int degree = -30;
+    
+    int i = [self._pTowerData Size];
+    
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
+    {
+        
+        if (b != groundBody)
+        {
+            if(i == 1)//[self._pTowerData Size] )
+            {
+                b->SetLinearVelocity(b2Vec2(0, 0));
+                b->SetAngularVelocity(0);
+                
+            }
+            else
+            {
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
+            }
+            i--;
+        }
+    }
+}
+
+
+-(void)ApplyWindAttack:(b2Vec2)p withForce:(float)f excludeBody:(b2Body *)eb {
+    if (f < 1.0f) f = 1.0f;
+{
+        
+        b2Body* node = world->GetBodyList();
+        while (node) {
+            b2Body* b = node;
+            node = node->GetNext();
+            if (NULL != b && eb != b && nil != b->GetUserData()) {
+                b2Vec2 direction = b->GetWorldCenter() - p;
+                if (0.0f == direction.x) direction.x = 0.1f;
+                if (0.0f == direction.y) direction.y = 0.1f;
+                b2Vec2 impulse = b2Vec2(1.0f/direction.x * f, 1.0f/direction.y * f);
+                if (b2_dynamicBody == b->GetType()) {  // Do this here only for dynamic bodies
+                    b->ApplyLinearImpulse(impulse, b->GetWorldCenter());
+                }
+            }
+        }
+    
+        
+    }
+       
+    
+}
+
 
 @end

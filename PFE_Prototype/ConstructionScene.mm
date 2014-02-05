@@ -7,6 +7,7 @@
 #import "ConstructionScene.h"
 #import "BlocManager.h"
 #import "GlobalConfig.h"
+#import "HUDLayer.h"
 
 @implementation ConstructionScene
 
@@ -102,6 +103,12 @@
         
         // ajoute le menu
         [self addChild:addMenu];
+        
+        // HUD Layer
+        
+        HUDLayer* pHUD = [HUDLayer node];
+        [self addChild:pHUD];
+        
 
         [self scheduleUpdate];
     }
@@ -134,15 +141,7 @@
         }
         [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
         [_pElementGodsLayer playAngerAnim: nil];
-        [super._pWindGodLayer playCuteAnim:nil];
         [_pMenuAndTowerLayer.pTowerLayer zoomInTower:1];
-
-        
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        CCSprite* baseBloc = [_pMenuAndTowerLayer.pTowerLayer._aBlocsTowerSprite firstObject];
-        float planetZoomYPosition = 100;//;baseBloc.position.y + (screenSize.height - SCROLLING_HEIGHT - 20);
-        
-        //[_pMenuAndTowerLayer.pPlanetLayer zoomInPlanet:_pMenuAndTowerLayer.pTowerLayer.scalingFactor withEndYPosition:planetZoomYPosition];
 
         
     }
@@ -158,10 +157,9 @@
             pGodData._isAngry = YES;
         }
         [_pElementGodsLayer playCalmDownAnim: nil];
-        [super._pWindGodLayer moveWindGod:nil];
         [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
         [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
-        //[_pMenuAndTowerLayer.pPlanetLayer zoomOutPlanet:1];
+
 
     }
 }
