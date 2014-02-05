@@ -28,6 +28,10 @@
 @synthesize startingScroll = _startingScroll;
 @synthesize possibleScrollSize = _possibleScrollSize;
 @synthesize scrollPosition = _scrollPosition;
+@synthesize isZooming = _isZooming;
+@synthesize scalingFactor = _scalingFactor;
+@synthesize positionBeforeZoom = _positionBeforeZoom;
+@synthesize zoomOutPosition = _zoomOutPosition;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
@@ -41,14 +45,18 @@
         _pMovingSprite = nil;
         _winningHeight = winHeight;
         
-        _currentHeightNoScroll = 0;
+        _currentHeightNoScroll = 220;
         _HeightTower = 220;
+        _scrollPosition = 0;
+        
         _centerWidthTower = [[CCDirector sharedDirector] winSize].width / 2;
         _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
         
         [self setTouchEnabled:YES];
         _isTouch = false;
         _isScrolling = false;
+        
+        [self addChild:_pPlanetLayer];
     }
     
     return self;
@@ -58,6 +66,8 @@
 {
     if (!_blocNotPlace)
     {
+        [self replaceTowerToTopWithoutScroll];
+        
         _blocNotPlace = true;
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
@@ -70,6 +80,12 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous êtes déjà entrain de placer un bloc sur la tour" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+}
+
+-(void)replaceTowerToTopWithoutScroll
+{
+    [self scrollTower:_scrollPosition];
+    _scrollPosition = 0;
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
@@ -87,10 +103,9 @@
         }
     }
     
-    if(!_isTouch && (location.y <= screenSize.height - 140) && (_currentHeightNoScroll + 220 > SCROLLING_HEIGHT))
+    if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > SCROLLING_HEIGHT && !_blocNotPlace)
     {
-        _possibleScrollSize = _currentHeightNoScroll + 220 - _HeightTower;
-        _scrollPosition = _possibleScrollSize;
+        _possibleScrollSize = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
         _isScrolling = YES;
         _startingScroll = location.y;
     }
@@ -119,14 +134,17 @@
     if (_isScrolling)
     {
         int heightScroll = _startingScroll - location.y;
-        int testScrollPosition = _scrollPosition + heightScroll;
+        int testScrollPosition = _scrollPosition - heightScroll;
         
-        if (testScrollPosition > 0 && testScrollPosition < _possibleScrollSize)
+        NSLog(@"%d  -  %d    -    %d", testScrollPosition, _possibleScrollSize, heightScroll);
+        
+        if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
         {
             [self scrollTower:heightScroll];
-            _startingScroll = location.y;
-            _scrollPosition += heightScroll;
+            _scrollPosition -= heightScroll;
         }
+        
+        _startingScroll = location.y;
     }
 }
 
@@ -227,8 +245,7 @@
     {
         if (_HeightTower > SCROLLING_HEIGHT)
         {
-                [self movePlanet:_pMovingBlocData._scaledSize.height];
-            
+            [self movePlanet:_pMovingBlocData._scaledSize.height];
             
             [self moveAllBlocTower];
             _HeightTower -= _pMovingBlocData._scaledSize.height;
@@ -253,10 +270,7 @@
 
 -(void)scrollTower:(int)scroll
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
-    {
-        [self.delegate movePlanet:scroll];
-    }
+    [self movePlanet:scroll];
     
     for (CCSprite* blocSprite in self._aBlocsTowerSprite)
     {
@@ -264,7 +278,6 @@
         [blocSprite runAction:pMoveTo];
     }
 }
-
 
 
 
