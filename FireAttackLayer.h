@@ -53,7 +53,7 @@
 
 @property(nonatomic, assign)ccTime _duration;
 
-@property(nonatomic, assign)int _speed;
+@property(nonatomic, assign)ccTime _moveDuration;
 
 @property(nonatomic, strong) GameData* _currentGameData;
 @property(nonatomic, strong) GodData* _currentGodData;
