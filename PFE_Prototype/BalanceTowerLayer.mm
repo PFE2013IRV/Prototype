@@ -28,15 +28,29 @@ enum {
 		[self initPhysics];
         [self drawAllPhysicsBlocsOfTower];
         //[self ApplyWindAttack:b2Vec2(1, 1) withForce:5.0f excludeBody:nil];
-       	[self scheduleUpdate];
-        [self rotateGroundWorld:30];
-        [self rotateGroundWorld:-20];
+       	
+        //[self rotateGroundWorld:nil data:30];
+        //[self rotateGroundWorld:nil data:-20];
         
-       // id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(playNote:data:) data:(NSNumber *)myNum];
+       
+        /*NSNumber* dataNum = [[NSNumber alloc] initWithInt:30];
+        id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:(NSNumber*)dataNum];
         
         id action2 = [CCDelayTime actionWithDuration:3];
         
-        //[self schedule:@selector(rotateGroundWorld:) withObject:30 interval:5];
+        dataNum = [[NSNumber alloc] initWithInt:-20];
+        id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:(NSNumber*)dataNum];
+        */
+        
+        
+        /*
+        [self runAction: [CCSequence actions:
+                          [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:[NSNumber numberWithInt:30]],
+                          [CCDelayTime actionWithDuration:3],
+                          [CCCallFuncND actionWithTarget:self selector:@selector(rotateGroundWorld:data:) data:[NSNumber numberWithInt:-20]], nil]];*/
+        
+        [self scheduleUpdate];
+
     }
     
     return self;
@@ -206,8 +220,13 @@ enum {
 	kmGLPopMatrix();
 }
 
--(void) rotateGroundWorld:(int)degree
+
+-(void)rotateGroundWorld: (id)sender data:(void*)data
 {
+
+    NSNumber* dataNum = (NSNumber*) data;
+    int degree = [dataNum intValue];
+    
     CGSize s = [[CCDirector sharedDirector] winSize];
     int i = 1;
     
@@ -240,13 +259,9 @@ enum {
             else
             {
                 b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
-     
-                
-                
                 if(b->GetPosition().y <=  (s.height/6  /PTM_RATIO +1) && b != groundBody)
                 {
                     CCLOG(@"Destruction %0.2f vs %0.2f ", b->GetPosition().y, (s.height/6  /PTM_RATIO +1));
-                    //world->DestroyJoint(b->GetJointList())
                     
                    for(b2JointEdge *j=b->GetJointList();j;j=j->next){
                        b2Joint *jj=j->joint;
@@ -254,7 +269,7 @@ enum {
                     }
                     if(!world->IsLocked())
                     {
-                        world->DestroyBody(b);
+                     //   world->DestroyBody(b);
                         CCPhysicsSprite *Bloc = (CCPhysicsSprite *)  b->GetUserData();
                         id fadeOut = [CCFadeOut actionWithDuration:0.4];
                     
@@ -262,44 +277,14 @@ enum {
                    // [self removeChild:Bloc cleanup:YES];
                     }
                 }
-           //
-               /* for (BlocData *bloc in self._pTowerData._aBlocs)
-                {
-                    
-           // CCPhysicsSprite *Bloc = [BlocManager GetPhysicsSpriteFromModel:bloc];
-            // Bloc.CCFadeOut(0.4);
-            id fadeOut = [CCFadeOut actionWithDuration:0.4];
-                    
-            //    CCSprite *Bloc = new CCSprite;
-            [Bloc runAction:fadeOut];
-            */
-               
             }
             i++;
         }
     }
-    /*
-     // CGSize s = [[CCDirector sharedDirector] winSize];
-     groundBody->SetTransform(
- 
-     
-     //b2Vec2(1,1)
-     //b2Vec2(s.width/2/PTM_RATIO,s.height/2/PTM_RATIO)
-     groundBody->GetWorldCenter()
-     , CC_DEGREES_TO_RADIANS(degree));
-    */
-
-
 }
 -(void)ApplyWindAttack:(b2Vec2)p withForce:(float)f excludeBody:(b2Body *)eb {
     if (f < 1.0f) f = 1.0f;
 {
-    /*
-    for (BlocData *bloc in self._pTowerData._aBlocs)
-    {
-        CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
-        pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
-        */
         
         b2Body* node = world->GetBodyList();
         while (node) {
@@ -315,64 +300,12 @@ enum {
                 }
             }
         }
-        
-        /*
-        CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
-        
-        [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
-        y += bloc._scaledSize.height / 2;
-           */
+    
         
     }
        
     
 }
-
-/*
-int i=1;
-CGSize s = [[CCDirector sharedDirector] winSize];
-
-for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
-{
-    
-    if (b != groundBody)
-    {
-        //if(i != [self._pTowerData Size] )
-        //{
-        // b->SetLinearVelocity(b2Vec2(0, 0));
-        //b->SetAngularVelocity(0);
-        if(b->GetLinearVelocity().y ==  s.height/6)
-            CCPhysicsSprite* Bloc = (CCPhysicsSprite *)  b->GetUserData();
-        
-        // Bloc.CCFadeOut(0.4);
-        id fadeOut = [CCFadeOut actionWithDuration:0.4];
-        
-        //[Bloc runAction:fadeOut];
-        
-        //Bloc.opacity = 0;
-        // [Bloc runAction:[CCFadeTo actionWithDuration:5.0 opacity:255]];
-        
-        //b->SetLinearVelocity(b2Vec2(0,0));
-        //  b2Vec2  b2Position = b->GetPosition();
-        //CCPhysicsSprite *sprite = (CCPhysicsSprite *)b->GetUserData();
-        // b->ApplyForce( b->GetMass() * - world->GetGravity(), b->GetWorldCenter() );
-        // float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
-        // b->setGravityScale(0);
-        //  b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(degree));
-        //b2Vec2 pos = b->GetPosition();
-        //   b->ApplyTorque(degree);
-        //    b->Get
-        //b->ApplyForce( b2Vec2(10,0), b->GetWorldPoint( b2Vec2(1,1) ) );
-        // b->SetAngularVelocity(degree);
-        // b->SetTransform(pos, CC_DEGREES_TO_RADIANS(degree));
-        
-        // }
-        
-        
-        i++;
-    }
-}
-*/
 
 
 @end

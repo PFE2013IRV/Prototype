@@ -822,9 +822,9 @@
 			isa = PBXGroup;
 			children = (
 				44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */,
-				8ABD6CF318A295B7003631F2 /* TowerAndPlanetLayer.mm */,
-				44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */,
 				8ABD6CF118A295AD003631F2 /* BalanceTowerLayer.mm */,
+				44A48EFA186DCC4D004F694C /* TowerAndPlanetLayer.h */,
+				8ABD6CF318A295B7003631F2 /* TowerAndPlanetLayer.mm */,
 			);
 			name = Balance;
 			sourceTree = "<group>";

@@ -25,6 +25,7 @@
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;
 
--(void) rotateGroundWorld: (int) degree;
+//-(void) rotateGroundWorld: (int) degree;
+-(void) rotateGroundWorld: (id)sender data:(void*)data;
 
 @end
