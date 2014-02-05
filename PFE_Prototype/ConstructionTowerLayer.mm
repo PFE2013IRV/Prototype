@@ -24,6 +24,10 @@
 @synthesize pMovingSprite = _pMovingSprite;
 @synthesize winningHeight = _winningHeight;
 @synthesize currentHeightNoScroll = _currentHeightNoScroll;
+@synthesize isScrolling = _isScrolling;
+@synthesize startingScroll = _startingScroll;
+@synthesize possibleScrollSize = _possibleScrollSize;
+@synthesize scrollPosition = _scrollPosition;
 @synthesize isZooming = _isZooming;
 @synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
@@ -89,7 +93,7 @@
 {
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
-
+    CGSize screenSize = [[CCDirector sharedDirector]winSize];
     if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
