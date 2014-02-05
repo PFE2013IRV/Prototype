@@ -33,7 +33,8 @@
 -(void)hasRotate:(int)degrees;
 {
     //NSLog(@"planet has rotate of %d degrees", degrees);
-    [_balanceTower rotateGroundWorld:degrees];
+     NSNumber* dataNum = [NSNumber numberWithInt:degrees];
+    [_balanceTower rotateGroundWorld:nil data:dataNum];
 }
 
 @end

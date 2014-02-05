@@ -14,8 +14,6 @@
 #import "GameData.h"
 #import "GodData.h"
 #import "LevelVisitor.h"
-#import "ParticleFire.h"
-//#import "ConstructionScene.h"
 #import "PlanetLayer.h"
 
 @protocol ConstructionTowerDelegate <NSObject>
@@ -37,6 +35,12 @@
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
 
+//bool pour savoir si on a appuyé sur l'écran pour scroller
+@property (nonatomic, assign) BOOL isScrolling;
+@property (nonatomic, assign) int startingScroll;
+@property (nonatomic, assign) int possibleScrollSize;
+@property (nonatomic, assign) int scrollPosition;
+
 @property (nonatomic, assign) int HeightTower;
 @property (nonatomic, assign) int centerWidthTower;
 @property (nonatomic, assign) CGRect towerMagnetization;
@@ -47,11 +51,8 @@
 @property (nonatomic, assign) int winningHeight;
 @property (nonatomic, assign) int currentHeightNoScroll;
 
-@property(nonatomic, strong) GameData* _currentGameData;
-@property(nonatomic, strong) GodData* _currentGodData;
 @property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
-@property(nonatomic, strong) NSMutableArray* _aParticlesArray;
 // Pour le zoom
 @property (nonatomic, assign) BOOL isZooming;
 @property (nonatomic, assign) float scalingFactor;

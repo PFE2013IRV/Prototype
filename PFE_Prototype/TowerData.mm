@@ -21,5 +21,15 @@
     
     return self;
 }
+-(int) Size
+{
+   return( [_aBlocs count]);
+}
+
+-(void) Remove: (int) IndexBloc
+{
+    [_aBlocs removeObjectAtIndex:IndexBloc];
+    
+}
 
 @end
