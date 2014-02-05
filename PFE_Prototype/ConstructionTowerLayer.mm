@@ -12,6 +12,8 @@
 
 @implementation ConstructionTowerLayer
 
+
+@synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize pMovingBlocData = _pMovingBlocData;
 @synthesize blocNotPlace = _blocNotPlace;
 @synthesize isTouch = _isTouch;
@@ -31,7 +33,8 @@
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
-    {
+    { 
+        _pPlanetLayer = [PlanetLayer node];
         self._pTowerData = i_pTowerData;
         _blocNotPlace = false;
         _aFallingBloc = [[NSMutableArray alloc] init];
@@ -224,10 +227,8 @@
     {
         if (_HeightTower > SCROLLING_HEIGHT)
         {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(movePlanet:)])
-            {
-                [self.delegate movePlanet:_pMovingBlocData._scaledSize.height];
-            }
+                [self movePlanet:_pMovingBlocData._scaledSize.height];
+            
             
             [self moveAllBlocTower];
             _HeightTower -= _pMovingBlocData._scaledSize.height;
@@ -266,6 +267,7 @@
 
 
 
+
 -(void)addToFallingBloc
 {
     _pMovingSprite.scale = 0.8;
@@ -301,6 +303,68 @@
 {
     
 }
+
+
+-(void) zoomInTower:(ccTime)delta
+{
+
+    [self stopAllActions];
+    
+    if(_currentHeightNoScroll < SCROLLING_HEIGHT) return;
+    
+    _scalingFactor = 700.0f / (_currentHeightNoScroll + _pPlanetLayer.pPlanetSprite.boundingBox.size.height);
+    
+    if(_scalingFactor > 1) _scalingFactor = 0.8f;
+    
+    _isZooming = YES;
+    _positionBeforeZoom = self.position;
+        
+        
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+    _zoomOutPosition = _positionBeforeZoom;
+    
+    id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
+    id calculatePosition = [CCCallBlock actionWithBlock:^{
+        
+        _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor;
+    
+    }];
+    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_zoomOutPosition];
+    id reset = [CCCallBlock actionWithBlock:^{
+        _isZooming = NO;
+    }];
+    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, moveTo, nil];
+    
+    [self runAction:sequence];
+    
+}
+
+-(void) zoomOutTower:(ccTime)delta
+{
+    [self stopAllActions];
+
+    _isZooming = YES;
+        
+    id zoomOut = [CCScaleTo actionWithDuration:0.5f scale:1];
+    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_positionBeforeZoom];
+
+    id reset = [CCCallBlock actionWithBlock:^{
+        CCLOG(@"zoom in/out complete");
+            _isZooming = NO;
+    }];
+    id sequence = [CCSequence actions:zoomOut,reset,moveTo,nil];
+    [self runAction:sequence];
+        
+
+    
+}
+
+-(void)movePlanet:(int)height
+{
+    CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - height)];
+    [_pPlanetLayer runAction:pMoveTo];
+}
+
 
 /** Register with more priority than CCMenu's but don't swallow touches. */
 -(void) registerWithTouchDispatcher

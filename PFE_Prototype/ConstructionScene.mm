@@ -16,6 +16,8 @@
 @synthesize _pUpsetGodParticleLayer;
 @synthesize pMenuAndTowerLayer = _pMenuAndTowerLayer;
 @synthesize _pGodWrathLayer;
+@synthesize _pBkg1;
+@synthesize _pBkg2;
 
 
 -(id) initGameScene : (GameData*) i_pGameData
@@ -26,7 +28,8 @@
     }
     else if (self = [super init])
     {
-        
+        _pBkg1 = nil;
+        _pBkg2 = nil;
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pWindAttackLayer = [WindAttackLayer node];
@@ -54,25 +57,19 @@
         {
             CGPoint positionBkg1 = ccp(580,700);
             CGPoint positionBkg2 = ccp(100,270);
-            AnimatedBackground* pBkg1 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg1 withScale:0.5 withBeginDelay:20 withPlanetType:1];
-            AnimatedBackground* pBkg2 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg2 withScale:1 withBeginDelay:10 withPlanetType:2];
-            [self addChild:pBkg1];
-            [self addChild:pBkg2];
+            _pBkg1 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg1 withScale:0.5 withBeginDelay:20 withPlanetType:1];
+            _pBkg2 = [[AnimatedBackground alloc] initWithPlanetPosition:positionBkg2 withScale:1 withBeginDelay:10 withPlanetType:2];
+            [self addChild:_pBkg1];
+            [self addChild:_pBkg2];
         }
         
-        
-        [self addChild:self._pWindGodLayer];
         
         if(!SIMULATOR_MODE)
         {
             CloudsBack* pCloudsBack = [[CloudsBack alloc] init];
             [self addChild:pCloudsBack];
-        }
         
-        [self addChild:self._pSunLayer];
-        
-        if(!SIMULATOR_MODE)
-        {
+            [self addChild:self._pSunLayer];
             CloudsFront* pCloudsFront = [[CloudsFront alloc] init];
             [self addChild:pCloudsFront];
         }
@@ -81,10 +78,11 @@
         [self addChild:self._pUpsetGodParticleLayer];
         [self addChild:self._pElementGodsLayer];
         
-        [self addChild:self._pFireAttackLayer];
         [self addChild:self._pWindAttackLayer];
         
         [self addChild:_pMenuAndTowerLayer];
+        [self addChild:self._pWindGodLayer];
+        [self addChild:self._pFireAttackLayer];
         
         
         ////////////////////////////////////////////////////////////////
@@ -138,7 +136,16 @@
         }
         [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
         [_pElementGodsLayer playAngerAnim: nil];
-        [super._pWindGodLayer moveWindGod:nil];
+        [super._pWindGodLayer playCuteAnim:nil];
+        [_pMenuAndTowerLayer.pTowerLayer zoomInTower:1];
+
+        
+        CGSize screenSize = [CCDirector sharedDirector].winSize;
+        CCSprite* baseBloc = [_pMenuAndTowerLayer.pTowerLayer._aBlocsTowerSprite firstObject];
+        float planetZoomYPosition = 100;//;baseBloc.position.y + (screenSize.height - SCROLLING_HEIGHT - 20);
+        
+        //[_pMenuAndTowerLayer.pPlanetLayer zoomInPlanet:_pMenuAndTowerLayer.pTowerLayer.scalingFactor withEndYPosition:planetZoomYPosition];
+
         
     }
     else if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
@@ -155,6 +162,9 @@
         [_pElementGodsLayer playCalmDownAnim: nil];
         [super._pWindGodLayer moveWindGod:nil];
         [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
+        [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
+        //[_pMenuAndTowerLayer.pPlanetLayer zoomOutPlanet:1];
+
     }
 }
 

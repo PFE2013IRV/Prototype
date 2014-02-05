@@ -197,8 +197,8 @@
     
     [pAnimSprite stopAllActions];
     
-    if(![sAnimName isEqualToString:@"FireGod_wind"])
-        [pAnimSprite setVisible:NO];
+
+    [pAnimSprite setVisible:NO];
     
 }
 

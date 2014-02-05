@@ -30,10 +30,15 @@
 
 @property (nonatomic, strong) id delegate;
 @property (nonatomic, strong) CCSprite *pPlanetSprite;
+@property (nonatomic, assign) BOOL _isZooming;
+@property (nonatomic, assign) CGPoint _positionBeforeZoom;
+@property (nonatomic, assign) float _scalingFactor;
 
 -(id)init;
 -(void)launchBalanceModeForPlanet;
 -(void)stopBalanceModeForPlanet;
+-(void) zoomInPlanet:(float) i_scalingFactor  withEndYPosition: (float) i_endYPosition;
+-(void) zoomOutPlanet:(ccTime)delta;
 
 @end
 
