@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) BalanceTowerLayer *balanceTower;
 @property (nonatomic, strong) PlanetLayer *planet;
+//@property (nonatomic, assign) int TowerSize;
 
 -(id) initWithGameData : (GameData*) i_pGameData PlanetLayer: (PlanetLayer*) i_pPlanet;
 

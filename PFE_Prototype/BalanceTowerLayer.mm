@@ -21,9 +21,10 @@ enum {
 
 @synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize isZooming = _isZooming;
-@synthesize scalingFactor = _scalingFactor;
+//@synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
+//@synthesize TowerSize = _TowerSize;
 
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData
@@ -34,7 +35,8 @@ enum {
         self._pTowerData = i_pTowerData;
         // init physics
 		[self initPhysics];
-        [self drawAllPhysicsBlocsOfTower];
+      //  [self CalculateScalingFactor];
+        //    [self drawAllPhysicsBlocsOfTower];
       
         id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
         id action2 = [CCDelayTime actionWithDuration:3];
@@ -111,7 +113,7 @@ enum {
 /*
 -(void)CalculateScalingFactor
 {
-    _scalingFactor = 700.0f / (y + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
+    _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
 
     if(_scalingFactor > 1) _scalingFactor = 0.8f;
 
@@ -123,7 +125,7 @@ enum {
     id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
     id calculatePosition = [CCCallBlock actionWithBlock:^{
     _zoomOutPosition = self.position;
-    _zoomOutPosition.y += y*_scalingFactor/2;
+    _zoomOutPosition.y += TowerSize*_scalingFactor/2;
     self.position = _zoomOutPosition;
     
     }];
@@ -134,11 +136,11 @@ enum {
 
     [self runAction:sequence];
     
-}
-*/
+}*/
 
 -(void)drawAllPhysicsBlocsOfTower
 {
+    _scalingFactor =1;
     int x = 350 * _scalingFactor;
     int y = 220 * _scalingFactor;
     bool Tower = true;

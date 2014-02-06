@@ -22,6 +22,7 @@
 	GLESDebugDraw *m_debugDraw;		// strong ref
     b2Body* groundBody;
     NSMutableIndexSet* RemovedBlocs;
+   
 }
 
 // Pour le zoom
@@ -31,6 +32,8 @@
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
+//@property (nonatomic, assign) int TowerSize;
+
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;
 
