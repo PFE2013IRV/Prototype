@@ -19,7 +19,7 @@
 	if( (self=[super init]) )
     {
         //init particles
-        _pDustParticle=[[CCParticleSystemQuad alloc] initWithFile:@"DustParticle.plist"];
+        _pDustParticle=[[CCParticleSystemQuad alloc] initWithFile:@"Dust_particle.plist"];
         
         [self addChild:_pDustParticle];
         
