@@ -10,7 +10,7 @@
 
 @interface WindGodData : NSObject
 
-// to be implemented
-
+@property(nonatomic,assign) CGPoint _windGodPosition;
+@property(nonatomic,assign) BOOL _godIsUp;
 
 @end

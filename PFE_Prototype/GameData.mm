@@ -68,7 +68,13 @@
 
 -(GodData*) getCurrentGod
 {
-    return [_aGodData objectAtIndex:_currentGodIndex];
+    if(_aGodData.count > 0)
+        return [_aGodData objectAtIndex:_currentGodIndex];
+    
+    else
+        return nil;
+        
 }
+
 
 @end

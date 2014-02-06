@@ -5,8 +5,13 @@
 //
 
 #import "WindGodLayer.h"
+#import "LevelVisitor.h"
 
 @implementation WindGodLayer
+
+
+@synthesize _pGodData;
+@synthesize _pCurrGameData;
 
 #define FLOAT(x) [NSNumber numberWithFloat:x]
 
@@ -37,7 +42,7 @@
 - (void) playWindStaticAnims : (id) sender
 {
     // On stoppe toutes les séquences d'actions précédentes
-
+    
     
     // On refraichit l'information sur le dieu du vent
     // au cas où celle-ci ait changé
@@ -68,7 +73,12 @@
 
 - (void) refreshWindGodInfo
 {
-    // a remplir
+    // On regarde à quel dieu on à faire et remet à jour la variable de colère
+    _pCurrGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
+    _pGodData = _pCurrGameData._pWindGodData;
+    
+    _godIsUp = _pGodData._godIsUp;
+    _currentPosition = _pGodData._windGodPosition;
     
 }
 
@@ -94,7 +104,7 @@
     if(_godIsUp == YES)
     {
         // On init les données du moveTo
-        CGPoint goalPosition = ccp(580, 232);
+        CGPoint goalPosition = ccp(630, 232);
         pGoalValue = [NSValue valueWithCGPoint:goalPosition];
         
         aMoveData = [[NSArray alloc] initWithObjects:@"moveDown",pGoalValue,pDuration, nil];
@@ -109,11 +119,13 @@
          nil];
         
         _godIsUp = NO;
+        _pGodData._godIsUp = NO;
+        _pGodData._windGodPosition = goalPosition;
     }
     else
     {
         // On init les données du moveTo
-        CGPoint goalPosition = ccp(580, 700);
+        CGPoint goalPosition = ccp(630, 700);
         pGoalValue = [NSValue valueWithCGPoint:goalPosition];
         
         aMoveData = [[NSArray alloc] initWithObjects:@"moveUp",pGoalValue,pDuration, nil];
@@ -128,6 +140,8 @@
          nil];
         
         _godIsUp = YES;
+        _pGodData._godIsUp = YES;
+        _pGodData._windGodPosition = goalPosition;
     }
     
     

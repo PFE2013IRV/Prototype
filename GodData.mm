@@ -37,6 +37,23 @@
     return self;
 }
 
+-(void) raiseGodAnger
+{
+    _isAngry = YES;
+}
+
+-(void) calmDownGodAnger
+{
+    _isAngry = NO;
+    [self increaseRespect:20];
+}
+
+-(void) increaseRespect: (int) i_respect
+{
+    if(_respect + i_respect >= GOD_RESPECT_DEFAULT) _respect = GOD_RESPECT_DEFAULT;
+    else
+        _respect+= i_respect;
+}
 
 
 @end

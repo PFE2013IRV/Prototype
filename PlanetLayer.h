@@ -37,8 +37,6 @@
 -(id)init;
 -(void)launchBalanceModeForPlanet;
 -(void)stopBalanceModeForPlanet;
--(void) zoomInPlanet:(float) i_scalingFactor  withEndYPosition: (float) i_endYPosition;
--(void) zoomOutPlanet:(ccTime)delta;
 
 @end
 

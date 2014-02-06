@@ -7,6 +7,7 @@
 #import "ConstructionScene.h"
 #import "BlocManager.h"
 #import "GlobalConfig.h"
+#import "HUDLayer.h"
 
 @implementation ConstructionScene
 
@@ -132,15 +133,7 @@
         }
         [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
         [_pElementGodsLayer playAngerAnim: nil];
-        [super._pWindGodLayer playCuteAnim:nil];
         [_pMenuAndTowerLayer.pTowerLayer zoomInTower:1];
-
-        
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        CCSprite* baseBloc = [_pMenuAndTowerLayer.pTowerLayer._aBlocsTowerSprite firstObject];
-        float planetZoomYPosition = 100;//;baseBloc.position.y + (screenSize.height - SCROLLING_HEIGHT - 20);
-        
-        //[_pMenuAndTowerLayer.pPlanetLayer zoomInPlanet:_pMenuAndTowerLayer.pTowerLayer.scalingFactor withEndYPosition:planetZoomYPosition];
 
         
     }
@@ -156,13 +149,59 @@
             pGodData._isAngry = YES;
         }
         [_pElementGodsLayer playCalmDownAnim: nil];
-        [super._pWindGodLayer moveWindGod:nil];
         [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
         [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
-        //[_pMenuAndTowerLayer.pPlanetLayer zoomOutPlanet:1];
+
 
     }
 }
+
+-(void) update:(ccTime)delta
+{
+    
+     GameData* pCurrentGameData = super._pGameData;
+     GodData* pCurrentGodData = nil;
+     if(pCurrentGameData)
+     pCurrentGodData = [pCurrentGameData getCurrentGod];
+     
+     if(pCurrentGodData)
+     {
+         if(pCurrentGodData._respect < GOD_ANGER_LIMIT)
+         {
+             
+             if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
+             {
+                 [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
+             }
+             // Afin de ne faire cette opération qu'une fois
+             if(pCurrentGodData._isAngry == NO)
+             {
+                 // On lance l'animation une bonne fois pour toutes !
+                 [_pElementGodsLayer playAngerAnim: nil];
+                 // On met à jour la colère du dieu
+                 [pCurrentGodData raiseGodAnger];
+             }
+             
+         }
+         else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
+         {
+             if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
+             {
+                 [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
+             }
+             
+             // Comme précédemment, afin de ne le "calmer" qu'une fois
+             if(pCurrentGodData._isAngry == YES)
+             {
+                 [_pElementGodsLayer playCalmDownAnim: nil];
+                 [pCurrentGodData calmDownGodAnger];
+             }
+         }
+     }
+
+}
+
+
 
 
 @end

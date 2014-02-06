@@ -69,6 +69,7 @@
 
 -(void) zoomInTower:(ccTime)delta;
 -(void) zoomOutTower:(ccTime)delta;
+-(void) calculatePositionAfterZoom:(id) sender;
 
 -(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
 @end
