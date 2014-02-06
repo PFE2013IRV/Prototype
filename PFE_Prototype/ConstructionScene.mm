@@ -25,8 +25,8 @@
 
 -(void) changeScene
 {
-    [self._pElementGodsLayer stopAllRuningAnimations:nil];
-    [self._pWindGodLayer stopAllRuningAnimations:nil];
+   // [self._pElementGodsLayer stopAllRuningAnimations:nil];
+   // [self._pWindGodLayer stopAllRuningAnimations:nil];
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
@@ -97,6 +97,13 @@
         
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
+        
+        // HUD Layer
+        
+        HUDLayer* pHUD = [HUDLayer node];
+        [self addChild:pHUD];
+        
+        
         [self addChild:self._pElementGodsLayer];
         
         [self addChild:self._pDustLayerBack];
@@ -107,11 +114,7 @@
         [self addChild:self._pFireAttackLayer];
         
         
-        ////////////////////////////////////////////////////////////////
-        ///////     AJOUT TEMPORAIRE - bordures du HUD
-        
-        
-        ////////////////////////////////////////////////////////////////
+
         
         
         // add light on tower column (particle)
@@ -126,11 +129,6 @@
         
         // ajoute le menu
         [self addChild:addMenu];
-        
-        // HUD Layer
-        
-        HUDLayer* pHUD = [HUDLayer node];
-        [self addChild:pHUD];
         
         
         [self scheduleUpdate];
@@ -237,6 +235,7 @@
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
+                 [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
              }
          }
      }

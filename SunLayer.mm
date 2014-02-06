@@ -251,13 +251,6 @@
     
     if(_currentMomentOfDay <8)
     {
-        if(_currentMomentOfDay==aleatoire)
-        {
-            aleatoire = 250;
-            ConstructionScene *sceneParent = (ConstructionScene *) self.parent;
-            [sceneParent changeScene];
-            
-        }
         if(_currentMomentOfDay==7)
         {
             _incrementAlpha = (float)255.0/(_timeScale/_velocityFactor);

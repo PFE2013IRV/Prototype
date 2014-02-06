@@ -60,7 +60,10 @@
         
         [pScene._pWindGodLayer playCuteAnim:nil];
         [pScene._pElementGodsLayer playWindAnim:nil];
-
+        
+        
+        //Changement de scène Construction vers Balance
+        [self schedule:@selector(changeScene)interval:1.6];
         
     }
     else if (_pWindParticle1.parent == self)
@@ -74,7 +77,16 @@
         {
             [self.delegate DustParticlesNormalMode];
         }
+        //Changement de scène Balance vers Construction
     }
+    
 }
 
+-(void) changeScene
+{
+    ConstructionScene *sceneParent = (ConstructionScene *) self.parent;
+    [sceneParent changeScene];
+    [self unschedule:@selector(changeScene)];
+
+}
 @end

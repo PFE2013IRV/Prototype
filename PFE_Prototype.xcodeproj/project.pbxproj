@@ -55,6 +55,12 @@
 		8A5B232118674F4900B145A4 /* PlanetLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B232018674F4900B145A4 /* PlanetLayer.mm */; };
 		8A5B23241867543700B145A4 /* BalanceScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A5B23231867543700B145A4 /* BalanceScene.mm */; };
 		8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5B232918707E5B00B145A4 /* BlocBagData.json */; };
+		8A839E8C18A3BFC4006F8E1E /* HUD_backgrounds.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E8918A3BFC4006F8E1E /* HUD_backgrounds.png */; };
+		8A839E8D18A3BFC4006F8E1E /* HUD_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E8A18A3BFC4006F8E1E /* HUD_frames.png */; };
+		8A839E8E18A3BFC4006F8E1E /* HUD_respectGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E8B18A3BFC4006F8E1E /* HUD_respectGreen.png */; };
+		8A839E9118A3DA68006F8E1E /* HUD_respectOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E8F18A3DA68006F8E1E /* HUD_respectOrange.png */; };
+		8A839E9218A3DA68006F8E1E /* HUD_respectRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E9018A3DA68006F8E1E /* HUD_respectRed.png */; };
+		8A839E9418A3E845006F8E1E /* Bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A839E9318A3E845006F8E1E /* Bubble.png */; };
 		8A860E601896DD3F00FB0B25 /* StarsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */; };
 		8A91558C1888160B009A07A4 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A91558B1888160B009A07A4 /* CoreMotion.framework */; };
 		8A91559F18884505009A07A4 /* FireButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155931888448A009A07A4 /* FireButton.png */; };
@@ -351,6 +357,12 @@
 		8A5B23221867543700B145A4 /* BalanceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceScene.h; sourceTree = "<group>"; };
 		8A5B23231867543700B145A4 /* BalanceScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BalanceScene.mm; sourceTree = "<group>"; };
 		8A5B232918707E5B00B145A4 /* BlocBagData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BlocBagData.json; path = Resources/BlocBagData.json; sourceTree = "<group>"; };
+		8A839E8918A3BFC4006F8E1E /* HUD_backgrounds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_backgrounds.png; path = Resources/HUD_backgrounds.png; sourceTree = "<group>"; };
+		8A839E8A18A3BFC4006F8E1E /* HUD_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_frames.png; path = Resources/HUD_frames.png; sourceTree = "<group>"; };
+		8A839E8B18A3BFC4006F8E1E /* HUD_respectGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_respectGreen.png; path = Resources/HUD_respectGreen.png; sourceTree = "<group>"; };
+		8A839E8F18A3DA68006F8E1E /* HUD_respectOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_respectOrange.png; path = Resources/HUD_respectOrange.png; sourceTree = "<group>"; };
+		8A839E9018A3DA68006F8E1E /* HUD_respectRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_respectRed.png; path = Resources/HUD_respectRed.png; sourceTree = "<group>"; };
+		8A839E9318A3E845006F8E1E /* Bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bubble.png; path = Resources/Bubble.png; sourceTree = "<group>"; };
 		8A860E5E1896DD3F00FB0B25 /* StarsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarsLayer.h; sourceTree = "<group>"; };
 		8A860E5F1896DD3F00FB0B25 /* StarsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarsLayer.mm; sourceTree = "<group>"; };
 		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1199,13 +1211,19 @@
 				54B36A4F18A3C5480005D330 /* Dust2_particle_Back.plist */,
 				54FAAA4C189AAEE0007895E5 /* godParticle.plist */,
 				54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */,
+				8A839E9318A3E845006F8E1E /* Bubble.png */,
 				54FAAA48189AAEA7007895E5 /* Fire_Particle.png */,
+				8A839E8F18A3DA68006F8E1E /* HUD_respectOrange.png */,
+				8A839E9018A3DA68006F8E1E /* HUD_respectRed.png */,
 				54FAAA46189AAE5E007895E5 /* fireParticle.plist */,
 				FA3DE914189A8DC0003ED864 /* Wood_texture.png */,
 				8AE87F6E18994B2F000BEE47 /* Sky */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				8ABE8F38189D390500687542 /* Glass_texture.png */,
 				8A2242711897E6E700C451A5 /* square.png */,
+				8A839E8918A3BFC4006F8E1E /* HUD_backgrounds.png */,
+				8A839E8A18A3BFC4006F8E1E /* HUD_frames.png */,
+				8A839E8B18A3BFC4006F8E1E /* HUD_respectGreen.png */,
 				8AB8AD6C188A831400997BD3 /* borders.png */,
 				A3A4B5BE188938E200C54E5D /* noise.png */,
 				8A2242731897EE8400C451A5 /* triangle.png */,
@@ -1836,6 +1854,7 @@
 				8A4091441896B13C009CD5B0 /* FireGod_wind.plist in Resources */,
 				8A2242741897EE8400C451A5 /* triangle.png in Resources */,
 				FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */,
+				8A839E9218A3DA68006F8E1E /* HUD_respectRed.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
 				8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,
@@ -1871,25 +1890,31 @@
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
 				8AE87F7518994B3D000BEE47 /* cloudsTop_back.png in Resources */,
 				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
+				8A839E8C18A3BFC4006F8E1E /* HUD_backgrounds.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,
 				8AE87FAB18997C81000BEE47 /* microplanet1.png in Resources */,
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
+				8A839E9118A3DA68006F8E1E /* HUD_respectOrange.png in Resources */,
+				54A4835B188C3542003D47B8 /* windParticle.plist in Resources */,
 				8AE87F7318994B3D000BEE47 /* cloudsBottom_back.png in Resources */,
 				8AE87FA118997026000BEE47 /* BkgBloc_3.png in Resources */,
 				8A40913E1896B0A4009CD5B0 /* WindGod_static2.png in Resources */,
 				54FAAA4D189AAEE0007895E5 /* godParticle.plist in Resources */,
 				8AC11E2D1888508B0029062B /* planet.png in Resources */,
 				8A4091541896B1C8009CD5B0 /* FireGod_static3.png in Resources */,
+				8A839E8E18A3BFC4006F8E1E /* HUD_respectGreen.png in Resources */,
 				8A40913D1896B0A4009CD5B0 /* WindGod_static2.plist in Resources */,
 				8AE87F9F18997026000BEE47 /* BkgBloc_1.png in Resources */,
 				8A4091501896B1C8009CD5B0 /* FireGod_colere1.png in Resources */,
 				8AE87FAD18998519000BEE47 /* microplanet2.png in Resources */,
 				8A2242721897E6E700C451A5 /* square.png in Resources */,
+				8A839E9418A3E845006F8E1E /* Bubble.png in Resources */,
 				8AE87FA91899721D000BEE47 /* BkgBloc_7.png in Resources */,
 				8AE87F9E18997026000BEE47 /* BkgBloc_0.png in Resources */,
 				8AE988EB186492F600705AAF /* Default-568h@2x.png in Resources */,
+				8A839E8D18A3BFC4006F8E1E /* HUD_frames.png in Resources */,
 				8AE988F9186492F600705AAF /* Icon@2x.png in Resources */,
 				8AE87FA71899721D000BEE47 /* BkgBloc_5.png in Resources */,
 			);
