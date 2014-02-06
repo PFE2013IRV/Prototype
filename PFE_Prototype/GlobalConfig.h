@@ -9,8 +9,19 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
+// Respect du dieu élémentaire par défaut
+static int GOD_RESPECT_DEFAULT = 100;
+
+// Respect gagné par destruction d'attaques divines
+static int GOD_RESPECT_INCREASE = 10;
+
+// Seuil de colère du dieu
+static int GOD_ANGER_LIMIT = 30;
+
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;
+//Hauteur du placement de la planet pour la scene de construction
+static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
 static float SCROLLING_HEIGHT = 800.0f;
@@ -27,7 +38,7 @@ static int BACKGROUND_WIDTH = 768;
 static int BACKGROUND_HEIGHT = 877;
 
 //Game Time
-static int GAME_TIME_CONSTRUCTION = 150;
+static int GAME_TIME_CONSTRUCTION = 20;
 
 // The gamescene modes
 enum GameSceneMode {

@@ -20,8 +20,8 @@
 @synthesize _pFireParticle6;
 @synthesize _duration;
 @synthesize _moveDuration;
-@synthesize _currentGameData;
-@synthesize _currentGodData;
+@synthesize _pCurrentGameData;
+@synthesize _pCurrentGodData;
 
 -(id) init
 {
@@ -43,6 +43,8 @@
         
         // ajoute le menu
         [self addChild:addMenu];
+        
+        _pCurrentGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
         
 	}
 	return self;
@@ -207,8 +209,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 {
-    _currentGameData = [[LevelVisitor GetLevelVisitor] _pCurrentGameData];
-    _currentGodData = [_currentGameData getCurrentGod];
+    _pCurrentGodData = [_pCurrentGameData getCurrentGod];
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
 
@@ -241,13 +242,14 @@
         CGRect bbox = [particle boundingBox];
         bbox.size.height = 80;
         bbox.size.width = 80;
-        
-       // NSLog(@"position location:%f,%f", location.x, location.y);
-       // NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
-        
-        if (location.x <= particle.position.x + 40 && location.x >= particle.position.x - 40 && location.y <= particle.position.y + 40 && location.y >= particle.position.y - 40){
+        NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
+        if (CGRectContainsPoint(bbox, location))
+        {
+            NSLog(@"removeparticleeeeeee!!!!!");
             
             [particle removeFromParent];
+            
+            [_pCurrentGodData increaseRespect:GOD_RESPECT_INCREASE];
         }
     }
 }

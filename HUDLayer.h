@@ -17,8 +17,6 @@
     
 }
 
-//-(void) decreaseRespect: (ccTime) dt;
-
 @property (nonatomic,strong) GameData* _pCurrentGameData;
 
 @end

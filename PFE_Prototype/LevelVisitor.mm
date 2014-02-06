@@ -14,6 +14,8 @@
 #import "TowerData.h"
 #import "GlobalConfig.h"
 #import "BlocBagData.h"
+#import "ConstructionScene.h"
+#import "BalanceScene.h"
 
 @implementation LevelVisitor
 
@@ -21,6 +23,7 @@
 
 // Instance variable for the level visitor
 static LevelVisitor* pLevelVisitor = nil;
+
 
 -(GameData*) StartLevel : (int) _levelId
 {
@@ -36,23 +39,53 @@ static LevelVisitor* pLevelVisitor = nil;
     // chargement ici.
     
     // Les dieux (un seul, le dieu du feu)
-    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
+    GodData* pFireGod = [[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:GOD_RESPECT_DEFAULT withAngerFlag:NO withActiveFlag:YES];
     NSArray* aGods = [[NSArray alloc] initWithObjects:pFireGod, nil];
     
     // La tour, vide puisque c'est le début du niveau.
     TowerData* pTower = [[TowerData alloc] init];
     
-     _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods] autorelease];
+     _pCurrentGameData = pGameData = [[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:pTower withGods:aGods];
     
     NSLog(@"End start level");
     
     return _pCurrentGameData;
 }
 
+-(void) changeSceneFromBalanceToConstructionWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[self StartLevelConstructionWithId: _iLevelId TowerData:_iTowerData]] autorelease]]];
+}
+
+-(GameData*) StartLevelConstructionWithId : (int)_levelId TowerData : (TowerData*) _iTowerData
+{
+      GameData* pGameData = nil;
+    // Les dieux (un seul, le dieu du feu)
+    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
+    NSArray* aGods = [[NSArray alloc] initWithObjects:pFireGod, nil];
+    
+ _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:_iTowerData withGods:aGods] autorelease];
+    
+    return _pCurrentGameData;
+    
+}
+-(GameData*) StartLevelBalanceWithId : (int) _levelId TowerData : (TowerData*) _iTowerData
+{
+    
+    GameData* pGameData = nil;
+    GodData* pFireGod = [[[GodData alloc] initGod:GOD_TYPE_FIRE withDefaultRespect:0 withAngerFlag:NO withActiveFlag:YES] autorelease];
+    NSArray* aGods = [[[NSArray alloc] initWithObjects:pFireGod, nil] autorelease];
+    
+  
+    
+    _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_BALANCE withTowerData:_iTowerData withGods:aGods] autorelease];
+    
+    return _pCurrentGameData;
+}
 
 -(GameData*) StartLevelBalance : (int) _levelId
 {
-    NSLog(@"Begin start level");
+    NSLog(@"Begin start level Balance");
     
     GameData* pGameData = nil;
     

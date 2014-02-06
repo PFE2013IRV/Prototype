@@ -10,6 +10,8 @@
 
 @implementation BalanceScene
 
+@synthesize previusScene = _previusScene;
+
 -(id) initGameScene : (GameData*) i_pGameData
 {
     if(!i_pGameData)
@@ -37,12 +39,13 @@
             [self addChild:pBkg1];
             [self addChild:pBkg2];
             [self addChild:pCloudsBack];
+            [self._pSunLayer ManageSunBalance];
+            [self addChild:self._pSunLayer];
             
         }
         
         
-        [self._pSunLayer ManageSunBalance];
-        [self addChild:self._pSunLayer];
+       
         
         TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
         [self addChild:pTowerAndPlanet];
@@ -65,5 +68,13 @@
     return self;
 }
 
+
+-(void)returnToConstruction
+{
+    //indexes des blocs qui se sont peter la gueule
+    NSMutableIndexSet *indexes;
+    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+    [[CCDirector sharedDirector] popScene];
+}
 
 @end

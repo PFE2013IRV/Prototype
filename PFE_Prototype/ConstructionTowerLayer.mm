@@ -32,12 +32,14 @@
 @synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
+@synthesize indexBlocTouchByFire = _indexBlocTouchByFire;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
-    { 
+    {
+        _indexBlocTouchByFire = [[NSMutableIndexSet alloc] init];
         _pPlanetLayer = [PlanetLayer node];
         self._pTowerData = i_pTowerData;
         _blocNotPlace = false;
@@ -93,7 +95,8 @@
 {
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
-    CGSize screenSize = [[CCDirector sharedDirector]winSize];
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
     if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
@@ -205,7 +208,6 @@
 {
     if (_isTouch)
     {
-        [self._pTowerData._aBlocs addObject:_pMovingBlocData];
         _blocNotPlace = false;
         _isTouch = NO;
         
@@ -330,26 +332,31 @@
     _isZooming = YES;
     _positionBeforeZoom = self.position;
         
-        
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
     _zoomOutPosition = _positionBeforeZoom;
     
     id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
     id calculatePosition = [CCCallBlock actionWithBlock:^{
         
-        _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor + _currentHeightNoScroll*_scalingFactor/2;
+        //_zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor + _currentHeightNoScroll*_scalingFactor/2;
         _zoomOutPosition = self.position;
         _zoomOutPosition.y += _currentHeightNoScroll*_scalingFactor/2;
         self.position = _zoomOutPosition;
     
     }];
-    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_zoomOutPosition];
     id reset = [CCCallBlock actionWithBlock:^{
         _isZooming = NO;
     }];
     id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, nil];
     
     [self runAction:sequence];
+    
+}
+
+-(void) calculatePositionAfterZoom:(id) sender
+{
+    _zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor + _currentHeightNoScroll*_scalingFactor/2;
+    _zoomOutPosition = self.position;
+    _zoomOutPosition.y += _currentHeightNoScroll*_scalingFactor/2;
     
 }
 
@@ -394,22 +401,100 @@
     [dispatcher addTargetedDelegate:self priority: priority swallowsTouches:NO];
 }
 
--(void)handleParticle:(ParticleFire *)particle{
-    for(int i = 0; i<self._aBlocsTowerSprite.count; i++){
-        CCSprite *blocSprite = [self._aBlocsTowerSprite
-                    objectAtIndex:i];
-        if ((CGRectContainsPoint([blocSprite boundingBox], particle.position))) {
-            [self._aBlocsTowerSprite removeObject:blocSprite];
-            [blocSprite removeFromParent];
+-(void)handleParticle:(ParticleFire *)particle
+{
+    for(int i = 0; i < self._aBlocsTowerSprite.count; i++)
+    {
+        CCSprite *blocSprite = [self._aBlocsTowerSprite objectAtIndex:i];
+        
+        if ((CGRectContainsPoint([blocSprite boundingBox], particle.position)))
+        {
+            /*[self._aBlocsTowerSprite removeObject:blocSprite];
+            [blocSprite removeFromParent];*/
             [particle removeFromParent];
-          //  [blocSprite dealloc];
-            NSLog(@"bloc touché !!!");
-            //todo alex
+            
+            if (![_indexBlocTouchByFire containsIndex:i])
+            {
+                [_indexBlocTouchByFire addIndex:i];
+            }
         }
     }
 }
 
 
+-(void)removeBlocAtIndexes:(NSIndexSet*) indexes
+{
+    [self replaceTowerToTopWithoutScroll];
+    
+    __block int totalHeight = 0;
+    
+    [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop)
+    {
+        totalHeight += [self burnOneBlocAtIndex:idx];
+    }];
+    
+    [self._aBlocsTowerSprite removeObjectsAtIndexes:indexes];
+    [self._pTowerData._aBlocs removeObjectsAtIndexes:indexes];
+    [_indexBlocTouchByFire removeAllIndexes];
+    
+    _HeightTower = [self calculNewHeightTowerAfterChange];
+    _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
+    
+    if (_currentHeightNoScroll - totalHeight > SCROLLING_HEIGHT)
+    {
+        [self scrollTower: - totalHeight];
+    }
+    else if([self._pTowerData._aBlocs count] > 0)
+    {
+        BlocData *firstBloc = [self._pTowerData._aBlocs objectAtIndex:0];
+        CCSprite *firstSprite = [self._aBlocsTowerSprite objectAtIndex:0];
+        int heightMaxToMoveUp = 220 + firstBloc._scaledSize.height / 2 - firstSprite.position.y;
+        [self scrollTower: - heightMaxToMoveUp];
+    }
+    else
+    {
+        [_pPlanetLayer removeFromParent];
+        _pPlanetLayer = [PlanetLayer node];
+        [self addChild:_pPlanetLayer];
+    }
+}
+
+
+-(int)burnOneBlocAtIndex:(int)index
+{
+    CCSprite *blocSpriteToRemove = [self._aBlocsTowerSprite objectAtIndex:index];
+    [blocSpriteToRemove removeFromParentAndCleanup:YES];
+    BlocData *blocDataToRemove = [self._pTowerData._aBlocs objectAtIndex:index];
+    
+    int height = blocDataToRemove._scaledSize.height;
+    _currentHeightNoScroll -= height;
+    
+    for (int i = index; i < [self._aBlocsTowerSprite count]; i++)
+    {
+        CCSprite *spriteToMove = [self._aBlocsTowerSprite objectAtIndex:i];
+        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(spriteToMove.position.x,spriteToMove.position.y - height)];
+        [spriteToMove runAction:pMoveTo];
+    }
+    
+    return height;
+}
+
+-(int)calculNewHeightTowerAfterChange
+{
+    int newHeightTower = 220;
+    
+    for (BlocData *blocInTower in self._pTowerData._aBlocs)
+    {
+        newHeightTower += blocInTower._scaledSize.height;
+        
+        if (newHeightTower > SCROLLING_HEIGHT)
+        {
+            newHeightTower -= blocInTower._scaledSize.height;
+        }
+    }
+    
+    return newHeightTower;
+}
 
 
 @end

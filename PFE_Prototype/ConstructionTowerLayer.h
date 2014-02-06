@@ -59,6 +59,8 @@
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
 
+@property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
+
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
@@ -67,5 +69,7 @@
 
 -(void) zoomInTower:(ccTime)delta;
 -(void) zoomOutTower:(ccTime)delta;
+-(void) calculatePositionAfterZoom:(id) sender;
 
+-(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
 @end

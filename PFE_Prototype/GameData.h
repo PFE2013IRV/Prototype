@@ -13,6 +13,7 @@
 #import "GodData.h"
 #import "WindGodData.h"
 #import "GlobalConfig.h"
+#import "TowerData.h"
 
 @interface GameData : NSObject{
     
@@ -50,8 +51,6 @@
 //hauteur de la tour pour gagner la partie
 @property (nonatomic, assign) int winHeight;
 
-//hauteur de la tour pour gagner la partie
-@property (nonatomic, assign) int _godRespect;
 
 
 

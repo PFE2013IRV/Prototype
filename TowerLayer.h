@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "TowerData.h"
+#import "GameData.h"
 
 @interface TowerLayer : CCLayer {
     
@@ -17,6 +17,8 @@
 @property(nonatomic,strong) TowerData* _pTowerData;
 //Al ccSprite of the Tower
 @property (nonatomic, strong) NSMutableArray *_aBlocsTowerSprite;
+// The current game data
+@property (nonatomic, strong) GameData* _pCurrentGameData;
 
 -(id) init;
 

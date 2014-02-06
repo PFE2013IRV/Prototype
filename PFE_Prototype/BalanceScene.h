@@ -8,9 +8,12 @@
 #import "cocos2d.h"
 #import "GameScene.h"
 #import "GameSceneProtocol.h"
+#import "ConstructionScene.h"
 
 @interface BalanceScene : GameScene <GameSceneProtocol>
 
+
+@property (nonatomic, strong) ConstructionScene *previusScene;
 
 // Game scene init with game data is requiered for every game scene.
 // i_pGameData : the game data used to initialize the scene

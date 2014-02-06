@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface TowerData : NSObject
 
 
@@ -17,6 +16,7 @@
 -(void) Remove: (int) IndexBloc;
 // The blocs array. This array is represents the tower from the bottom to the top bloc
 @property (nonatomic,strong) NSMutableArray* _aBlocs;
+
 
 
 @end

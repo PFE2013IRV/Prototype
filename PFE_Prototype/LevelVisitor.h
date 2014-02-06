@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 #import "GameData.h"
+#import "cocos2d.h"
+
 
 @interface LevelVisitor : NSObject
 
@@ -34,6 +36,11 @@
 // return value : the GameData for Balance scene
 -(GameData*) StartLevelBalance : (int) _levelId;
 
+//Manage the transition between scene Balance and Construction , keeping the tower data as is.
+-(GameData*) StartLevelBalanceWithId : (int) _levelId TowerData : (TowerData*) _iTowerData;
+
+//Manage the transition between scene Construction and Balance , keeping the tower data as is.
+-(GameData*) StartLevelConstructionWithId : (int)_levelId TowerData : (TowerData*) _iTowerData;
 // This property holds the current game data and can be accessed and changed at any time
 @property (nonatomic,strong) GameData* _pCurrentGameData;
 

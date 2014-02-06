@@ -23,7 +23,7 @@
         _pCurrentGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
         
         if(_pCurrentGameData._eGameSceneMode == SCENE_MODE_CONSTRUCTION)
-           [self schedule:@selector(decreaseRespect:) interval:1.0];
+           [self schedule:@selector(decreaseRespect:) interval:1];
     }
     
     return self;
@@ -33,8 +33,10 @@
 
 -(void) decreaseRespect: (ccTime) dt
 {
+    GodData* pCurrGod = [_pCurrentGameData getCurrentGod];
     
-    _pCurrentGameData._godRespect -= 2;
+    if(pCurrGod._isAngry == NO)
+        [_pCurrentGameData getCurrentGod]._respect -= 2;
     
 }
 
