@@ -15,10 +15,14 @@
 		54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* ElementGodsLayer.mm */; };
 		549B60B5188C230C0027E5FD /* FireAttackLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 549B60B4188C230C0027E5FD /* FireAttackLayer.mm */; };
 		549B60B8188C232A0027E5FD /* WindAttackLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 549B60B7188C232A0027E5FD /* WindAttackLayer.mm */; };
-		54A4835B188C3542003D47B8 /* windParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835A188C3542003D47B8 /* windParticle.plist */; };
-		54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54A4835D188C3940003D47B8 /* DustLayer.mm */; };
-		54B36A4418A3A4E10005D330 /* windAttackParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4318A3A4E10005D330 /* windAttackParticle.plist */; };
-		54B36A4818A3B2D60005D330 /* Dust_particle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4718A3B2D60005D330 /* Dust_particle.plist */; };
+		54B36A4B18A3BB6F0005D330 /* DustLayerFront.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54B36A4A18A3BB6F0005D330 /* DustLayerFront.mm */; };
+		54B36A5018A3C5480005D330 /* Dust1_particle_Back.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4C18A3C5480005D330 /* Dust1_particle_Back.plist */; };
+		54B36A5118A3C5480005D330 /* Dust1_particle_Front.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4D18A3C5480005D330 /* Dust1_particle_Front.plist */; };
+		54B36A5218A3C5480005D330 /* Dust2_particle_Front.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4E18A3C5480005D330 /* Dust2_particle_Front.plist */; };
+		54B36A5318A3C5480005D330 /* Dust2_particle_Back.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4F18A3C5480005D330 /* Dust2_particle_Back.plist */; };
+		54B36A5618A3C5DA0005D330 /* DustLayerBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54B36A5518A3C5DA0005D330 /* DustLayerBack.mm */; };
+		54B36A5918A3CC310005D330 /* WindAttackParticle1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */; };
+		54B36A5A18A3CC310005D330 /* WindAttackParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */; };
 		54FAAA47189AAE5E007895E5 /* fireParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA46189AAE5E007895E5 /* fireParticle.plist */; };
 		54FAAA49189AAEA7007895E5 /* Fire_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA48189AAEA7007895E5 /* Fire_Particle.png */; };
 		54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */; };
@@ -306,11 +310,16 @@
 		549B60B4188C230C0027E5FD /* FireAttackLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FireAttackLayer.mm; sourceTree = "<group>"; };
 		549B60B6188C232A0027E5FD /* WindAttackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindAttackLayer.h; sourceTree = "<group>"; };
 		549B60B7188C232A0027E5FD /* WindAttackLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindAttackLayer.mm; sourceTree = "<group>"; };
-		54A4835A188C3542003D47B8 /* windParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = windParticle.plist; sourceTree = "<group>"; };
-		54A4835C188C3940003D47B8 /* DustLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayer.h; sourceTree = "<group>"; };
-		54A4835D188C3940003D47B8 /* DustLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayer.mm; sourceTree = "<group>"; };
-		54B36A4318A3A4E10005D330 /* windAttackParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = windAttackParticle.plist; sourceTree = "<group>"; };
-		54B36A4718A3B2D60005D330 /* Dust_particle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust_particle.plist; sourceTree = "<group>"; };
+		54B36A4918A3BB6F0005D330 /* DustLayerFront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayerFront.h; sourceTree = "<group>"; };
+		54B36A4A18A3BB6F0005D330 /* DustLayerFront.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayerFront.mm; sourceTree = "<group>"; };
+		54B36A4C18A3C5480005D330 /* Dust1_particle_Back.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust1_particle_Back.plist; sourceTree = "<group>"; };
+		54B36A4D18A3C5480005D330 /* Dust1_particle_Front.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust1_particle_Front.plist; sourceTree = "<group>"; };
+		54B36A4E18A3C5480005D330 /* Dust2_particle_Front.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust2_particle_Front.plist; sourceTree = "<group>"; };
+		54B36A4F18A3C5480005D330 /* Dust2_particle_Back.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust2_particle_Back.plist; sourceTree = "<group>"; };
+		54B36A5418A3C5DA0005D330 /* DustLayerBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayerBack.h; sourceTree = "<group>"; };
+		54B36A5518A3C5DA0005D330 /* DustLayerBack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayerBack.mm; sourceTree = "<group>"; };
+		54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WindAttackParticle1.plist; sourceTree = "<group>"; };
+		54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WindAttackParticle2.plist; sourceTree = "<group>"; };
 		54FAAA46189AAE5E007895E5 /* fireParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fireParticle.plist; path = Resources/fireParticle.plist; sourceTree = "<group>"; };
 		54FAAA48189AAEA7007895E5 /* Fire_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fire_Particle.png; path = Resources/Fire_Particle.png; sourceTree = "<group>"; };
 		54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ParticleTexture.png; path = Resources/ParticleTexture.png; sourceTree = "<group>"; };
@@ -943,8 +952,8 @@
 		8A5B23251867569A00B145A4 /* GameViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3A4B5B71889340B00C54E5D /* AnimationHelper */,
 				8AB50C58186728DD0012A387 /* Scenes */,
+				A3A4B5B71889340B00C54E5D /* AnimationHelper */,
 				8A5B231E18674E5A00B145A4 /* Layers */,
 			);
 			name = GameViews;
@@ -1095,12 +1104,14 @@
 				549B60B4188C230C0027E5FD /* FireAttackLayer.mm */,
 				549B60B6188C232A0027E5FD /* WindAttackLayer.h */,
 				549B60B7188C232A0027E5FD /* WindAttackLayer.mm */,
-				54A4835C188C3940003D47B8 /* DustLayer.h */,
-				54A4835D188C3940003D47B8 /* DustLayer.mm */,
 				54FAAA4E189AAF2A007895E5 /* UpsetGodParticleLayer.h */,
 				54FAAA4F189AAF2A007895E5 /* UpsetGodParticleLayer.mm */,
 				5440C63218A13ADD00138D41 /* ParticleFire.h */,
 				5440C63318A13ADD00138D41 /* ParticleFire.mm */,
+				54B36A4918A3BB6F0005D330 /* DustLayerFront.h */,
+				54B36A4A18A3BB6F0005D330 /* DustLayerFront.mm */,
+				54B36A5418A3C5DA0005D330 /* DustLayerBack.h */,
+				54B36A5518A3C5DA0005D330 /* DustLayerBack.mm */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -1192,8 +1203,12 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				54B36A4718A3B2D60005D330 /* Dust_particle.plist */,
-				54B36A4318A3A4E10005D330 /* windAttackParticle.plist */,
+				54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */,
+				54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */,
+				54B36A4C18A3C5480005D330 /* Dust1_particle_Back.plist */,
+				54B36A4D18A3C5480005D330 /* Dust1_particle_Front.plist */,
+				54B36A4E18A3C5480005D330 /* Dust2_particle_Front.plist */,
+				54B36A4F18A3C5480005D330 /* Dust2_particle_Back.plist */,
 				54FAAA4C189AAEE0007895E5 /* godParticle.plist */,
 				54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */,
 				8A839E9318A3E845006F8E1E /* Bubble.png */,
@@ -1205,7 +1220,6 @@
 				8AE87F6E18994B2F000BEE47 /* Sky */,
 				8A4091551896B1D0009CD5B0 /* Animations */,
 				8ABE8F38189D390500687542 /* Glass_texture.png */,
-				54A4835A188C3542003D47B8 /* windParticle.plist */,
 				8A2242711897E6E700C451A5 /* square.png */,
 				8A839E8918A3BFC4006F8E1E /* HUD_backgrounds.png */,
 				8A839E8A18A3BFC4006F8E1E /* HUD_frames.png */,
@@ -1852,25 +1866,29 @@
 				8AE87F7418994B3D000BEE47 /* cloudsBottom_front.png in Resources */,
 				8A4091511896B1C8009CD5B0 /* FireGod_static2.plist in Resources */,
 				8AE98A55186492F800705AAF /* ChangeLog in Resources */,
-				54B36A4418A3A4E10005D330 /* windAttackParticle.plist in Resources */,
 				8AE988E9186492F600705AAF /* Default@2x.png in Resources */,
 				8AE87FA81899721D000BEE47 /* BkgBloc_6.png in Resources */,
 				8AC11E33188851C60029062B /* Wind_Particle.png in Resources */,
 				8A40913C1896B0A4009CD5B0 /* WindGod_static1.png in Resources */,
 				54FAAA49189AAEA7007895E5 /* Fire_Particle.png in Resources */,
 				8AE988F3186492F600705AAF /* Icon-Small.png in Resources */,
+				54B36A5318A3C5480005D330 /* Dust2_particle_Back.plist in Resources */,
+				54B36A5118A3C5480005D330 /* Dust1_particle_Front.plist in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
+				54B36A5A18A3CC310005D330 /* WindAttackParticle2.plist in Resources */,
 				8AB8AD6D188A831400997BD3 /* borders.png in Resources */,
 				8A40914F1896B1C8009CD5B0 /* FireGod_colere1.plist in Resources */,
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
+				54B36A5918A3CC310005D330 /* WindAttackParticle1.plist in Resources */,
 				54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */,
+				54B36A5218A3C5480005D330 /* Dust2_particle_Front.plist in Resources */,
 				8A4091401896B0A4009CD5B0 /* WindGod_static3.png in Resources */,
+				54B36A5018A3C5480005D330 /* Dust1_particle_Back.plist in Resources */,
 				8ABE8F39189D390500687542 /* Glass_texture.png in Resources */,
 				8AE87F7618994B3D000BEE47 /* cloudsTop_front.png in Resources */,
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
 				8AE87F7518994B3D000BEE47 /* cloudsTop_back.png in Resources */,
-				54B36A4818A3B2D60005D330 /* Dust_particle.plist in Resources */,
 				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
 				8A839E8C18A3BFC4006F8E1E /* HUD_backgrounds.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
@@ -1964,7 +1982,6 @@
 				8AE98A93186492F800705AAF /* b2EdgeShape.cpp in Sources */,
 				8AE98AB8186492F800705AAF /* b2Island.cpp in Sources */,
 				8AB50C541866D7440012A387 /* LevelVisitor.mm in Sources */,
-				54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */,
 				8AE989BB186492F700705AAF /* CCTextureAtlas.m in Sources */,
 				8AE98A69186492F800705AAF /* utility.c in Sources */,
 				8AE98A15186492F700705AAF /* CCVertex.m in Sources */,
@@ -2048,6 +2065,7 @@
 				8AE98913186492F600705AAF /* CCActionInstant.m in Sources */,
 				8AE98934186492F600705AAF /* CCClippingNode.m in Sources */,
 				8AE98AEE186492F800705AAF /* b2PrismaticJoint.cpp in Sources */,
+				54B36A5618A3C5DA0005D330 /* DustLayerBack.mm in Sources */,
 				8AE98A77186492F800705AAF /* b2BroadPhase.cpp in Sources */,
 				8AE989B8186492F700705AAF /* CCTexture2D.m in Sources */,
 				8AE989CD186492F700705AAF /* CCTMXTiledMap.m in Sources */,
@@ -2070,6 +2088,7 @@
 				54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */,
 				8AE989A9186492F700705AAF /* ccShaders.m in Sources */,
 				8AE98B10186492F800705AAF /* IntroLayer.mm in Sources */,
+				54B36A4B18A3BB6F0005D330 /* DustLayerFront.mm in Sources */,
 				8AB50C4F1866D2F60012A387 /* WindGodData.mm in Sources */,
 				8AE98ABF186492F800705AAF /* b2WorldCallbacks.cpp in Sources */,
 				8AE98ADF186492F800705AAF /* b2DistanceJoint.cpp in Sources */,

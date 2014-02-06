@@ -14,12 +14,13 @@
 
 @synthesize _pElementGodsLayer;
 @synthesize _pFireAttackLayer;
-@synthesize _pWindAttackLayer;
 @synthesize _pUpsetGodParticleLayer;
 @synthesize _pMenuAndTowerLayer;
 @synthesize _pGodWrathLayer;
 @synthesize _pBkg1;
 @synthesize _pBkg2;
+@synthesize _pWindAttackLayer;
+@synthesize _pWindGodLayer;
 
 
 -(void) changeScene
@@ -29,8 +30,13 @@
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
+    
+    CCSprite* currentBackground = self._pSkyLayer._pBackground;
+    ccColor3B color3 = self._pSunLayer._pSoleil.color;
+    ccColor4B currentSunColor = ccc4(color3.r, color3.g, color3.b, 255);
+    
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
-    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower];
+    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower CurrentBackground:currentBackground CurrentSunColor:currentSunColor];
     
 }
 
@@ -42,9 +48,10 @@
     }
     else if (self = [super init])
     {
+        _pWindAttackLayer = [WindAttackLayer node];
+        _pWindGodLayer = [WindGodLayer node];
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
-        _pWindAttackLayer = [WindAttackLayer node];
         _pUpsetGodParticleLayer = [UpsetGodParticleLayer node];
         _pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
@@ -57,13 +64,14 @@
 
         
         _pFireAttackLayer.delegate = _pMenuAndTowerLayer.pTowerLayer;
+        self._pWindAttackLayer.delegate = self;
+        
         [self addChild:self._pSkyLayer];
         
         if(!SIMULATOR_MODE)
             [self addChild:self._pStarsLayer];
         
         [self._pSunLayer ManageSunConstruction];
-        [self addChild:self._pDustLayer];
         
         if(!SIMULATOR_MODE)
         {
@@ -86,6 +94,7 @@
             [self addChild:pCloudsFront];
         }
         
+        
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
         
@@ -97,9 +106,10 @@
         
         [self addChild:self._pElementGodsLayer];
         
-        [self addChild:self._pWindAttackLayer];
-        
+        [self addChild:self._pDustLayerBack];
         [self addChild:_pMenuAndTowerLayer];
+        [self addChild:self._pWindAttackLayer];
+        [self addChild:self._pDustLayerFront];
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
         
@@ -175,10 +185,10 @@
     }
 }
 
--(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData
+-(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData CurrentBackground : (CCSprite*) i_CurrentBackground CurrentSunColor : (ccColor4B) i_CurrentSunColor
 {
     
-    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData]] autorelease];
+    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData] CurrentBackground:i_CurrentBackground CurrentSun:i_CurrentSunColor] autorelease];
     
     balanceScene.previusScene = self;
     
@@ -230,6 +240,46 @@
          }
      }
 
+}
+
+
+-(void)DustParticlesAttackMode{
+    
+    LevelVisitor* levelVisitor = [LevelVisitor GetLevelVisitor];
+    CGPoint godPosition = levelVisitor._pCurrentGameData._pWindGodData._windGodPosition;
+    self._pDustLayerBack._pDustParticle1.position = ccp(768, godPosition.y);
+    self._pDustLayerBack._pDustParticle1.posVar = ccp(0, 60);
+    self._pDustLayerBack._pDustParticle1.gravity = ccp(0, 0);
+    
+    self._pDustLayerBack._pDustParticle2.position = ccp(768, godPosition.y);
+    self._pDustLayerBack._pDustParticle2.posVar = ccp(0, 60);
+    self._pDustLayerBack._pDustParticle2.gravity = ccp(0, 0);
+    
+    self._pDustLayerFront._pDustParticle1.position = ccp(768, godPosition.y);
+    self._pDustLayerFront._pDustParticle1.posVar = ccp(0, 60);
+    self._pDustLayerFront._pDustParticle1.gravity = ccp(0, 0);
+    
+    self._pDustLayerFront._pDustParticle2.position = ccp(768, godPosition.y);
+    self._pDustLayerFront._pDustParticle2.posVar = ccp(0, 60);
+    self._pDustLayerFront._pDustParticle2.gravity = ccp(0, 0);
+}
+
+-(void)DustParticlesNormalMode{
+    self._pDustLayerBack._pDustParticle1.position = ccp(768, 580);
+    self._pDustLayerBack._pDustParticle1.posVar = ccp(0, 494);
+    self._pDustLayerBack._pDustParticle1.gravity = ccp(0, -10);
+    
+    self._pDustLayerBack._pDustParticle2.position = ccp(768, 580);
+    self._pDustLayerBack._pDustParticle2.posVar = ccp(0, 494);
+    self._pDustLayerBack._pDustParticle2.gravity = ccp(0, -10);
+    
+    self._pDustLayerFront._pDustParticle1.position = ccp(768, 580);
+    self._pDustLayerFront._pDustParticle1.posVar = ccp(0, 60);
+    self._pDustLayerFront._pDustParticle1.gravity = ccp(0, -10);
+    
+    self._pDustLayerFront._pDustParticle2.position = ccp(768, 580);
+    self._pDustLayerFront._pDustParticle2.posVar = ccp(0, 494);
+    self._pDustLayerFront._pDustParticle2.gravity = ccp(0, -10);
 }
 
 

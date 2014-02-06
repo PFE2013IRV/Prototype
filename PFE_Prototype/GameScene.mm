@@ -12,9 +12,10 @@
 @synthesize _pSkyLayer;
 @synthesize _pSunLayer;
 @synthesize _pPlanetLayer;
-@synthesize _pWindGodLayer;
-@synthesize _pDustLayer;
+@synthesize _pDustLayerBack;
+@synthesize _pDustLayerFront;
 @synthesize _pStarsLayer;
+
 
 -(id)init
 {
@@ -24,8 +25,9 @@
         
         _pSkyLayer = [SkyLayer node];
         _pPlanetLayer = [PlanetLayer node];
-        _pWindGodLayer = [WindGodLayer node];
-        _pDustLayer = [DustLayer node];
+        _pDustLayerFront = [DustLayerFront node];
+        _pDustLayerBack = [DustLayerBack node];
+
         
         if(!SIMULATOR_MODE)
             _pSunLayer = [SunLayer node];

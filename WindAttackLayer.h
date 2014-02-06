@@ -9,11 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface WindAttackLayer : CCNode {
-    
+@protocol WindAttackDelegate <NSObject>
+
+@required
+
+-(void)DustParticlesAttackMode;
+-(void)DustParticlesNormalMode;
+
+@end // end of delegate protocol
+
+@interface WindAttackLayer : CCLayer {
+    id <WindAttackDelegate> _delegate;
 }
 
-@property(nonatomic, strong)CCParticleSystem* _pWindParticle;
+@property (nonatomic, strong) id delegate;
+
+@property(nonatomic, strong)CCParticleSystem* _pWindParticle1;
+@property(nonatomic, strong)CCParticleSystem* _pWindParticle2;
 
 -(void)addWindParticle:(id)i_boutonClic;
 

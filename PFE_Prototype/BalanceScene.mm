@@ -11,8 +11,9 @@
 @implementation BalanceScene
 
 @synthesize previusScene = _previusScene;
+@synthesize _pTowerAndPlanetLayer;
 
--(id) initGameScene : (GameData*) i_pGameData
+-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor
 {
     if(!i_pGameData)
     {
@@ -22,7 +23,7 @@
     {
         self._pGameData = i_pGameData;
         
-        [self._pSkyLayer ManageBackgroundBalance];
+        [self._pSkyLayer ManageBackgroundBalance:i_CurrentBackground];
         [self addChild:self._pSkyLayer];
         
         StarsLayer* pStars = [[StarsLayer alloc] init];
@@ -39,16 +40,14 @@
             [self addChild:pBkg1];
             [self addChild:pBkg2];
             [self addChild:pCloudsBack];
-            [self._pSunLayer ManageSunBalance];
+            [self._pSunLayer ManageSunBalance:i_CurrentSunColor];
             [self addChild:self._pSunLayer];
             
         }
-        
-        
-       
-        
-        TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        [self addChild:pTowerAndPlanet];
+     
+         _pTowerAndPlanetLayer = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
+        _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
+        [self addChild:_pTowerAndPlanetLayer];
         
         if(!SIMULATOR_MODE)
         {
@@ -62,19 +61,36 @@
 }
 
 
+
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
 }
 
-
+-(void)onEnterTransitionDidFinish
+{
+  // [self returnToConstruction];
+    
+}
 -(void)returnToConstruction
 {
     //indexes des blocs qui se sont peter la gueule
-    NSMutableIndexSet *indexes;
-    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+  //  NSMutableIndexSet *indexes;
+    //[_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
     [[CCDirector sharedDirector] popScene];
 }
+-(void)onEnter
+{
+ if(_previusScene._pWindGodLayer._pGodData._godIsUp)
+ {
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = true;
+ }
+ else
+ {
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = false;
+ }
+}
+
 
 @end
