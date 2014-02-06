@@ -13,7 +13,7 @@
 
 @synthesize planet = _planet;
 @synthesize balanceTower = _balanceTower;
-//@synthesize TowerSize;
+@synthesize TowerSize;
 
 -(id) initWithGameData : (GameData*) i_pGameData PlanetLayer: (PlanetLayer*) i_pPlanet
 {
@@ -25,7 +25,7 @@
         [_planet launchBalanceModeForPlanet];
         
         _balanceTower = [[[BalanceTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
-        //_balanceTower.TowerSize = TowerSize;
+        _balanceTower.TowerSize = TowerSize;
         [self addChild:_balanceTower];
     }
     

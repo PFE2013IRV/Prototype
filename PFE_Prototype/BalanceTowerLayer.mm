@@ -24,7 +24,7 @@ enum {
 //@synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
-//@synthesize TowerSize = _TowerSize;
+@synthesize TowerSize;
 
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData
@@ -35,8 +35,8 @@ enum {
         self._pTowerData = i_pTowerData;
         // init physics
 		[self initPhysics];
-      //  [self CalculateScalingFactor];
-        //    [self drawAllPhysicsBlocsOfTower];
+        [self CalculateScalingFactor];
+        [self drawAllPhysicsBlocsOfTower];
       
         id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
         id action2 = [CCDelayTime actionWithDuration:3];
@@ -110,7 +110,7 @@ enum {
      groundBody->CreateFixture(&groundBox,0);
    
 }
-/*
+
 -(void)CalculateScalingFactor
 {
     _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
@@ -136,7 +136,7 @@ enum {
 
     [self runAction:sequence];
     
-}*/
+}
 
 -(void)drawAllPhysicsBlocsOfTower
 {

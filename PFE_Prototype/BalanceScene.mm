@@ -48,7 +48,7 @@
        
         
         TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        //pTowerAndPlanet.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
+        pTowerAndPlanet.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
         [self addChild:pTowerAndPlanet];
         
         if(!SIMULATOR_MODE)

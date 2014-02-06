@@ -32,7 +32,7 @@
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
-//@property (nonatomic, assign) int TowerSize;
+@property (nonatomic, assign) int TowerSize;
 
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;
