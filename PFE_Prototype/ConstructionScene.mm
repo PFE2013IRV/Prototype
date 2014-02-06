@@ -102,8 +102,6 @@
         
         // ajoute le menu
         [self addChild:addMenu];
-
-        [self scheduleUpdate];
     }
     
     return self;

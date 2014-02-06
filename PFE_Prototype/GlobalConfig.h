@@ -11,6 +11,8 @@
 
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = true;
+//Hauteur du placement de la planet pour la scene de construction
+static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
 static float SCROLLING_HEIGHT = 800.0f;

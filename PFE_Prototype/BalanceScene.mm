@@ -10,6 +10,8 @@
 
 @implementation BalanceScene
 
+@synthesize previusScene = _previusScene;
+
 -(id) initGameScene : (GameData*) i_pGameData
 {
     if(!i_pGameData)
@@ -65,5 +67,13 @@
     return self;
 }
 
+
+-(void)returnToConstruction
+{
+    //indexes des blocs qui se sont peter la gueule
+    NSMutableIndexSet *indexes;
+    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+    [[CCDirector sharedDirector] popScene];
+}
 
 @end
