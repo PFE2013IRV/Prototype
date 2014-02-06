@@ -38,12 +38,13 @@ enum {
 		[self initPhysics];
         [self CalculateScalingFactor];
         [self drawAllPhysicsBlocsOfTower];
-      
+      /*
         id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
         id action2 = [CCDelayTime actionWithDuration:3];
         id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackRight:)];
         id action4 = [CCDelayTime actionWithDuration:3];
         //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
+       */
        // for(int i = 1 ; i <= 2  ; i++)
       //      [self ApplyWindAttackLeft];
        // [self ApplyWindAttackRight];
