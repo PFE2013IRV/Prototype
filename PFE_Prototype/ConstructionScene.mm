@@ -88,6 +88,13 @@
         
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
+        
+        // HUD Layer
+        
+        HUDLayer* pHUD = [HUDLayer node];
+        [self addChild:pHUD];
+        
+        
         [self addChild:self._pElementGodsLayer];
         
         [self addChild:self._pWindAttackLayer];
@@ -97,11 +104,7 @@
         [self addChild:self._pFireAttackLayer];
         
         
-        ////////////////////////////////////////////////////////////////
-        ///////     AJOUT TEMPORAIRE - bordures du HUD
-        
-        
-        ////////////////////////////////////////////////////////////////
+
         
         
         // add light on tower column (particle)
@@ -116,11 +119,6 @@
         
         // ajoute le menu
         [self addChild:addMenu];
-        
-        // HUD Layer
-        
-        HUDLayer* pHUD = [HUDLayer node];
-        [self addChild:pHUD];
         
         
         [self scheduleUpdate];

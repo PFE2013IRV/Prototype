@@ -33,6 +33,7 @@
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize indexBlocTouchByFire = _indexBlocTouchByFire;
+@synthesize pBubbleSprite = _pBubbleSprite;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
@@ -73,8 +74,18 @@
         _blocNotPlace = true;
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
+        _pBubbleSprite = [CCSprite spriteWithFile:@"Bubble.png"];
+        
+        float bubbleScale = blocSprite.contentSize.height / _pBubbleSprite.contentSize.height;
+        _pBubbleSprite.scale = bubbleScale;
+        _pBubbleSprite.opacity = 100;
+        
+        blocSprite.scale = 0.8;
         blocSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
+        _pBubbleSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
+        
         [self addChild:blocSprite];
+        [self addChild:_pBubbleSprite];
         _pMovingSprite = blocSprite;
     }
     else

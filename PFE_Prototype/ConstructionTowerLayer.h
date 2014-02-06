@@ -61,6 +61,8 @@
 
 @property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
 
+@property (nonatomic, strong) CCSprite* pBubbleSprite;
+
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;

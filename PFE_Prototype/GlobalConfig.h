@@ -10,10 +10,10 @@
 #define ProjectTower_GlobalConfig_h
 
 // Respect du dieu élémentaire par défaut
-static int GOD_RESPECT_DEFAULT = 100;
+static float GOD_RESPECT_DEFAULT = 100;
 
 // Respect gagné par destruction d'attaques divines
-static int GOD_RESPECT_INCREASE = 10;
+static float GOD_RESPECT_INCREASE = 2;
 
 // Seuil de colère du dieu
 static int GOD_ANGER_LIMIT = 30;
