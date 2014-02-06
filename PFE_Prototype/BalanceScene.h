@@ -18,7 +18,8 @@
 // Game scene init with game data is requiered for every game scene.
 // i_pGameData : the game data used to initialize the scene
 // return value : self
--(id) initGameScene : (GameData*) i_pGameData;
+-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor;
+
 
 
 // Basic init is re-implemented with NSException to be avoided

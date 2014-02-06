@@ -8,6 +8,7 @@
 #import "BlocManager.h"
 #import "GlobalConfig.h"
 #import "HUDLayer.h"
+#import "BalanceScene.h"
 
 @implementation ConstructionScene
 
@@ -25,9 +26,15 @@
 {
     [self._pElementGodsLayer stopAllRuningAnimations:nil];
     [self._pWindGodLayer stopAllRuningAnimations:nil];
+    [self._pElementGodsLayer requestBigCleanUp];
+    [self._pWindGodLayer requestBigCleanUp];
+    
+    CCSprite* currentBackground = self._pSkyLayer._pBackground;
+    ccColor3B color3 = self._pSunLayer._pSoleil.color;
+    ccColor4B currentSunColor = ccc4(color3.r, color3.g, color3.b, 255);
     
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
-    [[LevelVisitor GetLevelVisitor] changeSceneFromConstructionToBalanceWithId:0 TowerData:tower];
+    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower CurrentBackground:currentBackground CurrentSunColor:currentSunColor];
     
 }
 
@@ -174,6 +181,16 @@
     }
 }
 
+-(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData CurrentBackground : (CCSprite*) i_CurrentBackground CurrentSunColor : (ccColor4B) i_CurrentSunColor
+{
+    
+    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData] CurrentBackground:i_CurrentBackground CurrentSun:i_CurrentSunColor] autorelease];
+    
+    balanceScene.previusScene = self;
+    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:1.0 scene:balanceScene]];
+                                               }
+                                               
 -(void) update:(ccTime)delta
 {
     
@@ -213,6 +230,7 @@
              {
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
+                 [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
              }
          }
      }

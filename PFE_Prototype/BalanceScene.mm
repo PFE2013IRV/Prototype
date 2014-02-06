@@ -12,7 +12,7 @@
 
 @synthesize previusScene = _previusScene;
 
--(id) initGameScene : (GameData*) i_pGameData
+-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor
 {
     if(!i_pGameData)
     {
@@ -22,7 +22,7 @@
     {
         self._pGameData = i_pGameData;
         
-        [self._pSkyLayer ManageBackgroundBalance];
+        [self._pSkyLayer ManageBackgroundBalance:i_CurrentBackground];
         [self addChild:self._pSkyLayer];
         
         StarsLayer* pStars = [[StarsLayer alloc] init];
@@ -39,7 +39,7 @@
             [self addChild:pBkg1];
             [self addChild:pBkg2];
             [self addChild:pCloudsBack];
-            [self._pSunLayer ManageSunBalance];
+            [self._pSunLayer ManageSunBalance:i_CurrentSunColor];
             [self addChild:self._pSunLayer];
             
         }
