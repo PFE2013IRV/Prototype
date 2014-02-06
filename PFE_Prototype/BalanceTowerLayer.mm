@@ -32,11 +32,16 @@ enum {
 {
     if (self = [super init])
     {
+        
+         _scalingFactor =1;
         self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
-        self._pTowerData = i_pTowerData;
         // init physics
 		[self initPhysics];
-        [self CalculateScalingFactor];
+        self._pTowerData = i_pTowerData;
+       // [self CalculateScalingFactor];
+       
+        
+       
         [self drawAllPhysicsBlocsOfTower];
       /*
         id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
@@ -59,7 +64,7 @@ enum {
 -(void) initPhysics
 {
      CGSize s = [[CCDirector sharedDirector] winSize];
-     
+    
      b2Vec2 gravity;
      gravity.Set(0.0f, -10.0f);
      world = new b2World(gravity);
@@ -83,8 +88,10 @@ enum {
      // Define the ground body.
      b2BodyDef groundBodyDef;
 
-     groundBodyDef.position.Set(0,220 //( s.height/6)
-                                /PTM_RATIO); // bottom-left corner
+     groundBodyDef.position.Set(0,0//(220 * _scalingFactor)
+                               // ( s.height/6)
+                               // /PTM_RATIO
+                                ); // bottom-left corner
     
      // Call the body factory which allocates memory for the ground body
      // from a pool and creates the ground box shape (also from a pool).
@@ -112,7 +119,7 @@ enum {
      groundBody->CreateFixture(&groundBox,0);
    
 }
-
+/*
 -(void)CalculateScalingFactor
 {
     _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
@@ -139,17 +146,17 @@ enum {
     [self runAction:sequence];
     
 }
+ */
 
 -(void)drawAllPhysicsBlocsOfTower
 {
-    _scalingFactor =1;
     int x = 350 * _scalingFactor;
-    int y = 220 * _scalingFactor;
+    int y = 180 * _scalingFactor;
     bool Tower = true;
     int i =1;
     int max, min;
     int Move = 0;
-   
+   /*
     // Dernier troncon soumis a l'attaque
     if(Tower)
     {
@@ -165,13 +172,13 @@ enum {
     //Bloc central du troncon
     int Middle_Bloc = max - round(round([self._pTowerData Size] / 3) / 2);
     
-   
+   */
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
         CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
         
-    /***** Decalage due a l'attaque du vent *****/
+    /***** Decalage due a l'attaque du vent *****
         
         //Si on se rapproche du centre de l'attaque, on ajoute du decalage
         if(i <= Middle_Bloc && i >= min && i <= max)
@@ -187,15 +194,18 @@ enum {
          }
         //Cas ou l'on a depassé le rayon de l'attaque
         else if (i > max)
-            x = 350;
+            x = 350 * _scalingFactor;
         
         CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
     /********************************************/
         
-        y += (bloc._scaledSize.height / 2) /_scalingFactor;
+        y += (bloc._scaledSize.height / 2); //* _scalingFactor;
         //y += pBlocSprite.boundingBox.size.height / 2;
         
-        int gravityCenterOfBloc = (bloc._scaledSize.width / 2) * _scalingFactor - (bloc._gravityCenter.x *_scalingFactor);
+        int gravityCenterOfBloc = ((bloc._scaledSize.width / 2))
+                                   //* _scalingFactor
+                                   - (bloc._gravityCenter.x);
+                                      //*_scalingFactor);
         //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
         
         [self._aBlocsTowerSprite addObject:pBlocSprite];
@@ -205,8 +215,8 @@ enum {
        
         CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
         [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
-        //y += bloc._scaledSize.height / 2;
-        y += pBlocSprite.boundingBox.size.height / 2;
+        
+        y += (bloc._scaledSize.height / 2 )  * _scalingFactor;
         
         i++;
         
@@ -300,7 +310,7 @@ enum {
     CGSize s = [[CCDirector sharedDirector] winSize];
     int i = [self._pTowerData Size];
     
-    CCLOG(@"Rotation a %02.f", (double)degree);
+   // CCLOG(@"Rotation a %02.f", (double)degree);
     
     for(b2Body *b = world->GetBodyList(); b; b=b->GetNext())
     {
