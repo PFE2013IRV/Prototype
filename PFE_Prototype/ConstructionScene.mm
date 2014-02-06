@@ -30,8 +30,13 @@
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
+    
+    CCSprite* currentBackground = self._pSkyLayer._pBackground;
+    ccColor3B color3 = self._pSunLayer._pSoleil.color;
+    ccColor4B currentSunColor = ccc4(color3.r, color3.g, color3.b, 255);
+    
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
-    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower];
+    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower CurrentBackground:currentBackground CurrentSunColor:currentSunColor];
     
 }
 
@@ -182,10 +187,10 @@
     }
 }
 
--(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData
+-(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData CurrentBackground : (CCSprite*) i_CurrentBackground CurrentSunColor : (ccColor4B) i_CurrentSunColor
 {
     
-    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData]] autorelease];
+    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData] CurrentBackground:i_CurrentBackground CurrentSun:i_CurrentSunColor] autorelease];
     
     balanceScene.previusScene = self;
     

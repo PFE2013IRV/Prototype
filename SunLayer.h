@@ -28,7 +28,7 @@ _nbDecrement;
 @property (nonatomic,strong) CCSprite* _pGradientCenter;
 @property float _incrementAlpha;
 @property  bool _animationDirection;
-@property  int _sceneMod;
+@property  int _sceneMod,aleatoire;
 
 @property ccColor4B _currentSunColor;
 @property ccColor4B _aimedSunColor;
@@ -41,7 +41,8 @@ _nbDecrement;
 -(void) genSunGradient:(ccTime)i_dt;
 -(CCTexture2D *)createSunTexturetextureWidth:(float)i_textureWidth textureHeight:(float)i_textureHeight center:(CGPoint)i_center;
 -(void) ManageSunConstruction;
--(void) ManageSunBalance;
+-(void)ManageSunBalance: (ccColor4B) i_currentSunColor;
+-(void)ReSchedule;
 
 
 

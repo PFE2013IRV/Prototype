@@ -26,12 +26,13 @@
 
 -(id) init;
 -(void) initConstruction;
--(void) initBalance;
+-(void) initBalance:(CCSprite*)_iCurrentBackground;
 -(void) changeBackground:(ccTime)i_dt;
 
 -(void) initColorsOfDay;
 -(void) ManageBackgroundConstruction;
--(void) ManageBackgroundBalance;
+-(void) ManageBackgroundBalance:(CCSprite*)_iCurrentBackground;
+-(void) ReSchedule;
 
 
 
@@ -40,7 +41,7 @@
 
 
 
-@property (nonatomic,strong) CCSprite* _pBackground;
+@property  (nonatomic,strong) CCSprite* _pBackground;
 
 @property  CGFloat _backgroundHeight,_backgroundWidth;
 @property  float _velocityFactor,_timeScale;
