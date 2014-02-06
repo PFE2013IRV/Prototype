@@ -24,9 +24,10 @@
 
 -(void) changeScene
 {
-    [self._pElementGodsLayer stopAllRuningAnimations:nil];
-    [self._pWindGodLayer stopAllRuningAnimations:nil];
-    
+    //[self._pElementGodsLayer stopAllRuningAnimations:nil];
+    //[self._pWindGodLayer stopAllRuningAnimations:nil];
+    [self._pWindGodLayer requestBigCleanUp];
+    [self._pElementGodsLayer requestBigCleanUp];
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
     [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower];
     
