@@ -50,12 +50,18 @@ _timeScale;
     _backgroundWidth =  BACKGROUND_WIDTH;
     [self initColorsOfDay];
 }
--(void)initBalance
+-(void)initBalance:(CCSprite*)_iCurrentBackground
 {
     CGSize winSize = [[CCDirector sharedDirector]winSize];
     _backgroundWidth = winSize.width;
     _backgroundHeight = winSize.height;
-    [self initColorsOfDay];
+     [self initColorsOfDay];
+    if(_iCurrentBackground == nil)
+    {
+      _pBackground = _iCurrentBackground;
+    }
+    
+    
 }
 -(void) initColorsOfDay
 {
@@ -156,10 +162,11 @@ _timeScale;
     [self schedule:@selector(changeBackground:)interval:_timeScale];
     
 }
--(void)ManageBackgroundBalance
+-(void)ManageBackgroundBalance:(CCSprite*)_iCurrentBackground
 {
+    
     self._sceneMod = SCENE_MODE_BALANCE;
-    [self initBalance];
+    [self initBalance:_iCurrentBackground];
 }
 
 
