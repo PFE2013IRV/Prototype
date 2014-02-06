@@ -32,6 +32,7 @@
 -(void) initColorsOfDay;
 -(void) ManageBackgroundConstruction;
 -(void) ManageBackgroundBalance:(CCSprite*)_iCurrentBackground;
+-(void) ReSchedule;
 
 
 
