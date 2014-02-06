@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "CCRotationAround.h"
 #import "GlobalConfig.h"
+#import "LevelVisitor.h"
 
 
 @interface SunLayer : CCLayer {
