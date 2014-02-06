@@ -12,15 +12,14 @@
 #import "ConstructionTowerLayer.h"
 #import "TowerData.h"
 #import "PlanetLayer.h"
+#import "FireAttackLayer.h"
 
-@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate, ConstructionTowerDelegate>
+@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>//, ConstructionTowerDelegate>
 
 
 @property (nonatomic, strong) MenuLayer *pMenuLayer;
 @property (nonatomic, strong) ConstructionTowerLayer *pTowerLayer;
-@property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win;
--(void) zoomOutOnTower;
 
 @end

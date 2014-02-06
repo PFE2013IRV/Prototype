@@ -20,6 +20,8 @@
 {
     if (self = [super init])
     {
+        _pGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
+        
         _pSkyLayer = [SkyLayer node];
         _pPlanetLayer = [PlanetLayer node];
         _pWindGodLayer = [WindGodLayer node];

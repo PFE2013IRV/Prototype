@@ -26,6 +26,8 @@
 {
 if( (self=[super init]) )
 {
+    
+    _pCurrGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
     _godWrathDisplayWidth = BACKGROUND_WIDTH;
     _godWrathDisplayHeight = BACKGROUND_HEIGHT;
     _annimationDuration = 2.0;
@@ -112,8 +114,7 @@ return self;
 -(void) skyGodWrath:(ccTime)i_dt
 {
     // On regarde à quel dieu on à faire et remet à jour la variable de colère
-    _pCurrGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
-    _pGodData = [_pCurrGameData getCurrentGod];
+    self._pGodData = [self._pCurrGameData getCurrentGod];
     
     if(_pGodData._isAngry && !_isAnimAngryBeingLaunched)
     {

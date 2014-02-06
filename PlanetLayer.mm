@@ -24,8 +24,9 @@
         // Pour faire d'autres actions il faut le faire grâce a des appels de méthode
         
         _pPlanetSprite = [[[CCSprite alloc] initWithFile:@"planet.png"] autorelease];
+        _pPlanetSprite.scale = 0.6;
         _pPlanetSprite.anchorPoint = ccp(0.5,1.0);
-        [_pPlanetSprite setPosition:CGPointMake(384, 250)];
+        [_pPlanetSprite setPosition:CGPointMake(384, PLANET_HEIGHT_BALANCE)];
         
         [self addChild:_pPlanetSprite];
     }
@@ -86,8 +87,7 @@
     
     _isZooming = YES;
     _positionBeforeZoom = self.position;
-    
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
+
     
     
     self.anchorPoint = ccp(0.5f,1.0f);
@@ -101,47 +101,6 @@
     
     [self runAction:sequence];
     
-}
-
--(void) zoomOutPlanet:(ccTime)delta
-{
-    // just to be sure no other actions interfere
-    [self stopAllActions];
-    
-    _isZooming = YES;
-    
-    self.anchorPoint = ccp(0.5f,0.5f);
-    
-    id zoomOut = [CCScaleTo actionWithDuration:0.5f scale:1];
-    id moveTo = [CCMoveTo actionWithDuration:0.5f position:_positionBeforeZoom];
-    
-    id reset = [CCCallBlock actionWithBlock:^{
-        CCLOG(@"zoom in/out complete");
-        _isZooming = NO;
-    }];
-    id sequence = [CCSequence actions:zoomOut,reset,moveTo,nil];
-    [self runAction:sequence];
-    
-    
-    
-}
-
--(void) update:(ccTime)delta
-{
-    
-    if (_isZooming)
-    {
-        
-        CGSize screenSize = [CCDirector sharedDirector].winSize;
-        CGPoint screenCenter = CGPointMake(screenSize.width * 0.5f,
-                                           screenSize.height * 0.5f);
-        
-        CGPoint offsetToCenter = ccpSub(screenCenter, self.position);
-        self.position = ccpMult(offsetToCenter, self.scale);
-        self.position = ccpSub(self.position, ccpMult(offsetToCenter,
-                                                      (_scalingFactor - self.scale) /
-                                                      (_scalingFactor - 1.0f)));
-    }
 }
 
 @end

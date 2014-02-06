@@ -10,6 +10,11 @@
 #import "cocos2d.h"
 #import "TowerLayer.h"
 #import "BlocData.h"
+#import "FireAttackLayer.h"
+#import "GameData.h"
+#import "GodData.h"
+#import "LevelVisitor.h"
+#import "PlanetLayer.h"
 
 @protocol ConstructionTowerDelegate <NSObject>
 
@@ -18,7 +23,7 @@
 
 @end // end of delegate protocol
 
-@interface ConstructionTowerLayer : TowerLayer
+@interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
     id <ConstructionTowerDelegate> _delegate;
 }
@@ -30,6 +35,12 @@
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
 
+//bool pour savoir si on a appuyé sur l'écran pour scroller
+@property (nonatomic, assign) BOOL isScrolling;
+@property (nonatomic, assign) int startingScroll;
+@property (nonatomic, assign) int possibleScrollSize;
+@property (nonatomic, assign) int scrollPosition;
+
 @property (nonatomic, assign) int HeightTower;
 @property (nonatomic, assign) int centerWidthTower;
 @property (nonatomic, assign) CGRect towerMagnetization;
@@ -40,18 +51,25 @@
 @property (nonatomic, assign) int winningHeight;
 @property (nonatomic, assign) int currentHeightNoScroll;
 
+@property (nonatomic, strong) PlanetLayer* pPlanetLayer;
+
 // Pour le zoom
 @property (nonatomic, assign) BOOL isZooming;
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
 
+@property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
+
+
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
 - (void) movingSpriteFalling : (id) sender;
 - (void) removeMovingSpriteFromParent : (id) sender;
 
--(float) zoomInTower:(ccTime)delta;
+-(void) zoomInTower:(ccTime)delta;
 -(void) zoomOutTower:(ccTime)delta;
+-(void) calculatePositionAfterZoom:(id) sender;
 
+-(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
 @end

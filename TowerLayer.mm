@@ -6,15 +6,18 @@
 //
 
 #import "TowerLayer.h"
-
+#import "LevelVisitor.h"
 
 @implementation TowerLayer
+
+@synthesize _pCurrentGameData;
 
 -(id) init
 {
     if(self = [super init])
     {
         self._aBlocsTowerSprite = [[NSMutableArray alloc] init];
+        _pCurrentGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
     }
     
     return self;

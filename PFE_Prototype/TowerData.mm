@@ -17,9 +17,20 @@
     if(self = [super init])
     {
         _aBlocs = [[NSMutableArray alloc] init];
+        
     }
     
     return self;
+}
+-(int) Size
+{
+   return( [_aBlocs count]);
+}
+
+-(void) Remove: (int) IndexBloc
+{
+    [_aBlocs removeObjectAtIndex:IndexBloc];
+    
 }
 
 @end
