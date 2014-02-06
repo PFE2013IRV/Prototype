@@ -21,6 +21,16 @@
 @synthesize _pBkg2;
 
 
+-(void) changeScene
+{
+    [self._pElementGodsLayer stopAllRuningAnimations:nil];
+    [self._pWindGodLayer stopAllRuningAnimations:nil];
+    
+    TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
+    [[LevelVisitor GetLevelVisitor] changeSceneFromConstructionToBalanceWithId:0 TowerData:tower];
+    
+}
+
 -(id) initGameScene : (GameData*) i_pGameData
 {
     if(!i_pGameData)
@@ -203,6 +213,7 @@
              {
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
+                 [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
              }
          }
      }

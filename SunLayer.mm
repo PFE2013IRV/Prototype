@@ -7,6 +7,7 @@
 //
 
 #import "SunLayer.h"
+#import "ConstructionScene.h"
 
 
 @implementation SunLayer
@@ -164,6 +165,8 @@
     if(255-_incrementAlpha*_nbDecrement <= 0)
     {
         [self unschedule:@selector(genSunGradient:)];
+        ConstructionScene *sceneParent = (ConstructionScene *) self.parent;
+        [sceneParent changeScene];
     }
     else
     {
