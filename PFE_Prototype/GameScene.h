@@ -13,7 +13,8 @@
 #import "WindGodLayer.h"
 #import "FireAttackLayer.h"
 #import "WindAttackLayer.h"
-#import "DustLayer.h"
+#import "DustLayerFront.h"
+#import "DustLayerBack.h"
 #import "GameData.h"
 #import "StarsLayer.h"
 #import "AnimatedBackground.h"
@@ -36,12 +37,13 @@
 // The planet layer is common to both game scene modes
 @property (nonatomic, strong) PlanetLayer* _pPlanetLayer;
 
-// The wind god is present in every game scene mode
-@property (nonatomic, strong) WindGodLayer* _pWindGodLayer;
+@property(nonatomic, strong) DustLayerFront* _pDustLayerFront;
 
-@property(nonatomic, strong) DustLayer* _pDustLayer;
+@property(nonatomic, strong) DustLayerBack* _pDustLayerBack;
 
 @property(nonatomic, strong) StarsLayer* _pStarsLayer;
+
+
 
 
 // init

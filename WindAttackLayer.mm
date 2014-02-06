@@ -11,7 +11,9 @@
 
 @implementation WindAttackLayer
 
-@synthesize _pWindParticle;
+@synthesize _pWindParticle1;
+@synthesize _pWindParticle2;
+
 
 -(id) init
 {
@@ -38,25 +40,40 @@
 {
     ConstructionScene* pScene = (ConstructionScene*)[self parent];
     
-    if(_pWindParticle.parent != self)
+    if(_pWindParticle1.parent != self)
     {
         //init particles
-        _pWindParticle=[[CCParticleSystemQuad alloc] initWithFile:@"windAttackParticle.plist"];
-        //_pWindParticle.position = ccp(700, 560);
-        [self addChild:_pWindParticle];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(DustParticlesAttackMode)])
+        {
+            [self.delegate DustParticlesAttackMode];
+        }
+        _pWindParticle1=[[CCParticleSystemQuad alloc] initWithFile:@"WindAttackParticle1.plist"];
+        _pWindParticle2=[[CCParticleSystemQuad alloc] initWithFile:@"WindAttackParticle2.plist"];
+        
+        LevelVisitor* levelVisitor = [LevelVisitor GetLevelVisitor];
+        CGPoint godPosition = levelVisitor._pCurrentGameData._pWindGodData._windGodPosition;
+        _pWindParticle1.position = ccp(_pWindParticle1.position.x,godPosition.y);
+        _pWindParticle2.position = ccp(_pWindParticle2.position.x,godPosition.y);
+        [self addChild:_pWindParticle1];
+        [self addChild:_pWindParticle2];
+
+        
         [pScene._pWindGodLayer playCuteAnim:nil];
         [pScene._pElementGodsLayer playWindAnim:nil];
-        //id actionMove1 = [CCMoveTo actionWithDuration:1 position:ccp(350, 560)];
-       // [_pWindParticle runAction:actionMove1];
 
         
     }
-    else if (_pWindParticle.parent == self)
+    else if (_pWindParticle1.parent == self)
     {
-        [self removeChild:_pWindParticle cleanup:false];
+        [self removeChild:_pWindParticle1 cleanup:false];
+        [self removeChild:_pWindParticle2 cleanup:false];
         [pScene._pElementGodsLayer stopAllActions];
         [pScene._pElementGodsLayer playElementaryStaticAnims:nil];
         [pScene._pWindGodLayer playWindStaticAnims:nil];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(DustParticlesNormalMode)])
+        {
+            [self.delegate DustParticlesNormalMode];
+        }
     }
 }
 
