@@ -19,4 +19,8 @@
 
 @property (nonatomic,strong) GameData* _pCurrentGameData;
 
+@property (nonatomic,strong) CCSprite* _pHUDRespect;
+@property (nonatomic,strong) CCSprite* _pHUDBackgrounds;
+@property (nonatomic,strong) CCSprite* _pHUDFrames;
+
 @end
