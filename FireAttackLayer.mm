@@ -19,7 +19,7 @@
 @synthesize _aFireParticles;
 @synthesize _pFireParticle6;
 @synthesize _duration;
-@synthesize _speed;
+@synthesize _moveDuration;
 @synthesize _pCurrentGameData;
 @synthesize _pCurrentGodData;
 
