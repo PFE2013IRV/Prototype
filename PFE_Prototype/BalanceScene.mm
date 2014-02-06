@@ -43,10 +43,7 @@
             [self addChild:self._pSunLayer];
             
         }
-        
-        
-       
-        
+     
         TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
         [self addChild:pTowerAndPlanet];
         
@@ -62,19 +59,32 @@
 }
 
 
+
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
 }
 
-
+-(void)onEnterTransitionDidFinish
+{
+  // [self returnToConstruction];
+    
+}
 -(void)returnToConstruction
 {
     //indexes des blocs qui se sont peter la gueule
-    NSMutableIndexSet *indexes;
-    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+  //  NSMutableIndexSet *indexes;
+    //[_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
     [[CCDirector sharedDirector] popScene];
 }
+-(void)onEnter
+{
+ if(_previusScene._pWindGodLayer._pGodData._godIsUp)
+ {
+     
+ }
+}
+
 
 @end
