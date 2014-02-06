@@ -18,7 +18,7 @@
 		54A4835B188C3542003D47B8 /* windParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4835A188C3542003D47B8 /* windParticle.plist */; };
 		54A4835E188C3940003D47B8 /* DustLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54A4835D188C3940003D47B8 /* DustLayer.mm */; };
 		54B36A4418A3A4E10005D330 /* windAttackParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4318A3A4E10005D330 /* windAttackParticle.plist */; };
-		54B36A4618A3A7F60005D330 /* dustParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4518A3A7F60005D330 /* dustParticle.plist */; };
+		54B36A4818A3B2D60005D330 /* Dust_particle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A4718A3B2D60005D330 /* Dust_particle.plist */; };
 		54FAAA47189AAE5E007895E5 /* fireParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA46189AAE5E007895E5 /* fireParticle.plist */; };
 		54FAAA49189AAEA7007895E5 /* Fire_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA48189AAEA7007895E5 /* Fire_Particle.png */; };
 		54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */; };
@@ -304,7 +304,7 @@
 		54A4835C188C3940003D47B8 /* DustLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DustLayer.h; sourceTree = "<group>"; };
 		54A4835D188C3940003D47B8 /* DustLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayer.mm; sourceTree = "<group>"; };
 		54B36A4318A3A4E10005D330 /* windAttackParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = windAttackParticle.plist; sourceTree = "<group>"; };
-		54B36A4518A3A7F60005D330 /* dustParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dustParticle.plist; sourceTree = "<group>"; };
+		54B36A4718A3B2D60005D330 /* Dust_particle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Dust_particle.plist; sourceTree = "<group>"; };
 		54FAAA46189AAE5E007895E5 /* fireParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fireParticle.plist; path = Resources/fireParticle.plist; sourceTree = "<group>"; };
 		54FAAA48189AAEA7007895E5 /* Fire_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fire_Particle.png; path = Resources/Fire_Particle.png; sourceTree = "<group>"; };
 		54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ParticleTexture.png; path = Resources/ParticleTexture.png; sourceTree = "<group>"; };
@@ -1180,7 +1180,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				54B36A4518A3A7F60005D330 /* dustParticle.plist */,
+				54B36A4718A3B2D60005D330 /* Dust_particle.plist */,
 				54B36A4318A3A4E10005D330 /* windAttackParticle.plist */,
 				54FAAA4C189AAEE0007895E5 /* godParticle.plist */,
 				54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */,
@@ -1820,7 +1820,6 @@
 				8A4091521896B1C8009CD5B0 /* FireGod_static2.png in Resources */,
 				8A4091481896B14D009CD5B0 /* FireGod_colere2.plist in Resources */,
 				8A4091441896B13C009CD5B0 /* FireGod_wind.plist in Resources */,
-				54B36A4618A3A7F60005D330 /* dustParticle.plist in Resources */,
 				8A2242741897EE8400C451A5 /* triangle.png in Resources */,
 				FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
@@ -1852,6 +1851,7 @@
 				8AC442A31886CBA500DF2FA1 /* Default.png in Resources */,
 				8AC11E36188944010029062B /* FireGod_static1.plist in Resources */,
 				8AE87F7518994B3D000BEE47 /* cloudsTop_back.png in Resources */,
+				54B36A4818A3B2D60005D330 /* Dust_particle.plist in Resources */,
 				8AC11E37188944010029062B /* FireGod_static1.png in Resources */,
 				8AE988F1186492F600705AAF /* Icon-Small-50.png in Resources */,
 				8AE988F5186492F600705AAF /* Icon-Small@2x.png in Resources */,

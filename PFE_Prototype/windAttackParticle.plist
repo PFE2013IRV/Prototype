@@ -15,7 +15,7 @@
 	<key>emitterType</key>
 	<integer>0</integer>
 	<key>finishColorAlpha</key>
-	<real>1</real>
+	<real>0.5</real>
 	<key>finishColorBlue</key>
 	<real>0.144155561923981</real>
 	<key>finishColorGreen</key>
@@ -77,7 +77,7 @@
 	<key>startColorRed</key>
 	<real>0.5822433829307559</real>
 	<key>startColorVarianceAlpha</key>
-	<integer>0</integer>
+	<real>0.5</real>
 	<key>startColorVarianceBlue</key>
 	<real>0</real>
 	<key>startColorVarianceGreen</key>
