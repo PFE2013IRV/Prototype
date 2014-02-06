@@ -260,4 +260,15 @@
     
 }
 
+- (void) requestBigCleanUp
+{
+    for(CCSpriteBatchNode* pSpriteSheet in self._aGodSpriteSheets)
+    {
+        
+        [pSpriteSheet removeFromParentAndCleanup:true];
+        [pSpriteSheet removeAllChildrenWithCleanup:true];
+    }
+
+}
+
 @end
