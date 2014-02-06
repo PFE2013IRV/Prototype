@@ -48,6 +48,9 @@
 // This function stops all the animations on the animated god.
 - (void) stopAllRuningAnimations: (id) sender;
 
+// This function does a cleanup for a scene transition.
+- (void) requestBigCleanUp;
+
 
 
 // The sprite containing the god sprites
