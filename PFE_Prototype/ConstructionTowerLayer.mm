@@ -463,7 +463,7 @@
 -(int)burnOneBlocAtIndex:(int)index
 {
     CCSprite *blocSpriteToRemove = [self._aBlocsTowerSprite objectAtIndex:index];
-    [blocSpriteToRemove removeFromParent];
+    [blocSpriteToRemove removeFromParentAndCleanup:YES];
     BlocData *blocDataToRemove = [self._pTowerData._aBlocs objectAtIndex:index];
     
     int height = blocDataToRemove._scaledSize.height;
