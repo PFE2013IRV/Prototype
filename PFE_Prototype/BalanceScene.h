@@ -9,11 +9,12 @@
 #import "GameScene.h"
 #import "GameSceneProtocol.h"
 #import "ConstructionScene.h"
-
+#import "TowerAndPlanetLayer.h"
 @interface BalanceScene : GameScene <GameSceneProtocol>
 
 
 @property (nonatomic, strong) ConstructionScene *previusScene;
+@property (nonatomic,strong) TowerAndPlanetLayer* _pTowerAndPlanetLayer;
 
 // Game scene init with game data is requiered for every game scene.
 // i_pGameData : the game data used to initialize the scene

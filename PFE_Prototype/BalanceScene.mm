@@ -11,6 +11,7 @@
 @implementation BalanceScene
 
 @synthesize previusScene = _previusScene;
+@synthesize _pTowerAndPlanetLayer;
 
 -(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor
 {
@@ -44,9 +45,9 @@
             
         }
      
-        TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        pTowerAndPlanet.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
-        [self addChild:pTowerAndPlanet];
+         _pTowerAndPlanetLayer = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
+        _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
+        [self addChild:_pTowerAndPlanetLayer];
         
         if(!SIMULATOR_MODE)
         {
@@ -83,7 +84,11 @@
 {
  if(_previusScene._pWindGodLayer._pGodData._godIsUp)
  {
-     
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = true;
+ }
+ else
+ {
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = false;
  }
 }
 

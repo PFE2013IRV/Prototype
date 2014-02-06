@@ -25,6 +25,7 @@ enum {
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize TowerSize;
+@synthesize WindAttackType;
 
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData
