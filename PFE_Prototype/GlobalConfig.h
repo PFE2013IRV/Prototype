@@ -19,7 +19,7 @@ static int GOD_RESPECT_INCREASE = 10;
 static int GOD_ANGER_LIMIT = 30;
 
 // Mettre à true pour mode optimal
-static bool SIMULATOR_MODE = true;
+static bool SIMULATOR_MODE = false;
 //Hauteur du placement de la planet pour la scene de construction
 static int PLANET_HEIGHT_BALANCE = 250;
 

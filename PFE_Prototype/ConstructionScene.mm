@@ -103,6 +103,14 @@
         
         // ajoute le menu
         [self addChild:addMenu];
+        
+        // HUD Layer
+        
+        HUDLayer* pHUD = [HUDLayer node];
+        [self addChild:pHUD];
+        
+        
+        [self scheduleUpdate];
     }
     
     return self;
