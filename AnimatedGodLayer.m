@@ -264,9 +264,9 @@
 {
     for(CCSpriteBatchNode* pSpriteSheet in self._aGodSpriteSheets)
     {
+        [pSpriteSheet removeAllChildren];
         
-        [pSpriteSheet removeFromParentAndCleanup:true];
-        [pSpriteSheet removeAllChildrenWithCleanup:true];
+        //[pSpriteSheet removeAllChildrenWithCleanup:true];
     }
 
 }
