@@ -19,6 +19,14 @@ enum {
 
 @implementation BalanceTowerLayer
 
+@synthesize pPlanetLayer = _pPlanetLayer;
+@synthesize isZooming = _isZooming;
+//@synthesize scalingFactor = _scalingFactor;
+@synthesize positionBeforeZoom = _positionBeforeZoom;
+@synthesize zoomOutPosition = _zoomOutPosition;
+@synthesize TowerSize;
+
+
 -(id) initWithTowerData : (TowerData*) i_pTowerData
 {
     if (self = [super init])
@@ -27,6 +35,7 @@ enum {
         self._pTowerData = i_pTowerData;
         // init physics
 		[self initPhysics];
+        [self CalculateScalingFactor];
         [self drawAllPhysicsBlocsOfTower];
       
         id action1 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackLeft:)];
@@ -34,9 +43,10 @@ enum {
         id action3 = [CCCallFuncND actionWithTarget:self selector:@selector(ApplyWindAttackRight:)];
         id action4 = [CCDelayTime actionWithDuration:3];
         //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
-        
-    
-        
+       // for(int i = 1 ; i <= 2  ; i++)
+      //      [self ApplyWindAttackLeft];
+       // [self ApplyWindAttackRight];
+
         [self scheduleUpdate];
 
     }
@@ -71,7 +81,8 @@ enum {
      // Define the ground body.
      b2BodyDef groundBodyDef;
 
-     groundBodyDef.position.Set(0, ( s.height/6)/PTM_RATIO); // bottom-left corner
+     groundBodyDef.position.Set(0,220 //( s.height/6)
+                                /PTM_RATIO); // bottom-left corner
     
      // Call the body factory which allocates memory for the ground body
      // from a pool and creates the ground box shape (also from a pool).
@@ -100,36 +111,105 @@ enum {
    
 }
 
+-(void)CalculateScalingFactor
+{
+    _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
 
+    if(_scalingFactor > 1) _scalingFactor = 0.8f;
+
+    _isZooming = YES;
+    _positionBeforeZoom = self.position;
+
+    _zoomOutPosition = _positionBeforeZoom;
+
+    id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
+    id calculatePosition = [CCCallBlock actionWithBlock:^{
+    _zoomOutPosition = self.position;
+    _zoomOutPosition.y += TowerSize*_scalingFactor/2;
+    self.position = _zoomOutPosition;
+    
+    }];
+    id reset = [CCCallBlock actionWithBlock:^{
+    _isZooming = NO;
+    }];
+    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, nil];
+
+    [self runAction:sequence];
+    
+}
 
 -(void)drawAllPhysicsBlocsOfTower
 {
-    int x = 350;
-    int y = 100;
+    _scalingFactor =1;
+    int x = 350 * _scalingFactor;
+    int y = 220 * _scalingFactor;
+    bool Tower = true;
+    int i =1;
+    int max, min;
+    int Move = 0;
+   
+    // Dernier troncon soumis a l'attaque
+    if(Tower)
+    {
+        max = [self._pTowerData Size];
+        min = round([self._pTowerData Size] / 3);
+    }
+    //Premier troncon soumis à l'attaque
+    else
+    {
+        max = round([self._pTowerData Size] / 3);
+        min = 1;
+     }
+    //Bloc central du troncon
+    int Middle_Bloc = max - round(round([self._pTowerData Size] / 3) / 2);
     
+   
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
         CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
-
         
-        y += bloc._scaledSize.height / 2;
+    /***** Decalage due a l'attaque du vent *****/
         
-        int gravityCenterOfBloc = bloc._scaledSize.width / 2 - bloc._gravityCenter.x;
+        //Si on se rapproche du centre de l'attaque, on ajoute du decalage
+        if(i <= Middle_Bloc && i >= min && i <= max)
+        {
+            Move++;
+            x = x-Move;
+        }
+        //Sinon c'est qu'on a passé le point critique, on réduit le decalage
+        else if(i > Middle_Bloc && i >= min && i <= max)
+        {
+            Move--;
+            x = x-Move;
+         }
+        //Cas ou l'on a depassé le rayon de l'attaque
+        else if (i > max)
+            x = 350;
+        
+        CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
+    /********************************************/
+        
+        y += (bloc._scaledSize.height / 2) /_scalingFactor;
+        //y += pBlocSprite.boundingBox.size.height / 2;
+        
+        int gravityCenterOfBloc = (bloc._scaledSize.width / 2) * _scalingFactor - (bloc._gravityCenter.x *_scalingFactor);
+        //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
         
         [self._aBlocsTowerSprite addObject:pBlocSprite];
         [self addChild:pBlocSprite];
-        //b2Body First_Block =
-        [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x -100, y-100)];
+        [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x, y)];
         
        
         CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
-
         [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
-        y += bloc._scaledSize.height / 2;
+        //y += bloc._scaledSize.height / 2;
+        y += pBlocSprite.boundingBox.size.height / 2;
+        
+        i++;
+        
     }
-   
-
+    
 }
 
 
