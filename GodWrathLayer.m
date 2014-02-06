@@ -140,5 +140,9 @@ return self;
     }
     
 }
+-(void)ReSchedule
+{
+     [self schedule:@selector(skyGodWrath:)interval:_velocityFactor*5];
+}
 
 @end

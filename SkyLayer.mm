@@ -181,6 +181,10 @@ _timeScale;
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
+-(void) ReSchedule
+{
+     [self schedule:@selector(changeBackground:)interval:_timeScale];
+}
 -(void) onEnter
 {
     [super onEnter];
