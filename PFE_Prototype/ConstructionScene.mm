@@ -8,6 +8,7 @@
 #import "BlocManager.h"
 #import "GlobalConfig.h"
 #import "HUDLayer.h"
+#import "BalanceScene.h"
 
 @implementation ConstructionScene
 
@@ -27,7 +28,7 @@
     [self._pWindGodLayer stopAllRuningAnimations:nil];
     
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
-    [[LevelVisitor GetLevelVisitor] changeSceneFromConstructionToBalanceWithId:0 TowerData:tower];
+    [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower];
     
 }
 
@@ -174,6 +175,16 @@
     }
 }
 
+-(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData
+{
+    
+    BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData]] autorelease];
+    
+    balanceScene.previusScene = self;
+    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:1.0 scene:balanceScene]];
+                                               }
+                                               
 -(void) update:(ccTime)delta
 {
     

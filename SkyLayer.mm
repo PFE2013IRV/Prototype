@@ -162,11 +162,6 @@ _timeScale;
     [self initBalance];
 }
 
--(void) update:(ccTime)delta
-{
-    [self changeBackground:delta];
-    
-}
 
 
 // on "dealloc" you need to release all your retained objects

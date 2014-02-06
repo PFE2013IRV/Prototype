@@ -37,12 +37,10 @@
 -(GameData*) StartLevelBalance : (int) _levelId;
 
 //Manage the transition between scene Balance and Construction , keeping the tower data as is.
--(void) changeSceneFromBalanceToConstructionWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData;
+-(GameData*) StartLevelBalanceWithId : (int) _levelId TowerData : (TowerData*) _iTowerData;
 
 //Manage the transition between scene Construction and Balance , keeping the tower data as is.
--(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData;
-
-
+-(GameData*) StartLevelConstructionWithId : (int)_levelId TowerData : (TowerData*) _iTowerData;
 // This property holds the current game data and can be accessed and changed at any time
 @property (nonatomic,strong) GameData* _pCurrentGameData;
 
