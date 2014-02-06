@@ -46,9 +46,9 @@
             sGodType = @"WindGod_";
         
         
-        self._aGodSpriteSheets = [[[NSMutableDictionary alloc] init] autorelease];
-        self._aGodActions = [[[NSMutableDictionary alloc] init] autorelease];
-        self._aGodSprites = [[[NSMutableDictionary alloc] init] autorelease];
+        self._aGodSpriteSheets = [[NSMutableDictionary alloc] init];
+        self._aGodActions = [[NSMutableDictionary alloc] init];
+        self._aGodSprites = [[NSMutableDictionary alloc] init];
         
         
         for(int i = 0; i < i_aAnimStrings.count; i++)

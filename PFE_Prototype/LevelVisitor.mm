@@ -56,11 +56,7 @@ static LevelVisitor* pLevelVisitor = nil;
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[self StartLevelConstructionWithId: _iLevelId TowerData:_iTowerData]] autorelease]]];
 }
--(void) changeSceneFromConstructionToBalanceWithId : (int) _iLevelId TowerData : (TowerData*) _iTowerData
-{
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[self StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData]] autorelease]]];
-    
-}
+
 -(GameData*) StartLevelConstructionWithId : (int)_levelId TowerData : (TowerData*) _iTowerData
 {
       GameData* pGameData = nil;
@@ -71,7 +67,6 @@ static LevelVisitor* pLevelVisitor = nil;
  _pCurrentGameData = pGameData = [[[GameData alloc] initGameData:SCENE_MODE_CONSTRUCTION withTowerData:_iTowerData withGods:aGods] autorelease];
     
     return _pCurrentGameData;
-
     
 }
 -(GameData*) StartLevelBalanceWithId : (int) _levelId TowerData : (TowerData*) _iTowerData
