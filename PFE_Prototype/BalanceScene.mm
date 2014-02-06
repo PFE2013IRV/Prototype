@@ -46,7 +46,6 @@
         }
      
          _pTowerAndPlanetLayer = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
         [self addChild:_pTowerAndPlanetLayer];
         
         if(!SIMULATOR_MODE)
@@ -82,6 +81,9 @@
 }
 -(void)onEnter
 {
+    
+    _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
+
  if(_previusScene._pWindGodLayer._pGodData._godIsUp)
  {
      self._pTowerAndPlanetLayer.balanceTower.WindAttackType = true;

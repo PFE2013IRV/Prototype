@@ -240,8 +240,8 @@
         ParticleFire* particle = [particles objectAtIndex:i];
         
         CGRect bbox = [particle boundingBox];
-        bbox.size.height = 80;
-        bbox.size.width = 80;
+        bbox.size.height = 120;
+        bbox.size.width = 120;
         NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
         if (CGRectContainsPoint(bbox, location))
         {

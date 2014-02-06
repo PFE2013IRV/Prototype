@@ -25,8 +25,8 @@
 
 -(void) changeScene
 {
-    [self._pElementGodsLayer stopAllRuningAnimations:nil];
-    [self._pWindGodLayer stopAllRuningAnimations:nil];
+   // [self._pElementGodsLayer stopAllRuningAnimations:nil];
+   // [self._pWindGodLayer stopAllRuningAnimations:nil];
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
