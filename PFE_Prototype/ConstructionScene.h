@@ -13,6 +13,8 @@
 #import "UpsetGodParticleLayer.h"
 @interface ConstructionScene : GameScene <GameSceneProtocol>
 
+-(void) changeScene;
+
 // Game scene init with game data is requiered for every game scene.
 // i_pGameData : the game data used to initialize the scene
 // return value : self

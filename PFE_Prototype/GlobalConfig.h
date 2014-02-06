@@ -27,7 +27,7 @@ static int BACKGROUND_WIDTH = 768;
 static int BACKGROUND_HEIGHT = 877;
 
 //Game Time
-static int GAME_TIME_CONSTRUCTION = 150;
+static int GAME_TIME_CONSTRUCTION = 20;
 
 // The gamescene modes
 enum GameSceneMode {
