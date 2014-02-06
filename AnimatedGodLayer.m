@@ -262,13 +262,7 @@
 
 - (void) requestBigCleanUp
 {
-    for(CCSpriteBatchNode* pSpriteSheet in self._aGodSpriteSheets)
-    {
-        [pSpriteSheet removeAllChildren];
-        
-        //[pSpriteSheet removeAllChildrenWithCleanup:true];
-    }
-
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
 }
 
 @end

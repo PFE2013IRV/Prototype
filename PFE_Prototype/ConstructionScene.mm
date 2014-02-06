@@ -26,6 +26,8 @@
 {
     [self._pElementGodsLayer stopAllRuningAnimations:nil];
     [self._pWindGodLayer stopAllRuningAnimations:nil];
+    [self._pElementGodsLayer requestBigCleanUp];
+    [self._pWindGodLayer requestBigCleanUp];
     
     TowerData *tower  = [LevelVisitor GetLevelVisitor]._pCurrentGameData._pTowerData;
     [self changeSceneFromConstructionToBalanceWithId: nil TowerData:tower];
