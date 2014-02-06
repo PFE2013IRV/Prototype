@@ -227,6 +227,7 @@
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
+                 [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
              }
          }
      }
