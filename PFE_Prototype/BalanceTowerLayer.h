@@ -33,6 +33,7 @@
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
 @property (nonatomic, assign) int TowerSize;
+@property (nonatomic, assign) bool WindAttackType;
 
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData;
