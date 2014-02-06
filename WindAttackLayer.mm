@@ -17,9 +17,6 @@
 {
 	if( (self=[super init]) )
     {
-        //init particles
-        _pWindParticle=[[CCParticleSystemQuad alloc] initWithFile:@"windParticle.plist"];
-        _pWindParticle.position = ccp(0, 700);
         // position?
         
         // Bouton add wind attack
@@ -43,10 +40,15 @@
     
     if(_pWindParticle.parent != self)
     {
-        
+        //init particles
+        _pWindParticle=[[CCParticleSystemQuad alloc] initWithFile:@"windAttackParticle.plist"];
+        //_pWindParticle.position = ccp(700, 560);
         [self addChild:_pWindParticle];
         [pScene._pWindGodLayer playCuteAnim:nil];
         [pScene._pElementGodsLayer playWindAnim:nil];
+        //id actionMove1 = [CCMoveTo actionWithDuration:1 position:ccp(350, 560)];
+       // [_pWindParticle runAction:actionMove1];
+
         
     }
     else if (_pWindParticle.parent == self)
