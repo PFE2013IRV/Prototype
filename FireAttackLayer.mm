@@ -31,7 +31,7 @@
         [self initParticles];
         [self setTouchEnabled:true];
         
-        _moveDuration = 5;
+        _moveDuration = 7;
         
         // Bouton add fire attack
         CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle:)];
@@ -240,8 +240,12 @@
         ParticleFire* particle = [particles objectAtIndex:i];
         
         CGRect bbox = [particle boundingBox];
-        bbox.size.height = 120;
-        bbox.size.width = 120;
+        bbox.size.height = 150;
+        bbox.size.width = 150;
+        bbox.origin.x -= 70;
+        bbox.origin.y -= 70;
+        
+        
         NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
         if (CGRectContainsPoint(bbox, location))
         {
