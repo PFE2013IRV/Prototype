@@ -63,4 +63,6 @@
 @property (nonatomic, assign) BOOL canLaunchOtherFireBalls;
 @property (nonatomic, assign) int nbBallTouch;
 
+
+-(void)endFireBalls;
 @end

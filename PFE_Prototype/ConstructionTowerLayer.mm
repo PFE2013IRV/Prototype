@@ -162,12 +162,12 @@
     if (_isScrolling)
     {
         int heightScroll = _startingScroll - location.y;
-        int testScrollPosition = _scrollPosition - heightScroll;
+        int testScrollPosition = _scrollPosition - heightScroll * SCROLLING_SPEED_COEF;
         
         if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
         {
-            [self scrollTower:heightScroll];
-            _scrollPosition -= heightScroll;
+            [self scrollTower:heightScroll * SCROLLING_SPEED_COEF];
+            _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
         }
         
         _startingScroll = location.y;
@@ -434,14 +434,11 @@
         
         if ((CGRectContainsPoint([blocSprite boundingBox], particle.position)))
         {
-            /*[self._aBlocsTowerSprite removeObject:blocSprite];
-            [blocSprite removeFromParent];*/
             [particle removeFromParent];
             
             if (![_indexBlocTouchByFire containsIndex:i])
             {
                 [_indexBlocTouchByFire addIndex:i];
-                
             }
         }
     }
@@ -466,7 +463,7 @@
     _HeightTower = [self calculNewHeightTowerAfterChange];
     _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
     
-    if (_currentHeightNoScroll - totalHeight > SCROLLING_HEIGHT)
+    if (_currentHeightNoScroll > SCROLLING_HEIGHT)
     {
         [self scrollTower: - totalHeight];
     }
@@ -483,6 +480,8 @@
         _pPlanetLayer = [PlanetLayer node];
         [self addChild:_pPlanetLayer];
     }
+    
+    _scrollPosition = 0;
 }
 
 
@@ -524,9 +523,6 @@
 
 -(void) update:(ccTime)dt
 {
-    
-    
-    
     if(_pMovingSprite && _pBubbleSprite)
     {
         // manually move hello label up and down

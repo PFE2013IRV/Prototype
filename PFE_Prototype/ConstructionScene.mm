@@ -221,9 +221,10 @@
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
              }
-             
-             [_pFireAttackLayer addFireParticle];
-             
+             if (_pFireAttackLayer.canLaunchOtherFireBalls)
+             {
+                 [_pFireAttackLayer addFireParticle];
+             }
          }
          else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
          {
@@ -237,8 +238,11 @@
              {
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
+                 [_pFireAttackLayer endFireBalls];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
-                 [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
+                 //_pMenuAndTowerLayer.pTowerLayer scrollTowe
+                 //[self scrollTower:_scrollPosition];
+                 //_scrollPosition = 0;
              }
          }
      }

@@ -9,6 +9,13 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
+// Scrolling Speed
+static float TIME_FIRE_ATTACK = 20;
+
+
+// Scrolling Speed
+static float SCROLLING_SPEED_COEF = 2;
+
 // Respect du dieu élémentaire par défaut
 static float GOD_RESPECT_DEFAULT = 100;
 
