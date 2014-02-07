@@ -24,7 +24,13 @@
 
 
 -(void) changeScene
-{    
+{
+   // [self._pElementGodsLayer stopAllRuningAnimations:nil];
+   // [self._pWindGodLayer stopAllRuningAnimations:nil];
+    [self._pElementGodsLayer requestBigCleanUp];
+    [self._pWindGodLayer requestBigCleanUp];
+    
+    
     CCSprite* currentBackground = self._pSkyLayer._pBackground;
     ccColor3B color3 = self._pSunLayer._pSoleil.color;
     ccColor4B currentSunColor = ccc4(color3.r, color3.g, color3.b, 255);
