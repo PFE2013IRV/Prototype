@@ -90,7 +90,7 @@
             [self addChild:pCloudsBack];
         
             [self addChild:self._pSunLayer];
-            CloudsFront* pCloudsFront = [[CloudsFront alloc] init];
+            CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
             [self addChild:pCloudsFront];
         }
         
@@ -105,7 +105,6 @@
         
         
         [self addChild:self._pElementGodsLayer];
-        
         [self addChild:self._pDustLayerBack];
         [self addChild:_pMenuAndTowerLayer];
         [self addChild:self._pWindAttackLayer];
@@ -113,7 +112,8 @@
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
         
-        
+        CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
+        [self addChild:pCloudsFront];
 
         
         

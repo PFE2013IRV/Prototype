@@ -50,8 +50,8 @@
         
         if(!SIMULATOR_MODE)
         {
-            CloudsFront* pCloudsFront = [[CloudsFront alloc] init];
-            [self addChild:pCloudsFront];
+            CloudsFrontTop* pCloudsFrontTop = [[CloudsFrontTop alloc] init];
+            [self addChild:pCloudsFrontTop];
         }
         
     }

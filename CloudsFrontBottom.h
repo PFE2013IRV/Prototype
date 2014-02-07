@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface CloudsFront : CCNode {
+@interface CloudsFrontBottom : CCNode {
     
 }
 
 @property(nonatomic,strong) CCSprite* _pBottomSprite;
-@property(nonatomic,strong) CCSprite* _pTopSprite;
 
 @end
