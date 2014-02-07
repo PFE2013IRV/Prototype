@@ -253,6 +253,19 @@
     _isScrolling = NO;
 }
 
+-(void)destroyBlocWithGodAttack
+{
+    if (_blocNotPlace)
+    {
+        _isTouch = NO;
+        [_pBubbleSprite removeFromParent];
+        _pBubbleSprite = nil;
+        [self addToFallingBloc];
+        _pMovingBlocData = nil;
+    }
+    _blocNotPlace = true;
+}
+
 -(void)addBlocToTower
 {
     [self._aBlocsTowerSprite addObject:_pMovingSprite];

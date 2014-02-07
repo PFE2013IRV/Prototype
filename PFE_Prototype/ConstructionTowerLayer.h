@@ -77,4 +77,5 @@
 -(void) calculatePositionAfterZoom:(id) sender;
 
 -(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
+-(void)destroyBlocWithGodAttack;
 @end

@@ -218,6 +218,7 @@
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
                  [_pFireAttackLayer addFireParticle];
+                 [_pMenuAndTowerLayer godIsAngry];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
              }
@@ -239,6 +240,7 @@
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
                  [_pFireAttackLayer endFireBalls];
+                 [_pMenuAndTowerLayer godBecameNotAngry];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
                  //_pMenuAndTowerLayer.pTowerLayer scrollTowe
                  //[self scrollTower:_scrollPosition];
