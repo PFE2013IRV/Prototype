@@ -7,6 +7,7 @@
 //
 
 #import "FireAttackLayer.h"
+#import "GlobalConfig.h"
 
 
 @implementation FireAttackLayer
@@ -22,6 +23,8 @@
 @synthesize _speed;
 @synthesize _pCurrentGameData;
 @synthesize _pCurrentGodData;
+@synthesize canLaunchOtherFireBalls;
+@synthesize nbBallTouch;
 
 -(id) init
 {
@@ -31,10 +34,11 @@
         [self initParticles];
         [self setTouchEnabled:true];
         
+        canLaunchOtherFireBalls = YES;
         _speed = 160;
         
         // Bouton add fire attack
-        CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle:)];
+        CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle)];
         addParticleFireButton.position = ccp(30, 0);
         
         // Menu des boutons
@@ -105,12 +109,14 @@
 }
 
 
--(void)addFireParticle:(id)i_boutonClic
+-(void)addFireParticle
 {
     [self removeParticlesFromLayer];
     [self unschedule:@selector(moveParticle:)];
     [self initParticles];
 
+    canLaunchOtherFireBalls = NO;
+    nbBallTouch = 0;
     _duration = 0;
     [self initParticlesPosition];
     for(int i = 0; i < _aFireParticles.count; i++){
@@ -120,7 +126,8 @@
     [self schedule:@selector(moveParticle:) interval:0.2];
 }
 
--(void) removeParticlesFromLayer{
+-(void) removeParticlesFromLayer
+{
     for(int i = 0; i<_aFireParticles.count; i++)
     {
         ParticleFire* particle =[_aFireParticles objectAtIndex:i];
@@ -128,6 +135,7 @@
             [particle removeFromParent];
         }
     }
+    canLaunchOtherFireBalls = YES;
 }
 
 
@@ -150,43 +158,71 @@
         ccTime moveDuration4 = ccpDistance(_pFireParticle4.position, _pFireParticle4._target)/ _speed;
         ccTime moveDuration5 = ccpDistance(_pFireParticle5.position, _pFireParticle5._target)/ _speed;
         ccTime moveDuration6 = ccpDistance(_pFireParticle6.position, _pFireParticle6._target)/ _speed;
-
-        // Init actions moveTo particles specific targer
-        id actionMove1 = [CCMoveTo actionWithDuration:moveDuration1 position:_pFireParticle1._target];
-        id actionMove2 = [CCMoveTo actionWithDuration:moveDuration2 position:_pFireParticle2._target];
-        id actionMove3 = [CCMoveTo actionWithDuration:moveDuration3 position:_pFireParticle3._target];
-        id actionMove4 = [CCMoveTo actionWithDuration:moveDuration4 position:_pFireParticle4._target];
-        id actionMove5 = [CCMoveTo actionWithDuration:moveDuration5 position:_pFireParticle5._target];
-        id actionMove6 = [CCMoveTo actionWithDuration:moveDuration6 position:_pFireParticle6._target];
-
-        // Run the specific actions on each particle
-        [self.delegate handleParticle:_pFireParticle1];
-        [_pFireParticle1 runAction:actionMove1];
         
-        [self.delegate handleParticle:_pFireParticle2];
-        [_pFireParticle2 runAction:actionMove2];
-
+        BOOL visibleBalls = false;
         
-        [self.delegate handleParticle:_pFireParticle3];
-        [_pFireParticle3 runAction:actionMove3];
-
-        [self.delegate handleParticle:_pFireParticle4];
-        [_pFireParticle4 runAction:actionMove4];
-
-        [self.delegate handleParticle:_pFireParticle5];
-        [_pFireParticle5 runAction:actionMove5];
+        for(int i = 0; i < _aFireParticles.count; i++)
+        {
+            ParticleFire* particle = [_aFireParticles objectAtIndex:i];
+            
+            if(!(particle.parent == nil))
+            {
+                visibleBalls = true;
+            }
+        }
         
-        [self.delegate handleParticle:_pFireParticle6];
-        [_pFireParticle6 runAction:actionMove6];
-        
-        _duration += delta;
-    
+        if (!visibleBalls)
+        {
+            [self unschedule:@selector(moveParticle:)];
+            [self removeParticlesFromLayer];
+            
+            canLaunchOtherFireBalls = YES;
+            
+            if (_pCurrentGodData._isAngry)
+            {
+                [self addFireParticle];
+            }
+            NSLog(@"particles removed from layer");
+        }
+        else
+        {
+            // Init actions moveTo particles specific targer
+            id actionMove1 = [CCMoveTo actionWithDuration:moveDuration1 position:_pFireParticle1._target];
+            id actionMove2 = [CCMoveTo actionWithDuration:moveDuration2 position:_pFireParticle2._target];
+            id actionMove3 = [CCMoveTo actionWithDuration:moveDuration3 position:_pFireParticle3._target];
+            id actionMove4 = [CCMoveTo actionWithDuration:moveDuration4 position:_pFireParticle4._target];
+            id actionMove5 = [CCMoveTo actionWithDuration:moveDuration5 position:_pFireParticle5._target];
+            id actionMove6 = [CCMoveTo actionWithDuration:moveDuration6 position:_pFireParticle6._target];
+            
+            // Run the specific actions on each particle
+            [self.delegate handleParticle:_pFireParticle1];
+            [_pFireParticle1 runAction:actionMove1];
+            
+            [self.delegate handleParticle:_pFireParticle2];
+            [_pFireParticle2 runAction:actionMove2];
+            
+            
+            [self.delegate handleParticle:_pFireParticle3];
+            [_pFireParticle3 runAction:actionMove3];
+            
+            [self.delegate handleParticle:_pFireParticle4];
+            [_pFireParticle4 runAction:actionMove4];
+            
+            [self.delegate handleParticle:_pFireParticle5];
+            [_pFireParticle5 runAction:actionMove5];
+            
+            [self.delegate handleParticle:_pFireParticle6];
+            [_pFireParticle6 runAction:actionMove6];
+            
+            _duration += delta;
+        }
     }
     
     // Duration is the total time of the move
     // If duration > 20 it means that particles are out of hud
     // So we unschedule the moves
-    if(_duration > 20){
+    if(_duration > TIME_FIRE_ATTACK)
+    {
         [self unschedule:@selector(moveParticle:)];
         [self removeParticlesFromLayer];
         NSLog(@"particles removed from layer");
@@ -219,8 +255,8 @@
     //on récupère la location du point pour cocos2D
     CGPoint location = [self convertTouchToNodeSpace: touch];
 
-            //on teste si les coordonnées sont sur la boule de feu à détruire
-            [self removeTouchedParticle:_aFireParticles :location];
+    //on teste si les coordonnées sont sur la boule de feu à détruire
+    [self removeTouchedParticle:_aFireParticles :location];
 
     return YES;
 }
@@ -240,7 +276,8 @@
 
 }
 
--(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location{
+-(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location
+{
     for(int i = 0; i<particles.count; i++)
     {
         ParticleFire* particle = [particles objectAtIndex:i];
@@ -260,8 +297,28 @@
             [particle removeFromParent];
             
             [_pCurrentGodData increaseRespect:GOD_RESPECT_INCREASE];
+            nbBallTouch ++;
         }
     }
+    
+    if (nbBallTouch == 6)
+    {
+        canLaunchOtherFireBalls = YES;
+        
+        if (_pCurrentGodData._isAngry)
+        {
+            [self addFireParticle];
+        }
+    }
+}
+
+-(void)endFireBalls
+{
+    [self unschedule:@selector(moveParticle:)];
+    [self removeParticlesFromLayer];
+    NSLog(@"particles removed from layer");
+    
+    canLaunchOtherFireBalls = YES;
 }
 
 @end

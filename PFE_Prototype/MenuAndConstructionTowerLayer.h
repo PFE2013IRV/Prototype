@@ -22,4 +22,7 @@
 
 -(id) initWithTowerData : (TowerData*) i_pTowerData HeightWin:(int)win;
 
+-(void)godIsAngry;
+-(void)godBecameNotAngry;
+
 @end

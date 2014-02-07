@@ -28,13 +28,13 @@
         _pHUDFrames = [CCSprite spriteWithFile:@"HUD_frames.png"];
         
         _pHUDBackgrounds.anchorPoint = ccp(0.0f,0.0f);
-        _pHUDBackgrounds.position = ccp(0.0f,0.0f);
+        _pHUDBackgrounds.position = ccp(0.0f,574.0f);
         
         _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
         _pHUDRespect.position = ccp(0.0f,584.0f);
         
         _pHUDFrames.anchorPoint = ccp(0.0f,0.0f);
-        _pHUDFrames.position = ccp(0.0f,0.0f);
+        _pHUDFrames.position = ccp(0.0f,574.0f);
         
         [self addChild:_pHUDBackgrounds];
         [self addChild:_pHUDRespect];

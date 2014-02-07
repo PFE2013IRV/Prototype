@@ -39,6 +39,13 @@
     [_pTowerLayer menuSendOneBloc:blocSelected];
 }
 
+-(void)godIsAngry
+{
+    [_pTowerLayer destroyBlocWithGodAttack];
+}
 
-
+-(void)godBecameNotAngry
+{
+    _pTowerLayer.blocNotPlace = false;
+}
 @end

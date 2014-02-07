@@ -90,7 +90,7 @@
             [self addChild:pCloudsBack];
         
             [self addChild:self._pSunLayer];
-            CloudsFront* pCloudsFront = [[CloudsFront alloc] init];
+            CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
             [self addChild:pCloudsFront];
         }
         
@@ -105,7 +105,6 @@
         
         
         [self addChild:self._pElementGodsLayer];
-        
         [self addChild:self._pDustLayerBack];
         [self addChild:_pMenuAndTowerLayer];
         [self addChild:self._pWindAttackLayer];
@@ -113,7 +112,8 @@
         [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
         
-        
+        CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
+        [self addChild:pCloudsFront];
 
         
         
@@ -217,10 +217,15 @@
              {
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
+                 [_pFireAttackLayer addFireParticle];
+                 [_pMenuAndTowerLayer godIsAngry];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
              }
-             
+             if (_pFireAttackLayer.canLaunchOtherFireBalls)
+             {
+                 [_pFireAttackLayer addFireParticle];
+             }
          }
          else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
          {
@@ -234,8 +239,12 @@
              {
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
+                 [_pFireAttackLayer endFireBalls];
+                 [_pMenuAndTowerLayer godBecameNotAngry];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
-                 [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
+                 //_pMenuAndTowerLayer.pTowerLayer scrollTowe
+                 //[self scrollTower:_scrollPosition];
+                 //_scrollPosition = 0;
              }
          }
      }

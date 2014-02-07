@@ -60,6 +60,7 @@
         _isScrolling = false;
         
         [self addChild:_pPlanetLayer];
+        [self scheduleUpdate];
     }
     
     return self;
@@ -76,11 +77,21 @@
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
         _pBubbleSprite = [CCSprite spriteWithFile:@"Bubble.png"];
         
-        float bubbleScale = blocSprite.contentSize.height / _pBubbleSprite.contentSize.height;
-        _pBubbleSprite.scale = bubbleScale;
-        _pBubbleSprite.opacity = 100;
+        float dimensionForScale = 1.0f;
         
-        blocSprite.scale = 0.8;
+        if(blocSprite.boundingBox.size.height >= blocSprite.boundingBox.size.width)
+            dimensionForScale = blocSprite.contentSize.height;
+        else
+            dimensionForScale = blocSprite.contentSize.width;
+        
+        if (dimensionForScale < 100) dimensionForScale = 100;
+        
+        float bubbleScale = dimensionForScale / _pBubbleSprite.contentSize.height;
+        
+        _pBubbleSprite.scale = bubbleScale;
+        _pBubbleSprite.opacity = 170;
+        
+        blocSprite.scale = 0.5;
         blocSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
         _pBubbleSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
         
@@ -111,9 +122,12 @@
     if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
-        if (CGRectContainsPoint([_pMovingSprite boundingBox], location))
+        if (CGRectContainsPoint([_pBubbleSprite boundingBox], location))
         {
             _isTouch = YES;
+            [_pBubbleSprite removeFromParent];
+            _pBubbleSprite = nil;
+            _bubbleRuntime = 0.0f;
         }
     }
     
@@ -141,19 +155,19 @@
         
         if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
         {
-            _pMovingSprite.scale = 1.2;
+            _pMovingSprite.scale = 1.5;
         }
     }
     
     if (_isScrolling)
     {
         int heightScroll = _startingScroll - location.y;
-        int testScrollPosition = _scrollPosition - heightScroll;
+        int testScrollPosition = _scrollPosition - heightScroll * SCROLLING_SPEED_COEF;
         
         if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
         {
-            [self scrollTower:heightScroll];
-            _scrollPosition -= heightScroll;
+            [self scrollTower:heightScroll * SCROLLING_SPEED_COEF];
+            _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
         }
         
         _startingScroll = location.y;
@@ -237,6 +251,19 @@
     }
     
     _isScrolling = NO;
+}
+
+-(void)destroyBlocWithGodAttack
+{
+    if (_blocNotPlace)
+    {
+        _isTouch = NO;
+        [_pBubbleSprite removeFromParent];
+        _pBubbleSprite = nil;
+        [self addToFallingBloc];
+        _pMovingBlocData = nil;
+    }
+    _blocNotPlace = true;
 }
 
 -(void)addBlocToTower
@@ -420,8 +447,6 @@
         
         if ((CGRectContainsPoint([blocSprite boundingBox], particle.position)))
         {
-            /*[self._aBlocsTowerSprite removeObject:blocSprite];
-            [blocSprite removeFromParent];*/
             [particle removeFromParent];
             
             if (![_indexBlocTouchByFire containsIndex:i])
@@ -464,7 +489,7 @@
     _HeightTower = [self calculNewHeightTowerAfterChange];
     _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
     
-    if (_currentHeightNoScroll - totalHeight > SCROLLING_HEIGHT)
+    if (_currentHeightNoScroll > SCROLLING_HEIGHT)
     {
         [self scrollTower: - totalHeight];
     }
@@ -481,6 +506,8 @@
         _pPlanetLayer = [PlanetLayer node];
         [self addChild:_pPlanetLayer];
     }
+    
+    _scrollPosition = 0;
 }
 
 
@@ -518,6 +545,22 @@
     }
     
     return newHeightTower;
+}
+
+-(void) update:(ccTime)dt
+{
+    if(_pMovingSprite && _pBubbleSprite)
+    {
+        // manually move hello label up and down
+        _bubbleRuntime += dt * 5.0f;
+        float moveHorizontalCoeff = 2 * _bubbleRuntime;
+            
+        
+        _pBubbleSprite.position = ccp(moveHorizontalCoeff + BUBBLE_POINT_X + (sinf(_bubbleRuntime)), -moveHorizontalCoeff + BUBBLE_POINT_Y + (sinf(_bubbleRuntime)));
+        _pMovingSprite.position = _pBubbleSprite.position;
+        
+    }
+    
 }
 
 

@@ -25,6 +25,7 @@
 
 @interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
+    float _bubbleRuntime;
     id <ConstructionTowerDelegate> _delegate;
 }
 
@@ -64,6 +65,8 @@
 @property (nonatomic, strong) CCSprite* pBubbleSprite;
 
 
+
+
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
 -(void)menuSendOneBloc:(BlocData*)blocSelected;
 - (void) movingSpriteFalling : (id) sender;
@@ -74,4 +77,5 @@
 -(void) calculatePositionAfterZoom:(id) sender;
 
 -(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
+-(void)destroyBlocWithGodAttack;
 @end

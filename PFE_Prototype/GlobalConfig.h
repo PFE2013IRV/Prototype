@@ -9,6 +9,13 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
+// Scrolling Speed
+static float TIME_FIRE_ATTACK = 20;
+
+
+// Scrolling Speed
+static float SCROLLING_SPEED_COEF = 2;
+
 // Respect du dieu élémentaire par défaut
 static float GOD_RESPECT_DEFAULT = 100;
 
@@ -24,7 +31,7 @@ static bool SIMULATOR_MODE = true;
 static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
-static float SCROLLING_HEIGHT = 800.0f;
+static float SCROLLING_HEIGHT = 750.0f;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;
@@ -35,10 +42,10 @@ static float BUBBLE_POINT_Y = 900.0f;
 
 //The different size element
 static int BACKGROUND_WIDTH = 768;
-static int BACKGROUND_HEIGHT = 877;
+static int BACKGROUND_HEIGHT = 1024;
 
 //Game Time
-static int GAME_TIME_CONSTRUCTION = 15;
+static int GAME_TIME_CONSTRUCTION = 150;
 
 // The gamescene modes
 enum GameSceneMode {
