@@ -217,10 +217,14 @@
              {
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
+                 [_pFireAttackLayer addFireParticle];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
              }
-             
+             if (_pFireAttackLayer.canLaunchOtherFireBalls)
+             {
+                 [_pFireAttackLayer addFireParticle];
+             }
          }
          else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
          {

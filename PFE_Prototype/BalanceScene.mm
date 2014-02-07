@@ -75,8 +75,9 @@
 -(void)returnToConstruction
 {
     //indexes des blocs qui se sont peter la gueule
-  //  NSMutableIndexSet *indexes;
-    //[_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+    NSMutableIndexSet *indexes;
+    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
+    [_previusScene._pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
     [[CCDirector sharedDirector] popScene];
 }
 -(void)onEnter
