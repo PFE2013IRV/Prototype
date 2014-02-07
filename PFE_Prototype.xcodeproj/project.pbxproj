@@ -23,6 +23,8 @@
 		54B36A5618A3C5DA0005D330 /* DustLayerBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54B36A5518A3C5DA0005D330 /* DustLayerBack.mm */; };
 		54B36A5918A3CC310005D330 /* WindAttackParticle1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */; };
 		54B36A5A18A3CC310005D330 /* WindAttackParticle2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */; };
+		54B36A5D18A4D0A60005D330 /* burningBlocParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5B18A4D0A60005D330 /* burningBlocParticle.plist */; };
+		54B36A5E18A4D0A60005D330 /* smokeBlocParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B36A5C18A4D0A60005D330 /* smokeBlocParticle.plist */; };
 		54FAAA47189AAE5E007895E5 /* fireParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA46189AAE5E007895E5 /* fireParticle.plist */; };
 		54FAAA49189AAEA7007895E5 /* Fire_Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA48189AAEA7007895E5 /* Fire_Particle.png */; };
 		54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */; };
@@ -320,6 +322,8 @@
 		54B36A5518A3C5DA0005D330 /* DustLayerBack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DustLayerBack.mm; sourceTree = "<group>"; };
 		54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WindAttackParticle1.plist; sourceTree = "<group>"; };
 		54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WindAttackParticle2.plist; sourceTree = "<group>"; };
+		54B36A5B18A4D0A60005D330 /* burningBlocParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = burningBlocParticle.plist; sourceTree = "<group>"; };
+		54B36A5C18A4D0A60005D330 /* smokeBlocParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smokeBlocParticle.plist; sourceTree = "<group>"; };
 		54FAAA46189AAE5E007895E5 /* fireParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fireParticle.plist; path = Resources/fireParticle.plist; sourceTree = "<group>"; };
 		54FAAA48189AAEA7007895E5 /* Fire_Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fire_Particle.png; path = Resources/Fire_Particle.png; sourceTree = "<group>"; };
 		54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ParticleTexture.png; path = Resources/ParticleTexture.png; sourceTree = "<group>"; };
@@ -1203,6 +1207,8 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54B36A5B18A4D0A60005D330 /* burningBlocParticle.plist */,
+				54B36A5C18A4D0A60005D330 /* smokeBlocParticle.plist */,
 				54B36A5718A3CC310005D330 /* WindAttackParticle1.plist */,
 				54B36A5818A3CC310005D330 /* WindAttackParticle2.plist */,
 				54B36A4C18A3C5480005D330 /* Dust1_particle_Back.plist */,
@@ -1878,6 +1884,7 @@
 				54B36A5A18A3CC310005D330 /* WindAttackParticle2.plist in Resources */,
 				8AB8AD6D188A831400997BD3 /* borders.png in Resources */,
 				8A40914F1896B1C8009CD5B0 /* FireGod_colere1.plist in Resources */,
+				54B36A5E18A4D0A60005D330 /* smokeBlocParticle.plist in Resources */,
 				A3A4B5BF188938E200C54E5D /* noise.png in Resources */,
 				54B36A5918A3CC310005D330 /* WindAttackParticle1.plist in Resources */,
 				54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */,
@@ -1897,10 +1904,10 @@
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
 				8A839E9118A3DA68006F8E1E /* HUD_respectOrange.png in Resources */,
-				54A4835B188C3542003D47B8 /* windParticle.plist in Resources */,
 				8AE87F7318994B3D000BEE47 /* cloudsBottom_back.png in Resources */,
 				8AE87FA118997026000BEE47 /* BkgBloc_3.png in Resources */,
 				8A40913E1896B0A4009CD5B0 /* WindGod_static2.png in Resources */,
+				54B36A5D18A4D0A60005D330 /* burningBlocParticle.plist in Resources */,
 				54FAAA4D189AAEE0007895E5 /* godParticle.plist in Resources */,
 				8AC11E2D1888508B0029062B /* planet.png in Resources */,
 				8A4091541896B1C8009CD5B0 /* FireGod_static3.png in Resources */,

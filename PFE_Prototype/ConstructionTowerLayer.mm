@@ -427,6 +427,19 @@
             if (![_indexBlocTouchByFire containsIndex:i])
             {
                 [_indexBlocTouchByFire addIndex:i];
+                CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
+                [blocSprite addChild:burnParticle];
+                burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                burnParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                
+                CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
+                [blocSprite addChild:smokeParticle];
+                smokeParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                
+                [blocSprite reorderChild:smokeParticle z:-1];
+                [blocSprite reorderChild:burnParticle z:1];
+                
             }
         }
     }
