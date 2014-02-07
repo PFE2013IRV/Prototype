@@ -24,7 +24,7 @@ static bool SIMULATOR_MODE = false;
 static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
-static float SCROLLING_HEIGHT = 900.0f;
+static float SCROLLING_HEIGHT = 500.0f;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;
