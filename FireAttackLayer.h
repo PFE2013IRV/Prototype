@@ -28,7 +28,7 @@
     
 }
 
--(void)addFireParticle:(id)i_boutonClic;
+-(void)addFireParticle;
 -(void)initParticles;
 -(float) randFloat:(float)min :(float)max;
 
@@ -60,5 +60,7 @@
 // The current godData
 @property(nonatomic, strong) GodData* _pCurrentGodData;
 
+@property (nonatomic, assign) BOOL canLaunchOtherFireBalls;
+@property (nonatomic, assign) int nbBallTouch;
 
 @end

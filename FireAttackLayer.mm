@@ -22,6 +22,8 @@
 @synthesize _moveDuration;
 @synthesize _pCurrentGameData;
 @synthesize _pCurrentGodData;
+@synthesize canLaunchOtherFireBalls;
+@synthesize nbBallTouch;
 
 -(id) init
 {
@@ -30,6 +32,8 @@
         //init particles
         [self initParticles];
         [self setTouchEnabled:true];
+        
+        canLaunchOtherFireBalls = YES;
         
         _moveDuration = 5;
         
@@ -105,12 +109,13 @@
 }
 
 
--(void)addFireParticle:(id)i_boutonClic
+-(void)addFireParticle
 {
     [self removeParticlesFromLayer];
     [self unschedule:@selector(moveParticle:)];
     [self initParticles];
 
+    canLaunchOtherFireBalls = NO;
     _duration = 0;
     [self initParticlesPosition];
     for(int i = 0; i < _aFireParticles.count; i++){
@@ -120,7 +125,8 @@
     [self schedule:@selector(moveParticle:) interval:0.2];
 }
 
--(void) removeParticlesFromLayer{
+-(void) removeParticlesFromLayer
+{
     for(int i = 0; i<_aFireParticles.count; i++)
     {
         ParticleFire* particle =[_aFireParticles objectAtIndex:i];
@@ -129,6 +135,7 @@
             //[particle dealloc];
         }
     }
+    canLaunchOtherFireBalls = YES;
 }
 
 
@@ -234,7 +241,8 @@
 
 }
 
--(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location{
+-(void)removeTouchedParticle:(NSMutableArray*)particles : (CGPoint)location
+{
     for(int i = 0; i<particles.count; i++)
     {
         ParticleFire* particle = [particles objectAtIndex:i];

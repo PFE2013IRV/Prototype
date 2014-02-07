@@ -23,12 +23,7 @@
 
 
 -(void) changeScene
-{
-    [self._pElementGodsLayer stopAllRuningAnimations:nil];
-    [self._pWindGodLayer stopAllRuningAnimations:nil];
-    [self._pElementGodsLayer requestBigCleanUp];
-    [self._pWindGodLayer requestBigCleanUp];
-    
+{    
     CCSprite* currentBackground = self._pSkyLayer._pBackground;
     ccColor3B color3 = self._pSunLayer._pSoleil.color;
     ccColor4B currentSunColor = ccc4(color3.r, color3.g, color3.b, 255);
@@ -213,9 +208,12 @@
              {
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
+                 [_pFireAttackLayer addFireParticle];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
              }
+             
+             [_pFireAttackLayer addFireParticle];
              
          }
          else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)

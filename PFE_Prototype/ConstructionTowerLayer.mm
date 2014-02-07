@@ -416,6 +416,7 @@
             if (![_indexBlocTouchByFire containsIndex:i])
             {
                 [_indexBlocTouchByFire addIndex:i];
+                
             }
         }
     }
