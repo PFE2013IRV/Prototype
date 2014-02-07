@@ -11,6 +11,7 @@
 @implementation BalanceScene
 
 @synthesize previusScene = _previusScene;
+@synthesize _pTowerAndPlanetLayer;
 
 -(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor
 {
@@ -43,17 +44,14 @@
             [self addChild:self._pSunLayer];
             
         }
-        
-        
-       
-        
-        TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        [self addChild:pTowerAndPlanet];
+     
+         _pTowerAndPlanetLayer = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
+        [self addChild:_pTowerAndPlanetLayer];
         
         if(!SIMULATOR_MODE)
         {
-            CloudsFront* pCloudsFront = [[CloudsFront alloc] init];
-            [self addChild:pCloudsFront];
+            CloudsFrontTop* pCloudsFrontTop = [[CloudsFrontTop alloc] init];
+            [self addChild:pCloudsFrontTop];
         }
         
     }
@@ -62,13 +60,18 @@
 }
 
 
+
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
 }
 
-
+-(void)onEnterTransitionDidFinish
+{
+  // [self returnToConstruction];
+    
+}
 -(void)returnToConstruction
 {
     //indexes des blocs qui se sont peter la gueule
@@ -77,5 +80,20 @@
     [_previusScene._pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
     [[CCDirector sharedDirector] popScene];
 }
+-(void)onEnter
+{
+    
+    _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
+
+ if(_previusScene._pWindGodLayer._pGodData._godIsUp)
+ {
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = true;
+ }
+ else
+ {
+     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = false;
+ }
+}
+
 
 @end

@@ -53,7 +53,7 @@
 
 @property(nonatomic, assign)ccTime _duration;
 
-@property(nonatomic, assign)ccTime _moveDuration;
+@property(nonatomic, assign)float _speed;
 
 // The current gamedata
 @property(nonatomic, strong) GameData* _pCurrentGameData;

@@ -23,12 +23,13 @@
 @synthesize _animationDirection;
 @synthesize _currentSunColor,_aimedSunColor;
 @synthesize _sceneMod;
+@synthesize aleatoire;
 
 -(id) init
 {
     if( (self=[super init]) )
     {
-        
+        aleatoire = 4 + arc4random()%4;
 	}
 	return self;
 }
@@ -51,16 +52,15 @@
     _sunDisplayWidth = winSize.width;
     _animationDirection=1;
     _tailleGradient=600;
-    
     if(i_currentSunColor.a!=0 || i_currentSunColor.b!=0 || i_currentSunColor.g!=0 || i_currentSunColor.r!=0)
     {
         
-        self._currentSunColor = i_currentSunColor;
+        _currentSunColor = i_currentSunColor;
     }
     else
     {
         int alea = arc4random() %9;
-        self._currentSunColor = _aSunColors[alea];
+        _currentSunColor = _aSunColors[alea];
         
     }
 
@@ -173,6 +173,8 @@
 
 -(void) genSunGradient:(ccTime)dt {
     
+    
+   // NSLog(@"Passage dans le schedule du soleil ! ");
     CGPoint center = CGPointMake(_pGradientCenter.position.x, _pGradientCenter.position.y);
     //En fin de jeu on vérifie que la fonction n'est pas exécutée plus de fois que nécessaire:on s'arrete quand le soleil à disparue(alpha=0)
     if(255-_incrementAlpha*_nbDecrement <= 0)
@@ -249,11 +251,6 @@
     
     if(_currentMomentOfDay <8)
     {
-        if(_currentMomentOfDay==4)
-        {
-            ConstructionScene *sceneParent = (ConstructionScene *) self.parent;
-            [sceneParent changeScene];
-        }
         if(_currentMomentOfDay==7)
         {
             _incrementAlpha = (float)255.0/(_timeScale/_velocityFactor);
@@ -287,6 +284,11 @@
     
     [self genSunGradient:nil];
     
+}
+-(void)ReSchedule
+{
+    [self schedule:@selector(changeSunColor:)interval:_timeScale];
+    [self schedule:@selector(genSunGradient:)interval:_velocityFactor];
 }
 
 

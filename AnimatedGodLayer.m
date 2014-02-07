@@ -138,7 +138,8 @@
             // Attributs par défaut
             if(_eGodType == GOD_TYPE_FIRE || _eGodType == GOD_TYPE_EARTH || _eGodType == GOD_TYPE_WATER)
             {
-                pSprite.position = ccp(90, 733);
+                pSprite.anchorPoint = ccp(0.0f,0.0f);
+                pSprite.position = ccp(12, 631);
                 [pSprite setScale:0.8];
             }
             else

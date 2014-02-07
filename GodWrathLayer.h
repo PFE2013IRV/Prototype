@@ -15,6 +15,8 @@
 }
 -(id)init;
 -(void) skyGodWrath:(ccTime)i_dt;
+-(void) ReSchedule;
+
 @property (nonatomic,strong) CCSprite* _pGodWrathAnnimation;
 @property (nonatomic,strong) GameData* _pCurrGameData ;
 @property (nonatomic,strong) GodData* _pGodData;

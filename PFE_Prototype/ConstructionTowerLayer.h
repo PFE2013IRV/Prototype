@@ -25,6 +25,7 @@
 
 @interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
+    float _bubbleRuntime;
     id <ConstructionTowerDelegate> _delegate;
 }
 
@@ -60,6 +61,10 @@
 @property (nonatomic, assign) CGPoint zoomOutPosition;
 
 @property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
+
+@property (nonatomic, strong) CCSprite* pBubbleSprite;
+
+
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;

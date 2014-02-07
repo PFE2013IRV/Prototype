@@ -10,21 +10,21 @@
 #define ProjectTower_GlobalConfig_h
 
 // Respect du dieu élémentaire par défaut
-static int GOD_RESPECT_DEFAULT = 100;
+static float GOD_RESPECT_DEFAULT = 100;
 
 // Respect gagné par destruction d'attaques divines
-static int GOD_RESPECT_INCREASE = 10;
+static float GOD_RESPECT_INCREASE = 2;
 
 // Seuil de colère du dieu
 static int GOD_ANGER_LIMIT = 30;
 
 // Mettre à true pour mode optimal
-static bool SIMULATOR_MODE = false;
+static bool SIMULATOR_MODE = true;
 //Hauteur du placement de la planet pour la scene de construction
 static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
-static float SCROLLING_HEIGHT = 800.0f;
+static float SCROLLING_HEIGHT = 750.0f;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;
@@ -35,7 +35,7 @@ static float BUBBLE_POINT_Y = 900.0f;
 
 //The different size element
 static int BACKGROUND_WIDTH = 768;
-static int BACKGROUND_HEIGHT = 877;
+static int BACKGROUND_HEIGHT = 1024;
 
 //Game Time
 static int GAME_TIME_CONSTRUCTION = 150;

@@ -19,7 +19,7 @@
 @synthesize _aFireParticles;
 @synthesize _pFireParticle6;
 @synthesize _duration;
-@synthesize _moveDuration;
+@synthesize _speed;
 @synthesize _pCurrentGameData;
 @synthesize _pCurrentGodData;
 @synthesize canLaunchOtherFireBalls;
@@ -132,7 +132,6 @@
         ParticleFire* particle =[_aFireParticles objectAtIndex:i];
         if(particle.parent == self){
             [particle removeFromParent];
-            //[particle dealloc];
         }
     }
     canLaunchOtherFireBalls = YES;
@@ -144,7 +143,7 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(handleParticle:)])
     {
-        // Stop all action runing on particles before runing others
+        // Stop all action runing on particles before running others
         [_pFireParticle1 stopAllActions];
         [_pFireParticle2 stopAllActions];
         [_pFireParticle3 stopAllActions];
@@ -152,13 +151,20 @@
         [_pFireParticle5 stopAllActions];
         [_pFireParticle6 stopAllActions];
 
+        ccTime moveDuration1 = ccpDistance(_pFireParticle1.position, _pFireParticle1._target)/ _speed;
+        ccTime moveDuration2 = ccpDistance(_pFireParticle2.position, _pFireParticle2._target)/ _speed;
+        ccTime moveDuration3 = ccpDistance(_pFireParticle3.position, _pFireParticle3._target)/ _speed;
+        ccTime moveDuration4 = ccpDistance(_pFireParticle4.position, _pFireParticle4._target)/ _speed;
+        ccTime moveDuration5 = ccpDistance(_pFireParticle5.position, _pFireParticle5._target)/ _speed;
+        ccTime moveDuration6 = ccpDistance(_pFireParticle6.position, _pFireParticle6._target)/ _speed;
+
         // Init actions moveTo particles specific targer
-        id actionMove1 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle1._target];
-        id actionMove2 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle2._target];
-        id actionMove3 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle3._target];
-        id actionMove4 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle4._target];
-        id actionMove5 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle5._target];
-        id actionMove6 = [CCMoveTo actionWithDuration:_moveDuration position:_pFireParticle6._target];
+        id actionMove1 = [CCMoveTo actionWithDuration:moveDuration1 position:_pFireParticle1._target];
+        id actionMove2 = [CCMoveTo actionWithDuration:moveDuration2 position:_pFireParticle2._target];
+        id actionMove3 = [CCMoveTo actionWithDuration:moveDuration3 position:_pFireParticle3._target];
+        id actionMove4 = [CCMoveTo actionWithDuration:moveDuration4 position:_pFireParticle4._target];
+        id actionMove5 = [CCMoveTo actionWithDuration:moveDuration5 position:_pFireParticle5._target];
+        id actionMove6 = [CCMoveTo actionWithDuration:moveDuration6 position:_pFireParticle6._target];
 
         // Run the specific actions on each particle
         [self.delegate handleParticle:_pFireParticle1];
@@ -248,8 +254,12 @@
         ParticleFire* particle = [particles objectAtIndex:i];
         
         CGRect bbox = [particle boundingBox];
-        bbox.size.height = 80;
-        bbox.size.width = 80;
+        bbox.size.height = 150;
+        bbox.size.width = 150;
+        bbox.origin.x -= 70;
+        bbox.origin.y -= 70;
+        
+        
         NSLog(@"bbox position:%f,%f height:%f width:%f", bbox.origin.x, bbox.origin.y, bbox.size.height, bbox.size.width);
         if (CGRectContainsPoint(bbox, location))
         {

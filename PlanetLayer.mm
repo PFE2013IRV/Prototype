@@ -7,6 +7,7 @@
 
 #import "PlanetLayer.h"
 #import "GlobalConfig.h"
+#import "CloudsFrontBottom.h"
 
 @implementation PlanetLayer
 
@@ -29,6 +30,9 @@
         [_pPlanetSprite setPosition:CGPointMake(384, PLANET_HEIGHT_BALANCE)];
         
         [self addChild:_pPlanetSprite];
+        
+        CloudsFrontBottom* pClouds = [[CloudsFrontBottom alloc] init];
+        [self addChild:pClouds];
     }
     return self;
 }

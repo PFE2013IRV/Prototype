@@ -33,6 +33,7 @@
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize indexBlocTouchByFire = _indexBlocTouchByFire;
+@synthesize pBubbleSprite = _pBubbleSprite;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
@@ -59,6 +60,7 @@
         _isScrolling = false;
         
         [self addChild:_pPlanetLayer];
+        [self scheduleUpdate];
     }
     
     return self;
@@ -73,8 +75,28 @@
         _blocNotPlace = true;
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
+        _pBubbleSprite = [CCSprite spriteWithFile:@"Bubble.png"];
+        
+        float dimensionForScale = 1.0f;
+        
+        if(blocSprite.boundingBox.size.height >= blocSprite.boundingBox.size.width)
+            dimensionForScale = blocSprite.contentSize.height;
+        else
+            dimensionForScale = blocSprite.contentSize.width;
+        
+        if (dimensionForScale < 100) dimensionForScale = 100;
+        
+        float bubbleScale = dimensionForScale / _pBubbleSprite.contentSize.height;
+        
+        _pBubbleSprite.scale = bubbleScale;
+        _pBubbleSprite.opacity = 170;
+        
+        blocSprite.scale = 0.5;
         blocSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
+        _pBubbleSprite.position = CGPointMake(BUBBLE_POINT_X, BUBBLE_POINT_Y);
+        
         [self addChild:blocSprite];
+        [self addChild:_pBubbleSprite];
         _pMovingSprite = blocSprite;
     }
     else
@@ -100,9 +122,12 @@
     if (_pMovingSprite != nil)
     {
         //on test si les coordonnées sont sur le bloc qui peut bouger
-        if (CGRectContainsPoint([_pMovingSprite boundingBox], location))
+        if (CGRectContainsPoint([_pBubbleSprite boundingBox], location))
         {
             _isTouch = YES;
+            [_pBubbleSprite removeFromParent];
+            _pBubbleSprite = nil;
+            _bubbleRuntime = 0.0f;
         }
     }
     
@@ -130,7 +155,7 @@
         
         if (CGRectIntersectsRect(_towerMagnetization, [_pMovingSprite boundingBox]))
         {
-            _pMovingSprite.scale = 1.2;
+            _pMovingSprite.scale = 1.5;
         }
     }
     
@@ -495,6 +520,25 @@
     }
     
     return newHeightTower;
+}
+
+-(void) update:(ccTime)dt
+{
+    
+    
+    
+    if(_pMovingSprite && _pBubbleSprite)
+    {
+        // manually move hello label up and down
+        _bubbleRuntime += dt * 5.0f;
+        float moveHorizontalCoeff = 2 * _bubbleRuntime;
+            
+        
+        _pBubbleSprite.position = ccp(moveHorizontalCoeff + BUBBLE_POINT_X + (sinf(_bubbleRuntime)), -moveHorizontalCoeff + BUBBLE_POINT_Y + (sinf(_bubbleRuntime)));
+        _pMovingSprite.position = _pBubbleSprite.position;
+        
+    }
+    
 }
 
 

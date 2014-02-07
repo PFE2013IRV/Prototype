@@ -19,11 +19,6 @@
 {
     if (self = [super init])
     {
-        CCSprite* pBordersSprite = [[CCSprite alloc] initWithFile:@"borders.png"];
-        pBordersSprite.anchorPoint = ccp(0.0f,0.0f);
-        pBordersSprite.position = ccp(0.0f,0.0f);
-        [self addChild:pBordersSprite];
-        
         _pBagData = [BlocBagData GetBlocBagData];
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -56,7 +51,12 @@
             [layerArray addObject:layer];
         }
         
+        
+        CCSprite* pMenuBkg = [CCSprite spriteWithFile:@"MenuBkg.png"];
+        pMenuBkg.anchorPoint = ccp(0.0f,0.0f);
+        pMenuBkg.position = ccp(9.0f,9.0f);
         _pScrollLayer = [CCScrollLayer nodeWithLayers:layerArray widthOffset:screenSize.width * [layerArray count]];
+        [self addChild:pMenuBkg];
         [self addChild:_pScrollLayer];
     }
     
