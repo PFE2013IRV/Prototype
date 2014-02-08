@@ -22,7 +22,11 @@
         ///////     Initialisations des effets de particules dieux    /////
         ///////////////////////////////////////////////////////////////////
         
-        _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"godParticle.plist"];
+        _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
+        _pGodParticle.position = ccp(126, 596);
+        _pGodParticle.posVar = ccp(100, 0);
+        
+
         
         
 	}

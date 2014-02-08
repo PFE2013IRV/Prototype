@@ -232,6 +232,7 @@
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
                  [_pFireAttackLayer addFireParticle];
+                 [_pMenuAndTowerLayer godIsAngry];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
                  

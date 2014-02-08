@@ -49,6 +49,7 @@
         _aFallingBloc = [[NSMutableArray alloc] init];
         _pMovingSprite = nil;
         _winningHeight = winHeight;
+        _isFireGodAngry = NO;
         
         _currentHeightNoScroll = 220;
         _HeightTower = 220;
@@ -70,7 +71,7 @@
 
 -(void)menuSendOneBloc:(BlocData*)blocSelected
 {
-    if (!_blocNotPlace)
+    if (!_blocNotPlace && !_isFireGodAngry)
     {
         [self replaceTowerToTopWithoutScroll];
         
@@ -101,11 +102,15 @@
         [self addChild:_pBubbleSprite];
         _pMovingSprite = blocSprite;
     }
+    else if(_isFireGodAngry)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous ne pouvez pas placer des blocs pendant que les dieux sont en colère contre vous" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
     else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous êtes déjà entrain de placer un bloc sur la tour" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-
     }
 }
 
@@ -145,7 +150,6 @@
         _isScrolling = YES;
         _startingScroll = location.y;
     }
-        
     
     return YES;
 }
@@ -172,10 +176,21 @@
         int heightScroll = _startingScroll - location.y;
         int testScrollPosition = _scrollPosition - heightScroll * SCROLLING_SPEED_COEF;
         
-        if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
+        if(_isFireGodAngry)
         {
-            [self scrollTower:heightScroll * SCROLLING_SPEED_COEF];
-            _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
+            if (testScrollPosition <= 0 && testScrollPosition >= -_possibleScrollSize)
+            {
+                [self scrollTower: heightScroll * SCROLLING_SPEED_COEF];
+                _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
+            }
+        }
+        else
+        {
+            if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
+            {
+                [self scrollTower:heightScroll * SCROLLING_SPEED_COEF];
+                _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
+            }
         }
         
         _startingScroll = location.y;
@@ -259,6 +274,26 @@
     }
     
     _isScrolling = NO;
+}
+
+-(void)destroyBlocWithGodAttack
+{
+    if (_blocNotPlace)
+    {
+        _isTouch = NO;
+        [_pBubbleSprite removeFromParent];
+        _pBubbleSprite = nil;
+        [self addToFallingBloc];
+        _pMovingBlocData = nil;
+    }
+    _blocNotPlace = true;
+    _isFireGodAngry = YES;
+    
+    if (_currentHeightNoScroll > _HeightTower)
+    {
+        [self scrollTower:-(_currentHeightNoScroll - _HeightTower - _scrollPosition)];
+    }
+    _scrollPosition = 0;
 }
 
 -(void)addBlocToTower
@@ -408,9 +443,6 @@
     }];
     id sequence = [CCSequence actions:zoomOut,reset,moveTo,nil];
     [self runAction:sequence];
-        
-
-    
 }
 
 -(void)movePlanet:(int)height
@@ -443,10 +475,24 @@
         if ((CGRectContainsPoint([blocSprite boundingBox], particle.position)))
         {
             [particle removeFromParent];
+            BlocData *blocData = [self._pTowerData._aBlocs objectAtIndex:i];
             
-            if (![_indexBlocTouchByFire containsIndex:i])
+            if (![_indexBlocTouchByFire containsIndex:i] && blocData._eBlocMaterial == MAT_WOOD)
             {
                 [_indexBlocTouchByFire addIndex:i];
+                CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
+                [blocSprite addChild:burnParticle];
+                burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                burnParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                
+                CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
+                [blocSprite addChild:smokeParticle];
+                smokeParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                
+                [blocSprite reorderChild:smokeParticle z:-1];
+                [blocSprite reorderChild:burnParticle z:1];
+                
             }
         }
     }
@@ -455,8 +501,6 @@
 
 -(void)removeBlocAtIndexes:(NSIndexSet*) indexes
 {
-    [self replaceTowerToTopWithoutScroll];
-    
     __block int totalHeight = 0;
     
     [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop)
@@ -481,6 +525,13 @@
         CCSprite *firstSprite = [self._aBlocsTowerSprite objectAtIndex:0];
         int heightMaxToMoveUp = 220 + firstBloc._scaledSize.height / 2 - firstSprite.position.y;
         [self scrollTower: - heightMaxToMoveUp];
+        
+        
+        _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
+        if (_scrollPosition > 0)
+        {
+            [self replaceTowerToTopWithoutScroll];
+        }
     }
     else
     {
