@@ -242,9 +242,7 @@
                  [_pFireAttackLayer endFireBalls];
                  [_pMenuAndTowerLayer godBecameNotAngry];
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
-                 //_pMenuAndTowerLayer.pTowerLayer scrollTowe
-                 //[self scrollTower:_scrollPosition];
-                 //_scrollPosition = 0;
+                 
              }
          }
      }

@@ -36,6 +36,9 @@
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
 
+//bool pour savoir si le dieu du feu est en colère et pète un cable
+@property (nonatomic, assign) BOOL isFireGodAngry;
+
 //bool pour savoir si on a appuyé sur l'écran pour scroller
 @property (nonatomic, assign) BOOL isScrolling;
 @property (nonatomic, assign) int startingScroll;
