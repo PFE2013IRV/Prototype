@@ -529,7 +529,10 @@
         
         
         _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
-        [self replaceTowerToTopWithoutScroll];
+        if (_scrollPosition > 0)
+        {
+            [self replaceTowerToTopWithoutScroll];
+        }
     }
     else
     {
