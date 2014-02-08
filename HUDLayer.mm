@@ -57,11 +57,25 @@
 {
     GodData* pCurrGod = [_pCurrentGameData getCurrentGod];
     
-    if(pCurrGod._isAngry == NO)
+    
+    if(pCurrGod._respect >= 0)
+    {
+        pCurrGod._respect -= 1;
+        
+        if(pCurrGod._isAngry == YES)
+        {
+            pCurrGod._respect -= 1.1;
+            if(pCurrGod < 0)
+                pCurrGod._respect = 0;
+        }
+    }
+    
+    
+    /*if(pCurrGod._isAngry == NO)
     {
         [_pCurrentGameData getCurrentGod]._respect -= 1;
         
-    }
+    }*/
     
     if(pCurrGod._isAngry == YES)
     {
@@ -79,7 +93,7 @@
         
         
     }
-    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect < (GOD_RESPECT_DEFAULT - GOD_ANGER_LIMIT))
+    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect < GOD_WARNING_LIMIT)
     {
         CGPoint pos = _pHUDRespect.position;
         [_pHUDRespect removeFromParent];
@@ -92,7 +106,7 @@
         [self reorderChild:_pHUDFrames z:[self children].count - 1];
         
     }
-    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect > (GOD_RESPECT_DEFAULT - GOD_ANGER_LIMIT))
+    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect > GOD_WARNING_LIMIT)
     {
         CGPoint pos = _pHUDRespect.position;
         [_pHUDRespect removeFromParent];
@@ -109,7 +123,7 @@
     float RespectLength = [_pHUDRespect boundingBox].size.width;
     RespectLength = -RespectLength+(pCurrGod._respect * RespectLength  / GOD_RESPECT_DEFAULT);
     
-    CCAction* pMove = [CCMoveTo actionWithDuration:0.3f position:ccp(RespectLength,_pHUDRespect.position.y)];
+    CCAction* pMove = [CCMoveTo actionWithDuration:0.5f position:ccp(RespectLength,_pHUDRespect.position.y)];
     [_pHUDRespect runAction:pMove];
     
     

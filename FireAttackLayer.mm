@@ -35,7 +35,7 @@
         [self setTouchEnabled:true];
         
         canLaunchOtherFireBalls = YES;
-        _speed = 160;
+        _speed = FIRE_BALLS_SPEED;
         
         // Bouton add fire attack
         CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle)];

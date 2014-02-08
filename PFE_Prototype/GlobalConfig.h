@@ -9,21 +9,26 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
-// Scrolling Speed
-static float TIME_FIRE_ATTACK = 20;
-
+static float FIRE_BALLS_SPEED = 220;
 
 // Scrolling Speed
-static float SCROLLING_SPEED_COEF = 2;
+static float TIME_FIRE_ATTACK = 5;
 
 // Respect du dieu élémentaire par défaut
 static float GOD_RESPECT_DEFAULT = 100;
 
 // Respect gagné par destruction d'attaques divines
-static float GOD_RESPECT_INCREASE = 2;
+static float GOD_RESPECT_INCREASE = 3.7;
+
+// Respect gagné en sortie de colère de dieu
+static float GOD_RESPECT_GIFT = 7;
 
 // Seuil de colère du dieu
 static int GOD_ANGER_LIMIT = 30;
+
+// Seuil du passage à l'orange de l'état du dieu
+static int GOD_WARNING_LIMIT = 50;
+
 
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;
@@ -31,7 +36,10 @@ static bool SIMULATOR_MODE = false;
 static int PLANET_HEIGHT_BALANCE = 250;
 
 // Hauteur avant scroll de tour
-static float SCROLLING_HEIGHT = 500.0f;
+static float SCROLLING_HEIGHT = 600.0f;
+
+// Scrolling Speed
+static float SCROLLING_SPEED_COEF = 2;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;

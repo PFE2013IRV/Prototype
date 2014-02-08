@@ -97,30 +97,38 @@
         
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
+        [self addChild:self._pDustLayerBack];
         
+        [self addChild:self._pWindGodLayer];
+        [self addChild:self._pDustLayerFront];
         // HUD Layer
+        
+        
         
         HUDLayer* pHUD = [HUDLayer node];
         [self addChild:pHUD];
-        
-        
         [self addChild:self._pElementGodsLayer];
-        [self addChild:self._pDustLayerBack];
-        [self addChild:_pMenuAndTowerLayer];
-        [self addChild:self._pWindAttackLayer];
-        [self addChild:self._pDustLayerFront];
-        [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
+        
+        [self addChild:_pMenuAndTowerLayer];
+        
+        
+        [self addChild:self._pWindAttackLayer];
+
+
+
         
         CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
         [self addChild:pCloudsFront];
 
         
+        //CCSprite* AnniversaireHugo = [CCSprite spriteWithFile:@"AnniversaireHugo.png"];
+        
         
         // add light on tower column (particle)
         
         // Bouton God
-        CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
+        /*CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
         addParticleGodFireButton.position = ccp(80, 0);
         
         // Menu des boutons
@@ -128,7 +136,7 @@
         addMenu.position = ccp(0, 170);
         
         // ajoute le menu
-        [self addChild:addMenu];
+        [self addChild:addMenu];*/
         
         
         [self scheduleUpdate];
@@ -215,11 +223,19 @@
              // Afin de ne faire cette opération qu'une fois
              if(pCurrentGodData._isAngry == NO)
              {
+                 // On change la hauteur de scroll autorisée et on place la tour en haut (afin que le joueur ne puisse pas éviter les boules de feu)
+                 
+                 [_pMenuAndTowerLayer.pTowerLayer setPossibleScrollHeight:950.0f];
+                 [_pMenuAndTowerLayer.pTowerLayer replaceTowerToTopWithoutScroll];
+                 
+                 
                  // On lance l'animation une bonne fois pour toutes !
                  [_pElementGodsLayer playAngerAnim: nil];
                  [_pFireAttackLayer addFireParticle];
                  // On met à jour la colère du dieu
                  [pCurrentGodData raiseGodAnger];
+                 
+                 
              }
              if (_pFireAttackLayer.canLaunchOtherFireBalls)
              {
@@ -238,7 +254,11 @@
              {
                  [_pElementGodsLayer playCalmDownAnim: nil];
                  [pCurrentGodData calmDownGodAnger];
+                 [_pFireAttackLayer endFireBalls];
                  
+                 // On remet la hauteur possible du scroll à la bonne valeur
+                 [_pMenuAndTowerLayer.pTowerLayer setPossibleScrollHeight:SCROLLING_HEIGHT];
+                 // on enlève les blocs et on replace la tour
                  [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
              }
          }

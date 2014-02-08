@@ -65,6 +65,9 @@
 @property (nonatomic, strong) CCSprite* pBubbleSprite;
 
 
+@property (nonatomic, assign) float scrollingHeight;
+
+
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight;
@@ -77,4 +80,9 @@
 -(void) calculatePositionAfterZoom:(id) sender;
 
 -(void)removeBlocAtIndexes:(NSIndexSet*) indexes;
+
+-(void)replaceTowerToTopWithoutScroll;
+
+-(void) setPossibleScrollHeight: (float) i_possibleScrollHeight;
+
 @end

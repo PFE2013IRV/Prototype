@@ -25,7 +25,7 @@
         // Pour faire d'autres actions il faut le faire grâce a des appels de méthode
         
         _pPlanetSprite = [[[CCSprite alloc] initWithFile:@"planet.png"] autorelease];
-        _pPlanetSprite.scale = 0.6;
+        _pPlanetSprite.scale = 0.4;
         _pPlanetSprite.anchorPoint = ccp(0.5,1.0);
         [_pPlanetSprite setPosition:CGPointMake(384, PLANET_HEIGHT_BALANCE)];
         

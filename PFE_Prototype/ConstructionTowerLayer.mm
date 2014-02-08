@@ -34,12 +34,14 @@
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize indexBlocTouchByFire = _indexBlocTouchByFire;
 @synthesize pBubbleSprite = _pBubbleSprite;
+@synthesize scrollingHeight = _scrollingHeight;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
     {
+        _scrollingHeight = SCROLLING_HEIGHT;
         _indexBlocTouchByFire = [[NSMutableIndexSet alloc] init];
         _pPlanetLayer = [PlanetLayer node];
         self._pTowerData = i_pTowerData;
@@ -107,6 +109,12 @@
     }
 }
 
+-(void) setPossibleScrollHeight: (float) i_possibleScrollHeight
+{
+    _scrollingHeight = i_possibleScrollHeight;
+    
+}
+
 -(void)replaceTowerToTopWithoutScroll
 {
     [self scrollTower:_scrollPosition];
@@ -131,9 +139,9 @@
         }
     }
     
-    if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > SCROLLING_HEIGHT && !_blocNotPlace)
+    if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > _scrollingHeight && !_blocNotPlace)
     {
-        _possibleScrollSize = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
+        _possibleScrollSize = _currentHeightNoScroll - _scrollingHeight + (_scrollingHeight - _HeightTower);
         _isScrolling = YES;
         _startingScroll = location.y;
     }
@@ -268,7 +276,7 @@
     }
     else
     {
-        if (_HeightTower > SCROLLING_HEIGHT)
+        if (_HeightTower > _scrollingHeight)
         {
             [self movePlanet:_pMovingBlocData._scaledSize.height];
             
@@ -348,7 +356,7 @@
 
     [self stopAllActions];
     
-    if(_currentHeightNoScroll < SCROLLING_HEIGHT) return;
+    if(_currentHeightNoScroll < _scrollingHeight) return;
     
     _scalingFactor = 700.0f / (_currentHeightNoScroll + _pPlanetLayer.pPlanetSprite.boundingBox.size.height);
     
@@ -463,7 +471,7 @@
     _HeightTower = [self calculNewHeightTowerAfterChange];
     _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
     
-    if (_currentHeightNoScroll > SCROLLING_HEIGHT)
+    if (_currentHeightNoScroll > _scrollingHeight)
     {
         [self scrollTower: - totalHeight];
     }
@@ -487,9 +495,10 @@
 
 -(int)burnOneBlocAtIndex:(int)index
 {
+    BlocData *blocDataToRemove = [self._pTowerData._aBlocs objectAtIndex:index];
+    
     CCSprite *blocSpriteToRemove = [self._aBlocsTowerSprite objectAtIndex:index];
     [blocSpriteToRemove removeFromParentAndCleanup:YES];
-    BlocData *blocDataToRemove = [self._pTowerData._aBlocs objectAtIndex:index];
     
     int height = blocDataToRemove._scaledSize.height;
     _currentHeightNoScroll -= height;
@@ -512,7 +521,7 @@
     {
         newHeightTower += blocInTower._scaledSize.height;
         
-        if (newHeightTower > SCROLLING_HEIGHT)
+        if (newHeightTower > _scrollingHeight)
         {
             newHeightTower -= blocInTower._scaledSize.height;
         }
