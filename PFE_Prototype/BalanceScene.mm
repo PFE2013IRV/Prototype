@@ -50,8 +50,8 @@
         
         if(!SIMULATOR_MODE)
         {
-            CloudsFrontTop* pCloudsFrontTop = [[CloudsFrontTop alloc] init];
-            [self addChild:pCloudsFrontTop];
+            CloudsFrontBottom* pCloudsFront = [[CloudsFrontBottom alloc] init];
+            [self addChild:pCloudsFront];
         }
         
     }
@@ -60,39 +60,10 @@
 }
 
 
-
 -(id) init
 {
     [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
-}
-
--(void)onEnterTransitionDidFinish
-{
-  // [self returnToConstruction];
-    
-}
--(void)returnToConstruction
-{
-    //indexes des blocs qui se sont peter la gueule
-    NSMutableIndexSet *indexes;
-    [_previusScene._pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:indexes];
-    [_previusScene._pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
-    [[CCDirector sharedDirector] popScene];
-}
--(void)onEnter
-{
-    
-    _pTowerAndPlanetLayer.TowerSize = _previusScene._pMenuAndTowerLayer.pTowerLayer.currentHeightNoScroll;
-
- if(_previusScene._pWindGodLayer._pGodData._godIsUp)
- {
-     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = true;
- }
- else
- {
-     self._pTowerAndPlanetLayer.balanceTower.WindAttackType = false;
- }
 }
 
 
