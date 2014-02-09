@@ -7,7 +7,6 @@
 #import "ConstructionScene.h"
 #import "BlocManager.h"
 #import "GlobalConfig.h"
-#import "HUDLayer.h"
 #import "BalanceScene.h"
 
 @implementation ConstructionScene
@@ -21,12 +20,11 @@
 @synthesize _pBkg2;
 @synthesize _pWindAttackLayer;
 @synthesize _pWindGodLayer;
+@synthesize _pHUD;
 
 
 -(void) changeScene
 {
-   // [self._pElementGodsLayer stopAllRuningAnimations:nil];
-   // [self._pWindGodLayer stopAllRuningAnimations:nil];
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
@@ -53,7 +51,7 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pUpsetGodParticleLayer = [UpsetGodParticleLayer node];
-        _pGodWrathLayer = [GodWrathLayer node];
+        //_pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
         
         self._pGameData = i_pGameData;
@@ -95,32 +93,40 @@
         }
         
         
-        [self addChild:self._pGodWrathLayer];
+        //[self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
+        [self addChild:self._pDustLayerBack];
         
-        // HUD Layer
+        [self addChild:self._pWindGodLayer];
+        [self addChild:self._pDustLayerFront];
         
-        HUDLayer* pHUD = [HUDLayer node];
-        [self addChild:pHUD];
+        
+        _pHUD = [HUDLayer node];
+        [self addChild:_pHUD];
         
         
         [self addChild:self._pElementGodsLayer];
-        [self addChild:self._pDustLayerBack];
-        [self addChild:_pMenuAndTowerLayer];
-        [self addChild:self._pWindAttackLayer];
-        [self addChild:self._pDustLayerFront];
-        [self addChild:self._pWindGodLayer];
         [self addChild:self._pFireAttackLayer];
+        
+        [self addChild:_pMenuAndTowerLayer];
+        
+        
+        [self addChild:self._pWindAttackLayer];
+
+
+
         
         CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
         [self addChild:pCloudsFront];
 
         
+        //CCSprite* AnniversaireHugo = [CCSprite spriteWithFile:@"AnniversaireHugo.png"];
+        
         
         // add light on tower column (particle)
         
         // Bouton God
-        CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
+        /*CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
         addParticleGodFireButton.position = ccp(80, 0);
         
         // Menu des boutons
@@ -128,7 +134,7 @@
         addMenu.position = ccp(0, 170);
         
         // ajoute le menu
-        [self addChild:addMenu];
+        [self addChild:addMenu];*/
         
         
         [self scheduleUpdate];
@@ -192,63 +198,158 @@
     
     balanceScene.previusScene = self;
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:1.0 scene:balanceScene]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];
                                                }
                                                
 -(void) update:(ccTime)delta
 {
+    _runtime += delta;
     
-     GameData* pCurrentGameData = super._pGameData;
-     GodData* pCurrentGodData = nil;
-     if(pCurrentGameData)
-     pCurrentGodData = [pCurrentGameData getCurrentGod];
-     
-     if(pCurrentGodData)
+    GameData* pCurrentGameData = super._pGameData;
+    GodData* pCurrentGodData = nil;
+    WindGodData* pWindGodData = nil;
+    
+    if(pCurrentGameData)
+    {
+        pCurrentGodData = [pCurrentGameData getCurrentGod];
+        pWindGodData = pCurrentGameData._pWindGodData;
+    }
+    
+     if(pCurrentGodData && pWindGodData)
      {
-         if(pCurrentGodData._respect < GOD_ANGER_LIMIT)
+         
+         // On lance l'attaque du dieu du vent si le dieu du vent ne bouge pas et qu'on a atteint la limite de temps fixée pour le prototype
+         if(_runtime > WIND_GOD_ATTACK_TIME && pWindGodData._godIsMoving == NO)
          {
-             
-             if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
-             {
-                 [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
-             }
-             // Afin de ne faire cette opération qu'une fois
-             if(pCurrentGodData._isAngry == NO)
-             {
-                 // On lance l'animation une bonne fois pour toutes !
-                 [_pElementGodsLayer playAngerAnim: nil];
-                 [_pFireAttackLayer addFireParticle];
-                 [_pMenuAndTowerLayer godIsAngry];
-                 // On met à jour la colère du dieu
-                 [pCurrentGodData raiseGodAnger];
-             }
-             if (_pFireAttackLayer.canLaunchOtherFireBalls)
-             {
-                 [_pFireAttackLayer addFireParticle];
-             }
+             pWindGodData._godIsAttacking = YES;
+             [self LaunchWindGodAttack : pCurrentGodData];
          }
-         else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
+         
+         // Les attaques des dieux élémentaires ne sont lancées que lorsque le dieu du vent n'est pas en train d'attaquer
+         if(pWindGodData._godIsAttacking == NO)
          {
-             if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
+             if(pCurrentGodData._respect < GOD_ANGER_LIMIT)
              {
-                 [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
+                 
+                 if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
+                 {
+                     [_pUpsetGodParticleLayer addChild:_pUpsetGodParticleLayer._pGodParticle];
+                 }
+                 // Afin de ne faire cette opération qu'une fois
+                 if(pCurrentGodData._isAngry == NO)
+                 {
+                     // On change la hauteur de scroll autorisée et on place la tour en haut (afin que le joueur ne puisse pas éviter les boules de feu)
+                     
+                     
+                     // On lance l'animation une bonne fois pour toutes !
+                     [_pElementGodsLayer playAngerAnim: nil];
+                     [_pFireAttackLayer addFireParticle];
+                     [_pMenuAndTowerLayer godIsAngry];
+                     // On met à jour la colère du dieu
+                     [pCurrentGodData raiseGodAnger];
+                     
+                     
+                 }
+                 if (_pFireAttackLayer.canLaunchOtherFireBalls)
+                 {
+                     [_pFireAttackLayer addFireParticle];
+                 }
              }
-             
-             // Comme précédemment, afin de ne le "calmer" qu'une fois
-             if(pCurrentGodData._isAngry == YES)
+             else if(pCurrentGodData._respect >= GOD_ANGER_LIMIT && pCurrentGodData._isAngry == YES)
              {
-                 [_pElementGodsLayer playCalmDownAnim: nil];
-                 [pCurrentGodData calmDownGodAnger];
-                 [_pFireAttackLayer endFireBalls];
-                 [_pMenuAndTowerLayer godBecameNotAngry];
-                 [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
-                 //_pMenuAndTowerLayer.pTowerLayer scrollTowe
-                 //[self scrollTower:_scrollPosition];
-                 //_scrollPosition = 0;
+                 if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
+                 {
+                     [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:false];
+                 }
+                 
+                 // Comme précédemment, afin de ne le "calmer" qu'une fois
+                 if(pCurrentGodData._isAngry == YES)
+                 {
+                     [_pElementGodsLayer playCalmDownAnim: nil];
+                     [pCurrentGodData calmDownGodAnger];
+                     [_pFireAttackLayer endFireBalls];
+                     [_pMenuAndTowerLayer godBecameNotAngry];
+                     [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
+                     
+                 }
              }
          }
      }
 
+}
+
+-(void) LaunchWindGodAttack : (GodData*) i_pCurrentGod
+{
+    [self unscheduleUpdate];
+    
+    CCSequence* pWindGodAttackSequence = nil;
+    
+    // On calme d'abord le dieu
+    id calmDownGod = [CCCallBlock actionWithBlock:^
+    {
+        GodData* pCurrentGod = [super._pGameData getCurrentGod];
+        
+        if(pCurrentGod._isAngry == YES)
+        {
+            if (_pUpsetGodParticleLayer._pGodParticle.parent == _pUpsetGodParticleLayer)
+            {
+                [_pUpsetGodParticleLayer removeChild:_pUpsetGodParticleLayer._pGodParticle cleanup:true];
+            }
+            
+            [_pElementGodsLayer playCalmDownAnim: nil];
+            [pCurrentGod calmDownGodAnger];
+            [_pFireAttackLayer endFireBalls];
+            [_pMenuAndTowerLayer godBecameNotAngry];
+            [_pMenuAndTowerLayer.pTowerLayer removeBlocAtIndexes:_pMenuAndTowerLayer.pTowerLayer.indexBlocTouchByFire];
+        }
+        
+    }];
+    
+    // On retire le menu de l'écran
+    id moveMenuOutOfScreen = [CCCallBlock actionWithBlock:^
+    {
+        CCAction* pMoveMenu = [CCMoveBy actionWithDuration:2.0 position:ccp(0,-150)];
+        [_pMenuAndTowerLayer.pMenuLayer runAction:pMoveMenu];
+        
+        
+        CCAction* pMoveRespect = [CCMoveBy actionWithDuration:2.0 position:ccp(-200,0)];
+        [_pHUD._pHUDRespect runAction:pMoveRespect];
+
+    }];
+    
+    // On dézoom sur la tour
+    id zoomOutonTower = [CCCallBlock actionWithBlock:^
+    {
+        [_pMenuAndTowerLayer.pTowerLayer zoomOutTower:1];
+    }];
+    
+    // Mise en rogne du dieu du vent
+    id windGodisAngry = [CCCallBlock actionWithBlock:^
+    {
+        [_pWindGodLayer playWindGodAttackSequence:nil];
+    }];
+    
+    id lauchnWindAttack = [CCCallBlock actionWithBlock:^
+    {
+        [_pWindAttackLayer addWindParticle:nil];
+    }];
+
+    
+    
+    
+    
+    
+    pWindGodAttackSequence = [CCSequence actions:calmDownGod,
+                              windGodisAngry,
+                              moveMenuOutOfScreen,
+                              [CCDelayTime actionWithDuration:1.5],
+                              zoomOutonTower,
+                              [CCDelayTime actionWithDuration:2.0],
+                              lauchnWindAttack,
+                              nil];
+    
+    [self runAction:pWindGodAttackSequence];
+    
 }
 
 

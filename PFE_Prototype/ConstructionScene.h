@@ -11,9 +11,15 @@
 #import "MenuAndConstructionTowerLayer.h"
 #import "GodWrathLayer.h"
 #import "UpsetGodParticleLayer.h"
+#import "WindGodData.h"
+#import "HUDLayer.h"
 
 
 @interface ConstructionScene : GameScene <GameSceneProtocol, WindAttackDelegate>
+{
+    float _runtime;
+    float _moveTowerRuntime;
+}
 
 -(void) changeScene;
 
@@ -48,6 +54,8 @@
 @property (nonatomic, strong) WindGodLayer* _pWindGodLayer;
 
 @property (nonatomic, strong) WindAttackLayer* _pWindAttackLayer;
+
+@property (nonatomic,strong) HUDLayer* _pHUD;
 
 
 

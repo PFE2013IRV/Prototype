@@ -45,7 +45,7 @@
 -(void) calmDownGodAnger
 {
     _isAngry = NO;
-    [self increaseRespect:20];
+    [self increaseRespect:GOD_RESPECT_GIFT];
 }
 
 -(void) increaseRespect: (int) i_respect

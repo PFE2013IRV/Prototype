@@ -145,7 +145,7 @@
             else
             {
                 pSprite.anchorPoint = ccp(0.0f,0.0f);
-                pSprite.position = ccp(630, 700);
+                pSprite.position = ccp(630, 232);
                 [pSprite setScale:0.6];
             }
             
@@ -199,8 +199,8 @@
     
     [pAnimSprite stopAllActions];
     
-
-    [pAnimSprite setVisible:NO];
+    if(![sAnimName isEqualToString:@"FireGod_wind"])
+        [pAnimSprite setVisible:NO];
     
 }
 
@@ -258,6 +258,47 @@
         }
         
     }
+    
+}
+
+- (void) runScaleTo: (id) sender data: (void*) data
+{
+    // On récupère le type de dieu pour lequel il faut lancer l'animation
+    NSString* sGodType;
+    
+    if(_eGodType == GOD_TYPE_FIRE)
+        sGodType = @"FireGod_";
+    else if(_eGodType == GOD_TYPE_WATER)
+        sGodType = @"WaterGod_";
+    else if(_eGodType == GOD_TYPE_EARTH)
+        sGodType = @"EarthGod_";
+    else
+        sGodType = @"WindGod_";
+    
+    // On cast la data vers un NSArray et on extrait l'info
+    NSArray* aData = (NSArray*) data;
+    NSString* sAnimName = [sGodType stringByAppendingString:[aData objectAtIndex:0]];
+    NSNumber* pGoalScale = [aData objectAtIndex:1];
+    NSNumber* pDuration = [aData objectAtIndex:2];
+    
+    // On lance l'action !
+    CCSprite* pAnimSprite = (CCSprite*) [self._aGodSprites objectForKey:sAnimName];
+    CCAction* pScaleAction = [CCScaleTo actionWithDuration:pDuration.floatValue scale:pGoalScale.floatValue];
+    
+    [pAnimSprite runAction:pScaleAction];
+    
+    // On remet à jour le scale de tous les autres sprites du dieu
+    // (sauf celui qui a eu le scaleTo)
+    for(NSString* key in self._aGodSprites)
+    {
+        if(![key isEqualToString:sAnimName]){
+            CCSprite* pSprite = [self._aGodSprites objectForKey:key];
+            pSprite.scale = pGoalScale.floatValue;
+        }
+        
+    }
+
+    
     
 }
 

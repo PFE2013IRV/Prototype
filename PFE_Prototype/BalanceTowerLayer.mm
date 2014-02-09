@@ -21,7 +21,7 @@ enum {
 
 @synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize isZooming = _isZooming;
-//@synthesize scalingFactor = _scalingFactor;
+@synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize TowerSize;
@@ -35,10 +35,11 @@ enum {
         
          _scalingFactor =1;
         self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
+        [self CalculateScalingFactor];
         // init physics
 		[self initPhysics];
         self._pTowerData = i_pTowerData;
-       // [self CalculateScalingFactor];
+        
        
         
        
@@ -51,8 +52,8 @@ enum {
         //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
        */
        // for(int i = 1 ; i <= 2  ; i++)
-      //      [self ApplyWindAttackLeft];
-       // [self ApplyWindAttackRight];
+        [self ApplyWindAttackLeft];
+        [self ApplyWindAttackRight];
 
         [self scheduleUpdate];
 
@@ -88,9 +89,9 @@ enum {
      // Define the ground body.
      b2BodyDef groundBodyDef;
 
-     groundBodyDef.position.Set(0,0//(220 * _scalingFactor)
+     groundBodyDef.position.Set(0,((220 * _scalingFactor))
                                // ( s.height/6)
-                               // /PTM_RATIO
+                                /PTM_RATIO
                                 ); // bottom-left corner
     
      // Call the body factory which allocates memory for the ground body
@@ -119,7 +120,7 @@ enum {
      groundBody->CreateFixture(&groundBox,0);
    
 }
-/*
+
 -(void)CalculateScalingFactor
 {
     _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
@@ -146,7 +147,7 @@ enum {
     [self runAction:sequence];
     
 }
- */
+
 
 -(void)drawAllPhysicsBlocsOfTower
 {
@@ -156,7 +157,7 @@ enum {
     int i =1;
     int max, min;
     int Move = 0;
-   /*
+   
     // Dernier troncon soumis a l'attaque
     if(Tower)
     {
@@ -172,13 +173,13 @@ enum {
     //Bloc central du troncon
     int Middle_Bloc = max - round(round([self._pTowerData Size] / 3) / 2);
     
-   */
+   
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
         CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
         
-    /***** Decalage due a l'attaque du vent *****
+    /***** Decalage due a l'attaque du vent *****/
         
         //Si on se rapproche du centre de l'attaque, on ajoute du decalage
         if(i <= Middle_Bloc && i >= min && i <= max)
@@ -353,7 +354,7 @@ enum {
 
 -(void)ApplyWindAttackLeft
 {
-    int degree = -30;
+    int degree = -5;
     
     int i = [self._pTowerData Size];
     
@@ -379,7 +380,7 @@ enum {
 
 -(void)ApplyWindAttackRight
 {
-    int degree = -30;
+    int degree = 3;
     
     int i = [self._pTowerData Size];
     

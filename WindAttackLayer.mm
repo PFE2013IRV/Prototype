@@ -22,7 +22,7 @@
         // position?
         
         // Bouton add wind attack
-        CCMenuItemImage *addParticleWindButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addWindParticle:)];
+       /* CCMenuItemImage *addParticleWindButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addWindParticle:)];
         addParticleWindButton.position = ccp(130, 0);
         
         // Menu des boutons
@@ -30,7 +30,7 @@
         addMenu.position = ccp(0, 170);
         
         // ajoute le menu
-        [self addChild:addMenu];
+        [self addChild:addMenu];*/
         
 	}
 	return self;
@@ -58,12 +58,12 @@
         [self addChild:_pWindParticle2];
 
         
-        [pScene._pWindGodLayer playCuteAnim:nil];
-        [pScene._pElementGodsLayer playWindAnim:nil];
+        if(levelVisitor._pCurrentGameData._pWindGodData._godIsUp == YES)
+            [pScene._pElementGodsLayer playWindAnim:nil];
         
         
         //Changement de scène Construction vers Balance
-        [self schedule:@selector(changeScene)interval:1.6];
+        [self schedule:@selector(changeScene)interval:3.0];
         
     }
     else if (_pWindParticle1.parent == self)

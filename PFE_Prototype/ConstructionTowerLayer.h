@@ -26,6 +26,8 @@
 @interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
     float _bubbleRuntime;
+    float _towerRuntime;
+    float _moveTowerRuntime;
     id <ConstructionTowerDelegate> _delegate;
 }
 
@@ -35,6 +37,9 @@
 @property (nonatomic, assign) BOOL blocNotPlace;
 //bool pour savoir si on a appuyé sur le cube dans le touch begang
 @property (nonatomic, assign) BOOL isTouch;
+
+//bool pour savoir si le dieu du feu est en colère et pète un cable
+@property (nonatomic, assign) BOOL isFireGodAngry;
 
 //bool pour savoir si on a appuyé sur l'écran pour scroller
 @property (nonatomic, assign) BOOL isScrolling;
@@ -55,7 +60,8 @@
 @property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
 // Pour le zoom
-@property (nonatomic, assign) BOOL isZooming;
+@property (nonatomic, assign) BOOL isZoomingOut;
+@property (nonatomic, assign) BOOL isZoomingIn;
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
@@ -63,6 +69,9 @@
 @property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
 
 @property (nonatomic, strong) CCSprite* pBubbleSprite;
+
+
+@property (nonatomic, assign) float scrollingHeight;
 
 
 

@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "cocos2d.h"
+#import "CloudsFrontBottom.h"
 
 
 @protocol PlanetDelegate <NSObject>
@@ -33,10 +34,13 @@
 @property (nonatomic, assign) BOOL _isZooming;
 @property (nonatomic, assign) CGPoint _positionBeforeZoom;
 @property (nonatomic, assign) float _scalingFactor;
+@property (nonatomic,strong) CloudsFrontBottom* _pClouds;
 
 -(id)init;
 -(void)launchBalanceModeForPlanet;
 -(void)stopBalanceModeForPlanet;
+-(void) removeClouds;
+-(void) putCloudsAtBottom;
 
 @end
 
