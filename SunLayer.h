@@ -41,7 +41,7 @@ _nbDecrement;
 -(void) genSunGradient:(ccTime)i_dt;
 -(CCTexture2D *)createSunTexturetextureWidth:(float)i_textureWidth textureHeight:(float)i_textureHeight center:(CGPoint)i_center;
 -(void) ManageSunConstruction;
--(void)ManageSunBalance: (ccColor4B) i_currentSunColor;
+-(void)ManageSunBalance;
 -(void)ReSchedule;
 
 
