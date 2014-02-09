@@ -17,6 +17,9 @@
 
 -(id) init
 {
+    
+    _runtime = 0;
+    
     // Animations par défaut (Dieu du feu)
     NSMutableArray* aAnims = [[NSMutableArray alloc]
     initWithObjects:@"moveUp",@"moveDown",@"static1",@"static2",@"static3", nil];
@@ -29,11 +32,12 @@
     {
    
 
-        _godIsUp = YES;
+        _godIsUp = NO;
         
+        
+        [self playWindStaticAnims:nil];
         // On lance la série d'actions par défaut : les anims static
-        [self moveWindGod: nil];
-
+        [self schedule:@selector(moveWindGodLoop:) interval:4.0];
 	}
     
 	return self;
@@ -88,12 +92,6 @@
     
     // On stoppe toutes les séquences d'actions précédentes
     [self stopAllActions];
-    [self stopAllRuningAnimations:nil];
-    
-    // On refraichit l'information sur le dieu du vent
-    // au cas où celle-ci ait changé
-    [self refreshWindGodInfo];
-    
     
     NSArray* aMoveData;
     NSValue* pGoalValue;
@@ -101,6 +99,12 @@
     
     CCSequence* pSequence = nil;
 
+    _pCurrGameData._pWindGodData._godIsMoving = YES;
+    id stopMoving = [CCCallBlock actionWithBlock:^{
+        _pCurrGameData._pWindGodData._godIsMoving = NO;
+    }];
+    
+    
     if(_godIsUp == YES)
     {
         // On init les données du moveTo
@@ -112,10 +116,14 @@
         pSequence =
         [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveDown"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
          [CCDelayTime actionWithDuration: 2.8f],
          [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveDown"],
+         stopMoving,
          nil];
         
         _godIsUp = NO;
@@ -133,10 +141,14 @@
         pSequence =
         [CCSequence actions:
          [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveUp"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runMoveTo:data:) data:aMoveData],
          [CCDelayTime actionWithDuration: 2.8f],
          [CCCallFunc actionWithTarget:self selector:@selector(playWindStaticAnims:)],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"moveUp"],
+         stopMoving,
          nil];
         
         _godIsUp = YES;
@@ -146,6 +158,39 @@
     
     
     [self runAction:pSequence];
+    [self refreshWindGodInfo];
+}
+
+-(void) playWindGodAttackSequence : (id) sender
+{
+    
+    // On stoppe toutes les séquences d'actions précédentes
+    [self stopAllActions];
+    
+    NSArray* aScaleData;
+    NSNumber* pGoalScale = FLOAT(0.8);
+    NSNumber* pDuration = FLOAT(3.0);
+    
+    CCSequence* pSequence = nil;
+    
+    if(_pCurrGameData._pWindGodData._godIsAttacking == YES)
+    {
+        
+        aScaleData = [[NSArray alloc] initWithObjects:@"static3",pGoalScale,pDuration, nil];
+        
+        pSequence =
+        [CCSequence actions:
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleData],
+         nil];
+        
+        [self runAction:pSequence];
+        [self refreshWindGodInfo];
+
+    }
+
 }
 
 - (void) playCuteAnim : (id) sender
@@ -175,6 +220,16 @@
     
     [self runAction:pSequenceForever];
     
+}
+
+-(void) moveWindGodLoop: (ccTime) dt
+{
+    
+        int i = arc4random()%2;
+    
+        // On le bouge une fois sur deux
+        if(i == 1 && [_pCurrGameData getCurrentGod]._isAngry == NO && _pCurrGameData._pWindGodData._godIsAttacking == NO)
+            [self moveWindGod:nil];
 }
 
 

@@ -22,9 +22,22 @@
         ///////     Initialisations des effets de particules dieux    /////
         ///////////////////////////////////////////////////////////////////
         
+        // config 1
         _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
-        _pGodParticle.position = ccp(126, 596);
-        _pGodParticle.posVar = ccp(100, 0);
+        _pGodParticle.emissionRate = 400;
+        _pGodParticle.life = 1.5;
+        _pGodParticle.position = ccp(90, 630);
+        _pGodParticle.posVar = ccp(90, 0);
+        
+        // config 2
+        /*_pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+        
+        _pGodParticle.emissionRate = 600;
+        _pGodParticle.life = 1.5;
+        _pGodParticle.gravity = ccp(0, 100);
+        
+        _pGodParticle.position = ccp(90, 670);
+        _pGodParticle.posVar = ccp(85, 0);*/
         
 
         

@@ -55,62 +55,81 @@
 
 -(void) decreaseRespect: (ccTime) dt
 {
-    GodData* pCurrGod = [_pCurrentGameData getCurrentGod];
     
-    if(pCurrGod._isAngry == NO)
+    if(_pCurrentGameData._pWindGodData._godIsAttacking == NO)
     {
-        [_pCurrentGameData getCurrentGod]._respect -= 1;
+        GodData* pCurrGod = [_pCurrentGameData getCurrentGod];
         
+        
+        if(pCurrGod._respect >= 0)
+        {
+            pCurrGod._respect -= 1;
+            
+            if(pCurrGod._isAngry == YES)
+            {
+                pCurrGod._respect -= 0.7;
+                if(pCurrGod < 0)
+                    pCurrGod._respect = 0;
+            }
+        }
+        
+        
+        /*if(pCurrGod._isAngry == NO)
+         {
+         [_pCurrentGameData getCurrentGod]._respect -= 1;
+         
+         }*/
+        
+        if(pCurrGod._isAngry == YES)
+        {
+            
+            CGPoint pos = _pHUDRespect.position;
+            [_pHUDRespect removeFromParent];
+            _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectRed.png"];
+            _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
+            _pHUDRespect.position = pos;
+            
+            
+            
+            [self addChild:_pHUDRespect];
+            [self reorderChild:_pHUDFrames z:[self children].count - 1];
+            
+            
+        }
+        else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect < GOD_WARNING_LIMIT)
+        {
+            CGPoint pos = _pHUDRespect.position;
+            [_pHUDRespect removeFromParent];
+            _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectOrange.png"];
+            _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
+            _pHUDRespect.position = pos;
+            
+            
+            [self addChild:_pHUDRespect];
+            [self reorderChild:_pHUDFrames z:[self children].count - 1];
+            
+        }
+        else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect > GOD_WARNING_LIMIT)
+        {
+            CGPoint pos = _pHUDRespect.position;
+            [_pHUDRespect removeFromParent];
+            _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectGreen.png"];
+            _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
+            _pHUDRespect.position = pos;
+            
+            
+            [self addChild:_pHUDRespect];
+            [self reorderChild:_pHUDFrames z:[self children].count - 1];
+            
+        }
+        
+        float RespectLength = [_pHUDRespect boundingBox].size.width;
+        RespectLength = -RespectLength+(pCurrGod._respect * RespectLength  / GOD_RESPECT_DEFAULT);
+        
+        CCAction* pMove = [CCMoveTo actionWithDuration:0.5f position:ccp(RespectLength,_pHUDRespect.position.y)];
+        [_pHUDRespect runAction:pMove];
+
     }
-    
-    if(pCurrGod._isAngry == YES)
-    {
-        
-        CGPoint pos = _pHUDRespect.position;
-        [_pHUDRespect removeFromParent];
-        _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectRed.png"];
-        _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
-        _pHUDRespect.position = pos;
-        
-        
-        
-        [self addChild:_pHUDRespect];
-        [self reorderChild:_pHUDFrames z:[self children].count - 1];
-        
-        
-    }
-    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect < (GOD_RESPECT_DEFAULT - GOD_ANGER_LIMIT))
-    {
-        CGPoint pos = _pHUDRespect.position;
-        [_pHUDRespect removeFromParent];
-        _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectOrange.png"];
-        _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
-        _pHUDRespect.position = pos;
-        
-        
-        [self addChild:_pHUDRespect];
-        [self reorderChild:_pHUDFrames z:[self children].count - 1];
-        
-    }
-    else if(pCurrGod._isAngry == NO && [_pCurrentGameData getCurrentGod]._respect > GOD_ANGER_LIMIT && [_pCurrentGameData getCurrentGod]._respect > (GOD_RESPECT_DEFAULT - GOD_ANGER_LIMIT))
-    {
-        CGPoint pos = _pHUDRespect.position;
-        [_pHUDRespect removeFromParent];
-        _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectGreen.png"];
-        _pHUDRespect.anchorPoint = ccp(0.0f,0.0f);
-        _pHUDRespect.position = pos;
-        
-        
-        [self addChild:_pHUDRespect];
-        [self reorderChild:_pHUDFrames z:[self children].count - 1];
-        
-    }
-    
-    float RespectLength = [_pHUDRespect boundingBox].size.width;
-    RespectLength = -RespectLength+(pCurrGod._respect * RespectLength  / GOD_RESPECT_DEFAULT);
-    
-    CCAction* pMove = [CCMoveTo actionWithDuration:0.3f position:ccp(RespectLength,_pHUDRespect.position.y)];
-    [_pHUDRespect runAction:pMove];
     
     
 }

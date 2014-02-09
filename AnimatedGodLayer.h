@@ -45,6 +45,8 @@
 // -> at 0, the animation name / -> at 1, the goal point (NSValue*) / -> at 2, the duration (NSNumber*)
 - (void) runMoveTo: (id) sender data: (void*) data;
 
+- (void) runScaleTo: (id) sender data: (void*) data;
+
 // This function stops all the animations on the animated god.
 - (void) stopAllRuningAnimations: (id) sender;
 

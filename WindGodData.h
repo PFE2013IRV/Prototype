@@ -12,5 +12,7 @@
 
 @property(nonatomic,assign) CGPoint _windGodPosition;
 @property(nonatomic,assign) BOOL _godIsUp;
+@property(nonatomic,assign)  BOOL _godIsMoving;
+@property(nonatomic,assign)  BOOL _godIsAttacking;
 
 @end

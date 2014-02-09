@@ -26,6 +26,8 @@
 @interface ConstructionTowerLayer : TowerLayer<FireAttackDelegate>
 {
     float _bubbleRuntime;
+    float _towerRuntime;
+    float _moveTowerRuntime;
     id <ConstructionTowerDelegate> _delegate;
 }
 
@@ -58,7 +60,8 @@
 @property (nonatomic, strong) PlanetLayer* pPlanetLayer;
 
 // Pour le zoom
-@property (nonatomic, assign) BOOL isZooming;
+@property (nonatomic, assign) BOOL isZoomingOut;
+@property (nonatomic, assign) BOOL isZoomingIn;
 @property (nonatomic, assign) float scalingFactor;
 @property (nonatomic, assign) CGPoint positionBeforeZoom;
 @property (nonatomic, assign) CGPoint zoomOutPosition;
@@ -66,6 +69,9 @@
 @property (nonatomic, strong) NSMutableIndexSet *indexBlocTouchByFire;
 
 @property (nonatomic, strong) CCSprite* pBubbleSprite;
+
+
+@property (nonatomic, assign) float scrollingHeight;
 
 
 
