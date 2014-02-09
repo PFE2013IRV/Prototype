@@ -88,6 +88,8 @@ enum {
      
      // Define the ground body.
      b2BodyDef groundBodyDef;
+    
+    CCLOG(@"Scaling at  %0.2f ",(double)_scalingFactor );
 
      groundBodyDef.position.Set(0,((220 * _scalingFactor))
                                // ( s.height/6)
