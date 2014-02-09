@@ -183,7 +183,7 @@
         
         if(_isFireGodAngry)
         {
-            if (testScrollPosition <= 0 && testScrollPosition >= -_possibleScrollSize)
+            if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
             {
                 [self scrollTower: heightScroll * SCROLLING_SPEED_COEF];
                 _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
@@ -298,7 +298,16 @@
     {
         [self scrollTower:-(_currentHeightNoScroll - _HeightTower - _scrollPosition)];
     }
+    
+    CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    int possibleScroll = _currentHeightNoScroll - screenSize.height - 220;
     _scrollPosition = 0;
+    
+    if (possibleScroll > 0)
+    {
+        [self scrollTower:possibleScroll];
+    }
+    
 }
 
 -(void)addBlocToTower
@@ -387,7 +396,17 @@
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if (_isTouch)
+    {
+        _blocNotPlace = false;
+        _isTouch = NO;
+        
+        [self addToFallingBloc];
+        
+        _pMovingBlocData = nil;
+    }
     
+    _isScrolling = NO;
 }
 
 
@@ -485,19 +504,22 @@
             if (![_indexBlocTouchByFire containsIndex:i] && blocData._eBlocMaterial == MAT_WOOD)
             {
                 [_indexBlocTouchByFire addIndex:i];
-                CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
-                [blocSprite addChild:burnParticle];
-                burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
-                burnParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
                 
-                CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
-                [blocSprite addChild:smokeParticle];
-                smokeParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
-                smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
-                
-                [blocSprite reorderChild:smokeParticle z:-1];
-                [blocSprite reorderChild:burnParticle z:1];
-                
+                if (SIMULATOR_MODE)
+                {
+                    CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
+                    [blocSprite addChild:burnParticle];
+                    burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                    burnParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                    
+                    CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
+                    [blocSprite addChild:smokeParticle];
+                    smokeParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
+                    smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                    
+                    [blocSprite reorderChild:smokeParticle z:-1];
+                    [blocSprite reorderChild:burnParticle z:1];
+                }
             }
         }
     }
@@ -524,12 +546,12 @@
     {
         BlocData *firstBloc = [self._pTowerData._aBlocs objectAtIndex:0];
         CCSprite *firstSprite = [self._aBlocsTowerSprite objectAtIndex:0];
+        
         int heightMaxToMoveUp = 220 + firstBloc._scaledSize.height / 2 - firstSprite.position.y;
         [self scrollTower: - heightMaxToMoveUp];
         
-        
         _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
-        if (_scrollPosition > 0)
+        if (_currentHeightNoScroll > SCROLLING_HEIGHT)
         {
             [self replaceTowerToTopWithoutScroll];
         }
@@ -548,7 +570,6 @@
 -(int)burnOneBlocAtIndex:(int)index
 {
     CCSprite *blocSpriteToRemove = [self._aBlocsTowerSprite objectAtIndex:index];
-    [blocSpriteToRemove removeFromParentAndCleanup:YES];
     BlocData *blocDataToRemove = [self._pTowerData._aBlocs objectAtIndex:index];
     
     int height = blocDataToRemove._scaledSize.height;
@@ -557,9 +578,10 @@
     for (int i = index; i < [self._aBlocsTowerSprite count]; i++)
     {
         CCSprite *spriteToMove = [self._aBlocsTowerSprite objectAtIndex:i];
-        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(spriteToMove.position.x,spriteToMove.position.y - height)];
-        [spriteToMove runAction:pMoveTo];
+        spriteToMove.position = ccp(spriteToMove.position.x,spriteToMove.position.y - height);
     }
+    
+    [blocSpriteToRemove removeFromParentAndCleanup:YES];
     
     return height;
 }
