@@ -13,7 +13,8 @@
 @synthesize previusScene = _previusScene;
 @synthesize _pTowerAndPlanetLayer;
 
--(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground CurrentSun  : (ccColor4B) i_CurrentSunColor
+//`-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
+-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
 {
     if(!i_pGameData)
     {
@@ -40,13 +41,15 @@
             [self addChild:pBkg1];
             [self addChild:pBkg2];
             [self addChild:pCloudsBack];
-            [self._pSunLayer ManageSunBalance:i_CurrentSunColor];
-            [self addChild:self._pSunLayer];
             
         }
-     
-         _pTowerAndPlanetLayer = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
-        [self addChild:_pTowerAndPlanetLayer];
+        
+        
+       // [self._pSunLayer ManageSunBalance];
+      //  [self addChild:self._pSunLayer];
+        
+        TowerAndPlanetLayer *pTowerAndPlanet = [[[TowerAndPlanetLayer alloc] initWithGameData:i_pGameData PlanetLayer:self._pPlanetLayer] autorelease];
+        [self addChild:pTowerAndPlanet];
         
         if(!SIMULATOR_MODE)
         {
