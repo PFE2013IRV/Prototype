@@ -12,12 +12,16 @@
 
 @synthesize _godIsUp;
 @synthesize _windGodPosition;
+@synthesize _godIsMoving;
+@synthesize _godIsAttacking;
 
 -(id) init
 {
     if(self = [super init])
     {
+        _godIsMoving = NO;
         _godIsUp = NO;
+        _godIsAttacking = NO;
         _windGodPosition = CGPointMake(580, 232);
     }
     

@@ -38,7 +38,7 @@
         _speed = FIRE_BALLS_SPEED;
         
         // Bouton add fire attack
-        CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle)];
+        /*CCMenuItemImage *addParticleFireButton = [CCMenuItemImage itemWithNormalImage:@"FireButton.png" selectedImage:@"FireButton.png" target:self selector:@selector(addFireParticle)];
         addParticleFireButton.position = ccp(30, 0);
         
         // Menu des boutons
@@ -46,7 +46,7 @@
         addMenu.position = ccp(0, 170);
         
         // ajoute le menu
-        [self addChild:addMenu];
+        [self addChild:addMenu];*/
         
         _pCurrentGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
         

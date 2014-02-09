@@ -9,6 +9,7 @@
 #import "ConstructionTowerLayer.h"
 #import "BlocManager.h"
 #import "GlobalConfig.h"
+#import "CloudsFrontBottom.h"
 
 @implementation ConstructionTowerLayer
 
@@ -28,19 +29,22 @@
 @synthesize startingScroll = _startingScroll;
 @synthesize possibleScrollSize = _possibleScrollSize;
 @synthesize scrollPosition = _scrollPosition;
-@synthesize isZooming = _isZooming;
+@synthesize isZoomingOut = _isZoomingOut;
+@synthesize isZoomingIn = _isZoomingIn;
 @synthesize scalingFactor = _scalingFactor;
 @synthesize positionBeforeZoom = _positionBeforeZoom;
 @synthesize zoomOutPosition = _zoomOutPosition;
 @synthesize indexBlocTouchByFire = _indexBlocTouchByFire;
 @synthesize pBubbleSprite = _pBubbleSprite;
-@synthesize scrollingHeight = _scrollingHeight;
+@synthesize isFireGodAngry = _isFireGodAngry;
 
 
 -(id) initWithTowerData:(TowerData*) i_pTowerData WinningHeight:(int)winHeight
 {
     if (self = [super init])
     {
+        
+        _moveTowerRuntime = _towerRuntime = 0.0f;
         _scrollingHeight = SCROLLING_HEIGHT;
         _indexBlocTouchByFire = [[NSMutableIndexSet alloc] init];
         _pPlanetLayer = [PlanetLayer node];
@@ -73,7 +77,7 @@
 {
     if (!_blocNotPlace && !_isFireGodAngry)
     {
-        [self replaceTowerToTopWithoutScroll];
+        [self replaceTowerToTopWithoutScroll:false];
         
         _blocNotPlace = true;
         _pMovingBlocData = blocSelected;
@@ -120,9 +124,9 @@
     
 }
 
--(void)replaceTowerToTopWithoutScroll
+-(void)replaceTowerToTopWithoutScroll : (bool) doItSlowly
 {
-    [self scrollTower:_scrollPosition];
+    [self scrollTower:_scrollPosition withSlowMotion:doItSlowly];
     _scrollPosition = 0;
 }
 
@@ -144,11 +148,23 @@
         }
     }
     
-    if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > _scrollingHeight && !_blocNotPlace)
+    if (_isFireGodAngry)
     {
-        _possibleScrollSize = _currentHeightNoScroll - _scrollingHeight + (_scrollingHeight - _HeightTower);
-        _isScrolling = YES;
-        _startingScroll = location.y;
+        if((location.y <= screenSize.height - 140) && _currentHeightNoScroll > screenSize.height)
+        {
+            _possibleScrollSize = _currentHeightNoScroll - screenSize.height - 220;
+            _isScrolling = YES;
+            _startingScroll = location.y;
+        }
+    }
+    else
+    {
+        if(!_isTouch && (location.y <= screenSize.height - 140) && _currentHeightNoScroll > SCROLLING_HEIGHT && !_blocNotPlace)
+        {
+            _possibleScrollSize = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
+            _isScrolling = YES;
+            _startingScroll = location.y;
+        }
     }
     
     return YES;
@@ -180,7 +196,7 @@
         {
             if (testScrollPosition <= 0 && testScrollPosition >= -_possibleScrollSize)
             {
-                [self scrollTower: heightScroll * SCROLLING_SPEED_COEF];
+                [self scrollTower: heightScroll * SCROLLING_SPEED_COEF withSlowMotion:false];
                 _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
             }
         }
@@ -188,7 +204,7 @@
         {
             if (testScrollPosition >= 0 && testScrollPosition <= _possibleScrollSize)
             {
-                [self scrollTower:heightScroll * SCROLLING_SPEED_COEF];
+                [self scrollTower:heightScroll * SCROLLING_SPEED_COEF withSlowMotion:false];
                 _scrollPosition -= heightScroll * SCROLLING_SPEED_COEF;
             }
         }
@@ -291,7 +307,7 @@
     
     if (_currentHeightNoScroll > _HeightTower)
     {
-        [self scrollTower:-(_currentHeightNoScroll - _HeightTower - _scrollPosition)];
+        [self scrollTower:-(_currentHeightNoScroll - _HeightTower - _scrollPosition) withSlowMotion:true];
     }
     _scrollPosition = 0;
 }
@@ -336,13 +352,17 @@
     }
 }
 
--(void)scrollTower:(int)scroll
+-(void)scrollTower:(int)scroll withSlowMotion: (bool) doItSlowly
 {
     [self movePlanet:scroll];
     
+    float moveDuration = 0.2;
+    if(doItSlowly)
+        moveDuration = 1.5;
+    
     for (CCSprite* blocSprite in self._aBlocsTowerSprite)
     {
-        CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - scroll)];
+        CCAction* pMoveTo = [CCMoveTo actionWithDuration:moveDuration position:ccp(blocSprite.position.x,blocSprite.position.y - scroll)];
         [blocSprite runAction:pMoveTo];
     }
 }
@@ -386,7 +406,7 @@
 }
 
 
--(void) zoomInTower:(ccTime)delta
+-(void) zoomOutTower:(ccTime)delta
 {
 
     [self stopAllActions];
@@ -396,25 +416,42 @@
     _scalingFactor = 700.0f / (_currentHeightNoScroll + _pPlanetLayer.pPlanetSprite.boundingBox.size.height);
     
     if(_scalingFactor > 1) _scalingFactor = 0.8f;
-    
-    _isZooming = YES;
+
+    _isZoomingOut = YES;
     _positionBeforeZoom = self.position;
         
     _zoomOutPosition = _positionBeforeZoom;
     
-    id zoomIn = [CCScaleTo actionWithDuration:0.5f scale:_scalingFactor];
+    id zoomIn = [CCScaleTo actionWithDuration:1.5f scale:_scalingFactor];
     id calculatePosition = [CCCallBlock actionWithBlock:^{
         
-        //_zoomOutPosition.y = _positionBeforeZoom.y + _currentHeightNoScroll*_scalingFactor - (_pPlanetLayer.pPlanetSprite.contentSize.height)*_scalingFactor + _currentHeightNoScroll*_scalingFactor/2;
         _zoomOutPosition = self.position;
-        _zoomOutPosition.y += _currentHeightNoScroll*_scalingFactor/2;
-        self.position = _zoomOutPosition;
+        _zoomOutPosition.y += _currentHeightNoScroll*_scalingFactor/3;
+
+    }];
     
+    
+    id addCloudsToSelf = [CCCallBlock actionWithBlock:^{
+        
+        CloudsFrontBottom* pClouds = [[CloudsFrontBottom alloc] init];
+        [[self parent] addChild:pClouds];
+        CGPoint cloudsPos = pClouds.position;
+        cloudsPos.y -= 250;
+        pClouds.position = cloudsPos;
+
+        [self.pPlanetLayer removeClouds];
+        
+        CCAction* moveCloudsUpAgain = [CCMoveTo actionWithDuration:1 position:ccp(cloudsPos.x,cloudsPos.y+250)];
+        
+        [pClouds runAction:moveCloudsUpAgain];
+        
     }];
+
+    
     id reset = [CCCallBlock actionWithBlock:^{
-        _isZooming = NO;
+        _isZoomingOut = NO;
     }];
-    id sequence = [CCSequence actions:zoomIn, reset, calculatePosition, nil];
+    id sequence = [CCSequence actions:addCloudsToSelf,calculatePosition,zoomIn,[CCDelayTime actionWithDuration:1.0], reset, nil];
     
     [self runAction:sequence];
     
@@ -428,18 +465,18 @@
     
 }
 
--(void) zoomOutTower:(ccTime)delta
+-(void) zoomInTower:(ccTime)delta
 {
     [self stopAllActions];
 
-    _isZooming = YES;
+    _isZoomingIn = YES;
         
     id zoomOut = [CCScaleTo actionWithDuration:0.5f scale:1];
     id moveTo = [CCMoveTo actionWithDuration:0.5f position:_positionBeforeZoom];
 
     id reset = [CCCallBlock actionWithBlock:^{
         CCLOG(@"zoom in/out complete");
-            _isZooming = NO;
+            _isZoomingIn = NO;
     }];
     id sequence = [CCSequence actions:zoomOut,reset,moveTo,nil];
     [self runAction:sequence];
@@ -515,22 +552,19 @@
     _HeightTower = [self calculNewHeightTowerAfterChange];
     _towerMagnetization = CGRectMake(_centerWidthTower - 50, _HeightTower, 100, 50);
     
-    if (_currentHeightNoScroll > _scrollingHeight)
-    {
-        [self scrollTower: - totalHeight];
-    }
-    else if([self._pTowerData._aBlocs count] > 0)
+    if([self._pTowerData._aBlocs count] > 0)
     {
         BlocData *firstBloc = [self._pTowerData._aBlocs objectAtIndex:0];
         CCSprite *firstSprite = [self._aBlocsTowerSprite objectAtIndex:0];
         int heightMaxToMoveUp = 220 + firstBloc._scaledSize.height / 2 - firstSprite.position.y;
-        [self scrollTower: - heightMaxToMoveUp];
+        [self scrollTower: - heightMaxToMoveUp withSlowMotion:false];
         
         
         _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
         if (_scrollPosition > 0)
         {
-            [self replaceTowerToTopWithoutScroll];
+            
+            [self replaceTowerToTopWithoutScroll:true];
         }
     }
     else
@@ -593,6 +627,32 @@
         _pBubbleSprite.position = ccp(moveHorizontalCoeff + BUBBLE_POINT_X + (sinf(_bubbleRuntime)), -moveHorizontalCoeff + BUBBLE_POINT_Y + (sinf(_bubbleRuntime)));
         _pMovingSprite.position = _pBubbleSprite.position;
         
+    }
+    
+    // mise à jour de la position du layer en cas de dezoom
+    if(_isZoomingOut)
+    {
+        _moveTowerRuntime += (_zoomOutPosition.y - self.position.y);
+        
+    }
+    
+    // Le dieu du vent attaque ! La tour va trembler (cas spécial)
+    if(self._pCurrentGameData._pWindGodData._godIsAttacking == YES)
+    {
+        _towerRuntime += dt * 30.0f;
+        
+        self.position = ccp((cosf(_towerRuntime))*10.0f,  _moveTowerRuntime*0.5 + (sinf(_towerRuntime) * 10.0f));
+        
+    }
+    // Choses à faire quand le dieu du vent n'attaque pas
+    else
+    {
+        // Dans le cas du dezoom, on recentre la tour
+        if(_isZoomingOut)
+        {
+            self.position = ccp(_zoomOutPosition.x,  _moveTowerRuntime);
+            
+        }
     }
     
 }

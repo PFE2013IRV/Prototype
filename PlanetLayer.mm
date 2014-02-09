@@ -7,7 +7,6 @@
 
 #import "PlanetLayer.h"
 #import "GlobalConfig.h"
-#import "CloudsFrontBottom.h"
 
 @implementation PlanetLayer
 
@@ -15,6 +14,7 @@
 @synthesize _positionBeforeZoom;
 @synthesize _isZooming;
 @synthesize _scalingFactor;
+@synthesize _pClouds;
 
 -(id)init
 {
@@ -23,7 +23,7 @@
         // Il faut mettre l'image de la planet. Il faut uniquement faire ça car la planet
         // est utilisé dans deux vues différentes
         // Pour faire d'autres actions il faut le faire grâce a des appels de méthode
-        
+        _pClouds = nil;
         _pPlanetSprite = [[[CCSprite alloc] initWithFile:@"planet.png"] autorelease];
         _pPlanetSprite.scale = 0.4;
         _pPlanetSprite.anchorPoint = ccp(0.5,1.0);
@@ -31,12 +31,26 @@
         
         [self addChild:_pPlanetSprite];
         
-        CloudsFrontBottom* pClouds = [[CloudsFrontBottom alloc] init];
-        [self addChild:pClouds];
+        [self putCloudsAtBottom];
     }
     return self;
 }
 
+-(void) removeClouds
+{
+    [self removeChild:_pClouds];
+    _pClouds = nil;
+}
+
+-(void) putCloudsAtBottom
+{
+    if(!_pClouds)
+    {
+        _pClouds = [[CloudsFrontBottom alloc] init];
+        [self addChild:_pClouds];
+    }
+    
+}
 
 -(void)launchBalanceModeForPlanet
 {

@@ -9,7 +9,10 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
-static float FIRE_BALLS_SPEED = 220;
+
+static float WIND_GOD_ATTACK_TIME = 70;
+
+static float FIRE_BALLS_SPEED = 180;
 
 // Scrolling Speed
 static float TIME_FIRE_ATTACK = 5;
@@ -29,7 +32,6 @@ static int GOD_ANGER_LIMIT = 30;
 // Seuil du passage à l'orange de l'état du dieu
 static int GOD_WARNING_LIMIT = 50;
 
-
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;
 //Hauteur du placement de la planet pour la scene de construction
@@ -39,7 +41,7 @@ static int PLANET_HEIGHT_BALANCE = 250;
 static float SCROLLING_HEIGHT = 600.0f;
 
 // Scrolling Speed
-static float SCROLLING_SPEED_COEF = 2;
+static float SCROLLING_SPEED_COEF = 2.0;
 
 // Bloc's bounding box minimum width or height
 static float BLOC_WIDTH = 80.0f;
