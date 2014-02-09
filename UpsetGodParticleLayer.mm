@@ -30,14 +30,14 @@
         _pGodParticle.posVar = ccp(90, 0);
         
         // config 2
-//        _pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
-//        
-//        _pGodParticle.emissionRate = 600;
-//        _pGodParticle.life = 1.5;
-//        _pGodParticle.gravity = ccp(0, 100);
-//        
-//        _pGodParticle.position = ccp(90, 670);
-//        _pGodParticle.posVar = ccp(85, 0);
+        /*_pGodParticle=[[CCParticleSystemQuad alloc] initWithFile:@"fireParticle.plist"];
+        
+        _pGodParticle.emissionRate = 600;
+        _pGodParticle.life = 1.5;
+        _pGodParticle.gravity = ccp(0, 100);
+        
+        _pGodParticle.position = ccp(90, 670);
+        _pGodParticle.posVar = ccp(85, 0);*/
         
 
         

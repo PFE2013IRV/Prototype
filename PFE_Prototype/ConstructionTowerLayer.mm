@@ -451,7 +451,7 @@
     id reset = [CCCallBlock actionWithBlock:^{
         _isZoomingOut = NO;
     }];
-    id sequence = [CCSequence actions:addCloudsToSelf,calculatePosition,zoomIn,[CCDelayTime actionWithDuration:1.0], reset, nil];
+    id sequence = [CCSequence actions:addCloudsToSelf,calculatePosition,zoomIn,[CCDelayTime actionWithDuration:1.5], reset, nil];
     
     [self runAction:sequence];
     
@@ -519,13 +519,15 @@
                 [_indexBlocTouchByFire addIndex:i];
                 CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
                 [blocSprite addChild:burnParticle];
+                
+                
                 burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
-                burnParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                burnParticle.posVar = ccp([blocSprite boundingBox].size.width/4,0.0);
                 
                 CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
                 [blocSprite addChild:smokeParticle];
                 smokeParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
-                smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/2.5,0.0);
+                smokeParticle.posVar = ccp([blocSprite boundingBox].size.width/4,0.0);
                 
                 [blocSprite reorderChild:smokeParticle z:-1];
                 [blocSprite reorderChild:burnParticle z:1];
@@ -563,7 +565,6 @@
         _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
         if (_scrollPosition > 0)
         {
-            
             [self replaceTowerToTopWithoutScroll:true];
         }
     }

@@ -14,14 +14,14 @@ static float WIND_GOD_ATTACK_TIME = 70;
 
 static float FIRE_BALLS_SPEED = 180;
 
-// Scrolling Speed
+// Temps entre deux attaques de feu
 static float TIME_FIRE_ATTACK = 5;
 
 // Respect du dieu élémentaire par défaut
 static float GOD_RESPECT_DEFAULT = 100;
 
 // Respect gagné par destruction d'attaques divines
-static float GOD_RESPECT_INCREASE = 3.7;
+static float GOD_RESPECT_INCREASE = 4.0;
 
 // Respect gagné en sortie de colère de dieu
 static float GOD_RESPECT_GIFT = 7;
@@ -30,7 +30,7 @@ static float GOD_RESPECT_GIFT = 7;
 static int GOD_ANGER_LIMIT = 30;
 
 // Seuil du passage à l'orange de l'état du dieu
-static int GOD_WARNING_LIMIT = 50;
+static int GOD_WARNING_LIMIT = 40;
 
 // Mettre à true pour mode optimal
 static bool SIMULATOR_MODE = false;
