@@ -196,7 +196,7 @@
     
     BalanceScene* balanceScene = [[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor ]StartLevelBalanceWithId:_iLevelId TowerData:_iTowerData] CurrentBackground:i_CurrentBackground //CurrentSun:i_CurrentSunColor
                                    ] autorelease];
-    
+    //balanceScene.TowerSize = Tower
     balanceScene.previusScene = self;
     
     [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];

@@ -12,9 +12,10 @@
 
 @synthesize previusScene = _previusScene;
 @synthesize _pTowerAndPlanetLayer;
+@synthesize pPlanetLayer = _pPlanetLayer;
 
 //`-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
--(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
+-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground //CurrenPlanet : (PlanetLayer*) planetLayer
 {
     if(!i_pGameData)
     {
@@ -23,7 +24,7 @@
     else if (self = [super init])
     {
         self._pGameData = i_pGameData;
-        
+        //self.planet = planetLayer;
         [self._pSkyLayer ManageBackgroundBalance:i_CurrentBackground];
         [self addChild:self._pSkyLayer];
         

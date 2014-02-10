@@ -32,13 +32,24 @@ enum {
 {
     if (self = [super init])
     {
+        self.TowerSize =0;
         
-         _scalingFactor =1;
+        self._pTowerData = i_pTowerData;
+        
+        for (BlocData *bloc in self._pTowerData._aBlocs)
+        {
+            self.TowerSize+= bloc._scaledSize.height;
+          // self.TowerSize++;
+             CCLOG(@"incrmeent at  %0.2f ", (double) self.TowerSize );
+        }
+       
+
+        
         self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
         [self CalculateScalingFactor];
-        // init physics
+                // init physics
 		[self initPhysics];
-        self._pTowerData = i_pTowerData;
+       
         
        
         
@@ -89,9 +100,9 @@ enum {
      // Define the ground body.
      b2BodyDef groundBodyDef;
     
-    CCLOG(@"Scaling at  %0.2f ",(double)_scalingFactor );
+    CCLOG(@"Scaling at  %0.2f ",(double)(220 * _scalingFactor)/PTM_RATIO);
 
-     groundBodyDef.position.Set(0,((220 * _scalingFactor))
+     groundBodyDef.position.Set(0,(220 * _scalingFactor)
                                // ( s.height/6)
                                 /PTM_RATIO
                                 ); // bottom-left corner
@@ -106,26 +117,28 @@ enum {
      b2EdgeShape groundBox;
      
      // bottom
-     groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
+     groundBox.Set(b2Vec2(0,0), b2Vec2(s.width  /PTM_RATIO,0));
      groundBody->CreateFixture(&groundBox,0);
      
      // top
-     groundBox.Set(b2Vec2(0,s.height /PTM_RATIO ), b2Vec2(s.width/PTM_RATIO,s.height /PTM_RATIO));
+     groundBox.Set(b2Vec2(0,s.height  /PTM_RATIO ), b2Vec2(s.width /PTM_RATIO,s.height /PTM_RATIO));
      groundBody->CreateFixture(&groundBox,0);
      
      // left
-     groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
+     groundBox.Set(b2Vec2(0,s.height /PTM_RATIO), b2Vec2(0,0));
      groundBody->CreateFixture(&groundBox,0);
      
      // right
-     groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height /PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+     groundBox.Set(b2Vec2(s.width /PTM_RATIO,s.height /PTM_RATIO), b2Vec2(s.width  /PTM_RATIO,0));
      groundBody->CreateFixture(&groundBox,0);
    
 }
 
 -(void)CalculateScalingFactor
 {
-    _scalingFactor = 700.0f / (TowerSize + self.pPlanetLayer.pPlanetSprite.boundingBox.size.height);
+    _scalingFactor = 700.0f / (TowerSize +PLANET_HEIGHT_BALANCE                               //self.pPlanetLayer.pPlanetSprite.boundingBox.size.height
+                               );
+    _scalingFactor = 0.6;
 
     if(_scalingFactor > 1) _scalingFactor = 0.8f;
 
@@ -202,13 +215,13 @@ enum {
         CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
     /********************************************/
         
-        y += (bloc._scaledSize.height / 2); //* _scalingFactor;
+        y += (bloc._scaledSize.height / 2)* _scalingFactor;
         //y += pBlocSprite.boundingBox.size.height / 2;
         
         int gravityCenterOfBloc = ((bloc._scaledSize.width / 2))
-                                   //* _scalingFactor
-                                   - (bloc._gravityCenter.x);
-                                      //*_scalingFactor);
+                                   * _scalingFactor
+                                   - (bloc._gravityCenter.x
+                                      *_scalingFactor);
         //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
         
         [self._aBlocsTowerSprite addObject:pBlocSprite];
