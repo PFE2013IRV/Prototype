@@ -10,7 +10,7 @@
 #define ProjectTower_GlobalConfig_h
 
 
-static float WIND_GOD_ATTACK_TIME = 70;
+static float WIND_GOD_ATTACK_TIME = 20;
 
 static float FIRE_BALLS_SPEED = 180;
 
