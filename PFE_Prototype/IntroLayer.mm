@@ -40,11 +40,9 @@
 -(id) init
 {
 	if( (self=[super init])) {
-		
+            
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
-		
-		
 		
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -88,7 +86,6 @@
 	[super onEnter];
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[[[IntroScene alloc] init] autorelease]]];
-    
 }
 
 @end

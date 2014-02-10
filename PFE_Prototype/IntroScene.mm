@@ -50,11 +50,10 @@
         menuIntro.position = ccp(_width/2,_height/2);
         [self addChild:_pBackground];
         [self addChild:menuIntro];
-        
-        
     }
     return self;
 }
+
 
 -(void) launchConstruction
 {

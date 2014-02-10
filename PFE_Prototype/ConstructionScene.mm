@@ -8,6 +8,7 @@
 #import "BlocManager.h"
 #import "GlobalConfig.h"
 #import "BalanceScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation ConstructionScene
 
@@ -28,6 +29,7 @@
     [self._pElementGodsLayer requestBigCleanUp];
     [self._pWindGodLayer requestBigCleanUp];
     
+    [CDAudioManager sharedManager].backgroundMusic.volume = VOLUME_BALANCE;
     
     CCSprite* currentBackground = self._pSkyLayer._pBackground;
     ccColor3B color3 = self._pSunLayer._pSoleil.color;
@@ -46,6 +48,8 @@
     }
     else if (self = [super init])
     {
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"MusiqueTower.m4a"];
+        
         _pWindAttackLayer = [WindAttackLayer node];
         _pWindGodLayer = [WindGodLayer node];
         _pElementGodsLayer = [ElementGodsLayer node];

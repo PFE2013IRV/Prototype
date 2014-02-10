@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "BlocManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MyNavigationController
 
@@ -172,7 +173,20 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
 	if( [navController_ visibleViewController] == director_ )
+    {
 		[director_ startAnimation];
+        
+        SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
+        if (sae != nil)
+        {
+            [sae preloadBackgroundMusic:@"MusiqueTower.m4a"];
+            
+            if (sae.willPlayBackgroundMusic)
+            {
+                sae.backgroundMusicVolume = VOLUME_CONSTRUCTION;
+            }
+        }
+    }
 }
 
 // application will be killed

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44665F1918A9732F00083ABB /* MusiqueTower.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 44665F1818A9732F00083ABB /* MusiqueTower.m4a */; };
 		449B8A6A18955E6400B219CA /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 449B8A6918955E6400B219CA /* CCScrollLayer.mm */; };
 		44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.mm */; };
 		44C8BF1A18896BF600931C90 /* MenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1918896BF600931C90 /* MenuLayer.mm */; };
@@ -294,6 +295,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44665F1818A9732F00083ABB /* MusiqueTower.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusiqueTower.m4a; sourceTree = "<group>"; };
 		449B8A6818955E6400B219CA /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		449B8A6918955E6400B219CA /* CCScrollLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCScrollLayer.mm; sourceTree = "<group>"; };
 		44A48EF7186DCB7A004F694C /* BalanceTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceTowerLayer.h; sourceTree = "<group>"; };
@@ -1261,6 +1263,7 @@
 		8AE988E5186492F600705AAF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				44665F1818A9732F00083ABB /* MusiqueTower.m4a */,
 				8A8158D118A59719003F4183 /* Particle Images */,
 				8A8158D218A597B4003F4183 /* Particle plists */,
 				8A8158D418A597DD003F4183 /* HUD images */,
@@ -1912,6 +1915,7 @@
 				8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,
 				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,
+				44665F1918A9732F00083ABB /* MusiqueTower.m4a in Resources */,
 				8A40913F1896B0A4009CD5B0 /* WindGod_static3.plist in Resources */,
 				8A40913A1896B0A4009CD5B0 /* WindGod_moveUp.png in Resources */,
 				8A4091431896B13C009CD5B0 /* FireGod_wind.png in Resources */,
