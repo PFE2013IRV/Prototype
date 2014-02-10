@@ -16,6 +16,8 @@
 @synthesize _pHUDRespect;
 @synthesize _pHUDBackgrounds;
 @synthesize _pHUDFrames;
+@synthesize _pHUDSunTimer;
+@synthesize _pHUDSunFrame;
 
 
 -(id) init
@@ -23,9 +25,14 @@
     if(self = [super init])
     {
         
+        _sunTimerRuntime = 0;
+        
         _pHUDBackgrounds = [CCSprite spriteWithFile:@"HUD_backgrounds.png"];
         _pHUDRespect = [CCSprite spriteWithFile:@"HUD_respectGreen.png"];
         _pHUDFrames = [CCSprite spriteWithFile:@"HUD_frames.png"];
+        _pHUDSunTimer = [CCSprite spriteWithFile:@"HUD_sun.png"];
+        _pHUDSunFrame = [CCSprite spriteWithFile:@"HUD_sunFrame.png"];
+        
         
         _pHUDBackgrounds.anchorPoint = ccp(0.0f,0.0f);
         _pHUDBackgrounds.position = ccp(0.0f,574.0f);
@@ -36,14 +43,28 @@
         _pHUDFrames.anchorPoint = ccp(0.0f,0.0f);
         _pHUDFrames.position = ccp(0.0f,574.0f);
         
+        _pHUDSunTimer.anchorPoint = ccp(0.5f, 0.5f);
+        _pHUDSunTimer.position = ccp(0.0f, 0.0f);
+        
+        _pHUDSunFrame.anchorPoint = ccp(0.0f, 0.0f);
+        _pHUDSunFrame.position = ccp(0.0f, 0.0f);
+        
         [self addChild:_pHUDBackgrounds];
         [self addChild:_pHUDRespect];
         [self addChild:_pHUDFrames];
+        [self addChild:_pHUDSunFrame];
+        [self addChild:_pHUDSunTimer];
         
         _pCurrentGameData = [LevelVisitor GetLevelVisitor]._pCurrentGameData;
         
         if(_pCurrentGameData._eGameSceneMode == SCENE_MODE_CONSTRUCTION)
-           [self schedule:@selector(decreaseRespect:) interval:0.5];
+        {
+            [self schedule:@selector(decreaseRespect:) interval:0.5];
+            [self schedule:@selector(moveTimer:) interval:0.01];
+            
+        }
+        
+        
         
 
     }
@@ -53,8 +74,25 @@
     
 }
 
+-(void) moveTimer: (ccTime) dt
+{
+    _sunTimerRuntime += dt;
+    _pHUDSunTimer.scale += sin(_sunTimerRuntime)/500.0f;
+    
+    _pHUDSunTimer.rotation = _sunTimerRuntime * 100;
+    
+    CGPoint newPosition = _pHUDSunTimer.position;
+    newPosition.x += (768*dt)/GAME_TIME_CONSTRUCTION;
+    
+    _pHUDSunTimer.position = newPosition;
+    
+}
+
 -(void) decreaseRespect: (ccTime) dt
 {
+    
+
+
     
     if(_pCurrentGameData._pWindGodData._godIsAttacking == NO)
     {

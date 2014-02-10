@@ -21,7 +21,8 @@
     {
         _pBottomSprite = [CCSprite spriteWithFile:@"cloudsBottom_front.png"];
         _pBottomSprite.anchorPoint = ccp(0.0f,0.0f);
-        _pBottomSprite.position = ccp(0.0f,-50.0f);
+        _pBottomSprite.position = ccp(-10.0f,-50.0f);
+        _pBottomSprite.scale = 1.2;
 
         
         CCSequence* pMoveClouds = [CCSequence actions:

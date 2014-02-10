@@ -13,7 +13,7 @@
 
 @interface HUDLayer : CCLayer {
     
-    
+    float _sunTimerRuntime;
     
 }
 
@@ -22,5 +22,7 @@
 @property (nonatomic,strong) CCSprite* _pHUDRespect;
 @property (nonatomic,strong) CCSprite* _pHUDBackgrounds;
 @property (nonatomic,strong) CCSprite* _pHUDFrames;
+@property (nonatomic,strong) CCSprite* _pHUDSunTimer;
+@property (nonatomic,strong) CCSprite* _pHUDSunFrame;
 
 @end

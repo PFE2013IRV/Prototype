@@ -31,6 +31,7 @@
 		54FAAA4B189AAEBE007895E5 /* ParticleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA4A189AAEBE007895E5 /* ParticleTexture.png */; };
 		54FAAA4D189AAEE0007895E5 /* godParticle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FAAA4C189AAEE0007895E5 /* godParticle.plist */; };
 		54FAAA50189AAF2A007895E5 /* UpsetGodParticleLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54FAAA4F189AAF2A007895E5 /* UpsetGodParticleLayer.mm */; };
+		8A06BA9918A997A30040E7AA /* HUD_sunFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A06BA9818A997A30040E7AA /* HUD_sunFrame.png */; };
 		8A23AF461897DDEB002E1EB4 /* AnimatedBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */; };
 		8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A40912D1896B0A4009CD5B0 /* WindGod_moveDown.plist */; };
 		8A4091381896B0A4009CD5B0 /* WindGod_moveDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A40912E1896B0A4009CD5B0 /* WindGod_moveDown.png */; };
@@ -68,6 +69,7 @@
 		8A91559F18884505009A07A4 /* FireButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155931888448A009A07A4 /* FireButton.png */; };
 		8A9155A318884505009A07A4 /* WindButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9155971888448A009A07A4 /* WindButton.png */; };
 		8A9155A518884505009A07A4 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE98B14186492F800705AAF /* blocks.png */; };
+		8AB2A1FA18A9880600B29068 /* HUD_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB2A1F918A9880600B29068 /* HUD_sun.png */; };
 		8AB50C3E1864BD980012A387 /* BlocBagData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C361864BD980012A387 /* BlocBagData.mm */; };
 		8AB50C3F1864BD980012A387 /* BlocData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C381864BD980012A387 /* BlocData.mm */; };
 		8AB50C401864BD980012A387 /* BlocManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AB50C3A1864BD980012A387 /* BlocManager.mm */; };
@@ -332,6 +334,7 @@
 		54FAAA4C189AAEE0007895E5 /* godParticle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = godParticle.plist; path = Resources/godParticle.plist; sourceTree = "<group>"; };
 		54FAAA4E189AAF2A007895E5 /* UpsetGodParticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpsetGodParticleLayer.h; sourceTree = "<group>"; };
 		54FAAA4F189AAF2A007895E5 /* UpsetGodParticleLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UpsetGodParticleLayer.mm; sourceTree = "<group>"; };
+		8A06BA9818A997A30040E7AA /* HUD_sunFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_sunFrame.png; path = Resources/HUD_sunFrame.png; sourceTree = "<group>"; };
 		8A23AF441897DDEB002E1EB4 /* AnimatedBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedBackground.h; sourceTree = "<group>"; };
 		8A23AF451897DDEB002E1EB4 /* AnimatedBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AnimatedBackground.mm; sourceTree = "<group>"; };
 		8A40912D1896B0A4009CD5B0 /* WindGod_moveDown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = WindGod_moveDown.plist; path = Resources/WindGod_moveDown.plist; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 		8A91558B1888160B009A07A4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8A9155931888448A009A07A4 /* FireButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireButton.png; sourceTree = "<group>"; };
 		8A9155971888448A009A07A4 /* WindButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindButton.png; sourceTree = "<group>"; };
+		8AB2A1F918A9880600B29068 /* HUD_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HUD_sun.png; path = Resources/HUD_sun.png; sourceTree = "<group>"; };
 		8AB50C351864BD980012A387 /* BlocBagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocBagData.h; sourceTree = "<group>"; };
 		8AB50C361864BD980012A387 /* BlocBagData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlocBagData.mm; sourceTree = "<group>"; };
 		8AB50C371864BD980012A387 /* BlocData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocData.h; sourceTree = "<group>"; };
@@ -1017,6 +1021,8 @@
 				8A839E8B18A3BFC4006F8E1E /* HUD_respectGreen.png */,
 				8AF9F7E318A4F31E004F50B0 /* MenuBkg.png */,
 				8A839E9018A3DA68006F8E1E /* HUD_respectRed.png */,
+				8A06BA9818A997A30040E7AA /* HUD_sunFrame.png */,
+				8AB2A1F918A9880600B29068 /* HUD_sun.png */,
 				8A839E8918A3BFC4006F8E1E /* HUD_backgrounds.png */,
 				8A839E8A18A3BFC4006F8E1E /* HUD_frames.png */,
 			);
@@ -1905,6 +1911,7 @@
 				8AE87FA018997026000BEE47 /* BkgBloc_2.png in Resources */,
 				54FAAA47189AAE5E007895E5 /* fireParticle.plist in Resources */,
 				8A9155A518884505009A07A4 /* blocks.png in Resources */,
+				8AB2A1FA18A9880600B29068 /* HUD_sun.png in Resources */,
 				8A4091471896B14D009CD5B0 /* FireGod_colere2.png in Resources */,
 				8A4091521896B1C8009CD5B0 /* FireGod_static2.png in Resources */,
 				8A4091481896B14D009CD5B0 /* FireGod_colere2.plist in Resources */,
@@ -1932,6 +1939,7 @@
 				54B36A5318A3C5480005D330 /* Dust2_particle_Back.plist in Resources */,
 				54B36A5118A3C5480005D330 /* Dust1_particle_Front.plist in Resources */,
 				8AE988EF186492F600705AAF /* Icon-72.png in Resources */,
+				8A06BA9918A997A30040E7AA /* HUD_sunFrame.png in Resources */,
 				54B36A5A18A3CC310005D330 /* WindAttackParticle2.plist in Resources */,
 				8A40914F1896B1C8009CD5B0 /* FireGod_colere1.plist in Resources */,
 				54B36A5E18A4D0A60005D330 /* smokeBlocParticle.plist in Resources */,

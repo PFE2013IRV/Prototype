@@ -106,14 +106,16 @@
         [self addChild:self._pDustLayerFront];
         
         
+
+        [self addChild:self._pFireAttackLayer];
+        
+        [self addChild:_pMenuAndTowerLayer];
+        
         _pHUD = [HUDLayer node];
         [self addChild:_pHUD];
         
         
         [self addChild:self._pElementGodsLayer];
-        [self addChild:self._pFireAttackLayer];
-        
-        [self addChild:_pMenuAndTowerLayer];
         
         
         [self addChild:self._pWindAttackLayer];
@@ -316,6 +318,12 @@
     {
         CCAction* pMoveMenu = [CCMoveBy actionWithDuration:2.0 position:ccp(0,-150)];
         [_pMenuAndTowerLayer.pMenuLayer runAction:pMoveMenu];
+        
+        CCAction* pMoveSunTimer = [CCMoveBy actionWithDuration:2.0 position:ccp(0,-20)];
+        [_pHUD._pHUDSunTimer runAction:pMoveSunTimer];
+        
+        CCAction* pMoveTimerFrame = [CCMoveBy actionWithDuration:2.0 position:ccp(0,-20)];
+        [_pHUD._pHUDSunFrame runAction:pMoveTimerFrame];
         
         
         CCAction* pMoveRespect = [CCMoveBy actionWithDuration:2.0 position:ccp(-200,0)];
