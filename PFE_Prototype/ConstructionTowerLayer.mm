@@ -108,16 +108,6 @@
         
         [self schedule:@selector(moveBubbleLikeAPro:)];
     }
-    else if(_isFireGodAngry)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous ne pouvez pas placer des blocs pendant que les dieux sont en colère contre vous" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sélection impossible" message:@"Vous êtes déjà entrain de placer un bloc sur la tour" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 -(void) setPossibleScrollHeight: (float) i_possibleScrollHeight
@@ -312,7 +302,7 @@
     
     if (_currentHeightNoScroll > _HeightTower)
     {
-        [self scrollTower:-(_currentHeightNoScroll - _HeightTower - _scrollPosition) withSlowMotion:true];
+        [self scrollTowerNoMoveTo:-(_currentHeightNoScroll - _HeightTower - _scrollPosition)];
     }
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -321,7 +311,7 @@
     
     if (possibleScroll > 0)
     {
-        [self scrollTower:possibleScroll withSlowMotion:NO];
+        [self scrollTower:possibleScroll withSlowMotion:YES];
     }
     
 }
@@ -363,6 +353,17 @@
     {
         CCAction* pMoveTo = [CCMoveTo actionWithDuration:0.2 position:ccp(blocSprite.position.x,blocSprite.position.y - height)];
         [blocSprite runAction:pMoveTo];
+    }
+}
+
+-(void)scrollTowerNoMoveTo:(int)scroll
+{
+
+    _pPlanetLayer.position = ccp(_pPlanetLayer.position.x, _pPlanetLayer.position.y - scroll);
+    
+    for (CCSprite* blocSprite in self._aBlocsTowerSprite)
+    {
+        blocSprite.position = ccp(blocSprite.position.x,blocSprite.position.y - scroll);
     }
 }
 
@@ -585,7 +586,7 @@
         CCSprite *firstSprite = [self._aBlocsTowerSprite objectAtIndex:0];
         
         int heightMaxToMoveUp = 220 + firstBloc._scaledSize.height / 2 - firstSprite.position.y;
-        [self scrollTower: - heightMaxToMoveUp withSlowMotion:false];
+        [self scrollTowerNoMoveTo: - heightMaxToMoveUp];
         
         _scrollPosition = _currentHeightNoScroll - SCROLLING_HEIGHT + (SCROLLING_HEIGHT - _HeightTower);
         if (_currentHeightNoScroll > SCROLLING_HEIGHT)
