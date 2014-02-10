@@ -25,7 +25,7 @@
 @synthesize _sceneMod;
 @synthesize aleatoire;
 
--(id) init
+-(id) inity
 {
     if( (self=[super init]) )
     {
@@ -44,7 +44,7 @@
     
     
 }
--(void) initSunBalance : (ccColor4B) i_currentSunColor
+-(void) initSunBalance
 {
     
     CGSize winSize = [[CCDirector sharedDirector]winSize];
@@ -52,18 +52,8 @@
     _sunDisplayWidth = winSize.width;
     _animationDirection=1;
     _tailleGradient=600;
-    if(i_currentSunColor.a!=0 || i_currentSunColor.b!=0 || i_currentSunColor.g!=0 || i_currentSunColor.r!=0)
-    {
-        
-        _currentSunColor = i_currentSunColor;
-    }
-    else
-    {
-        int alea = arc4random() %9;
-        _currentSunColor = _aSunColors[alea];
-        
-    }
 
+    
     [self initColorsOfSun];
     
 }
@@ -114,6 +104,10 @@
     else
     {
         //On prend une couleur aléatoire comme couleur de fond parmis le tableau des couleurs
+        //int alea = arc4random() %9;
+        //Solution bug soleil transisition ==> couleur statique fin d'après midi
+        _currentSunColor = _aSunColors[4];
+
                 _pGradientCenter.position = ccp(_sunDisplayWidth/2,_sunDisplayHeight/2);
     }
     [self initSun];
@@ -276,10 +270,10 @@
     
     
 }
--(void)ManageSunBalance: (ccColor4B) i_currentSunColor
+-(void)ManageSunBalance
 {
     self._sceneMod = SCENE_MODE_BALANCE;
-[self initSunBalance:i_currentSunColor];
+[self initSunBalance];
 
     
     [self genSunGradient:nil];
