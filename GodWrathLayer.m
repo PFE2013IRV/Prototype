@@ -142,7 +142,7 @@ return self;
 }
 -(void)ReSchedule
 {
-     [self schedule:@selector(skyGodWrath:)interval:_velocityFactor*5];
+     [self schedule:@selector(skyGodWrath:)interval:_velocityFactor*2];
 }
 
 @end

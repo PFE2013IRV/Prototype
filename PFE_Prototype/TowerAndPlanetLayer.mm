@@ -11,7 +11,7 @@
 
 @implementation TowerAndPlanetLayer
 
-@synthesize planet = _planet;
+@synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize balanceTower = _balanceTower;
 @synthesize TowerSize;
 
@@ -19,10 +19,10 @@
 {
     if (self = [super init])
     {
-        _planet = i_pPlanet;
-        [self addChild:_planet];
-        _planet.delegate = self;
-        [_planet launchBalanceModeForPlanet];
+        i_pPlanet = i_pPlanet;
+        [self addChild:i_pPlanet];
+        i_pPlanet.delegate = self;
+        [i_pPlanet launchBalanceModeForPlanet];
         
         _balanceTower = [[[BalanceTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData] autorelease];
         _balanceTower.TowerSize = TowerSize;
