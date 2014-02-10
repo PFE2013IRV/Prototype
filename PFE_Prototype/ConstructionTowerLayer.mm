@@ -105,6 +105,8 @@
         [self addChild:blocSprite];
         [self addChild:_pBubbleSprite];
         _pMovingSprite = blocSprite;
+        
+        [self schedule:@selector(moveBubbleLikeAPro:)];
     }
     else if(_isFireGodAngry)
     {
@@ -141,6 +143,7 @@
         //on test si les coordonnées sont sur le bloc qui peut bouger
         if (CGRectContainsPoint([_pBubbleSprite boundingBox], location))
         {
+            [self unschedule:@selector(moveBubbleLikeAPro:)];
             _isTouch = YES;
             [_pBubbleSprite removeFromParent];
             _pBubbleSprite = nil;
@@ -297,6 +300,8 @@
     if (_blocNotPlace)
     {
         _isTouch = NO;
+        [self unschedule:@selector(moveBubbleLikeAPro:)];
+        _bubbleRuntime = 0.0f;
         [_pBubbleSprite removeFromParent];
         _pBubbleSprite = nil;
         [self addToFallingBloc];
@@ -638,18 +643,6 @@
 
 -(void) update:(ccTime)dt
 {
-    if(_pMovingSprite && _pBubbleSprite)
-    {
-        // manually move hello label up and down
-        _bubbleRuntime += dt * 5.0f;
-        float moveHorizontalCoeff = 2 * _bubbleRuntime;
-            
-        
-        _pBubbleSprite.position = ccp(moveHorizontalCoeff + BUBBLE_POINT_X + (sinf(_bubbleRuntime)), -moveHorizontalCoeff + BUBBLE_POINT_Y + (sinf(_bubbleRuntime)));
-        _pMovingSprite.position = _pBubbleSprite.position;
-        
-    }
-    
     // mise à jour de la position du layer en cas de dezoom
     if(_isZoomingOut)
     {
@@ -672,11 +665,18 @@
         if(_isZoomingOut)
         {
             self.position = ccp(_zoomOutPosition.x,  _moveTowerRuntime);
-            
         }
     }
-    
 }
 
+
+-(void)moveBubbleLikeAPro:(ccTime)dt
+{
+    _bubbleRuntime += dt * 5.0f;
+    float moveHorizontalCoeff = 2 * _bubbleRuntime;
+    
+    _pBubbleSprite.position = ccp(moveHorizontalCoeff + BUBBLE_POINT_X + (sinf(_bubbleRuntime)), -moveHorizontalCoeff + BUBBLE_POINT_Y + (sinf(_bubbleRuntime)));
+    _pMovingSprite.position = _pBubbleSprite.position;
+}
 
 @end
