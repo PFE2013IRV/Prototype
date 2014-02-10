@@ -49,6 +49,7 @@
     else if (self = [super init])
     {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"MusiqueTower.m4a"];
+        [CDAudioManager sharedManager].backgroundMusic.volume = VOLUME_CONSTRUCTION;
         
         _pWindAttackLayer = [WindAttackLayer node];
         _pWindGodLayer = [WindGodLayer node];
