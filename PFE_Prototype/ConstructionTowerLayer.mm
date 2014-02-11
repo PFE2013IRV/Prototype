@@ -10,6 +10,7 @@
 #import "BlocManager.h"
 #import "GlobalConfig.h"
 #import "CloudsFrontBottom.h"
+#import "SimpleAudioEngine.h"
 
 @implementation ConstructionTowerLayer
 
@@ -83,6 +84,7 @@
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
         _pBubbleSprite = [CCSprite spriteWithFile:@"Bubble.png"];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"2.mp3"];
         
         float dimensionForScale = 1.0f;
         
@@ -318,6 +320,7 @@
 
 -(void)addBlocToTower
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"3.mp3"];
     [self._aBlocsTowerSprite addObject:_pMovingSprite];
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
     
