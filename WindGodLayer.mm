@@ -171,8 +171,8 @@
     NSArray* aScaleSmallData;
     NSArray* aScaleGoAwayData;
     
-    NSNumber* pGoalScaleBig = FLOAT(0.7);
-    NSNumber* pDuration = FLOAT(0.2);
+    NSNumber* pGoalScaleBig = FLOAT(0.65);
+    NSNumber* pDuration = FLOAT(0.1);
     NSNumber* pGoalScaleSmall = FLOAT(0.6);
     
     NSNumber* pDurationGoAway = FLOAT(2.0);
@@ -183,28 +183,38 @@
     if(_pCurrGameData._pWindGodData._godIsAttacking == YES)
     {
         
-        aScaleBigData = [[NSArray alloc] initWithObjects:@"static3",pGoalScaleBig,pDuration, nil];
-        aScaleSmallData = [[NSArray alloc] initWithObjects:@"static3",pGoalScaleSmall,pDuration, nil];
-        aScaleGoAwayData = [[NSArray alloc] initWithObjects:@"static3",pGoalScaleGoAway,pDurationGoAway, nil];
+        aScaleBigData = [[NSArray alloc] initWithObjects:@"static2",pGoalScaleBig,pDuration, nil];
+        aScaleSmallData = [[NSArray alloc] initWithObjects:@"static2",pGoalScaleSmall,pDuration, nil];
+        aScaleGoAwayData = [[NSArray alloc] initWithObjects:@"moveUp",pGoalScaleGoAway,pDurationGoAway, nil];
         
         pSequence =
         [CCSequence actions:
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
-         [CCDelayTime actionWithDuration:pDuration.floatValue],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
-         [CCDelayTime actionWithDuration:pDuration.floatValue],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
-         [CCDelayTime actionWithDuration:pDuration.floatValue],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
-         [CCDelayTime actionWithDuration:pDuration.floatValue],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static1"],
-         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
-         [CCDelayTime actionWithDuration:2.0],
-         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static2"],
          [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static1"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleBigData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleSmallData],
+         [CCDelayTime actionWithDuration:pDuration.floatValue],
+         [CCDelayTime actionWithDuration:1.0],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"static3"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static2"],
+         [CCDelayTime actionWithDuration:3.0],
+         [CCCallFuncND actionWithTarget:self selector:@selector(runAnim:data:) data:@"moveUp"],
+         [CCCallFuncND actionWithTarget:self selector:@selector(stopAnim:data:) data:@"static3"],
          [CCCallFuncND actionWithTarget:self selector:@selector(runScaleTo:data:) data:aScaleGoAwayData],
          nil];
         
