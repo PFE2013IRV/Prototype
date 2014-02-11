@@ -289,6 +289,8 @@
 
 -(void)destroyBlocWithGodAttack
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"GodFire.mp3"];
+    
     if (_blocNotPlace)
     {
         _isTouch = NO;
@@ -315,7 +317,6 @@
     {
         [self scrollTower:possibleScroll withSlowMotion:YES];
     }
-    
 }
 
 -(void)addBlocToTower

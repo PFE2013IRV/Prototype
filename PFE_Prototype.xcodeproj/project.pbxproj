@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4442D02F18AA74F300307CD0 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4442D02D18AA74F300307CD0 /* 3.mp3 */; };
 		4442D03018AA74F300307CD0 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4442D02E18AA74F300307CD0 /* 2.mp3 */; };
+		4442D03218AA9CCD00307CD0 /* GodFire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4442D03118AA9CCD00307CD0 /* GodFire.mp3 */; };
 		44665F1918A9732F00083ABB /* MusiqueTower.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 44665F1818A9732F00083ABB /* MusiqueTower.m4a */; };
 		449B8A6A18955E6400B219CA /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 449B8A6918955E6400B219CA /* CCScrollLayer.mm */; };
 		44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.mm */; };
@@ -305,6 +306,7 @@
 /* Begin PBXFileReference section */
 		4442D02D18AA74F300307CD0 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
 		4442D02E18AA74F300307CD0 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
+		4442D03118AA9CCD00307CD0 /* GodFire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GodFire.mp3; sourceTree = "<group>"; };
 		44665F1818A9732F00083ABB /* MusiqueTower.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusiqueTower.m4a; sourceTree = "<group>"; };
 		449B8A6818955E6400B219CA /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		449B8A6918955E6400B219CA /* CCScrollLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCScrollLayer.mm; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 		4442D02C18AA74E400307CD0 /* Son */ = {
 			isa = PBXGroup;
 			children = (
+				4442D03118AA9CCD00307CD0 /* GodFire.mp3 */,
 				4442D02D18AA74F300307CD0 /* 3.mp3 */,
 				4442D02E18AA74F300307CD0 /* 2.mp3 */,
 				44665F1818A9732F00083ABB /* MusiqueTower.m4a */,
@@ -1994,6 +1997,7 @@
 				8AE988ED186492F600705AAF /* Default-Landscape~ipad.png in Resources */,
 				8AC11E32188851C60029062B /* God_Particle.png in Resources */,
 				4442D03018AA74F300307CD0 /* 2.mp3 in Resources */,
+				4442D03218AA9CCD00307CD0 /* GodFire.mp3 in Resources */,
 				8A839E9118A3DA68006F8E1E /* HUD_respectOrange.png in Resources */,
 				8AE87F7318994B3D000BEE47 /* cloudsBottom_back.png in Resources */,
 				8AE87FA118997026000BEE47 /* BkgBloc_3.png in Resources */,
