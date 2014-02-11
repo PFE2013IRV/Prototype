@@ -296,6 +296,7 @@
 		A3A4B5B61889336C00C54E5D /* SunLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5B51889336C00C54E5D /* SunLayer.mm */; };
 		A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */; };
 		A3A4B5BF188938E200C54E5D /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A4B5BE188938E200C54E5D /* noise.png */; };
+		A3A9312518AA6A2B00B017AC /* EndGameDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3A9312418AA6A2B00B017AC /* EndGameDelegate.mm */; };
 		A3C14E8618A2422E00C423FF /* IntroScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = A3C14E8518A2422E00C423FF /* IntroScene.mm */; };
 		FA222D0418A294DB00536F0E /* HUDLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA222D0318A294DB00536F0E /* HUDLayer.mm */; };
 		FA3DE915189A8DC0003ED864 /* Wood_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3DE914189A8DC0003ED864 /* Wood_texture.png */; };
@@ -828,6 +829,8 @@
 		A3A4B5BB1889345900C54E5D /* CCRotationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotationAround.h; sourceTree = "<group>"; };
 		A3A4B5BC1889345900C54E5D /* CCRotationAround.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCRotationAround.mm; sourceTree = "<group>"; };
 		A3A4B5BE188938E200C54E5D /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		A3A9312318AA6A2B00B017AC /* EndGameDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGameDelegate.h; sourceTree = "<group>"; };
+		A3A9312418AA6A2B00B017AC /* EndGameDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EndGameDelegate.mm; sourceTree = "<group>"; };
 		A3C14E8418A2422E00C423FF /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
 		A3C14E8518A2422E00C423FF /* IntroScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroScene.mm; sourceTree = "<group>"; };
 		FA222D0218A294DB00536F0E /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
@@ -1134,6 +1137,8 @@
 				8AB50C5918672BDD0012A387 /* GameSceneProtocol.h */,
 				A3C14E8418A2422E00C423FF /* IntroScene.h */,
 				A3C14E8518A2422E00C423FF /* IntroScene.mm */,
+				A3A9312318AA6A2B00B017AC /* EndGameDelegate.h */,
+				A3A9312418AA6A2B00B017AC /* EndGameDelegate.mm */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2037,6 +2042,7 @@
 				8AE98950186492F700705AAF /* ccGLStateCache.m in Sources */,
 				8AE98A22186492F700705AAF /* TransformUtils.m in Sources */,
 				8AE98AFD186492F800705AAF /* b2WheelJoint.cpp in Sources */,
+				A3A9312518AA6A2B00B017AC /* EndGameDelegate.mm in Sources */,
 				8AE9896F186492F700705AAF /* CCNode+Debug.m in Sources */,
 				A3A4B5BD1889345900C54E5D /* CCRotationAround.mm in Sources */,
 				8AE9894A186492F700705AAF /* ccFPSImages.m in Sources */,
