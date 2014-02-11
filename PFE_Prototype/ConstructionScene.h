@@ -13,9 +13,10 @@
 #import "UpsetGodParticleLayer.h"
 #import "WindGodData.h"
 #import "HUDLayer.h"
+#import "ConstructionTowerLayer.h"
 
 
-@interface ConstructionScene : GameScene <GameSceneProtocol, WindAttackDelegate>
+@interface ConstructionScene : GameScene <GameSceneProtocol, WindAttackDelegate, ConstructionTowerDelegate>
 {
     float _runtime;
     float _moveTowerRuntime;

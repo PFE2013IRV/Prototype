@@ -18,7 +18,7 @@
 // i_aVertices : a static array with the blocs vertices. The coordinates are absolute (coordinates of the stars)
 // i_eBlocMaterial : an enum with the material
 // retun value : self
--(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial;
+-(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial GodRespect:(int)respect;
 
 // Get the std vector with the physical vertices
 // retun value : the vector with the vertices treated for the physical engine.
@@ -52,6 +52,8 @@
 @property(nonatomic,assign) float _baseWidth;
 @property(nonatomic,assign) float _specialBaseOffset;
 @property(nonatomic,assign) int _indexInBlocBag;
+
+@property (nonatomic, assign) int respectEarnWithGod;
 
 
 

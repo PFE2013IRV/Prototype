@@ -228,6 +228,7 @@ static BlocManager* pBlocManager = nil;
                 // Material
                 NSString* sMaterial = [aBloc objectForKey:@"Material"];
                 Material materialRet = (Material)[sMaterial intValue];
+                NSString* sRespect = [aBloc objectForKey:@"Respect"];
                 
                 // Points
                 NSDictionary* aPoints = [aBloc objectForKey:@"Points"];
@@ -249,7 +250,7 @@ static BlocManager* pBlocManager = nil;
                 }
                 
                 // Init BlocData and add it to the return array
-                BlocData* pBlocData = [[BlocData alloc] initBloc:aPointsRet withMaterial:materialRet];
+                BlocData* pBlocData = [[BlocData alloc] initBloc:aPointsRet withMaterial:materialRet GodRespect:[sRespect intValue]];
                 pBlocData._indexInBlocBag = indexInBlocBag;
                 [aBlocsRet addObject:pBlocData];
                 

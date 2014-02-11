@@ -5,6 +5,7 @@
     [
      {
      "Material":"1",
+     "Respect":"5",
      "Points":
      [
       {
@@ -23,6 +24,7 @@
      },
         {
             "Material":"2",
+            "Respect":"1",
             "Points":
             [
                 {
@@ -45,6 +47,7 @@
         },
         {
             "Material":"2",
+            "Respect":"8",
             "Points":
             [
                 {
@@ -76,6 +79,7 @@
      
      {
      "Material":"1",
+     "Respect":"10",
      "Points":
      [
       {
@@ -106,6 +110,7 @@
      },
      {
      "Material":"1",
+     "Respect":"5",
      "Points":
      [
       {
@@ -123,6 +128,7 @@
       ]
      },        {
      "Material":"1",
+     "Respect":"5",
      "Points":
      [
       {

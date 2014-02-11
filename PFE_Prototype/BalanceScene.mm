@@ -14,6 +14,7 @@
 @synthesize _pTowerAndPlanetLayer;
 @synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize _pHUD;
+@synthesize endDelegate= _endDelegate;
 
 //`-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
 -(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground //CurrenPlanet : (PlanetLayer*) planetLayer
@@ -24,6 +25,7 @@
     }
     else if (self = [super init])
     {
+        
         self._pGameData = i_pGameData;
         //self.planet = planetLayer;
         [self._pSkyLayer ManageBackgroundBalance:i_CurrentBackground];
@@ -63,13 +65,18 @@
         _pHUD = [[HUDLayer alloc] init];
         [self addChild:_pHUD];
         
-        
+        [self schedule:@selector(endGame)interval:TIME_FOR_BALANCE];
         
     }
     
     return self;
 }
 
+-(void) endGame
+{
+    _endDelegate = [[EndGameDelegate alloc]init];
+
+}
 
 -(id) init
 {

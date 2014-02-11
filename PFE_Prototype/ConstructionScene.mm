@@ -56,8 +56,10 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pUpsetGodParticleLayer = [UpsetGodParticleLayer node];
-        //_pGodWrathLayer = [GodWrathLayer node];
+        _pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
+        
+        _pMenuAndTowerLayer.pTowerLayer.delegate = self;
         
         self._pGameData = i_pGameData;
         
@@ -98,7 +100,7 @@
         }
         
         
-        //[self addChild:self._pGodWrathLayer];
+        [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
         [self addChild:self._pDustLayerBack];
         
@@ -162,8 +164,7 @@
     
     GodData* pGodData = _pElementGodsLayer._pGodData;
     
-    //Update Max : changement du dieu en cours _isAngry ici ou ailleurs? je n'ai pas trouvé ailleurs
-    if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
+        if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
     {
         if(pGodData._isAngry == YES)
         {
@@ -207,13 +208,20 @@
     balanceScene.previusScene = self;
     
     [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];
-                                               }
+}
+
+-(void)increaseGodRespect:(int)respect
+{
+    GodData* pCurrentGodData = [self._pGameData getCurrentGod];
+    [pCurrentGodData increaseRespect:respect];
+}
+
                                                
 -(void) update:(ccTime)delta
 {
     _runtime += delta;
     
-    GameData* pCurrentGameData = super._pGameData;
+    GameData* pCurrentGameData = self._pGameData;
     GodData* pCurrentGodData = nil;
     WindGodData* pWindGodData = nil;
     
