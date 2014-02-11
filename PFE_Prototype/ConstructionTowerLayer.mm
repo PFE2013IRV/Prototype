@@ -10,6 +10,7 @@
 #import "BlocManager.h"
 #import "GlobalConfig.h"
 #import "CloudsFrontBottom.h"
+#import "SimpleAudioEngine.h"
 
 @implementation ConstructionTowerLayer
 
@@ -83,6 +84,7 @@
         _pMovingBlocData = blocSelected;
         CCSprite *blocSprite = [BlocManager GetSpriteFromModel:blocSelected];
         _pBubbleSprite = [CCSprite spriteWithFile:@"Bubble.png"];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"2.mp3"];
         
         float dimensionForScale = 1.0f;
         
@@ -318,6 +320,7 @@
 
 -(void)addBlocToTower
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"3.mp3"];
     [self._aBlocsTowerSprite addObject:_pMovingSprite];
     [self._pTowerData._aBlocs addObject:_pMovingBlocData];
     
@@ -552,8 +555,10 @@
                 {
                     CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
                     [blocSprite addChild:burnParticle];
+                    burnParticle.life = (burnParticle.life * blocSprite.boundingBox.size.height/100) - 0.2;
                     burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
                     burnParticle.posVar = ccp([blocSprite boundingBox].size.width/4,0.0);
+                    NSLog(@"taille bloc: %f",blocSprite.boundingBox.size.height);
                     
                     CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
                     [blocSprite addChild:smokeParticle];
