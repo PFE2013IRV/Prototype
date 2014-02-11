@@ -19,7 +19,7 @@
 @protocol ConstructionTowerDelegate <NSObject>
 
 @required
--(void)movePlanet:(int)height;
+-(void)increaseGodRespect:(int)respect;
 
 @end // end of delegate protocol
 

@@ -59,6 +59,8 @@
         _pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
         
+        _pMenuAndTowerLayer.pTowerLayer.delegate = self;
+        
         self._pGameData = i_pGameData;
         
         [self._pSkyLayer ManageBackgroundConstruction];
@@ -206,13 +208,20 @@
     balanceScene.previusScene = self;
     
     [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];
-                                               }
+}
+
+-(void)increaseGodRespect:(int)respect
+{
+    GodData* pCurrentGodData = [self._pGameData getCurrentGod];
+    [pCurrentGodData increaseRespect:respect];
+}
+
                                                
 -(void) update:(ccTime)delta
 {
     _runtime += delta;
     
-    GameData* pCurrentGameData = super._pGameData;
+    GameData* pCurrentGameData = self._pGameData;
     GodData* pCurrentGodData = nil;
     WindGodData* pWindGodData = nil;
     

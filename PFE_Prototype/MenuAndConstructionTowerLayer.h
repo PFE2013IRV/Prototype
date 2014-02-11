@@ -14,7 +14,7 @@
 #import "PlanetLayer.h"
 #import "FireAttackLayer.h"
 
-@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>//, ConstructionTowerDelegate>
+@interface MenuAndConstructionTowerLayer : CCLayer <MenuDelegate>
 
 
 @property (nonatomic, strong) MenuLayer *pMenuLayer;

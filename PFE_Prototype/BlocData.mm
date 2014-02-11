@@ -20,8 +20,9 @@
 @synthesize _hasSmallerBase;
 @synthesize _specialBaseOffset;
 @synthesize _indexInBlocBag;
+@synthesize respectEarnWithGod = _respectEarnWithGod;
 
--(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
+-(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial GodRespect:(int)respect
 {
     if(i_aVertices.count == 0)
     {
@@ -35,6 +36,7 @@
     
     else if (self = [super init])
     {
+        _respectEarnWithGod = respect;
         _indexInBlocBag = 0;
         _aVertices = [[NSMutableArray alloc] initWithArray:i_aVertices];
         _eBlocMaterial = i_eBlocMaterial;

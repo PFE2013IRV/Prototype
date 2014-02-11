@@ -324,6 +324,11 @@
     _currentHeightNoScroll += _pMovingBlocData._scaledSize.height;
     _HeightTower += _pMovingBlocData._scaledSize.height;
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(increaseGodRespect:)])
+    {
+        [self.delegate increaseGodRespect:_pMovingBlocData.respectEarnWithGod];
+    }
+    
     if (_currentHeightNoScroll > _winningHeight)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"C'EST VOUS LE PATRON" message:@"Vous avez réussi ce magnifique niveau de démo" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
