@@ -13,6 +13,7 @@
 @synthesize previusScene = _previusScene;
 @synthesize _pTowerAndPlanetLayer;
 @synthesize pPlanetLayer = _pPlanetLayer;
+@synthesize _pHUD;
 
 //`-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
 -(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground //CurrenPlanet : (PlanetLayer*) planetLayer
@@ -58,6 +59,11 @@
             CloudsFrontTop* pCloudsFrontTop = [[CloudsFrontTop alloc] init];
             [self addChild:pCloudsFrontTop];
         }
+        
+        _pHUD = [[HUDLayer alloc] init];
+        [self addChild:_pHUD];
+        
+        
         
     }
     

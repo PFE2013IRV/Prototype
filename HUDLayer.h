@@ -19,10 +19,14 @@
 
 @property (nonatomic,strong) GameData* _pCurrentGameData;
 
+// Construction HUD
 @property (nonatomic,strong) CCSprite* _pHUDRespect;
 @property (nonatomic,strong) CCSprite* _pHUDBackgrounds;
 @property (nonatomic,strong) CCSprite* _pHUDFrames;
 @property (nonatomic,strong) CCSprite* _pHUDSunTimer;
 @property (nonatomic,strong) CCSprite* _pHUDSunFrame;
+
+// Balance HUD
+
 
 @end

@@ -9,11 +9,15 @@
 #ifndef ProjectTower_GlobalConfig_h
 #define ProjectTower_GlobalConfig_h
 
+
+// Time mode Balance
+static float TIME_FOR_BALANCE = 15.0f;
+
 // float pour le volume de la musique
 static float VOLUME_CONSTRUCTION = 5.0f;
 static float VOLUME_BALANCE = 1.0f;
 
-static float WIND_GOD_ATTACK_TIME = 20;
+static float WIND_GOD_ATTACK_TIME = 50;
 
 static float FIRE_BALLS_SPEED = 180;
 

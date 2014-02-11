@@ -10,6 +10,7 @@
 #import "GameSceneProtocol.h"
 #import "ConstructionScene.h"
 #import "TowerAndPlanetLayer.h"
+#import "HUDLayer.h"
 @interface BalanceScene : GameScene <GameSceneProtocol>
 
 
@@ -26,5 +27,8 @@
 // Basic init is re-implemented with NSException to be avoided
 // return value : nil
 -(id) init;
+
+
+@property(nonatomic,strong) HUDLayer* _pHUD;
 
 @end
