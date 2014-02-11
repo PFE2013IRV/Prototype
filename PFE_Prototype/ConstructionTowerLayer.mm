@@ -552,8 +552,10 @@
                 {
                     CCParticleSystemQuad* burnParticle =[[CCParticleSystemQuad alloc] initWithFile:@"burningBlocParticle.plist"];
                     [blocSprite addChild:burnParticle];
+                    burnParticle.life = (burnParticle.life * blocSprite.boundingBox.size.height/100) - 0.2;
                     burnParticle.position = ccp([blocSprite boundingBox].size.width / 2 ,0.0);
                     burnParticle.posVar = ccp([blocSprite boundingBox].size.width/4,0.0);
+                    NSLog(@"taille bloc: %f",blocSprite.boundingBox.size.height);
                     
                     CCParticleSystemQuad* smokeParticle =[[CCParticleSystemQuad alloc] initWithFile:@"smokeBlocParticle.plist"];
                     [blocSprite addChild:smokeParticle];
