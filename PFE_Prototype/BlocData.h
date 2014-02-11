@@ -44,6 +44,10 @@
 @property (nonatomic,assign) CGPoint _gravityCenter;
 // Tests if the bloc has a smaller base
 @property(nonatomic,assign) BOOL _hasSmallerBase;
+// Tests if the bloc has a smaller base
+@property(nonatomic,assign) BOOL _hasStalagmite;
+// Tests if the bloc has a smaller base
+@property(nonatomic,assign) BOOL _hasStalagtite;
 // The base's width
 @property(nonatomic,assign) float _baseWidth;
 @property(nonatomic,assign) float _specialBaseOffset;

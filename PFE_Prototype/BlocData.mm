@@ -20,6 +20,8 @@
 @synthesize _hasSmallerBase;
 @synthesize _specialBaseOffset;
 @synthesize _indexInBlocBag;
+@synthesize _hasStalagmite;
+@synthesize _hasStalagtite;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial
 {
@@ -57,6 +59,8 @@
         _sFileName = [[NSString alloc] initWithString:sUniqueFileName];
         
         _hasSmallerBase = NO;
+        _hasStalagmite = NO;
+        _hasStalagtite = NO;
         
         ////////////////////////////////////////////////////////////////
         ///////        Calcul du original size du bloc.            /////
@@ -225,6 +229,8 @@
             
             [aVerticesTmp replaceObjectAtIndex:insertionIndex withObject:pointLeftValue];
             [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
+            
+            _hasStalagmite = YES;
 
         }
         
@@ -262,6 +268,8 @@
             [aVerticesTmp insertObject:pointRightValue atIndex:insertionIndex+1];
             
             _baseWidth = 0;
+            
+            _hasStalagtite = YES;
 
         }// On en profite pour vérifier la base du bloc !
         else if(sizeOfYmin == 2)

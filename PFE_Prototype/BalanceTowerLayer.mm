@@ -36,17 +36,18 @@ enum {
         
         self._pTowerData = i_pTowerData;
         
-        for (BlocData *bloc in self._pTowerData._aBlocs)
-        {
-            self.TowerSize+= bloc._scaledSize.height;
-          // self.TowerSize++;
-             CCLOG(@"incrmeent at  %0.2f ", (double) self.TowerSize );
-        }
+     
        
 
         
         self->RemovedBlocs = [[NSMutableIndexSet alloc] init];
         [self CalculateScalingFactor];
+        for (BlocData *bloc in self._pTowerData._aBlocs)
+        {
+            self.TowerSize+= bloc._scaledSize.height *_scalingFactor;
+            // self.TowerSize++;
+            CCLOG(@"incrmeent at  %0.2f ", (double) self.TowerSize );
+        }
                 // init physics
 		[self initPhysics];
        
@@ -63,8 +64,8 @@ enum {
         //[self runAction: [CCSequence actions:action1, action2, action3, action4, nil]];
        */
        // for(int i = 1 ; i <= 2  ; i++)
-        [self ApplyWindAttackLeft];
-        [self ApplyWindAttackRight];
+      //  [self ApplyWindAttackLeft];
+      //  [self ApplyWindAttackRight];
 
         [self scheduleUpdate];
 
@@ -102,7 +103,7 @@ enum {
     
     CCLOG(@"Scaling at  %0.2f ",(double)(220 * _scalingFactor)/PTM_RATIO);
 
-     groundBodyDef.position.Set(0,(220 * _scalingFactor)
+     groundBodyDef.position.Set(0,180* _scalingFactor///(220 )
                                // ( s.height/6)
                                 /PTM_RATIO
                                 ); // bottom-left corner
@@ -117,19 +118,19 @@ enum {
      b2EdgeShape groundBox;
      
      // bottom
-     groundBox.Set(b2Vec2(0,0), b2Vec2(s.width  /PTM_RATIO,0));
+     groundBox.Set(b2Vec2(0,0), b2Vec2(s.width  ,0));
      groundBody->CreateFixture(&groundBox,0);
      
      // top
-     groundBox.Set(b2Vec2(0,s.height  /PTM_RATIO ), b2Vec2(s.width /PTM_RATIO,s.height /PTM_RATIO));
+     groundBox.Set(b2Vec2(0,s.height   ), b2Vec2(s.width ,s.height ));
      groundBody->CreateFixture(&groundBox,0);
      
      // left
-     groundBox.Set(b2Vec2(0,s.height /PTM_RATIO), b2Vec2(0,0));
+     groundBox.Set(b2Vec2(0,s.height ), b2Vec2(0,0));
      groundBody->CreateFixture(&groundBox,0);
      
      // right
-     groundBox.Set(b2Vec2(s.width /PTM_RATIO,s.height /PTM_RATIO), b2Vec2(s.width  /PTM_RATIO,0));
+     groundBox.Set(b2Vec2(s.width ,s.height ), b2Vec2(s.width  ,0));
      groundBody->CreateFixture(&groundBox,0);
    
 }
@@ -138,7 +139,7 @@ enum {
 {
     _scalingFactor = 700.0f / (TowerSize +PLANET_HEIGHT_BALANCE                               //self.pPlanetLayer.pPlanetSprite.boundingBox.size.height
                                );
-    _scalingFactor = 0.6;
+   // _scalingFactor = 0.6;
 
     if(_scalingFactor > 1) _scalingFactor = 0.8f;
 
@@ -166,15 +167,20 @@ enum {
 
 -(void)drawAllPhysicsBlocsOfTower
 {
-    int x = 350 * _scalingFactor;
-    int y = 180 * _scalingFactor;
-    bool Tower = true;
+    int x = 350; //* _scalingFactor;
+    int y = 180* _scalingFactor;
+    
     int i =1;
-    int max, min;
+    int max, min, ytmp;
     int Move = 0;
-   
+    int tmp = 0;
+    bool newBloc = true;
+    
+    CGPoint Base;
+    b2Vec2 vertices[100];
+   /*
     // Dernier troncon soumis a l'attaque
-    if(Tower)
+    if(WindAttackType)
     {
         max = [self._pTowerData Size];
         min = round([self._pTowerData Size] / 3);
@@ -188,13 +194,66 @@ enum {
     //Bloc central du troncon
     int Middle_Bloc = max - round(round([self._pTowerData Size] / 3) / 2);
     
-   
+   */
+    NSMutableArray *TabSprite = [[NSMutableArray alloc] init];
+
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
-        CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
+        int gravityCenterOfBloc = ((bloc._scaledSize.width / 2))
+        * _scalingFactor
+        - (bloc._gravityCenter.x
+           *_scalingFactor);
+        
+        CCSprite *pBlocSprite = [BlocManager GetSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
         
-    /***** Decalage due a l'attaque du vent *****/
+        [pBlocSprite setPosition:CGPointMake(gravityCenterOfBloc, 0)];
+        
+        [TabSprite addObject: pBlocSprite];
+       
+        if(newBloc)
+        {
+            std::vector<CGPoint> forme = [bloc GetPhysicalVertices];
+            for(int j = forme.size() ; j >= 0  ; j--)
+            {
+                Base = forme[j];
+                if(Base.y == 0 )
+                {
+                    vertices[tmp].Set( (double) Base.x/PTM_RATIO + gravityCenterOfBloc,(double) Base.y/PTM_RATIO);
+                    tmp++;
+                     CCLOG(@"Detection de nouveau bloc, on ajoute la base %0.2f x %02.f",(double)Base.x/PTM_RATIO ,(double)Base.y/PTM_RATIO);
+                }
+            }
+            
+            ytmp = y;
+            tmp = 0;
+         }
+        //if(bloc._hasStalagmite)
+        {
+            CCPhysicsSprite* pBlocSprite = [CCPhysicsSprite node];
+            
+            for (int j = 0; j < [TabSprite count]; j++)
+            {
+                //CCSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloctmp];
+                [pBlocSprite addChild: [TabSprite objectAtIndex:j]];
+            }
+            
+            
+            //CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
+            pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
+            [self._aBlocsTowerSprite addObject:pBlocSprite];
+            [self addChild:pBlocSprite];
+            [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x, y) b2Vec2:vertices];
+            CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
+            
+            [pBlocSprite setPosition:CGPointMake(x, y)];
+            newBloc = true;
+            [TabSprite removeAllObjects];
+            y += (bloc._scaledSize.height * _scalingFactor);
+        }
+      //  else
+            newBloc = true;
+    /***** Decalage due a l'attaque du vent *****
         
         //Si on se rapproche du centre de l'attaque, on ajoute du decalage
         if(i <= Middle_Bloc && i >= min && i <= max)
@@ -215,24 +274,12 @@ enum {
         CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
     /********************************************/
         
-        y += (bloc._scaledSize.height / 2)* _scalingFactor;
+        //y += (bloc._scaledSize.height / 2);//* _scalingFactor;
         //y += pBlocSprite.boundingBox.size.height / 2;
         
-        int gravityCenterOfBloc = ((bloc._scaledSize.width / 2))
-                                   * _scalingFactor
-                                   - (bloc._gravityCenter.x
-                                      *_scalingFactor);
-        //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
+                //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
+      
         
-        [self._aBlocsTowerSprite addObject:pBlocSprite];
-        [self addChild:pBlocSprite];
-        [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x, y)];
-        
-       
-        CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
-        [pBlocSprite setPosition:CGPointMake(x + gravityCenterOfBloc, y)];
-        
-        y += (bloc._scaledSize.height / 2 )  * _scalingFactor;
         
         i++;
         
@@ -242,7 +289,7 @@ enum {
 
 
 
--(void)createBodyForPhysicSprite:(CCPhysicsSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p
+-(void)createBodyForPhysicSprite:(CCPhysicsSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p b2Vec2:(b2Vec2*) Base
 {
     std::vector<CGPoint> forme = [b GetPhysicalVertices];
     CGPoint pointTmp;
@@ -251,19 +298,30 @@ enum {
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(p.x-50/PTM_RATIO, p.y-50/PTM_RATIO);
+    bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
     bodyDef.userData = sprite;
    
     b2Body *body = world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[100];
-    
+    int j =1;
   //  CCLOG(@"Call Addbloc");
-    for(int i = forme.size() ; i >= 0  ; i--)
+    for(int i = forme.size()-1 ; i >= 0  ; i--)
     {
+        
         pointTmp = forme[i];
-        vertices[i].Set( (double) pointTmp.x/PTM_RATIO,(double) pointTmp.y/PTM_RATIO);
-   //     CCLOG(@"Add sprite %0.f x %0.f",vertices[i].x,vertices[i].y);
+   //Ajout des coordonnées 0,0 du premier bloc
+       /* if((double) pointTmp.y/PTM_RATIO == 0)
+        {
+            vertices[i].Set( Base[j].x,Base[j].y);
+            CCLOG(@"Add base %0.f x %0.f at i = %0.f ",Base[j].x,Base[j].y, (double)i);
+            j--;
+        }
+        else*/
+        
+            vertices[i].Set( (double) pointTmp.x/PTM_RATIO,(double) pointTmp.y/PTM_RATIO);
+   
+            CCLOG(@"Add point %0.f x %0.f at i = %0.f",vertices[i].x,vertices[i].y, (double) i);
     }
     
     b2PolygonShape polygonShape;
@@ -271,9 +329,10 @@ enum {
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &polygonShape;
     fixtureDef.density = 10.0f;
-    fixtureDef.friction = 10;
+    fixtureDef.friction = 1;
     //fixtureDef.isSensor = true;
     
+    // Pas de rebond
     fixtureDef.restitution = 0;
     body->CreateFixture(&fixtureDef);
         
@@ -340,9 +399,10 @@ enum {
             }
             else
             {
-                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree ));
-                if(b->GetPosition().y <=  (s.height/6  /PTM_RATIO +1) && b != groundBody)
+                b->SetTransform(b->GetPosition(), CC_DEGREES_TO_RADIANS(-degree * 0.4 ));
+                if(b->GetPosition().y <=  (180* _scalingFactor  /PTM_RATIO +1) && b != groundBody)
                 {
+                    
                     CCLOG(@"Destruction %0.2f vs %0.2f ", b->GetPosition().y, (s.height/6  /PTM_RATIO +1));
                     
                    for(b2JointEdge *j=b->GetJointList();j;j=j->next){
@@ -359,7 +419,9 @@ enum {
                         [self._pTowerData Remove:i-1];
                         [RemovedBlocs addIndex:i-1];
                    // [self removeChild:Bloc cleanup:YES];
+                     
                     }
+                    
                 }
             }
             i--;
@@ -369,7 +431,7 @@ enum {
 
 -(void)ApplyWindAttackLeft
 {
-    int degree = -5;
+    int degree = -2;
     
     int i = [self._pTowerData Size];
     
@@ -395,7 +457,7 @@ enum {
 
 -(void)ApplyWindAttackRight
 {
-    int degree = 3;
+    int degree = 1;
     
     int i = [self._pTowerData Size];
     
