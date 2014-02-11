@@ -56,7 +56,7 @@
         _pElementGodsLayer = [ElementGodsLayer node];
         _pFireAttackLayer = [FireAttackLayer node];
         _pUpsetGodParticleLayer = [UpsetGodParticleLayer node];
-        //_pGodWrathLayer = [GodWrathLayer node];
+        _pGodWrathLayer = [GodWrathLayer node];
         _pMenuAndTowerLayer = [[[MenuAndConstructionTowerLayer alloc] initWithTowerData:i_pGameData._pTowerData HeightWin:i_pGameData.winHeight] autorelease];
         
         self._pGameData = i_pGameData;
@@ -98,7 +98,7 @@
         }
         
         
-        //[self addChild:self._pGodWrathLayer];
+        [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
         [self addChild:self._pDustLayerBack];
         
@@ -162,8 +162,7 @@
     
     GodData* pGodData = _pElementGodsLayer._pGodData;
     
-    //Update Max : changement du dieu en cours _isAngry ici ou ailleurs? je n'ai pas trouvé ailleurs
-    if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
+        if (_pUpsetGodParticleLayer._pGodParticle.parent != _pUpsetGodParticleLayer)
     {
         if(pGodData._isAngry == YES)
         {

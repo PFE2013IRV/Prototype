@@ -52,7 +52,7 @@ if( (self=[super init]) )
 
     [self addChild:_pGodWrathAnnimation];
     
-    [self schedule:@selector(skyGodWrath:)interval:_velocityFactor*5];
+    [self schedule:@selector(skyGodWrath:)interval:_velocityFactor*2];
     
 }
 return self;
@@ -123,7 +123,7 @@ return self;
         _lockAnim= YES;
         if(_pGodData._eGodType==GOD_TYPE_FIRE )
         {
-            
+            [self unschedule:@selector(skyUnWarthAnnimation:)];
             [self schedule:@selector(skyWarthAnnimation:)interval:_velocityFactor];
         }
     }
@@ -135,6 +135,7 @@ return self;
         _lockAnim=YES;
         if(_pGodData._eGodType == GOD_TYPE_FIRE)
         {
+            [self unschedule:@selector(skyWarthAnnimation:)];
             [self schedule:@selector(skyUnWarthAnnimation:)interval:_velocityFactor];
         }
     }
