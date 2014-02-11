@@ -22,6 +22,7 @@
 @synthesize _indexInBlocBag;
 @synthesize _hasStalagmite;
 @synthesize _hasStalagtite;
+@synthesize respectEarnWithGod = _respectEarnWithGod;
 
 -(id) initBloc : (NSArray*)i_aVertices withMaterial: (Material)i_eBlocMaterial GodRespect:(int)respect
 {
