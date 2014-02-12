@@ -251,8 +251,6 @@
                      [_pMenuAndTowerLayer godIsAngry];
                      // On met à jour la colère du dieu
                      [pCurrentGodData raiseGodAnger];
-                     
-                     
                  }
                  if (_pFireAttackLayer.canLaunchOtherFireBalls)
                  {
@@ -285,6 +283,8 @@
 -(void) LaunchWindGodAttack : (GodData*) i_pCurrentGod
 {
     [self unscheduleUpdate];
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"play.mp3"];
     
     CCSequence* pWindGodAttackSequence = nil;
     
