@@ -195,7 +195,7 @@
     //balanceScene.TowerSize = Tower
     balanceScene.previusScene = self;
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:balanceScene]];
 }
 
 -(void)increaseGodRespect:(int)respect

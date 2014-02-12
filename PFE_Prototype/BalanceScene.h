@@ -10,15 +10,13 @@
 #import "GameSceneProtocol.h"
 #import "ConstructionScene.h"
 #import "TowerAndPlanetLayer.h"
-#import "EndGameDelegate.h"
 #import "HUDLayer.h"
-@interface BalanceScene : GameScene <GameSceneProtocol> 
+@interface BalanceScene : GameScene <GameSceneProtocol, UIAlertViewDelegate>
 
 
 @property (nonatomic, strong) ConstructionScene *previusScene;
 @property (nonatomic,strong) TowerAndPlanetLayer* _pTowerAndPlanetLayer;
 @property (nonatomic, strong) PlanetLayer *pPlanetLayer;
-@property (nonatomic,strong) EndGameDelegate *endDelegate;
 // Game scene init with game data is requiered for every game scene.
 // i_pGameData : the game data used to initialize the scene
 // return value : self
