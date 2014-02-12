@@ -74,9 +74,9 @@
 
 -(void) endGame
 {
-    
     UIAlertView* popUpEnd = [[UIAlertView alloc] initWithTitle:@"Fin du jeu !" message:@"Félicitation vous avez terminé la partie !" delegate:self cancelButtonTitle:@"Revenir au menu" otherButtonTitles:nil];
     [popUpEnd show];
+    [self unschedule:@selector(endGame)];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

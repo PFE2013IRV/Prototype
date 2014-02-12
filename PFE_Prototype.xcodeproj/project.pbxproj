@@ -14,6 +14,7 @@
 		449B8A6A18955E6400B219CA /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 449B8A6918955E6400B219CA /* CCScrollLayer.mm */; };
 		44C8BF1718896BDA00931C90 /* MenuAndConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.mm */; };
 		44C8BF1A18896BF600931C90 /* MenuLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C8BF1918896BF600931C90 /* MenuLayer.mm */; };
+		44F4A43D18AB92C00050F853 /* vent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F4A43C18AB92C00050F853 /* vent.mp3 */; };
 		541D754A18883D090004F63A /* ConstructionTowerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 541D754918883D090004F63A /* ConstructionTowerLayer.mm */; };
 		5440C63418A13ADD00138D41 /* ParticleFire.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5440C63318A13ADD00138D41 /* ParticleFire.mm */; };
 		54909CAF188035A300268D54 /* ElementGodsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54909CAE188035A300268D54 /* ElementGodsLayer.mm */; };
@@ -315,6 +316,7 @@
 		44C8BF1618896BDA00931C90 /* MenuAndConstructionTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuAndConstructionTowerLayer.mm; sourceTree = "<group>"; };
 		44C8BF1818896BF600931C90 /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
 		44C8BF1918896BF600931C90 /* MenuLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MenuLayer.mm; sourceTree = "<group>"; };
+		44F4A43C18AB92C00050F853 /* vent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vent.mp3; sourceTree = "<group>"; };
 		541D754818883D090004F63A /* ConstructionTowerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionTowerLayer.h; sourceTree = "<group>"; };
 		541D754918883D090004F63A /* ConstructionTowerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConstructionTowerLayer.mm; sourceTree = "<group>"; };
 		5440C63218A13ADD00138D41 /* ParticleFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleFire.h; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 		4442D02C18AA74E400307CD0 /* Son */ = {
 			isa = PBXGroup;
 			children = (
+				44F4A43C18AB92C00050F853 /* vent.mp3 */,
 				4442D03118AA9CCD00307CD0 /* GodFire.mp3 */,
 				4442D02D18AA74F300307CD0 /* 3.mp3 */,
 				4442D02E18AA74F300307CD0 /* 2.mp3 */,
@@ -1946,6 +1949,7 @@
 				8A839E9218A3DA68006F8E1E /* HUD_respectRed.png in Resources */,
 				8A4091391896B0A4009CD5B0 /* WindGod_moveUp.plist in Resources */,
 				8AE87FA61899721D000BEE47 /* BkgBloc_4.png in Resources */,
+				44F4A43D18AB92C00050F853 /* vent.mp3 in Resources */,
 				8A4091371896B0A4009CD5B0 /* WindGod_moveDown.plist in Resources */,
 				8A06BA9F18AA1E8E0040E7AA /* HUD_timeBarFrame.png in Resources */,
 				8A5B232A18707E5B00B145A4 /* BlocBagData.json in Resources */,

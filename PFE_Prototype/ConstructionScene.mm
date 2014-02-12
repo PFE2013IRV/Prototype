@@ -263,8 +263,6 @@
                      [_pMenuAndTowerLayer godIsAngry];
                      // On met à jour la colère du dieu
                      [pCurrentGodData raiseGodAnger];
-                     
-                     
                  }
                  if (_pFireAttackLayer.canLaunchOtherFireBalls)
                  {
