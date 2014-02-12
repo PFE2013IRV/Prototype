@@ -5,6 +5,7 @@
 //
 
 #import "BalanceScene.h"
+#import "IntroScene.h"
 #import "TowerAndPlanetLayer.h"
 
 
@@ -14,7 +15,6 @@
 @synthesize _pTowerAndPlanetLayer;
 @synthesize pPlanetLayer = _pPlanetLayer;
 @synthesize _pHUD;
-@synthesize endDelegate= _endDelegate;
 
 //`-(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground
 -(id) initGameScene : (GameData*) i_pGameData CurrentBackground :(CCSprite*) i_CurrentBackground //CurrenPlanet : (PlanetLayer*) planetLayer
@@ -74,9 +74,14 @@
 
 -(void) endGame
 {
-    _endDelegate = [[EndGameDelegate alloc]init];
-
+    
+    UIAlertView* popUpEnd = [[UIAlertView alloc] initWithTitle:@"Fin du jeu !" message:@"Félicitation vous avez terminé la partie !" delegate:self cancelButtonTitle:@"Revenir au menu" otherButtonTitles:nil];
+    [popUpEnd show];
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[[[IntroScene alloc] init] autorelease]]];}
 
 -(id) init
 {
