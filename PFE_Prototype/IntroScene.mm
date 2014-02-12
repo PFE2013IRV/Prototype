@@ -57,11 +57,11 @@
 
 -(void) launchConstruction
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:1.0 scene:[[[ConstructionScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevel:0]] autorelease]]];
 }
 -(void) launchBalance
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevelBalance:0]CurrentBackground:nil //CurrentSun:ccc4(0, 0, 0, 0)
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[[BalanceScene alloc] initGameScene:[[LevelVisitor GetLevelVisitor] StartLevelBalance:0]CurrentBackground:nil //CurrentSun:ccc4(0, 0, 0, 0)
                                                                                                 ] autorelease]]];
 }
 
