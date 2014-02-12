@@ -11,13 +11,13 @@
 
 
 // Time mode Balance
-static float TIME_FOR_BALANCE = 15.0f;
+static float TIME_FOR_BALANCE = 25.0f;
 
 // float pour le volume de la musique
-static float VOLUME_CONSTRUCTION = 5.0f;
+static float VOLUME_CONSTRUCTION = 4.0f;
 static float VOLUME_BALANCE = 1.0f;
 
-static float WIND_GOD_ATTACK_TIME = 500;
+static float WIND_GOD_ATTACK_TIME = 100;
 
 static float FIRE_BALLS_SPEED = 180;
 

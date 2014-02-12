@@ -40,6 +40,13 @@
     
 }
 
+
+-(void)onEnterTransitionDidFinish
+{
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"MusiqueTower.m4a"];
+    [CDAudioManager sharedManager].backgroundMusic.volume = VOLUME_CONSTRUCTION;
+}
+
 -(id) initGameScene : (GameData*) i_pGameData
 {
     if(!i_pGameData)
@@ -48,9 +55,6 @@
     }
     else if (self = [super init])
     {
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"MusiqueTower.m4a"];
-        [CDAudioManager sharedManager].backgroundMusic.volume = VOLUME_CONSTRUCTION;
-        
         _pWindAttackLayer = [WindAttackLayer node];
         _pWindGodLayer = [WindGodLayer node];
         _pElementGodsLayer = [ElementGodsLayer node];
@@ -99,7 +103,6 @@
             [self addChild:pCloudsFront];
         }
         
-        
         [self addChild:self._pGodWrathLayer];
         [self addChild:self._pUpsetGodParticleLayer];
         [self addChild:self._pDustLayerBack];
@@ -128,22 +131,7 @@
         CloudsFrontTop* pCloudsFront = [[CloudsFrontTop alloc] init];
         [self addChild:pCloudsFront];
 
-        
-        //CCSprite* AnniversaireHugo = [CCSprite spriteWithFile:@"AnniversaireHugo.png"];
-        
-        
-        // add light on tower column (particle)
-        
-        // Bouton God
-        /*CCMenuItemImage *addParticleGodFireButton = [CCMenuItemImage itemWithNormalImage:@"WindButton.png" selectedImage:@"WindButton.png" target:self selector:@selector(addGodParticle:)];
-        addParticleGodFireButton.position = ccp(80, 0);
-        
-        // Menu des boutons
-        CCMenu *addMenu = [CCMenu menuWithItems:addParticleGodFireButton, nil];
-        addMenu.position = ccp(0, 170);
-        
-        // ajoute le menu
-        [self addChild:addMenu];*/
+    
         
         
         [self scheduleUpdate];
