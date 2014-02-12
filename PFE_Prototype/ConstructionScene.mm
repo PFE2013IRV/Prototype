@@ -284,7 +284,7 @@
 {
     [self unscheduleUpdate];
     
-    [[SimpleAudioEngine sharedEngine] playEffect:@"play.mp3"];
+    ALuint vent = [[SimpleAudioEngine sharedEngine] playEffect:@"vent.mp3"];
     
     CCSequence* pWindGodAttackSequence = nil;
     
@@ -343,11 +343,6 @@
     {
         [_pWindAttackLayer addWindParticle:nil];
     }];
-
-    
-    
-    
-    
     
     pWindGodAttackSequence = [CCSequence actions:calmDownGod,
                               windGodisAngry,
@@ -360,6 +355,7 @@
     
     [self runAction:pWindGodAttackSequence];
     
+    [[SimpleAudioEngine sharedEngine] stopEffect:vent];
 }
 
 
