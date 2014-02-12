@@ -298,6 +298,8 @@
 {
     [self unscheduleUpdate];
     
+    [[SimpleAudioEngine sharedEngine] playEffect:@"play.mp3"];
+    
     CCSequence* pWindGodAttackSequence = nil;
     
     // On calme d'abord le dieu

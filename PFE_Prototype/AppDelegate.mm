@@ -180,6 +180,8 @@
         if (sae != nil)
         {
             [sae preloadBackgroundMusic:@"MusiqueTower.m4a"];
+            [sae preloadEffect:@"GodFire.mp3"];
+            [sae preloadEffect:@"vent.mp3"];
             
             if (sae.willPlayBackgroundMusic)
             {
