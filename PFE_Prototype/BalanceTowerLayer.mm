@@ -171,12 +171,12 @@ enum {
     int y = 180* _scalingFactor;
     
     int i =1;
-    int max, min, ytmp;
+    int max, min, ytmp, BlocSize;
     int Move = 0;
     int tmp = 0;
     bool newBloc = true;
     
-    CGPoint Base;
+    CGPoint Base, BaseTmp;
     b2Vec2 vertices[100];
    /*
     // Dernier troncon soumis a l'attaque
@@ -196,7 +196,7 @@ enum {
     
    */
     NSMutableArray *TabSprite = [[NSMutableArray alloc] init];
-
+    
     for (BlocData *bloc in self._pTowerData._aBlocs)
     {
         int gravityCenterOfBloc = ((bloc._scaledSize.width / 2))
@@ -207,79 +207,96 @@ enum {
         CCSprite *pBlocSprite = [BlocManager GetSpriteFromModel:bloc];
         pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
         
-        [pBlocSprite setPosition:CGPointMake(gravityCenterOfBloc, 0)];
+        [pBlocSprite setPosition:CGPointMake(gravityCenterOfBloc,BlocSize )];
         
         [TabSprite addObject: pBlocSprite];
        
         if(newBloc)
         {
             std::vector<CGPoint> forme = [bloc GetPhysicalVertices];
-            for(int j = forme.size() ; j >= 0  ; j--)
+            BlocSize = 0;
+            for(int j = forme.size()-1 ; j >= 0  ; j--)
             {
                 Base = forme[j];
-                if(Base.y == 0 )
+                if( Base.y == 0 )
                 {
-                    vertices[tmp].Set( (double) Base.x/PTM_RATIO + gravityCenterOfBloc,(double) Base.y/PTM_RATIO);
-                    tmp++;
-                     CCLOG(@"Detection de nouveau bloc, on ajoute la base %0.2f x %02.f",(double)Base.x/PTM_RATIO ,(double)Base.y/PTM_RATIO);
+                    if(tmp == 0)
+                    {
+                        vertices[tmp].Set( (double) Base.x/PTM_RATIO
+                                          ,(double) Base.y/PTM_RATIO);
+                        tmp++;
+                    }
+                    vertices[tmp].Set( (double) Base.x/PTM_RATIO
+                                      ,(double) Base.y/PTM_RATIO);
+                    //tmp++;
+                    CCLOG(@"Detection de nouveau bloc, on ajoute la base %0.2f x %02.f",(double)Base.x/PTM_RATIO ,(double)Base.y/PTM_RATIO);
+                    
                 }
             }
+
             
             ytmp = y;
             tmp = 0;
          }
-        //if(bloc._hasStalagmite)
+        
+        BlocData *nextBloc = [[BlocData alloc] init];
+        if (i < self._pTowerData._aBlocs.count)
         {
-            CCPhysicsSprite* pBlocSprite = [CCPhysicsSprite node];
-            
-            for (int j = 0; j < [TabSprite count]; j++)
+            nextBloc = [self._pTowerData._aBlocs objectAtIndex:i];
+        }
+        if(bloc._hasStalagmite  || nextBloc._hasStalagtite)
             {
-                //CCSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloctmp];
-                [pBlocSprite addChild: [TabSprite objectAtIndex:j]];
+                CCPhysicsSprite* pBlocSprite = [CCPhysicsSprite node];
+                
+                for (int j = 0; j < [TabSprite count]; j++)
+                {
+                    //CCSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloctmp];
+                    [pBlocSprite addChild: [TabSprite objectAtIndex:j]];
+                }
+                
+                
+                //CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
+                pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
+                [self._aBlocsTowerSprite addObject:pBlocSprite];
+                [self addChild:pBlocSprite];
+                [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x, y) b2Vec2:vertices Taille:BlocSize];
+                CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
+                
+                [pBlocSprite setPosition:CGPointMake(x, y)];
+                newBloc = true;
+                [TabSprite removeAllObjects];
+                y += (bloc._scaledSize.height * _scalingFactor);
             }
+            else
+            {
+                newBloc = false;
+                BlocSize += bloc._scaledSize.height;
+            }
+            /***** Decalage due a l'attaque du vent *****
+             
+             //Si on se rapproche du centre de l'attaque, on ajoute du decalage
+             if(i <= Middle_Bloc && i >= min && i <= max)
+             {
+             Move++;
+             x = x-Move;
+             }
+             //Sinon c'est qu'on a passé le point critique, on réduit le decalage
+             else if(i > Middle_Bloc && i >= min && i <= max)
+             {
+             Move--;
+             x = x-Move;
+             }
+             //Cas ou l'on a depassé le rayon de l'attaque
+             else if (i > max)
+             x = 350 * _scalingFactor;
+             
+             CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
+             /********************************************/
             
+            //y += (bloc._scaledSize.height / 2);//* _scalingFactor;
+            //y += pBlocSprite.boundingBox.size.height / 2;
             
-            //CCPhysicsSprite *pBlocSprite = [BlocManager GetPhysicsSpriteFromModel:bloc];
-            pBlocSprite.anchorPoint = ccp(0.0f,0.0f);
-            [self._aBlocsTowerSprite addObject:pBlocSprite];
-            [self addChild:pBlocSprite];
-            [self createBodyForPhysicSprite:pBlocSprite BlocData:bloc Point:CGPointMake(x, y) b2Vec2:vertices];
-            CCLOG(@"Add sprite %0.2f x %02.f",(double)x + gravityCenterOfBloc,(double)y);
-            
-            [pBlocSprite setPosition:CGPointMake(x, y)];
-            newBloc = true;
-            [TabSprite removeAllObjects];
-            y += (bloc._scaledSize.height * _scalingFactor);
-        }
-      //  else
-            newBloc = true;
-    /***** Decalage due a l'attaque du vent *****
-        
-        //Si on se rapproche du centre de l'attaque, on ajoute du decalage
-        if(i <= Middle_Bloc && i >= min && i <= max)
-        {
-            Move++;
-            x = x-Move;
-        }
-        //Sinon c'est qu'on a passé le point critique, on réduit le decalage
-        else if(i > Middle_Bloc && i >= min && i <= max)
-        {
-            Move--;
-            x = x-Move;
-         }
-        //Cas ou l'on a depassé le rayon de l'attaque
-        else if (i > max)
-            x = 350 * _scalingFactor;
-        
-        CCLOG(@"Move : %0.2f, Bloc : %0.2f, Millieux : %0.2f, Min: %0.2f , Max : %0.2f",(double)Move, (double) i, (double) Middle_Bloc, (double) min, (double) max);
-    /********************************************/
-        
-        //y += (bloc._scaledSize.height / 2);//* _scalingFactor;
-        //y += pBlocSprite.boundingBox.size.height / 2;
-        
-                //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
-      
-        
+            //int gravityCenterOfBloc = pBlocSprite.boundingBox.size.width / 2 - bloc._gravityCenter.x;
         
         i++;
         
@@ -289,7 +306,7 @@ enum {
 
 
 
--(void)createBodyForPhysicSprite:(CCPhysicsSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p b2Vec2:(b2Vec2*) Base
+-(void)createBodyForPhysicSprite:(CCPhysicsSprite*)sprite BlocData:(BlocData*)b Point:(CGPoint)p b2Vec2:(b2Vec2*) Base Taille: (int ) Size
 {
     std::vector<CGPoint> forme = [b GetPhysicalVertices];
     CGPoint pointTmp;
@@ -304,22 +321,22 @@ enum {
     b2Body *body = world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[100];
-    int j =1;
+    int j =0;
   //  CCLOG(@"Call Addbloc");
     for(int i = forme.size()-1 ; i >= 0  ; i--)
     {
         
         pointTmp = forme[i];
    //Ajout des coordonnées 0,0 du premier bloc
-       /* if((double) pointTmp.y/PTM_RATIO == 0)
+        if((double) pointTmp.y/PTM_RATIO == 0)
         {
             vertices[i].Set( Base[j].x,Base[j].y);
             CCLOG(@"Add base %0.f x %0.f at i = %0.f ",Base[j].x,Base[j].y, (double)i);
-            j--;
+            j++;
         }
-        else*/
+        else
         
-            vertices[i].Set( (double) pointTmp.x/PTM_RATIO,(double) pointTmp.y/PTM_RATIO);
+            vertices[i].Set( (double) pointTmp.x/PTM_RATIO,(double) (pointTmp.y +Size)/PTM_RATIO);
    
             CCLOG(@"Add point %0.f x %0.f at i = %0.f",vertices[i].x,vertices[i].y, (double) i);
     }
@@ -414,14 +431,16 @@ enum {
                         world->DestroyBody(b);
                         CCPhysicsSprite *Bloc = (CCPhysicsSprite *)  b->GetUserData();
                         id fadeOut = [CCFadeOut actionWithDuration:0.4];
-                    
+                        for(CCSprite  *ChildSprite in Bloc.children)
+                            [ChildSprite runAction:fadeOut];
+                        
+                        
                         [Bloc runAction:fadeOut];
+                        [Bloc removeAllChildren];
                         [self._pTowerData Remove:i-1];
                         [RemovedBlocs addIndex:i-1];
-                   // [self removeChild:Bloc cleanup:YES];
-                     
+                        // [self removeChild:Bloc cleanup:YES];
                     }
-                    
                 }
             }
             i--;

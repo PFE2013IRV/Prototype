@@ -339,7 +339,12 @@
 
 -(id) init
 {
-    [NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
+    if (self = [super init])
+    {
+        _hasStalagmite = false;
+        _hasStalagtite = false;
+    }
+    //[NSException raise:NSInternalInconsistencyException format:@"Please use the custom init for this class"];
     return self;
 }
 
